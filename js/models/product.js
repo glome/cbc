@@ -31,7 +31,7 @@ App.Product = DS.Model.extend(
     var ret = 'Cashback: ';
     if (bonusMoney)
     {
-      ret = bonusMoney + ' ' + this.get('currency')
+      ret += bonusMoney + ' ' + this.get('currency')
       if (bonusPercent)
       {
         ret += ' & ';
