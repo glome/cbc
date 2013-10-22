@@ -17,7 +17,6 @@ App.ProductsView = Ember.View.extend(
   {
     templateName: 'grid',
   }),
-
   /**
    *
    */
@@ -48,5 +47,3 @@ App.ProductsView = Ember.View.extend(
     return (scroll - dist === 0);
   }
 });
-
-
