@@ -20,7 +20,7 @@ var App = GlomeApp.create(
 {
   LOG_TRANSITIONS: false, // basic logging of successful transitions
   LOG_TRANSITIONS_INTERNAL: false, // detailed logging of all routing steps
-  LOG_ACTIVE_GENERATION: true,
+  LOG_ACTIVE_GENERATION: false,
 });
 
 /**
@@ -80,17 +80,7 @@ App.Adapter = DS.RESTAdapter.extend(
   buildURL: function(type, id)
   {
     var url = ''
-//    if (type == 'product' && typeof id === 'string')
-    if (type == 'productscategory')
-    {
-      url = this._super('product');
-      url += '/category/' + id + '.json';
-    }
-    else
-    {
-      url = this._super(type, id) + '.json';
-    }
-
+    url = this._super(type, id) + '.json';
     console.log('return URL for type: ' + type + ', id: ' + id + '. URL is: ' + url);
     return url;
   },
