@@ -4,7 +4,7 @@
  */
 App.ProductsController = Ember.ArrayController.extend(
 {
-  needs: ['user', 'application', 'products', 'products.show'],
+  needs: ['user', 'application', 'product', 'products', 'products.show'],
 
   page: 1,
   perPage: 24,
@@ -12,6 +12,7 @@ App.ProductsController = Ember.ArrayController.extend(
   loadingMore: false,
   currentCategory: null,
   currentProduct: null,
+  category: '',
   categories: [],
   categoryMap: [],
 
@@ -89,12 +90,12 @@ App.ProductsController = Ember.ArrayController.extend(
   }
 });
 
-App.ProductsIndexController = Ember.ArrayController.extend(
+App.ProductsIndexController = Ember.ObjectController.extend(
 {
   needs: ['user', 'application', 'products'],
 });
 
-App.ProductsShowController = Ember.ArrayController.extend(
+App.ProductsShowController = Ember.ObjectController.extend(
 {
   needs: ['user', 'application', 'products'],
 });
