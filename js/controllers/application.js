@@ -43,7 +43,7 @@ App.ApplicationController = Ember.ArrayController.extend(
         }
       }
     },
-    loadCategories: function(category = null)
+    loadCategories: function(category)
     {
       var self = this;
       var controller = this.get('controllers.products');
@@ -64,7 +64,7 @@ App.ApplicationController = Ember.ArrayController.extend(
         console.log('category: ' + category);
         if (category)
         {
-          controller.set('currentcategory', controller.get('categoryMap')[category]);
+          controller.set('currentCategory', controller.get('categoryMap')[category]);
         }
 
         console.log('loaded categories');
