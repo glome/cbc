@@ -90,7 +90,7 @@
         </div>
         {{/if}}
         <div class="cart">
-          <input type="button" {{action 'cashBack' product.id target="controllers.products"}} {{bind-attr value=product.cashback}} class="button" />
+          <input type="button" {{action 'cashBack' product.id target="controllers.product"}} {{bind-attr value=product.cashback}} class="button" />
         </div>
       </div>
       {{/each}}
@@ -118,7 +118,7 @@
         {{/if}}
         <div class="cart">
           <div>
-            <input type="button" {{action 'cashBack' currentProduct.id target="controllers.products"}} {{bind-attr value=currentProduct.cashback}} id="button-cart" class="button" />
+            <input type="button" {{action 'cashBack' currentProduct.id target="controllers.product"}} {{bind-attr value=currentProduct.cashback}} id="button-cart" class="button" />
           </div>
         </div>
       </div>

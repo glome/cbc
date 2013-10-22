@@ -81,11 +81,6 @@ App.ProductsController = Ember.ArrayController.extend(
         }
       });
       return;
-    },
-    cashBack: function(product_id)
-    {
-      var glomeid = this.get('controllers.application').get('glomeid');
-      console.log(glomeid + ' clicked on product cashback: ' + product_id);
     }
   }
 });
