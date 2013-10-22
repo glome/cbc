@@ -3,44 +3,50 @@
  */
 App.ProductsView = Ember.View.extend(
 {
+  /**
+   *
+   */
   singleView: Ember.View.extend(
   {
-    templateName: 'product'
+    templateName: 'single'
   }),
   /**
    *
    */
   gridView: Ember.View.extend(
   {
-    templateName: 'products-grid',
-    didInsertElement: function()
-    {
-      Ember.$('div.product-grid').on('scroll', Ember.$.proxy(this.didScroll, this));
-    },
-    willDestroyElement: function()
-    {
-      Ember.$('div.product-grid').off('scroll', Ember.$.proxy(this.didScroll, this));
-    },
-    didScroll: function()
-    {
-      if (this.atBottom())
-      {
-        this.get('controller').send('getMore');
-      }
-    },
-    atBottom: function()
-    {
-      var gridHeight = Ember.$('div.product-grid').outerHeight();
-      var gridScrollHeight = Ember.$('div.product-grid')[0].scrollHeight;
-      var gridScrollTop = Ember.$('div.product-grid').scrollTop();
-
-      if (gridScrollTop === 0)
-      {
-        return false;
-      }
-      return (gridScrollHeight - gridScrollTop === gridHeight);
-    }
+    templateName: 'grid',
   }),
+
+  /**
+   *
+   */
+  didInsertElement: function()
+  {
+    Ember.$(document).on('scroll', Ember.$.proxy(this.didScroll, this));
+  },
+  willDestroyElement: function()
+  {
+    Ember.$(document).off('scroll', Ember.$.proxy(this.didScroll, this));
+  },
+  didScroll: function()
+  {
+    if (this.atBottom())
+    {
+      this.get('controller').send('getMore');
+    }
+  },
+  atBottom: function()
+  {
+    var dist = $(document).height() - $(window).height();
+    var scroll = Ember.$(document).scrollTop();
+
+    if (scroll === 0)
+    {
+      return false;
+    }
+    return (scroll - dist === 0);
+  }
 });
 
 
