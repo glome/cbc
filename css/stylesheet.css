@@ -388,7 +388,7 @@ a.wishlist:hover { color:#d45c93; }
 
 /*********** Product Grid ***********/
 
-.product-grid { width: 100%; max-height: 333px; overflow: auto; }
+.product-grid { width: 100%; }
 .product-grid > div { min-width: 130px; display: inline-block; margin-bottom:10px; position: relative; vertical-align: top; background:#fff; text-align:center; padding:10px; border:1px solid #fff;}
 .product-grid > div:hover{border:1px solid #ddd; }
 .product-grid .image { display: block; margin-bottom:5px; }
