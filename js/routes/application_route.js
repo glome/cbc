@@ -5,24 +5,12 @@ App.ApplicationRoute = Ember.Route.extend(
 {
   actions:
   {
-    auth: function(password)
-    {
-      this.controller.get('controllers.user').send('auth', App.glomeid, password);
-    },
-    logout: function ()
-    {
-      this.controller.get('controllers.user').send('logout');
-    },
-    history: function ()
-    {
-      this.controller.get('controllers.user').send('history');
-    },
     error: function(reason, transition)
     {
       console.log('--------------------------------------- error ---------------------------------------------------');
       console.log(reason);
       console.log(transition);
-
+//~ //~
       if (typeof reason.status !== 'undefined')
       {
         console.log('error status: ' + reason.status + ', transition: ' + transition);
@@ -30,7 +18,6 @@ App.ApplicationRoute = Ember.Route.extend(
         {
           this.controllerFor('application').set('previousTransition', transition);
           this.controllerFor('application').send('connect');
-          console.log('done');
         }
       }
       console.log('-------------------------------------------------------------------------------------------------');
