@@ -46,7 +46,7 @@
 
   <script type="text/x-handlebars" data-template-name="index">
     <h1>Welcome at the Glome catalogue demo!</h1>
-    <p>Please browse the categories on the left hand side. Later we will put here fancy data for you :)</p>
+    <p>You can browse the available products in our catalogue via the categories.</p>
   </script>
 
   <script type="text/x-handlebars" data-template-name="no-glome-id">
@@ -202,21 +202,17 @@
   <script type="text/x-handlebars" data-template-name="mobile-menu">
     <!-- Mobile Menu Start-->
     <nav class="menu m-menu categories">
-      <!-- <span class="title">Categories</span> -->
+      <span class="title">Categories</span>
       <ul>
         <li class="categories">
           <a>Categories</a>
           <div>
-            {{#each category in categories}}
-            <div class="column"> <a href="category.html">{{category.title}}</a>
-              <div>
-                <ul>
-                  {{#each advertiser in category.advertisers}}
-                  <li><a href="category.html">{{advertiser.name}}</a></li>
-                  {{/each}}
-                </ul>
-              </div>
+            {{#each category in controllers.products.categories}}
+            {{#if category.hasProducts}}
+            <div class="column">
+              <a {{action 'clickCategory' category target="controllers.products"}} {{bind-attr data-catid=category.id}} {{bind-attr data-urlname=category.urlName}} class="name">{{category.name}}</a>
             </div>
+            {{/if}}
             {{/each}}
           </div>
         </li>

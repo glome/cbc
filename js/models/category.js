@@ -8,6 +8,10 @@ App.Category = DS.Model.extend(
   linked_at: DS.attr('date'),
   num_published_products: DS.attr('number'),
   children: DS.attr('raw'),
+  isRoot: function()
+  {
+    return (this.get('linked_to') == null);
+  }.property('linked_to', 'name'),
   /**
    *
    */

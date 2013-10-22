@@ -22,5 +22,11 @@ App.ApplicationView = Ember.View.extend(
     {
       Ember.$('html, body').animate({scrollTop:0}, 'slow');
     });
+
+    Ember.$('.m-menu > span').click(function ()
+    {
+      $(this).toggleClass("active");
+      $(this).parent().find("> ul").slideToggle('medium');
+    });
   }
 });
