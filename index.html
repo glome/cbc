@@ -35,7 +35,6 @@
             <div class="breadcrumb"> </div>
             <!--Breadcrumb Part End-->
             {{outlet}}
-            {{outlet two}}
           <!--Middle Part End-->
           </div>
           <div class="clear"></div>
@@ -43,6 +42,11 @@
       </div>
       {{partial "footer"}}
     </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <h1>Welcome at the Glome catalogue demo!</h1>
+    <p>Please browse the categories on the left hand side. Later we will put here fancy data for you :)</p>
   </script>
 
   <script type="text/x-handlebars" data-template-name="no-glome-id">
@@ -69,7 +73,7 @@
     {{/if}}
   </script>
 
-  <script type="text/x-handlebars" data-template-name="products-grid">
+  <script type="text/x-handlebars" data-template-name="grid">
     <!--Product Grid Start-->
     <div class="product-grid">
       {{#each product in model}}
@@ -94,27 +98,27 @@
     <!--Product Grid End-->
   </script>
 
-  <script type="text/x-handlebars" data-template-name="product">
+  <script type="text/x-handlebars" data-template-name="single">
     {{#if controllers.products.currentCategory}}
-    <h1>{{model.title}}</h1>
+    <h1>{{currentProduct.title}}</h1>
     <div class="product-info">
       <div class="left">
         <div class="image">
-          <img {{action 'clickCategory' controllers.products.currentCategory target="controllers.products"}} {{bind-attr src=model.content}} {{bind-attr title=model.title}} {{bind-attr alt=model.title}} id="image"/>
+          <img {{action 'clickCategory' controllers.products.currentCategory target="controllers.products"}} {{bind-attr src=currentProduct.content}} {{bind-attr title=currentProduct.title}} {{bind-attr alt=currentProduct.title}} id="image"/>
         </div>
       </div>
       <div class="right">
         <div class="description">
-          {{model.description}}
+          {{currentProduct.description}}
         </div>
-        {{#if model.last_price}}
+        {{#if currentProduct.last_price}}
         <div class="price">
-          Price: <span class="price-new">{{model.price}}</span>
+          Price: <span class="price-new">{{currentProduct.price}}</span>
         </div>
         {{/if}}
         <div class="cart">
           <div>
-            <input type="button" {{action 'cashBack' model.id target="controllers.products"}} {{bind-attr value=model.cashback}} id="button-cart" class="button" />
+            <input type="button" {{action 'cashBack' currentProduct.id target="controllers.products"}} {{bind-attr value=currentProduct.cashback}} id="button-cart" class="button" />
           </div>
         </div>
       </div>
@@ -198,9 +202,10 @@
   <script type="text/x-handlebars" data-template-name="mobile-menu">
     <!-- Mobile Menu Start-->
     <nav class="menu m-menu categories">
-      <span class="title">Categories</span>
+      <!-- <span class="title">Categories</span> -->
       <ul>
-        <li class="categories"><a>Categories</a>
+        <li class="categories">
+          <a>Categories</a>
           <div>
             {{#each category in categories}}
             <div class="column"> <a href="category.html">{{category.title}}</a>
@@ -267,11 +272,6 @@
     <!--Footer Part End-->
   </script>
 
-  <script type="text/x-handlebars" data-template-name="index">
-    <h1>Welcome at the Glome catalogue demo!</h1>
-    <p>Please browse the categories on the left hand side. Later we will put here fancy data for you :)</p>
-  </script>
-
   <script type="text/x-handlebars" data-template-name="history">
     <h1>History...</h1>
     <i>Coming soon!</i>
@@ -287,15 +287,15 @@
   <script src="js/routes/index_route.js"></script>
   <script src="js/routes/products_route.js"></script>
   <script src="js/routes/loading_route.js"></script>
-  <script src="js/models/user.js"></script>
-  <script src="js/models/product.js"></script>
-  <script src="js/models/category.js"></script>
   <script src="js/controllers/application.js"></script>
   <script src="js/controllers/auth.js"></script>
   <script src="js/controllers/user.js"></script>
   <script src="js/controllers/products.js"></script>
   <script src="js/controllers/product.js"></script>
   <script src="js/controllers/category.js"></script>
+  <script src="js/models/user.js"></script>
+  <script src="js/models/product.js"></script>
+  <script src="js/models/category.js"></script>
   <script src="js/views/products.js"></script>
 </body>
 </html>
