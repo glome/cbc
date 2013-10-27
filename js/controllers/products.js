@@ -4,7 +4,7 @@
  */
 App.ProductsController = Ember.ArrayController.extend(
 {
-  needs: ['user', 'application', 'product', 'products', 'products.show'],
+  needs: ['user', 'application', 'product', 'products', 'products.show', 'action'],
 
   page: 1,
   perPage: 24,

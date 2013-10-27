@@ -3,13 +3,14 @@
  */
 App.ApplicationController = Ember.ArrayController.extend(
 {
-  needs: ['user', 'application', 'category', 'products'],
+  needs: ['user', 'application', 'category', 'products', 'pairing', 'action'],
 
   glomeid: false,
   password: '',
   loggedin: false,
   inProgress: false,
   notification: false,
+  token: false,
 
   actions:
   {

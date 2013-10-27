@@ -23,7 +23,7 @@
   <script type="text/javascript" src="js/libs/ember-data.js"></script>
 </head>
 <body>
-  <script type="text/x-handlebars" data-template-name="application">
+  <script type="text/x-handlebars">
     <div class="wrapper-box">
       <div class="main-wrapper">
         {{partial 'header'}}
@@ -35,6 +35,7 @@
             <div class="breadcrumb"> </div>
             <!--Breadcrumb Part End-->
             {{outlet}}
+            {{outlet 'loading'}}
           <!--Middle Part End-->
           </div>
           <div class="clear"></div>
@@ -78,6 +79,7 @@
     <div class="product-grid">
       {{#each product in model}}
       <div>
+      <!-- {{action 'getit' product.id target="controllers.action"}}  -->
         {{#link-to 'products.show' category product}}
         <div class="image">
           <img {{bind-attr src=product.content}} {{bind-attr alt=product.title}}/>
@@ -164,7 +166,10 @@
   <script type="text/x-handlebars" data-template-name="header">
     <!--Header Part Start-->
     <header id="header">
-      {{partial 'wishlist'}}
+      <div class="htop">
+        {{view 'pairing'}}
+        {{partial 'wishlist'}}
+      </div>
       {{partial 'search-with-logo'}}
       {{partial 'top-menu'}}
       {{partial 'mobile-menu'}}
@@ -173,8 +178,8 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name="wishlist">
-    <div class="htop">
-      <div class="links">  <a href="#" id="wishlist-total">Wish List (0)</a> </div>
+    <div class="links">
+      <a href="#" id="wishlist-total">Wish List (0)</a>
     </div>
   </script>
 
@@ -274,7 +279,22 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name="loading">
-    <h1>Loading...</h1>
+    <div class="loader">
+      <img src="images/loader.gif" alt="loading" title="loading indicator"/>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="pairing">
+    <div class="pairing">
+      <span class="pair">Pairing</span>
+      <div class="code">
+        <input type="text" name="code_1" class="code" placeholder="0000" maxlength="4" />
+        <input type="text" name="code_2" class="code" placeholder="0000" maxlength="4" />
+        <input type="text" name="code_3" class="code" placeholder="0000" maxlength="4" />
+        <input type="button" value="Pair" {{action 'post' target="controllers.pairing"}} />
+        <div class="reply"></div>
+      </div>
+    </div>
   </script>
 
   <script src="js/app.js"></script>
@@ -289,10 +309,16 @@
   <script src="js/controllers/products.js"></script>
   <script src="js/controllers/product.js"></script>
   <script src="js/controllers/category.js"></script>
+  <script src="js/controllers/pairing.js"></script>
+  <script src="js/controllers/action.js"></script>
   <script src="js/models/user.js"></script>
   <script src="js/models/product.js"></script>
   <script src="js/models/category.js"></script>
+  <script src="js/models/pairing.js"></script>
+  <script src="js/models/action.js"></script>
   <script src="js/views/application.js"></script>
   <script src="js/views/products.js"></script>
+  <script src="js/views/pairing.js"></script>
+  <script src="js/views/loading.js"></script>
 </body>
 </html>

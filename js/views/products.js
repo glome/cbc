@@ -37,7 +37,7 @@ App.ProductsView = Ember.View.extend(
   },
   atBottom: function()
   {
-    var dist = $(document).height() - $(window).height();
+    var dist = Ember.$(document).height() - Ember.$(window).height();
     var scroll = Ember.$(document).scrollTop();
 
     if (scroll === 0)

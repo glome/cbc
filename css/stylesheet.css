@@ -917,3 +917,30 @@ a.ember-view img,
 {
   max-width: 300px;
 }
+
+div.loader
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+div.pairing span
+{
+  text-decoration: underline;
+}
+
+div.pairing div
+{
+  display: none;
+}
+
+div.pairing div input.code
+{
+  width: 30px;
+}
+
+div.pairing div input.code .reply
+{
+  display: none;
+}

@@ -37,6 +37,13 @@ App.UserController = Ember.ObjectController.extend(
         success: function(data, textStatus, jqXHR)
         {
           console.log('status in user.auth: ' + textStatus);
+          App.Adapter.reopen(
+          {
+            headers:
+            {
+              "X-Csrf-Token": jqXHR.getResponseHeader('X-CSRF-Token')
+            }
+          });
         }
       }).then(function(data)
       {

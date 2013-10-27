@@ -59,6 +59,8 @@ App.ProductsRoute = Ember.Route.extend(
     if (this.product_id)
     {
       console.log('model id exists');
+      this.controllerFor('action').send('getit', this.product_id);
+
       this.controllerFor('products').set('currentProduct', model);
       this.controllerFor('products').set('currentCategory', this.controllerFor('products').get('categoryMap')[controller.get('category')]);
     }
@@ -74,15 +76,9 @@ App.ProductsRoute = Ember.Route.extend(
     console.log('ProductsRoute::renderTemplate');
     if (this.product_id)
     {
-      console.log('render product');
       this.product_id = null;
-      this._super();
     }
-    else
-    {
-      console.log('render products');
-      this._super();
-    }
+    this._super();
   }
 });
 

@@ -42,8 +42,16 @@ App.Serializer = DS.RESTSerializer.extend(
       case App.Category:
         o['categories'] = payload
         break;
+      case App.Pairing:
+        o['pairing'] = payload
+        break;
+      case App.Action:
+        // recorded actions have no ids
+        id = 0;
+        o['action'] = payload
+        break;
       default:
-        alert(type);
+        alert('Unhandled type in extractSingle: ' + type);
     };
     return this._super(store, type, o, id, requestType);
   },
@@ -61,8 +69,14 @@ App.Serializer = DS.RESTSerializer.extend(
       case App.Category:
         o['categories'] = payload
         break;
+      case App.Pairing:
+        o['pairing'] = payload
+        break;
+      case App.Action:
+        o['action'] = payload
+        break;
       default:
-        alert(primaryType);
+        alert('Unhandled type in extractArray: ' + primaryType);
     };
     return this._super(store, primaryType, o);
   }
@@ -76,6 +90,7 @@ App.Adapter = DS.RESTAdapter.extend(
 {
   host: App.apiHost,
   namespace: 'api',
+  corsWithCredentials: true,
   // all REST calls should end with .json
   buildURL: function(type, id)
   {
