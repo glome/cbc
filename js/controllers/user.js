@@ -73,6 +73,28 @@ App.UserController = Ember.ObjectController.extend(
     history: function()
     {
       self.transitionToRoute('history');
+    },
+    /**
+     *
+     */
+    healthCheck: function(success)
+    {
+      return this.store.find('user', 'login').then(
+        function(data)
+        {
+          console.log('xcsrf: ' + data.get('xcsrf'));
+          App.Adapter.reopen(
+          {
+            headers:
+            {
+              "X-Csrf-Token": data.get('xcsrf')
+            }
+          });
+          if (success)
+          {
+            success();
+          }
+        });
     }
   }
 });
