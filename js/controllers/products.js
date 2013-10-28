@@ -28,6 +28,7 @@ App.ProductsController = Ember.ArrayController.extend(
       this.set('lastPage', false);
       Ember.$('div.product-grid').scrollTop(0);
       console.log('clicked on cat: ' + cat.get('id'));
+      this.get('controllers.user').send('healthCheck');
       this.transitionToRoute('products', cat.get('urlName'));
     },
     getMore: function()
