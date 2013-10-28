@@ -30,7 +30,6 @@ App.ApplicationRoute = Ember.Route.extend(
     // check our session
     if (glomeid)
     {
-
       promise = this.store.find('user', glomeid).then(function(data)
       {
         self.controllerFor('application').send('loadCategories', transition.params.category);
