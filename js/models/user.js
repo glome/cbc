@@ -5,6 +5,7 @@ App.User = DS.Model.extend(
 {
   glomeid: DS.attr('string'),
   status: DS.attr('boolean'),
+  xcsrf: DS.attr('string'),
   didLoad: function(event)
   {
     console.log(event);
