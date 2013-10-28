@@ -9,6 +9,8 @@ App.CategorySerializer = App.Serializer.extend({});
  */
 App.CategoryController = Ember.ObjectController.extend(
 {
+  needs: ['user'],
+
   actions:
   {
     show: function(product)
@@ -17,6 +19,8 @@ App.CategoryController = Ember.ObjectController.extend(
     },
     toggle: function(id)
     {
+      this.get('controllers.user').send('healthCheck');
+
       Ember.$('ul[data-catid=' + id + ']').prev().toggleClass('down');
       Ember.$('ul[data-catid=' + id + ']').toggle();
     }
