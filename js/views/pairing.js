@@ -9,10 +9,18 @@ App.PairingView = Ember.View.extend(
    */
   didInsertElement: function()
   {
+    var self = this;
     Ember.$('div.pairing span').click(function()
     {
-      Ember.$(this).parent().find('div.code').slideToggle('medium');
-      Ember.$(this).parent().find('div.code .reply').empty();
+      var obj = this;
+      // make a quick health check
+      var success = function()
+      {
+        Ember.$(obj).parent().find('div.code').slideToggle('medium');
+        Ember.$(obj).parent().find('div.code .reply').empty();
+      }
+
+      self.get('controller').get('controllers.user').send('healthCheck', success);
     });
   }
 });
