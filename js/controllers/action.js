@@ -7,7 +7,7 @@ App.ActionAdapter = App.Adapter.extend(
 {
   createRecord: function(store, type, record)
   {
-    var data = { user: {glomeid: record.glomeid}};
+    var data = { user: {glomeid: record.glomeid} };
     return this.ajax(this.buildURL(type.typeKey, record), "POST", { data: data });
   },
   buildURL: function(type, record)
