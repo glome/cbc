@@ -1,10 +1,9 @@
-"use strict";
 /**
  *
  */
 App.ProductsController = Ember.ArrayController.extend(
 {
-  needs: ['user', 'application', 'product', 'products', 'products.show', 'action'],
+  needs: ['user', 'application', 'product', 'products', 'products.show', 'action', 'program'],
 
   page: 1,
   perPage: 24,

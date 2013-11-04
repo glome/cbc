@@ -944,3 +944,17 @@ div.pairing div input.code .reply
 {
   display: none;
 }
+
+ul.programs
+{
+  margin: 0 0 25px 0;
+  padding: 0;
+}
+
+ul.programs li
+{
+  text-align: center;
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 10px 0 0;
+}

@@ -58,6 +58,7 @@
     {{#if currentProduct}}
       {{view view.singleView}}
     {{else}}
+      {{partial 'advertisers'}}
       <h1>Selected for you</h1>
       {{view view.gridView}}
       <div class="loading">
@@ -71,6 +72,22 @@
         {{/if}}
       {{/if}}
       </div>
+    {{/if}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="advertisers">
+    {{#if controllers.products.programs}}
+    <h1>Online shops</h1>
+    <ul class="programs">
+      {{#each program in controllers.products.programs}}
+      <li >
+        <a href="#" {{action 'openShop' program target="controllers.program"}}>
+          <img {{bind-attr src=program.advertiser.logo}} alt="logo"/>
+          <div>{{program.advertiser.name}}</div>
+        </a>
+      </li>
+      {{/each}}
+    </ul>
     {{/if}}
   </script>
 
@@ -92,7 +109,8 @@
         </div>
         {{/if}}
         <div class="cart">
-          <input type="button" {{action 'cashBack' product.id target="controllers.product"}} {{bind-attr value=product.cashback}} class="button" />
+          <input type="button" {{action 'cashBack' product target="controllers.product"}} {{bind-attr value=product.cashback}} class="button" />
+          <a {{bind-attr data-product=product.id}} href="#" target="_blank"></a>
         </div>
       </div>
       {{/each}}
@@ -120,7 +138,7 @@
         {{/if}}
         <div class="cart">
           <div>
-            <input type="button" {{action 'cashBack' currentProduct.id target="controllers.product"}} {{bind-attr value=currentProduct.cashback}} id="button-cart" class="button" />
+            <input type="button" {{action 'cashBack' currentProduct target="controllers.product"}} {{bind-attr value=currentProduct.cashback}} id="button-cart" class="button" />
           </div>
         </div>
       </div>
@@ -311,11 +329,15 @@
   <script src="js/controllers/category.js"></script>
   <script src="js/controllers/pairing.js"></script>
   <script src="js/controllers/action.js"></script>
+  <script src="js/controllers/program.js"></script>
+  <script src="js/controllers/ad.js"></script>
   <script src="js/models/user.js"></script>
   <script src="js/models/product.js"></script>
   <script src="js/models/category.js"></script>
   <script src="js/models/pairing.js"></script>
   <script src="js/models/action.js"></script>
+  <script src="js/models/program.js"></script>
+  <script src="js/models/ad.js"></script>
   <script src="js/views/application.js"></script>
   <script src="js/views/products.js"></script>
   <script src="js/views/pairing.js"></script>

@@ -54,7 +54,8 @@ App.ProductsRoute = Ember.Route.extend(
     console.log('ProductsRoute::setupController');
     console.log('model: ');
     console.log(model);
-    console.log('category: ' + controller.get('category'));
+    var catid = this.controllerFor('products').get('categoryMap')[controller.get('category')].get('id');
+    console.log('category: ' + controller.get('category') + ', id: ' + catid);
 
     if (this.product_id)
     {
@@ -62,7 +63,7 @@ App.ProductsRoute = Ember.Route.extend(
       this.controllerFor('action').send('getit', this.product_id);
 
       this.controllerFor('products').set('currentProduct', model);
-      this.controllerFor('products').set('currentCategory', this.controllerFor('products').get('categoryMap')[controller.get('category')]);
+//      this.controllerFor('products').set('currentCategory', this.controllerFor('products').get('categoryMap')[controller.get('category')]);
     }
     else
     {
@@ -70,6 +71,31 @@ App.ProductsRoute = Ember.Route.extend(
       this.controllerFor('products').set('currentProduct', null);
       this.controllerFor('products').set('model', model);
     }
+
+    model = [];
+
+    // fetch all programs who have content in this category
+    var vars =
+    {
+      catid: catid,
+      application:
+      {
+        master_uid: App.apiHost,
+        master_apikey: App.apiKey
+      }
+    };
+
+    console.log(vars);
+
+    var programs = this.store.find('program', vars).then(function(data)
+    {
+      controller.set('programs', data);
+      console.log(data);
+      //~ jQuery.each(data, function(index, value)
+      //~ {
+        //~ console.log(value);
+      //~ });
+    });
   },
   renderTemplate: function()
   {
