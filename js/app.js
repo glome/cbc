@@ -18,9 +18,9 @@ var GlomeApp = Ember.Application.extend(
  */
 var App = GlomeApp.create(
 {
-  LOG_TRANSITIONS: false, // basic logging of successful transitions
-  LOG_TRANSITIONS_INTERNAL: false, // detailed logging of all routing steps
-  LOG_ACTIVE_GENERATION: false,
+  LOG_TRANSITIONS: true, // basic logging of successful transitions
+  LOG_TRANSITIONS_INTERNAL: true, // detailed logging of all routing steps
+  LOG_ACTIVE_GENERATION: true,
 });
 
 /**
@@ -50,6 +50,9 @@ App.Serializer = DS.RESTSerializer.extend(
         id = 0;
         o['action'] = payload
         break;
+      case App.Program:
+        o['program'] = payload
+        break;
       default:
         alert('Unhandled type in extractSingle: ' + type);
     };
@@ -73,7 +76,11 @@ App.Serializer = DS.RESTSerializer.extend(
         o['pairing'] = payload
         break;
       case App.Action:
+        id = 0;
         o['action'] = payload
+        break;
+      case App.Program:
+        o['program'] = payload
         break;
       default:
         alert('Unhandled type in extractArray: ' + primaryType);
@@ -111,6 +118,24 @@ App.Adapter = DS.RESTAdapter.extend(
         items.push(item);
       });
 
+      return items;
+    });
+  },
+  findQuery: function(store, type, query)
+  {
+    console.log('findQuery called for ' + type);
+    return this._super(store, type, query).then(function(data)
+    {
+      console.log(data);
+      var items = [];
+      data.forEach(function (item)
+      {
+        console.log(item);
+        if(item)
+        {
+          items.push(item);
+        }
+      });
       return items;
     });
   }
