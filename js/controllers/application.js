@@ -1,9 +1,10 @@
+"use strict";
 /**
  *
  */
 App.ApplicationController = Ember.ArrayController.extend(
 {
-  needs: ['user', 'application', 'category', 'products', 'pairing', 'action'],
+  needs: ['user', 'application', 'category', 'products', 'pairing', 'action', 'program'],
 
   glomeid: false,
   password: '',
@@ -70,7 +71,7 @@ App.ApplicationController = Ember.ArrayController.extend(
 
         console.log('loaded categories');
 
-        prevT = self.get('controllers.application').get('previousTransition');
+        var prevT = self.get('controllers.application').get('previousTransition');
         if (prevT)
         {
           console.log('go to');
