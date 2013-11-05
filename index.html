@@ -304,13 +304,13 @@
 
   <script type="text/x-handlebars" data-template-name="pairing">
     <div class="pairing">
-      <span class="pair">Pairing</span>
+      <span class="pair underline">Pairing</span>
       <div class="code">
         <input type="text" name="code_1" class="code" placeholder="0000" maxlength="4" />
         <input type="text" name="code_2" class="code" placeholder="0000" maxlength="4" />
         <input type="text" name="code_3" class="code" placeholder="0000" maxlength="4" />
         <input type="button" class="postcode" value="Pair" {{action 'post' target="controllers.pairing"}} />
-        <span> OR </span>
+        <span> or </span>
         <input type="button" class="getcode" value="Get Pairing Code" {{action 'getSyncCode' target="controllers.sync"}} />
         <div class="reply"></div>
       </div>
