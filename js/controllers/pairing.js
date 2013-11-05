@@ -16,9 +16,8 @@ App.PairingAdapter = App.Adapter.extend(
   },
   buildURL: function(type, glomeid)
   {
-    console.log('type: ' + type);
-    console.log('id: ' + glomeid);
-    url = App.apiHost + '/api/users/' + glomeid + '/sync/pair.json';
+    var url = App.apiHost + '/api/users/' + glomeid + '/sync/pair.json';
+
     console.log('return URL for type: ' + type + ', glomeid: ' + glomeid + '. URL is: ' + url);
     return url;
   },

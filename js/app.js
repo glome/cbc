@@ -28,30 +28,45 @@ var App = GlomeApp.create(
  */
 App.Serializer = DS.RESTSerializer.extend(
 {
+  normalizePayload: function(type, payload)
+  {
+    return payload;
+  },
   extractSingle: function(store, type, payload, id, requestType)
   {
     var o = {};
     switch (type)
     {
       case App.User:
-        o['user'] = payload
+        o['user'] = payload;
         break;
       case App.Product:
-        o['product'] = payload
+        o['product'] = payload;
         break;
       case App.Category:
-        o['categories'] = payload
+        o['categories'] = payload;
         break;
       case App.Pairing:
-        o['pairing'] = payload
+        o['pairing'] = payload;
         break;
       case App.Action:
         // recorded actions have no ids
         id = 0;
-        o['action'] = payload
+        o['action'] = payload;
         break;
       case App.Program:
-        o['program'] = payload
+        o['program'] = payload;
+        break;
+      case App.Sync:
+        console.log('payload: |' + payload + '|');
+        console.log('payload c: |' + payload.length + '|');
+        if (payload.length == 0)
+        {
+          payload = [];
+        }
+        console.log('payload: |' + payload + '|');
+        id = null;
+        o['sync'] = payload;
         break;
       default:
         alert('Unhandled type in extractSingle: ' + type);
@@ -64,23 +79,26 @@ App.Serializer = DS.RESTSerializer.extend(
     switch (primaryType)
     {
       case App.User:
-        o['users'] = payload
+        o['users'] = payload;
         break;
       case App.Product:
-        o['products'] = payload
+        o['products'] = payload;
         break;
       case App.Category:
-        o['categories'] = payload
+        o['categories'] = payload;
         break;
       case App.Pairing:
-        o['pairing'] = payload
+        o['pairing'] = payload;
         break;
       case App.Action:
         id = 0;
-        o['action'] = payload
+        o['action'] = payload;
         break;
       case App.Program:
-        o['program'] = payload
+        o['program'] = payload;
+        break;
+      case App.Sync:
+        o['sync'] = payload;
         break;
       default:
         alert('Unhandled type in extractArray: ' + primaryType);
@@ -107,6 +125,30 @@ App.Adapter = DS.RESTAdapter.extend(
     return url;
   },
   // the server does not return JSON API compatible results (missing root)
+  //~ find: function(store, type, id)
+  //~ {
+    //~ console.log('find called for ' + type);
+//~
+    //~ if (type == 'App.Sync')
+    //~ {
+      //~ return this.ajax(this.buildURL(type.typeKey, id), 'GET').then(function(data)
+      //~ {
+        //~ item = {''};
+        //~ console.log('load syncs');
+        //~ console.log(data);
+        //~ if (data.length)
+        //~ {
+          //~ item = data;
+        //~ }
+        //~ return item;
+      //~ });
+    //~ }
+    //~ else
+    //~ {
+      //~ return this.ajax(this.buildURL(type.typeKey, id), 'GET');
+    //~ }
+  //~ },
+  // the server does not return JSON API compatible results (missing root)
   findAll: function(store, type, sinceToken)
   {
     console.log('find all called for ' + type);
@@ -123,14 +165,26 @@ App.Adapter = DS.RESTAdapter.extend(
   },
   findQuery: function(store, type, query)
   {
-    console.log('findQuery called for ' + type);
-    return this._super(store, type, query).then(function(data)
+    var res = null;
+
+    console.log('findQuery called for ' + type + ', glomeid: ' + query['glomeid']);
+
+    if (type == 'App.Sync')
     {
-      console.log(data);
+      res = this.ajax(this.buildURL(type.typeKey, query['glomeid']), 'GET', { data: query });
+    }
+    else
+    {
+      res = this._super(store, type, query);
+    }
+
+    return res.then(function(data)
+    {
+      //console.log(data);
       var items = [];
       data.forEach(function (item)
       {
-        console.log(item);
+        //console.log(item);
         if(item)
         {
           items.push(item);

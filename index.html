@@ -309,11 +309,13 @@
         <input type="text" name="code_1" class="code" placeholder="0000" maxlength="4" />
         <input type="text" name="code_2" class="code" placeholder="0000" maxlength="4" />
         <input type="text" name="code_3" class="code" placeholder="0000" maxlength="4" />
-        <input type="button" value="Pair" {{action 'post' target="controllers.pairing"}} />
+        <input type="button" class="postcode" value="Pair" {{action 'post' target="controllers.pairing"}} />
+        <span> OR </span>
+        <input type="button" class="getcode" value="Get Pairing Code" {{action 'getSyncCode' target="controllers.sync"}} />
         <div class="reply"></div>
       </div>
     </div>
-  </script>
+      </script>
 
   <script src="js/app.js"></script>
   <script src="js/router.js"></script>
@@ -331,6 +333,7 @@
   <script src="js/controllers/action.js"></script>
   <script src="js/controllers/program.js"></script>
   <script src="js/controllers/ad.js"></script>
+  <script src="js/controllers/sync.js"></script>
   <script src="js/models/user.js"></script>
   <script src="js/models/product.js"></script>
   <script src="js/models/category.js"></script>
@@ -338,6 +341,7 @@
   <script src="js/models/action.js"></script>
   <script src="js/models/program.js"></script>
   <script src="js/models/ad.js"></script>
+  <script src="js/models/sync.js"></script>
   <script src="js/views/application.js"></script>
   <script src="js/views/products.js"></script>
   <script src="js/views/pairing.js"></script>

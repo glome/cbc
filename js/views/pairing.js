@@ -18,6 +18,7 @@ App.PairingView = Ember.View.extend(
       {
         Ember.$(obj).parent().find('div.code').slideToggle('medium');
         Ember.$(obj).parent().find('div.code .reply').empty();
+        Ember.$(obj).parent().find('input.code').val('').removeAttr('disabled');
       }
 
       self.get('controller').get('controllers.user').send('healthCheck', success);
