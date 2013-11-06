@@ -26,7 +26,6 @@ App.ProductsController = Ember.ArrayController.extend(
       this.set('page', 1);
       this.set('lastPage', false);
       Ember.$('div.product-grid').scrollTop(0);
-      console.log('clicked on cat: ' + cat.get('id'));
       this.get('controllers.user').send('healthCheck');
       this.transitionToRoute('products', cat.get('urlName'));
     },
@@ -51,7 +50,7 @@ App.ProductsController = Ember.ArrayController.extend(
     {
       this.get('controllers.products').set('loadingMore', true);
 
-      var catId = this.get('controllers.products').get('categoryMap')[this.get('controllers.products').get('category')].id;
+      var catId = this.get('controllers.products').get('categoryMap').findBy('urlName', this.get('controllers.products').get('category')).get('id');
 
       console.log('fetch more: ' + catId + ', page: ' + page);
       var more = this.store.find('product', { catid: catId, page: page });
