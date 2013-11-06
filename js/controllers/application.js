@@ -57,17 +57,33 @@ App.ApplicationController = Ember.ArrayController.extend(
       {
         data.content.forEach(function(item, index, enumerable)
         {
-          controller.get('categoryMap')[item.get('urlName')] = item;
+          controller.get('categoryMap').pushObject(item);
           item.get('subcategories').forEach(function(_item, _index, _enum)
           {
-            controller.get('categoryMap')[_item.get('urlName')] = _item;
+            controller.get('categoryMap').pushObject(_item);
           }, item);
         });
 
-        console.log('category: ' + category);
+        controller.get('categoryMap').forEach(
+          function(item, index, enumerable)
+          {
+            // fetch all programs who have content in this category
+            var vars =
+            {
+              catid: item.get('id'),
+              application:
+              {
+                master_uid: App.apiHost,
+                master_apikey: App.apiKey
+              }
+            };
+
+            controller.get('categoryMap').objectAt(index)['programs'] = self.store.find('program', vars);
+          });
+
         if (category)
         {
-          controller.set('currentCategory', controller.get('categoryMap')[category]);
+          controller.set('currentCategory', controller.get('categoryMap').findBy('urlName', category));
         }
 
         console.log('loaded categories');
