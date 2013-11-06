@@ -13,7 +13,8 @@ App.ProductsRoute = Ember.Route.extend(
 
     if (catMap)
     {
-      this.controllerFor('products').set('currentCategory', catMap[transition.params.category]);
+      var cat = catMap.findBy('urlName', transition.params.category);
+      this.controllerFor('products').set('currentCategory', cat);
     }
 
     switch (transition.targetName)
@@ -52,50 +53,23 @@ App.ProductsRoute = Ember.Route.extend(
   setupController: function(controller, model)
   {
     console.log('ProductsRoute::setupController');
-    console.log('model: ');
-    console.log(model);
-    var catid = this.controllerFor('products').get('categoryMap')[controller.get('category')].get('id');
-    console.log('category: ' + controller.get('category') + ', id: ' + catid);
+
+    var catid = this.controllerFor('products').get('categoryMap').findBy('urlName', controller.get('category')).get('id');
 
     if (this.product_id)
     {
-      console.log('model id exists');
       this.controllerFor('action').send('getit', this.product_id);
-
       this.controllerFor('products').set('currentProduct', model);
-//      this.controllerFor('products').set('currentCategory', this.controllerFor('products').get('categoryMap')[controller.get('category')]);
     }
     else
     {
-      console.log('model for products exists');
       this.controllerFor('products').set('currentProduct', null);
       this.controllerFor('products').set('model', model);
     }
 
     model = [];
 
-    // fetch all programs who have content in this category
-    var vars =
-    {
-      catid: catid,
-      application:
-      {
-        master_uid: App.apiHost,
-        master_apikey: App.apiKey
-      }
-    };
-
-    console.log(vars);
-
-    var programs = this.store.find('program', vars).then(function(data)
-    {
-      controller.set('programs', data);
-      console.log(data);
-      //~ jQuery.each(data, function(index, value)
-      //~ {
-        //~ console.log(value);
-      //~ });
-    });
+    controller.set('programs', this.controllerFor('products').get('categoryMap').findBy('urlName', controller.get('category'))['programs']);
   },
   renderTemplate: function()
   {
