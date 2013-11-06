@@ -151,7 +151,7 @@ App.Adapter = DS.RESTAdapter.extend(
   // the server does not return JSON API compatible results (missing root)
   findAll: function(store, type, sinceToken)
   {
-    console.log('find all called for ' + type);
+    //console.log('find all called for ' + type);
     return this._super(store, type, sinceToken).then(function(data)
     {
       var items = [];
@@ -167,7 +167,7 @@ App.Adapter = DS.RESTAdapter.extend(
   {
     var res = null;
 
-    console.log('findQuery called for ' + type + ', glomeid: ' + query['glomeid']);
+    //console.log('findQuery called for ' + type + ', glomeid: ' + query['glomeid']);
 
     if (type == 'App.Sync')
     {
