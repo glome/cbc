@@ -64,6 +64,7 @@ App.ApplicationController = Ember.ArrayController.extend(
           }, item);
         });
 
+        // TODO: this is too expensive
         controller.get('categoryMap').forEach(
           function(item, index, enumerable)
           {
