@@ -16,7 +16,12 @@ App.ProductController = Ember.ObjectController.extend(
 
       if (glome_id && product.id)
       {
-        var url = App.apiHost + '/api/products/' + product.id + '/click/' + glome_id + '.json?redirect=' + redirect
+        var url = App.apiHost + '/api/products/' + product.id + '/click/' + glome_id + '.json'
+
+        if (redirect != '')
+        {
+          url += '?redirect=' + redirect
+        }
 
         return Ember.$.getJSON(url).then(function(data)
         {
