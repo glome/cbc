@@ -51,7 +51,7 @@ App.ApplicationController = Ember.ArrayController.extend(
       var self = this;
       var controller = this.get('controllers.products');
       // load categories
-      controller.set('categories', this.store.find('category', { display: 'tree', filter: 'all', personal: true, maxlevel: 1 }));
+      controller.set('categories', this.store.find('category', { display: 'tree', filter: 'all', personal: App.personalizedContent, maxlevel: 1 }));
       // map out categories
       controller.get('categories').then(function(data)
       {

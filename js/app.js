@@ -5,12 +5,14 @@ var GlomeApp = Ember.Application.extend(
 {
   // configuration
   apiHost: 'http://catalogue.glome.me',
-  apiKey: '299ab7cecf188740f3e611f8d0c9de75',
+  apiKey: '4bb413fff13dabc7fcb5088287dcc98f',
   // do not change
   loginPost: '/api/users/login.json',
   logoutGet: '/api/users/logout.json',
   productsIndex: '/api/products.json',
-  generateGlomeIdPost: '/api/applications/generate_glomeid.json'
+  generateGlomeIdPost: '/api/applications/generate_glomeid.json',
+  // show personalized content
+  personalizedContent: false
 });
 
 /**
