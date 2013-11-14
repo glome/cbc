@@ -205,8 +205,8 @@
     <section class="hsecond">
       <div id="logo"><a href="index.html"><img src="images/logo.png" title="Catalogue" alt="Catalogue" /></a></div>
       <div id="search">
-        <div class="button-search"></div>
-        <input type="text" name="search" placeholder="Search" value="" />
+        <div {{action 'search' target="controllers.products"}} class="button-search"></div>
+        {{view Ember.TextField placeholder='Search' action='search' controller=App.ProductsController}}
       </div>
       <div class="clear"></div>
     </section>
