@@ -5,6 +5,23 @@ App.ProductSerializer = App.Serializer.extend({});
 /**
  *
  */
+App.ProductAdapter = App.Adapter.extend(
+{
+  buildURL: function(type, id)
+  {
+    var url = App.apiHost + '/api/products';
+
+    if (id == 'search')
+    {
+      url += '/' + id;
+    }
+    url += '.json';
+    return url;
+  }
+});
+/**
+ *
+ */
 App.ProductController = Ember.ObjectController.extend(
 {
   needs: ['products', 'products.show', 'application'],
