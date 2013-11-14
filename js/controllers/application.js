@@ -107,7 +107,7 @@ App.ApplicationController = Ember.ArrayController.extend(
               self.transitionToRoute(prevT.targetName, prevT.params.category);
               break;
             case 'products.show':
-              self.transitionToRoute(prevT.targetName, prevT.params.category, prevT.params.product_id);
+              self.transitionToRoute(prevT.targetName, prevT.params);
               break;
           }
         }
@@ -173,6 +173,13 @@ App.ApplicationController = Ember.ArrayController.extend(
         self.get('controllers.application').send('setGlobals');
         self.get('controllers.user').send('auth', data.glomeid, '');
       });
+    },
+    /**
+     * Search: redirect to products
+     */
+    search: function(keywords)
+    {
+      this.get('controllers.products').send('search', keywords);
     }
   }
 });
