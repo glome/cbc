@@ -12,6 +12,7 @@ App.Product = DS.Model.extend(
   bonus_money: DS.attr('number'),
   bonus_percent: DS.attr('number'),
   bonus_text: DS.attr('string'),
+  categories: DS.attr('raw'),
   /**
    *
    */
