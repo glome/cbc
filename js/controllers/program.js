@@ -9,7 +9,6 @@ App.ProgramAdapter = App.Adapter.extend(
   buildURL: function(type, id)
   {
     var url = App.apiHost + '/api/programs.json';
-    //console.log('url: ' + url);
     return url;
   }
 });
