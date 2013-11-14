@@ -60,13 +60,10 @@ App.Serializer = DS.RESTSerializer.extend(
         o['program'] = payload;
         break;
       case App.Sync:
-        console.log('payload: |' + payload + '|');
-        console.log('payload c: |' + payload.length + '|');
         if (payload.length == 0)
         {
           payload = [];
         }
-        console.log('payload: |' + payload + '|');
         id = null;
         o['sync'] = payload;
         break;
@@ -127,30 +124,6 @@ App.Adapter = DS.RESTAdapter.extend(
     return url;
   },
   // the server does not return JSON API compatible results (missing root)
-  //~ find: function(store, type, id)
-  //~ {
-    //~ console.log('find called for ' + type);
-//~
-    //~ if (type == 'App.Sync')
-    //~ {
-      //~ return this.ajax(this.buildURL(type.typeKey, id), 'GET').then(function(data)
-      //~ {
-        //~ item = {''};
-        //~ console.log('load syncs');
-        //~ console.log(data);
-        //~ if (data.length)
-        //~ {
-          //~ item = data;
-        //~ }
-        //~ return item;
-      //~ });
-    //~ }
-    //~ else
-    //~ {
-      //~ return this.ajax(this.buildURL(type.typeKey, id), 'GET');
-    //~ }
-  //~ },
-  // the server does not return JSON API compatible results (missing root)
   findAll: function(store, type, sinceToken)
   {
     //console.log('find all called for ' + type);
@@ -165,33 +138,48 @@ App.Adapter = DS.RESTAdapter.extend(
       return items;
     });
   },
+  // the server does not return JSON API compatible results (missing root)
   findQuery: function(store, type, query)
   {
     var res = null;
 
-    //console.log('findQuery called for ' + type + ', glomeid: ' + query['glomeid']);
-
-    if (type == 'App.Sync')
+    //~ console.log('findQuery called for ' + type.typeKey + ', query: ');
+    //~ console.log(query);
+    switch (type.typeKey)
     {
-      res = this.ajax(this.buildURL(type.typeKey, query['glomeid']), 'GET', { data: query });
-    }
-    else
-    {
-      res = this._super(store, type, query);
+      case 'sync':
+        res = this.ajax(this.buildURL(type.typeKey, query['glomeid']), 'GET', { data: query });
+        break;
+      case 'product':
+        if (query['keywords'])
+        {
+          res = this.ajax(this.buildURL(type.typeKey, 'search'), 'GET', { data: query });
+        }
+        else
+        {
+          res = this._super(store, type, query);
+        }
+        break;
+      default:
+        res = this._super(store, type, query);
     }
 
     return res.then(function(data)
     {
       //console.log(data);
       var items = [];
-      data.forEach(function (item)
+
+      if (data.length)
       {
-        //console.log(item);
-        if(item)
+        data.forEach(function (item)
         {
-          items.push(item);
-        }
-      });
+          //console.log(item);
+          if(item)
+          {
+            items.push(item);
+          }
+        });
+      }
       return items;
     });
   }
