@@ -80,6 +80,21 @@ App.ProductsController = Ember.ArrayController.extend(
         }
       });
       return;
+    },
+    search: function(keywords, page, perPage)
+    {
+      this.get('controllers.products').set('loadingMore', true);
+
+      this.set('page', 1);
+      this.set('lastPage', false);
+      Ember.$('div.product-grid').scrollTop(0);
+      this.get('controllers.user').send('healthCheck');
+
+      var results = this.store.findQuery('product', { keywords: keywords, page: page, per_page: perPage });
+      this.get('controllers.products').set('results', results);
+      this.transitionToRoute('products.search', 'all');
+
+      return;
     }
   }
 });
