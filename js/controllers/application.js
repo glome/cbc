@@ -179,7 +179,8 @@ App.ApplicationController = Ember.ArrayController.extend(
      */
     search: function(keywords)
     {
-      this.get('controllers.products').send('search', keywords);
+      this.get('controllers.products').set('page', 1);
+      this.get('controllers.products').send('search', keywords, 1);
     }
   }
 });

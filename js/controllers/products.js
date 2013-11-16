@@ -8,6 +8,7 @@ App.ProductsController = Ember.ArrayController.extend(
   page: 1,
   perPage: 24,
   lastPage: false,
+  keywords: false,
   loadingMore: false,
   currentCategory: null,
   currentProduct: null,
@@ -19,6 +20,7 @@ App.ProductsController = Ember.ArrayController.extend(
   {
     show: function(product)
     {
+      this.get('controllers.products').set('keywords', false);
       this.transitionToRoute('products.show', product);
     },
     clickCategory: function(cat)
@@ -28,6 +30,7 @@ App.ProductsController = Ember.ArrayController.extend(
       Ember.$('div.product-grid').scrollTop(0);
       this.get('controllers.user').send('healthCheck');
       this.transitionToRoute('products', cat.get('urlName'));
+      this.get('controllers.products').set('keywords', false);
     },
     getMore: function()
     {
@@ -42,32 +45,92 @@ App.ProductsController = Ember.ArrayController.extend(
 
       if (! controller.get('lastPage'))
       {
-        controller.send('fetchPage', nextPage, perPage);
+        if (controller.get('keywords'))
+        {
+          controller.send('search', controller.get('keywords'), nextPage, perPage);
+        }
+        else
+        {
+          controller.send('fetchPage', nextPage, perPage);
+        }
       }
       return;
     },
     fetchPage: function(page, perPage)
     {
-      this.get('controllers.products').set('loadingMore', true);
+      var controller = this.get('controllers.products');
+      controller.set('keywords', false);
+      controller.set('loadingMore', true);
 
       var catId = this.get('controllers.products').get('categoryMap').findBy('urlName', this.get('controllers.products').get('category')).get('id');
 
       console.log('fetch more: ' + catId + ', page: ' + page);
-      var more = this.store.find('product', { catid: catId, page: page });
 
+      if (page == '' || ! page)
+      {
+        page = 1;
+      }
+      if (page == 1)
+      {
+        Ember.$('div.product-grid').scrollTop(0);
+      }
+      this.get('controllers.user').send('healthCheck');
+
+      var results = this.store.find('product', { catid: catId, page: page });
+
+      controller.send('pageResults', page, results);
+
+      return;
+    },
+    search: function(keywords, page, perPage)
+    {
+      var controller = this.get('controllers.products');
+
+      if (page == '' || ! page)
+      {
+        page = 1;
+      }
+
+      if (keywords != '')
+      {
+        controller.set('keywords', keywords);
+      }
+
+      this.get('controllers.user').send('healthCheck');
+
+      controller.set('perPage', perPage);
+      controller.set('lastPage', false);
+
+      if (page == 1)
+      {
+        Ember.$('div.product-grid').scrollTop(0);
+        this.transitionToRoute('products.search', 'all');
+      }
+      else
+      {
+        var results = this.store.findQuery('product', { keywords: keywords, page: page, per_page: perPage });
+        controller.send('pageResults', page, results);
+      }
+      return;
+    },
+    pageResults: function(page, collection)
+    {
       self = this;
-      more.then(function(data)
+
+      collection.then(function(data)
       {
         var lastPage = false;
+        var controller = self.get('controllers.products');
+
         self.set('loadingMore', false);
         if (data.content.length)
         {
-          if (data.content.length < self.get('controllers.products').get('perPage'))
+          if (data.content.length < controller.get('perPage'))
           {
             lastPage = true;
           }
-          self.get('controllers.products').set('page', page);
-          self.get('controllers.products').get('model').addObjects(more);
+          controller.set('page', page);
+          controller.get('model').addObjects(collection);
         }
         else
         {
@@ -76,25 +139,9 @@ App.ProductsController = Ember.ArrayController.extend(
 
         if (lastPage)
         {
-          self.get('controllers.products').set('lastPage', true);
+          controller.set('lastPage', true);
         }
       });
-      return;
-    },
-    search: function(keywords, page, perPage)
-    {
-      this.get('controllers.products').set('loadingMore', true);
-
-      this.set('page', 1);
-      this.set('lastPage', false);
-      Ember.$('div.product-grid').scrollTop(0);
-      this.get('controllers.user').send('healthCheck');
-
-      var results = this.store.findQuery('product', { keywords: keywords, page: page, per_page: perPage });
-      this.get('controllers.products').set('results', results);
-      this.transitionToRoute('products.search', 'all');
-
-      return;
     }
   }
 });

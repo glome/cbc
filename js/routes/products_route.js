@@ -49,7 +49,15 @@ App.ProductsRoute = Ember.Route.extend(
         break;
       case 'products.search':
         this.subAction = 'search';
-        data = this.controllerFor('products').get('results');
+
+        var searchParams =
+        {
+          page: this.controllerFor('products').get('page'),
+          perPage: this.controllerFor('products').get('perPage'),
+          keywords: this.controllerFor('products').get('keywords')
+        }
+        data = this.store.findQuery('product', searchParams);
+
         if (! data)
         {
           transition.abort();
@@ -78,6 +86,7 @@ App.ProductsRoute = Ember.Route.extend(
     {
       this.controllerFor('action').send('getit', this.product_id);
       this.controllerFor('products').set('currentProduct', model);
+
       if (this.controllerFor('products').get('category') == 'all')
       {
         this.controllerFor('products').set('currentCategory', this.store.find('category', parseInt(model.get('categories')[0].id)));

@@ -30,7 +30,7 @@ App.ProductsView = Ember.View.extend(
   },
   didScroll: function()
   {
-    if (this.atBottom())
+    if (this.get('controller').get('currentProduct') == null && this.atBottom())
     {
       this.get('controller').send('getMore');
     }
