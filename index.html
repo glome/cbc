@@ -1,105 +1,143 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Catalogue</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="shortcut icon" type="image/png"  href="images/favicon.png"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Browse things you love and get cashback for buying">
-  <meta name="author" content="Glome Inc.">
-  <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
-<!--
-  <link rel="stylesheet" type="text/css" href="css/colorbox.css" media="screen" />
-  <script type="text/javascript" src="js/libs/jquery-2.0.3.min.js"></script>
--->
-  <script type="text/javascript" src="js/libs/jquery-1.10.2.js"></script>
-<!--
-  <script type="text/javascript" src="js/libs/jquery.colorbox-min.js"></script>
-  <script type="text/javascript" src="js/libs/jquery.dcjqaccordion.js"></script>
--->
-  <script type="text/javascript" src="js/libs/handlebars-1.0.0.js"></script>
-  <script type="text/javascript" src="js/libs/ember.js"></script>
-  <script type="text/javascript" src="js/libs/ember-data.js"></script>
-</head>
-<body>
-  <script type="text/x-handlebars">
-    <div class="wrapper-box">
-      <div class="main-wrapper">
-        {{partial 'header'}}
-        <div id="container">
-          {{partial 'main-categories'}}
-          <!--Middle Part Start-->
-          <div id="content">
-            <!--Breadcrumb Part Start-->
-            <div class="breadcrumb"> </div>
-            <!--Breadcrumb Part End-->
-            {{outlet}}
-            {{outlet 'loading'}}
-          <!--Middle Part End-->
-          </div>
-          <div class="clear"></div>
+  <head>
+    <title>Cashback Catalog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Browse things you love and get cashback for buying">
+    <meta name="author" content="Glome Inc.">
+    <link rel="shortcut icon" type="image/png"  href="images/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+    <script type="text/javascript" src="js/libs/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/libs/handlebars-1.0.0.js"></script>
+    <script type="text/javascript" src="js/libs/ember.js"></script>
+    <script type="text/javascript" src="js/libs/ember-data.js"></script>
+  </head>
+  <body>
+    <script type="text/x-handlebars">
+      {{view App.HeaderView}}
+      <div class="container content">
+        {{partial 'title'}}
+        {{partial 'main'}}
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="header">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <ul class="collapse navbar-collapse list-inline">
+          {{view view.leftBox}}
+          {{view view.centerBox}}
+        </ul>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="leftBox">
+      <div class="type"><span>pair your wallet</span></div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="centerBox">
+      {{#if view.info}}
+      <div class="pairing">
+        <div class="instruction">Pair your wallet:</div>
+        <div class="code">
+          <input type="text" name="code_1" class="code" placeholder="0000" maxlength="4" />
+          <input type="text" name="code_2" class="code" placeholder="0000" maxlength="4" />
+          <input type="text" name="code_3" class="code" placeholder="0000" maxlength="4" />
+          <div class="reply"></div>
         </div>
       </div>
-      {{partial "footer"}}
-    </div>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="index">
-    <h1>Welcome at the Glome catalogue demo!</h1>
-    <p>You can browse the available products in our catalogue via the categories.</p>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="no-glome-id">
-    <div class="addon note">No Glome ID is available.</div>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="products">
-    {{#if currentProduct}}
-      {{view view.singleView}}
-    {{else}}
-      {{partial 'advertisers'}}
-      <h1>Selected for you</h1>
-      {{view view.gridView}}
-      <div class="loading">
-      {{#if loadingMore}}
-        Loading more...
       {{else}}
-        {{#if lastPage}}
-        No more :(
-        {{else}}
-        <a href='#' {{action 'getMore'}}>Get More...</a>
-        {{/if}}
+      <div class="info">When pairing with the Glome Wallet blablabla...</div>
       {{/if}}
+      <div class="togglebox" {{action 'toggle' target=view}}></div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="toggleBox"></script>
+
+    <script type="text/x-handlebars" data-template-name="title">
+      <div class="row row-cbc row-cbc-left title">
+        <a href="/"><div class="col-xs-6 col-sm-3 picker"></div></a>
+        <div class="col-xs-12 col-sm-9">
+          <div class="small">Benefit from your data</div>
+          <div class="big"><span>Cashback Catalog</span></div>
+        </div>
       </div>
-    {{/if}}
-  </script>
+    </script>
 
-  <script type="text/x-handlebars" data-template-name="advertisers">
-    {{#if controllers.products.programs}}
-    <h1>Online shops</h1>
-    <ul class="programs">
-      {{#each program in controllers.products.programs}}
-      <li >
-        <a href="#" {{action 'openShop' program target="controllers.program"}}>
-          <img {{bind-attr src=program.advertiser.logo}} alt="logo"/>
-          <div>{{program.advertiser.name}}</div>
-        </a>
-      </li>
+    <script type="text/x-handlebars" data-template-name="main">
+      <div class="row row-cbc row-cbc-right main">
+        <div class="col-xs-6 col-sm-3 sidebar-cbc" id="sidebar" role="navigation">
+          <div class="list-group">
+            {{view App.CategoriesView}}
+            <!-- other boxes may come here, like wishlist, promotions etc -->
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-7 col-ld-7 main">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="cbc">Toggle nav</button>
+          </p>
+
+          {{view App.SearchView}}
+
+          {{outlet}}
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="categories">
+      <div class="list-group-item-heading uppercase text-center">Categories</div>
+      <ul class="list-group categories">
+      {{#each category in controllers.products.categories}}
+        {{#if category.hasProducts}}
+        <li class="list-group-item category" {{bind-attr data-catid=category.id}} {{bind-attr data-urlname=category.urlName}}>
+          <a {{action 'click' category target=view}} class="uppercase">{{category.name}}</a>
+          {{#if category.subcategories}}
+            <span {{action 'toggle' category.id target="controllers.category"}} class="toggle down"></span>
+            <ul class="hidden list-group subcategories" {{bind-attr data-catid=category.id}}>
+            {{#each subcategory in category.subcategories}}
+              {{#if subcategory.num_published_products}}
+              <li class="list-group-item capitalize"  {{bind-attr data-catid=subcategory.id}} {{bind-attr data-urlname=subcategory.urlName}}>
+                <a class="capitalize" {{action 'click' subcategory target=view}}>{{subcategory.name}}</a>
+              </li>
+              {{/if}}
+            {{/each}}
+            </ul>
+          {{/if}}
+        </li>
+        {{/if}}
       {{/each}}
-    </ul>
-    {{/if}}
-  </script>
+      </ul>
+    </script>
 
-  <script type="text/x-handlebars" data-template-name="grid">
-    <!--Product Grid Start-->
-    <div class="product-grid">
+    <script type="text/x-handlebars" data-template-name="search">
+      <div {{action 'search' target="controllers.products"}} class="button"></div>
+      {{view Ember.TextField placeholder='Search' action='search' controller=App.ProductsController}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="products">
+      {{#if currentProduct}}
+        {{view view.singleView}}
+      {{else}}
+        {{view view.gridView}}
+      {{/if}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="grid">
       {{#each product in model}}
-      <div>
-      <!-- {{action 'getit' product.id target="controllers.action"}}  -->
+      <div class="col-xs-6 col-sm-3 col-md-3 product">
         {{#link-to 'products.show' category product}}
         <div class="image">
-          <img {{bind-attr src=product.content}} {{bind-attr alt=product.title}}/>
+          <img class="img-responsive img-rounded" {{bind-attr src=product.content}} {{bind-attr alt=product.title}}/>
         </div>
         <div class="name">{{product.title}}</div>
         {{/link-to}}
@@ -114,20 +152,17 @@
         </div>
       </div>
       {{/each}}
-    </div>
-    <!--Product Grid End-->
-  </script>
+    </script>
 
-  <script type="text/x-handlebars" data-template-name="single">
-    {{#if controllers.products.currentCategory}}
-    <h1>{{currentProduct.title}}</h1>
-    <div class="product-info">
-      <div class="left">
+    <script type="text/x-handlebars" data-template-name="single">
+      {{#if controllers.products.currentCategory}}
+      <h3>{{currentProduct.title}}</h3>
+      <div class="col-xs-5 col-sm-5">
         <div class="image">
-          <img {{action 'clickCategory' controllers.products.currentCategory target="controllers.products"}} {{bind-attr src=currentProduct.content}} {{bind-attr title=currentProduct.title}} {{bind-attr alt=currentProduct.title}} id="image"/>
+          <img class="img-responsive img-rounded" {{action 'loadProducts' controllers.products.currentCategory target="controllers.products"}} {{bind-attr src=currentProduct.content}} {{bind-attr title=currentProduct.title}} {{bind-attr alt=currentProduct.title}} />
         </div>
       </div>
-      <div class="right">
+      <div class="col-xs-5 col-sm-7">
         <div class="description">
           {{currentProduct.description}}
         </div>
@@ -142,209 +177,41 @@
           </div>
         </div>
       </div>
-    </div>
-    {{else}}
-    <span>loading...</span>
-    {{/if}}
-  </script>
+      {{/if}}
+    </script>
 
-  <script type="text/x-handlebars" data-template-name="main-categories">
-    <div id="column-left">
-      <!--Category Start -->
-      <div class="box">
-        <div class="box-heading">Categories</div>
-        <div class="box-content box-category">
-          <ul id="categories">
-          {{#each category in controllers.products.categories}}
-            {{#if category.hasProducts}}
-            <li class="category">
-              <a {{action 'clickCategory' category target="controllers.products"}} {{bind-attr data-catid=category.id}} {{bind-attr data-urlname=category.urlName}} class="name">{{category.name}}</a>
-              {{#if category.subcategories}}
-                <span {{action 'toggle' category.id target="controllers.category"}} class="toggle down"></span>
-                <ul {{bind-attr data-catid=category.id}}>
-                {{#each subcategory in category.subcategories}}
-                  {{#if subcategory.num_published_products}}
-                  <li>
-                    <a {{action 'clickCategory' subcategory target="controllers.products"}} {{bind-attr data-urlname=subcategory.urlName}} {{bind-attr data-catid=subcategory.id}}>{{subcategory.name}}</a>
-                  </li>
-                  {{/if}}
-                {{/each}}
-                </ul>
-              {{/if}}
-            </li>
-            {{/if}}
-          {{/each}}
-          </ul>
-        </div>
-      </div>
-      <!--Category End -->
-    </div>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="header">
-    <!--Header Part Start-->
-    <header id="header">
-      <div class="htop">
-        {{view 'pairing'}}
-        {{partial 'wishlist'}}
-      </div>
-      {{partial 'search-with-logo'}}
-      {{partial 'top-menu'}}
-      {{partial 'mobile-menu'}}
-    </header>
-    <!--Header Part End-->
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="wishlist">
-    <div class="links">
-      <a href="#" id="wishlist-total">Wish List (0)</a>
-    </div>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="search-with-logo">
-    <section class="hsecond">
-      <div id="logo"><a href="index.html"><img src="images/logo.png" title="Catalogue" alt="Catalogue" /></a></div>
-      <div id="search">
-        <div {{action 'search' target="controllers.products"}} class="button-search"></div>
-        {{view Ember.TextField placeholder='Search' action='search' controller=App.ProductsController}}
-      </div>
-      <div class="clear"></div>
-    </section>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="top-menu">
-    <!--Top Menu(Horizontal Categories) Start-->
-    <nav class="menu top">
-      <ul>
-        <li class="home"><a title="Home" href="index.html"><span>Home</span></a></li>
-      </ul>
-    </nav>
-    <!--Top Menu(Horizontal Categories) End-->
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="mobile-menu">
-    <!-- Mobile Menu Start-->
-    <nav class="menu m-menu categories">
-      <span class="title">Categories</span>
-      <ul>
-        <li class="categories">
-          <a>Categories</a>
-          <div>
-            {{#each category in controllers.products.categories}}
-            {{#if category.hasProducts}}
-            <div class="column">
-              <a {{action 'clickCategory' category target="controllers.products"}} {{bind-attr data-catid=category.id}} {{bind-attr data-urlname=category.urlName}} class="name">{{category.name}}</a>
-            </div>
-            {{/if}}
-            {{/each}}
-          </div>
-        </li>
-      </ul>
-    </nav>
-    <!-- Mobile Menu End-->
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="footer">
-    <!--Footer Part Start-->
-    <footer id="footer" class="style-2">
-      <div class="fpart-inner">
-        <div class="clear"></div>
-        <div class="contact contact_icon">
-          <h3>Contact Us</h3>
-          <ul>
-            <li class="address">Alenksanterinkatu 16-18, 00100 Helsinki, Finland</li>
-            <li class="mobile">+358 12345678</li>
-            <li class="fax"><a href="skype:glomeon.skype">glomeon.skype</a></li>
-            <li class="email"><a href="mailto:contact@glome.me">contact@glome.me</a></li>
-          </ul>
-        </div>
-        <!-- Contact Details Start-->
-        <div class="clear"></div>
-        <div id="powered">
-          <div class="social-part">
-            <!-- Links Start-->
-            <div class="fpart_column box2">
-              <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
-              </ul>
-            </div>
-            <!-- Links End-->
-            <!-- Powered by Text Start-->
-            <div class="powered_text box2">
-              <p>Glome Inc © 2013</p>
-            </div>
-            <!-- Powered by Text End-->
-          </div>
-          <!-- Follow Social Icons Start-->
-          <div class="social part3"> <a href="http://facebook.com/glomeinc" target="_blank"><img src="images/facebook.png" alt="Facebook" title="Facebook"></a> <a href="https://twitter.com/#!/glomeinc" target="_blank"><img src="images/twitter.png" alt="Twitter" title="Twitter"> </a> <a href="#" target="_blank"><img src="images/googleplus.png" alt="Google+" title="Google+"> </a> <a href="#" target="_blank"><img src="images/pinterest.png" alt="Pinterest" title="Pinterest"> </a> <a href="#" target="_blank"><img src="images/rss.png" alt="RSS" title="RSS"> </a> <a href="http://www.vimeo.com/#" target="_blank"><img src="images/vimeo.png" alt="Vimeo" title="Vimeo"></a> </div>
-          <!-- Follow Social Icons End-->
-          <div class="clear"></div>
-        </div>
-        <!-- Back to Top Button Start-->
-        <div class="back-to-top" id="back-top"><a title="Back to Top" href="javascript:void(0)" class="backtotop">Top</a></div>
-        <!-- Back to Top Button End-->
-      </div>
-
-    </footer>
-    <!--Footer Part End-->
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="history">
-    <h1>History...</h1>
-    <i>Coming soon!</i>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="loading">
-    <div class="loader">
-      <img src="images/loader.gif" alt="loading" title="loading indicator"/>
-    </div>
-  </script>
-
-  <script type="text/x-handlebars" data-template-name="pairing">
-    <div class="pairing">
-      <span class="pair underline">Pairing</span>
-      <div class="code">
-        <input type="text" name="code_1" class="code" placeholder="0000" maxlength="4" />
-        <input type="text" name="code_2" class="code" placeholder="0000" maxlength="4" />
-        <input type="text" name="code_3" class="code" placeholder="0000" maxlength="4" />
-        <input type="button" class="postcode" value="Pair" {{action 'post' target="controllers.pairing"}} />
-        <span> or </span>
-        <input type="button" class="getcode" value="Get Pairing Code" {{action 'getSyncCode' target="controllers.sync"}} />
-        <div class="reply"></div>
-      </div>
-    </div>
-      </script>
-
-  <script src="js/app.js"></script>
-  <script src="js/router.js"></script>
-  <script src="js/routes/application_route.js"></script>
-  <script src="js/routes/index_route.js"></script>
-  <script src="js/routes/products_route.js"></script>
-  <script src="js/routes/loading_route.js"></script>
-  <script src="js/controllers/application.js"></script>
-  <script src="js/controllers/auth.js"></script>
-  <script src="js/controllers/user.js"></script>
-  <script src="js/controllers/products.js"></script>
-  <script src="js/controllers/product.js"></script>
-  <script src="js/controllers/category.js"></script>
-  <script src="js/controllers/pairing.js"></script>
-  <script src="js/controllers/action.js"></script>
-  <script src="js/controllers/program.js"></script>
-  <script src="js/controllers/ad.js"></script>
-  <script src="js/controllers/sync.js"></script>
-  <script src="js/models/user.js"></script>
-  <script src="js/models/product.js"></script>
-  <script src="js/models/category.js"></script>
-  <script src="js/models/pairing.js"></script>
-  <script src="js/models/action.js"></script>
-  <script src="js/models/program.js"></script>
-  <script src="js/models/ad.js"></script>
-  <script src="js/models/sync.js"></script>
-  <script src="js/views/application.js"></script>
-  <script src="js/views/products.js"></script>
-  <script src="js/views/pairing.js"></script>
-  <script src="js/views/loading.js"></script>
-</body>
+    <script src="js/app.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/routes/application_route.js"></script>
+    <script src="js/routes/index_route.js"></script>
+    <script src="js/routes/products_route.js"></script>
+    <script src="js/routes/loading_route.js"></script>
+    <script src="js/controllers/application.js"></script>
+    <script src="js/controllers/auth.js"></script>
+    <script src="js/controllers/user.js"></script>
+    <script src="js/controllers/products.js"></script>
+    <script src="js/controllers/product.js"></script>
+    <script src="js/controllers/category.js"></script>
+    <script src="js/controllers/pairing.js"></script>
+    <script src="js/controllers/action.js"></script>
+    <script src="js/controllers/program.js"></script>
+    <script src="js/controllers/ad.js"></script>
+    <script src="js/controllers/sync.js"></script>
+    <script src="js/models/user.js"></script>
+    <script src="js/models/product.js"></script>
+    <script src="js/models/category.js"></script>
+    <script src="js/models/pairing.js"></script>
+    <script src="js/models/action.js"></script>
+    <script src="js/models/program.js"></script>
+    <script src="js/models/ad.js"></script>
+    <script src="js/models/sync.js"></script>
+    <script src="js/views/application.js"></script>
+    <script src="js/views/header.js"></script>
+    <script src="js/views/categories.js"></script>
+    <script src="js/views/products.js"></script>
+    <script src="js/views/search.js"></script>
+    <script src="js/views/programs.js"></script>
+    <script src="js/views/pairing.js"></script>
+    <script src="js/views/loading.js"></script>
+  </body>
 </html>

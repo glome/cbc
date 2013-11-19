@@ -8,7 +8,8 @@ App.ProductsView = Ember.View.extend(
    */
   singleView: Ember.View.extend(
   {
-    templateName: 'single'
+    templateName: 'single',
+    classNames: ['single'],
   }),
   /**
    *
@@ -16,6 +17,7 @@ App.ProductsView = Ember.View.extend(
   gridView: Ember.View.extend(
   {
     templateName: 'grid',
+    classNames: ['grid'],
   }),
   /**
    *
