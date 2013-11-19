@@ -49,8 +49,7 @@ App.SyncController = Ember.ArrayController.extend(
         Ember.$('div.pairing .code').find('input[name="code_2"]').val(code.substr(4, 4));
         Ember.$('div.pairing .code').find('input[name="code_3"]').val(code.substr(8, 4));
 
-        Ember.$('div.pairing .code .reply').html('Please enter this code: ' + code + ' in your Glome Wallet! :)');
-        Ember.$('div.pairing .code .reply').show().fadeOut(5000);
+        console.log('Please enter this code: ' + code + ' in your Glome Wallet! :)');
       }
 
       var codes = this.store.findQuery('sync', {glomeid: glomeid}).then(function(data)
