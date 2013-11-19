@@ -23,14 +23,13 @@ App.ProductsController = Ember.ArrayController.extend(
       this.get('controllers.products').set('keywords', false);
       this.transitionToRoute('products.show', product);
     },
-    clickCategory: function(cat)
+    loadProducts: function(cat)
     {
-      this.set('page', 1);
-      this.set('lastPage', false);
-      Ember.$('div.product-grid').scrollTop(0);
       this.get('controllers.user').send('healthCheck');
-      this.transitionToRoute('products', cat.get('urlName'));
+      this.get('controllers.products').set('page', 1);
+      this.get('controllers.products').set('lastPage', false);
       this.get('controllers.products').set('keywords', false);
+      this.transitionToRoute('products', cat.get('urlName'));
     },
     getMore: function()
     {
