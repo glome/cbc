@@ -168,13 +168,11 @@
         </div>
         {{#if currentProduct.last_price}}
         <div class="price">
-          Price: <span class="price-new">{{currentProduct.price}}</span>
+          {{currentProduct.price}}
         </div>
         {{/if}}
         <div class="cart">
-          <div>
-            <input type="button" {{action 'cashBack' currentProduct target="controllers.product"}} {{bind-attr value=currentProduct.cashback}} id="button-cart" class="button" />
-          </div>
+          <input type="button" {{action 'cashBack' currentProduct target="controllers.product"}} {{bind-attr value=currentProduct.cashback}} id="button-cart" class="button" />
         </div>
       </div>
       {{/if}}

@@ -354,17 +354,15 @@ ul.subcategories
   overflow: hidden;
   text-decoration: none;
 }
-.grid .product .price
+.product .price,
+.single .price
 {
   color: #ff833f;
   font-weight: bold;
   margin-bottom: 5px;
 }
-.grid .product .cart
-{
-
-}
-.grid .product .cart input
+.product .cart input,
+.single .cart input
 {
   width: 137px;
   height: 27px;
@@ -375,6 +373,10 @@ ul.subcategories
   text-transform: uppercase;
   background-position: left 0px top -732px;
   background-image: url('/images/cbc.png');
+}
+.single .description
+{
+  margin-bottom: 20px;
 }
 .single h3
 {
