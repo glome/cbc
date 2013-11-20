@@ -12,7 +12,13 @@ var GlomeApp = Ember.Application.extend(
   productsIndex: '/api/products.json',
   generateGlomeIdPost: '/api/applications/generate_glomeid.json',
   // show personalized content
-  personalizedContent: false
+  personalizedContent: true,
+  // contact info
+  contact:
+  {
+    email: 'contact@glome.me',
+    subject: 'Interested in Glome Wallet for Android'
+  }
 });
 
 /**
