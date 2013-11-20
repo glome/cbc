@@ -56,7 +56,11 @@
         </div>
       </div>
       {{else}}
-      <div class="info">When pairing with the Glome Wallet blablabla...</div>
+      <div class="info">
+        Glome Wallet for Android is a tool for you to take control of and benefit
+        from your digital footprint. Glome Wallet for Android is in private beta mode.
+        Please email us at <a {{bind-attr href=contactMailto}}">{{contact}}</a> if you want to become a tester.
+      </div>
       {{/if}}
       <div class="togglebox" {{action 'toggle' target=view}}></div>
     </script>
@@ -82,7 +86,7 @@
           </div>
         </div>
 
-        <div class="col-xs-12 col-sm-6 col-md-7 col-ld-7 main">
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 meat">
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="cbc">Toggle nav</button>
           </p>
@@ -100,14 +104,14 @@
       {{#each category in controllers.products.categories}}
         {{#if category.hasProducts}}
         <li class="list-group-item category" {{bind-attr data-catid=category.id}} {{bind-attr data-urlname=category.urlName}}>
-          <a {{action 'click' category target=view}} class="uppercase">{{category.name}}</a>
+          <div class="name uppercase" {{action 'click' category target=view}}>{{category.name}}</div>
           {{#if category.subcategories}}
             <span {{action 'toggle' category.id target="controllers.category"}} class="toggle down"></span>
             <ul class="hidden list-group subcategories" {{bind-attr data-catid=category.id}}>
             {{#each subcategory in category.subcategories}}
               {{#if subcategory.num_published_products}}
               <li class="list-group-item capitalize"  {{bind-attr data-catid=subcategory.id}} {{bind-attr data-urlname=subcategory.urlName}}>
-                <a class="capitalize" {{action 'click' subcategory target=view}}>{{subcategory.name}}</a>
+                <div class="name capitalize" {{action 'click' subcategory target=view}}>{{subcategory.name}}</div>
               </li>
               {{/if}}
             {{/each}}
@@ -120,7 +124,6 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="search">
-      <div {{action 'search' target="controllers.products"}} class="button"></div>
       {{view Ember.TextField placeholder='Search' action='search' controller=App.ProductsController}}
     </script>
 
@@ -147,8 +150,7 @@
         </div>
         {{/if}}
         <div class="cart">
-          <input type="button" {{action 'cashBack' product target="controllers.product"}} {{bind-attr value=product.cashback}} class="button" />
-          <a {{bind-attr data-product=product.id}} href="#" target="_blank"></a>
+          <input class="button" type="button" {{action 'cashBack' product target="controllers.product"}} {{bind-attr value=product.cashback}} />
         </div>
       </div>
       {{/each}}
@@ -172,7 +174,7 @@
         </div>
         {{/if}}
         <div class="cart">
-          <input type="button" {{action 'cashBack' currentProduct target="controllers.product"}} {{bind-attr value=currentProduct.cashback}} id="button-cart" class="button" />
+          <input class="button" type="button" {{action 'cashBack' currentProduct target="controllers.product"}} {{bind-attr value=currentProduct.cashback}} />
         </div>
       </div>
       {{/if}}
