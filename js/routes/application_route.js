@@ -58,7 +58,9 @@ App.ApplicationRoute = Ember.Route.extend(
         controller.get('controllers.application').set('loggedin', true);
       });
     }
-    controller.set('title', "Catalogue");
+    controller.set('title', "Cashback Catalog");
     controller.set('categories', this.get('categories'));
+    controller.set('contact', App.contact.email);
+    controller.set('contactMailto', 'mailto: ' + App.contact.email + '?subject=' + App.contact.subject);
   }
 });
