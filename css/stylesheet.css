@@ -26,6 +26,13 @@ body
   background-color: #ebebeb;
   font-family: Droid Sans, Verdana, Geneva, sans-serif;
 }
+#loading
+{
+  width: 32px;
+  height: 32px;
+  margin: 20px auto 0 auto;
+  background-image: url('/images/bigsnake.gif');
+}
 .uppercase
 {
   text-transform: uppercase;
