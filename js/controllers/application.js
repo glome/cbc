@@ -87,8 +87,6 @@ App.ApplicationController = Ember.ArrayController.extend(
           controller.set('currentCategory', controller.get('categoryMap').findBy('urlName', category));
         }
 
-        console.log('loaded categories');
-
         var prevT = self.get('controllers.application').get('previousTransition');
         if (prevT)
         {
@@ -131,7 +129,6 @@ App.ApplicationController = Ember.ArrayController.extend(
      */
     setGlobals: function()
     {
-      console.log('start here ---');
       this.set('inProgress', false);
       this.set('glomeid', window.localStorage.getItem('glomeid'));
       this.set('loggedin', window.localStorage.getItem('loggedin') == 'true');

@@ -63,8 +63,6 @@ App.ProductsController = Ember.ArrayController.extend(
 
       var catId = this.get('controllers.products').get('categoryMap').findBy('urlName', this.get('controllers.products').get('category')).get('id');
 
-      console.log('fetch more: ' + catId + ', page: ' + page);
-
       if (page == '' || ! page)
       {
         page = 1;
