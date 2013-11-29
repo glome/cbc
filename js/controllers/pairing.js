@@ -36,8 +36,6 @@ App.PairingController = Ember.ObjectController.extend(
     {
       var self = this;
 
-      console.log('post: ' + self.get('controllers.application').get('glomeid'));
-
       var pairing = this.store.createRecord('pairing',
       {
         code_1: Ember.$('.pairing input[name="code_1"]').val(),
@@ -49,14 +47,14 @@ App.PairingController = Ember.ObjectController.extend(
       var res = pairing.save().then(
         function(data)
         {
-          Ember.$('div.pairing .code .reply').html('Congratulations, your Glome wallet will be full of surprises! :)');
-          Ember.$('div.pairing .code .reply').show().fadeOut(5000);
+          Ember.$('.pairing .code .reply').html('Congratulations, your Glome wallet will be full of surprises! :)');
+          Ember.$('.pairing .code .reply').show().fadeOut(5000);
         },
         function(error)
         {
           console.log('pairing FAILED: ' + error.responseJSON.error);
-          Ember.$('div.pairing .code .reply').html(error.responseJSON.error);
-          Ember.$('div.pairing .code .reply').show().fadeOut(2000);
+          Ember.$('.pairing .code .reply').html(error.responseJSON.error);
+          Ember.$('.pairing .code .reply').show().fadeOut(2000);
         }
       );
       return res;

@@ -42,12 +42,12 @@ App.SyncController = Ember.ArrayController.extend(
 
       var fillCode = function(code)
       {
-        Ember.$('div.pairing .code').find('button.getcode').hide();
-        Ember.$('div.pairing .code').find('input.code').attr('disabled', 'disabled');
+        Ember.$('.pairing .code').find('button.getcode').hide();
+        Ember.$('.pairing .code').find('input.code').attr('disabled', 'disabled');
 
-        Ember.$('div.pairing .code').find('input[name="code_1"]').val(code.substr(0, 4));
-        Ember.$('div.pairing .code').find('input[name="code_2"]').val(code.substr(4, 4));
-        Ember.$('div.pairing .code').find('input[name="code_3"]').val(code.substr(8, 4));
+        Ember.$('.pairing .code').find('input[name="code_1"]').val(code.substr(0, 4));
+        Ember.$('.pairing .code').find('input[name="code_2"]').val(code.substr(4, 4));
+        Ember.$('.pairing .code').find('input[name="code_3"]').val(code.substr(8, 4));
 
         console.log('Please enter this code: ' + code + ' in your Glome Wallet! :)');
       }
@@ -73,8 +73,8 @@ App.SyncController = Ember.ArrayController.extend(
             function(error)
             {
               console.log('sync object creation FAILED: ' + error.responseJSON.error);
-              Ember.$('div.pairing .code .reply').html(error.responseJSON.error);
-              Ember.$('div.pairing .code .reply').show().fadeOut(2000);
+              Ember.$('.pairing .code .reply').html(error.responseJSON.error);
+              Ember.$('.pairing .code .reply').show().fadeOut(2000);
             }
           );
         }
