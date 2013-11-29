@@ -41,6 +41,10 @@ body
 {
   text-transform: capitalize;
 }
+.inline
+{
+  display: inline-block;
+}
 footer
 {
   padding: 30px 0;
@@ -117,23 +121,6 @@ footer
 {
   height: 150px;
 }
-.header .togglebox
-{
-  top: -2px;
-  left: 45px;
-  width: 45px;
-  height: 47px;
-  float: right;
-  cursor: pointer;
-  position: relative;
-  background-position: left 0px top 0px;
-  background-image: url('/images/cbc.png');
-}
-.header .togglebox.open
-{
-  height: 152px;
-  background-position: left 0px top -47px;
-}
 .header .leftbox
 {
   width: 22%;
@@ -154,21 +141,29 @@ footer
   background-color: #8c00db;
   border-right: 1px dashed #ebebeb;
 }
-.header .leftbox.open .type /* info by default */
+.header .leftbox.open .type
 {
   width: 140px;
   height: 100px;
   margin: 0 auto;
   text-align: center;
-  background-image: url('/images/cbc.png');
-  background-position: left 58px top -210px;
 }
-.header .leftbox.open .type.pair
+.header .leftbox.open .type[data-state="1"]
+{
+  background-image: url('/images/cbc.png');
+  background-position: left 58px top -200px;
+}
+.header .leftbox.open .type[data-state="2"]
+{
+  background-image: url('/images/cbc.png');
+  background-position: left 53px top -765px;
+}
+.header .leftbox.open .type[data-state="3"]
 {
   background-image: url('/images/cbc.png');
   background-position: left 53px top -273px;
 }
-.header .leftbox.open .type.pair span
+.header .leftbox.open .type[data-state="3"] span
 {
   top: 25px;
   color: #ebebeb;
@@ -189,22 +184,20 @@ footer
   display: inline-block;
   background-color: #8c00db;
 }
-.header .centerbox .info,
-.header .centerbox .pairing
+.header .centerbox div.menu
 {
   display: none;
-}
-.header .centerbox.open .info,
-.header .centerbox.open .pairing
-{
   margin-top: 40px;
+}
+.header .centerbox div.menu.visible
+{
   display: inline-block;
 }
-.header .centerbox.open .info
+.info
 {
   width: 80%;
 }
-.header .centerbox.open .info a
+.info a
 {
   color: #ebebeb;
 }
@@ -230,6 +223,23 @@ footer
 .pairing .reply
 {
   display: none;
+}
+.toptoggle
+{
+  top: -2px;
+  left: 45px;
+  width: 45px;
+  height: 47px;
+  float: right;
+  cursor: pointer;
+  position: relative;
+  background-position: left 0px top 0px;
+  background-image: url('/images/cbc.png');
+}
+.toptoggle.open
+{
+  height: 152px;
+  background-position: left 0px top -47px;
 }
 .content.openhdr
 {
