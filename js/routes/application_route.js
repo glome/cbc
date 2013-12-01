@@ -62,5 +62,7 @@ App.ApplicationRoute = Ember.Route.extend(
     controller.set('categories', this.get('categories'));
     controller.set('contact', App.contact.email);
     controller.set('contactMailto', 'mailto: ' + App.contact.email + '?subject=' + App.contact.subject);
-  }
+    controller.set('maintenance', App.maintenance || false);
+}
+
 });

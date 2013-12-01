@@ -33,6 +33,18 @@ body
   margin: 20px auto 0 auto;
   background-image: url('/images/bigsnake.gif');
 }
+#maintenance
+{
+  width: 100%;
+  bottom: 0px;
+  padding: 5px;
+  color: white;
+  z-index: 1001;
+  position: fixed;
+  font-size: 14px;
+  text-align: center;
+  background-color: red;
+}
 .uppercase
 {
   text-transform: uppercase;
@@ -124,6 +136,7 @@ footer
 .header .leftbox
 {
   width: 22%;
+  cursor: pointer;
 }
 .header .leftbox .type
 {

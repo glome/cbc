@@ -17,11 +17,18 @@
   </head>
   <body>
     <script type="text/x-handlebars">
+      {{#if controllers.application.maintenance}}
+      {{partial 'maintenance'}}
+      {{/if}}
       {{view App.HeaderView}}
       <div class="container content">
         {{partial 'title'}}
         {{partial 'main'}}
       </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="maintenance">
+      <div id="maintenance">{{controllers.application.maintenance}}</div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="header">
