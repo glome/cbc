@@ -13,36 +13,41 @@ App.HeaderView = Ember.View.extend(
   leftBox: Ember.View.extend(
   {
     tagName: 'li',
-    classNames: ['leftbox'],
     templateName: 'leftBox',
+    classNames: ['leftbox', 'col-sm-2'],
 
     click: function(e)
     {
-      var state = Ember.$('.header .leftbox .type').attr('data-state');
-      var prevState = state;
+      var elem = parseInt(Ember.$('.header .leftbox .menu.visible').attr('data-elem'));
+      var prevElem = elem;
 
-      switch (parseInt(state))
+      switch (elem)
       {
         case 1:
           // pairing screen
         case 2:
           // info screen
-          ++state;
-          Ember.$('.header .leftbox .type span').fadeOut('fast');
+          ++elem;
           break;
         case 3:
           // redeem screen
-          state = 1;
+          elem = 1;
           this.get('controller').get('controllers.sync').send('getSyncCode');
-          Ember.$('.header .leftbox .type span').fadeIn('fast');
           break;
       }
-      Ember.$('.header .centerbox .menu[data-elem="' + prevState + '"]').fadeToggle('medium', function()
+
+      Ember.$('.header .leftbox .menu[data-elem="' + prevElem + '"]').fadeOut('fast', function()
       {
-        Ember.$('.header .centerbox .menu[data-elem="' + state + '"]').fadeToggle('medium', function()
+        Ember.$('.header .leftbox .menu[data-elem="' + prevElem + '"]').toggleClass('visible');
+        Ember.$('.header .leftbox .menu[data-elem="' + elem + '"]').fadeIn('fast', function()
         {
-          Ember.$('.header .leftbox .type').attr('data-state', state);
-        }).css('display', 'inline-block');
+          Ember.$('.header .leftbox .menu[data-elem="' + elem + '"]').toggleClass('visible');
+        });
+      });
+
+      Ember.$('.header .centerbox .menu[data-elem="' + prevElem + '"]').fadeToggle('medium', function()
+      {
+        Ember.$('.header .centerbox .menu[data-elem="' + elem + '"]').fadeToggle('medium').css('display', 'inline-block');
       });
 
       return false;
@@ -52,31 +57,30 @@ App.HeaderView = Ember.View.extend(
   {
     info: true,
     tagName: 'li',
-    classNames: ['centerbox'],
     templateName: 'centerBox',
-    actions:
+    classNames: ['centerbox', 'col-sm-9'],
+  }),
+  rightBox: Ember.View.extend(
+  {
+    tagName: 'li',
+    templateName: 'rightBox',
+    classNames: ['rightbox', 'col-sm-1'],
+    click: function(e)
     {
-      'topToggle': function()
+      Ember.$('.content').toggleClass('openhdr');
+      Ember.$('.header, .leftbox, .centerbox, .rightbox').toggleClass('open');
+
+      if (Ember.$('.header').hasClass('open'))
       {
-        Ember.$('.content').toggleClass('openhdr');
-        Ember.$('.header, .leftbox, .centerbox, .centerbox .toptoggle').toggleClass('open');
-
-        if (Ember.$('.header').hasClass('open'))
+        var elem = Ember.$('.header .leftbox .menu.visible').attr('data-elem');
+        if (elem == '1')
         {
-          var state = Ember.$('.header .leftbox .type').attr('data-state');
-          if (state == '1')
-          {
-            this.get('controller').get('controllers.sync').send('getSyncCode');
-          }
-          Ember.$('.header .centerbox [data-elem="' + state + '"], .header .centerbox [data-elem="' + state + '"] *').fadeIn('fast').css('display', 'inline-block');
+          this.get('controller').get('controllers.sync').send('getSyncCode');
         }
-        else
-        {
-          Ember.$('.header .centerbox .menu').hide();
-        }
-
-        return false;
+        Ember.$('.header .centerbox .menu[data-elem="' + elem + '"], .header .centerbox .menu[data-elem="' + elem + '"] *').fadeIn('fast').css('display', 'inline-block');
       }
+
+      return false;
     }
   })
 });

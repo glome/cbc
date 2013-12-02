@@ -11,6 +11,29 @@
  * Thank you Twitter for your work!
  *
  */
+
+@font-face
+{
+  font-family: 'PT Sans Narrow';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Sans Narrow'), local('PTSans-Narrow'), url('/PT_Sans-Narrow-Web-Regular.ttf');
+}
+@font-face
+{
+  font-family: 'PT Sans Narrow Bold';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Sans Narrow Bold'), local('PTSans-Narrow-Bold'), url('/PT_Sans-Narrow-Web-Bold.ttf');
+}
+@font-face
+{
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Serif'), local('PTSerif'), url('/PT_Serif-Web-Regular.ttf');
+}
+
 *
 {
   background-repeat: no-repeat;
@@ -24,7 +47,7 @@ body
   color: #222;
   margin: 0px;
   background-color: #ebebeb;
-  font-family: Droid Sans, Verdana, Geneva, sans-serif;
+  font-family: 'PT Sans Narrow', sans-serif !important;
 }
 #loading
 {
@@ -41,9 +64,14 @@ body
   color: white;
   z-index: 1001;
   position: fixed;
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
   background-color: red;
+}
+.container
+{
+  padding: 0;
+  width: 100%;
 }
 .uppercase
 {
@@ -61,9 +89,13 @@ footer
 {
   padding: 30px 0;
 }
-.navbar > .container
+.sidebar-cbc
 {
-  width: 100%;
+  padding: 0;
+}
+.row-cbc
+{
+  margin: 0;
 }
 @media screen and (max-width: 767px)
 {
@@ -123,11 +155,11 @@ footer
 }
 .header ul li
 {
-  height: 25px;
   float: left;
-  left: -22.5px;
-  position: relative;
+  height: 25px;
   list-style: none;
+  overflow: hidden;
+  position: relative;
 }
 .header ul li.open
 {
@@ -135,76 +167,64 @@ footer
 }
 .header .leftbox
 {
-  width: 22%;
   cursor: pointer;
 }
-.header .leftbox .type
+.header .leftbox.open,
+.header .centerbox.open,
+.header .rightbox.open
 {
-  top: 16px;
-  position: relative;
+  height: 150px;
+  color: #ebebeb;
+  font-size: 16px;
+  text-align: center;
+  display: inline-block;
 }
-.header .leftbox .type span
+.header .leftbox.open,
+.header .centerbox.open
 {
-  display: none;
+  background-color: #8c00db;
 }
 .header .leftbox.open
 {
   float: left;
-  height: 150px;
-  background-color: #8c00db;
   border-right: 1px dashed #ebebeb;
 }
-.header .leftbox.open .type
+.header .leftbox.open .menu
 {
-  width: 140px;
-  height: 100px;
   margin: 0 auto;
+  font-size: 16px;
+  padding-top: 50px;
   text-align: center;
-}
-.header .leftbox.open .type[data-state="1"]
-{
-  background-image: url('/images/cbc.png');
-  background-position: left 58px top -200px;
-}
-.header .leftbox.open .type[data-state="2"]
-{
-  background-image: url('/images/cbc.png');
-  background-position: left 53px top -765px;
-}
-.header .leftbox.open .type[data-state="3"]
-{
-  background-image: url('/images/cbc.png');
-  background-position: left 53px top -273px;
-}
-.header .leftbox.open .type[data-state="3"] span
-{
-  top: 25px;
-  color: #ebebeb;
-  display: block;
-  font-size: 14px;
-  position: relative;
   text-transform: uppercase;
 }
-.header .centerbox
-{
-  width: 78%;
-}
-.header .centerbox.open
-{
-  color: #ebebeb;
-  font-size: 14px;
-  text-align: center;
-  display: inline-block;
-  background-color: #8c00db;
-}
-.header .centerbox div.menu
+.header .leftbox .menu,
+.header .centerbox .menu
 {
   display: none;
   margin-top: 40px;
 }
-.header .centerbox div.menu.visible
+.header .leftbox.open  .menu *
+{
+  margin: 0 auto;
+}
+.header .leftbox.open  .menu.visible,
+.header .centerbox.open .menu.visible
 {
   display: inline-block;
+}
+.header .rightbox
+{
+  top: -2px;
+  height: 47px;
+  cursor: pointer;
+  position: relative;
+  background-position: right 0px top 0px;
+  background-image: url('/images/cbc.png');
+}
+.header .rightbox.open
+{
+  height: 152px;
+  background-position: right 0px top -47px;
 }
 .info
 {
@@ -237,23 +257,6 @@ footer
 {
   display: none;
 }
-.toptoggle
-{
-  top: -2px;
-  left: 45px;
-  width: 45px;
-  height: 47px;
-  float: right;
-  cursor: pointer;
-  position: relative;
-  background-position: left 0px top 0px;
-  background-image: url('/images/cbc.png');
-}
-.toptoggle.open
-{
-  height: 152px;
-  background-position: left 0px top -47px;
-}
 .content.openhdr
 {
   top: 130px;
@@ -262,11 +265,12 @@ footer
 .picker
 {
   top: 0px;
-  left: 25px;
   height: 160px;
   position: relative;
-  background-image: url('/images/cbc.png');
-  background-position: left 37px top -420px;
+}
+.picker img
+{
+  margin: 0 auto;
 }
 .title
 {
@@ -281,13 +285,15 @@ footer
   font-size: 22px;
   margin-bottom: 40px;
 }
-.title .big span
+.title .big
 {
   color: black;
-  width: 200px;
+  width: 300px;
   font-size: 40px;
   line-height: 41px;
+  text-align: center;
   display: inline-block;
+  font-family: 'PT Serif', serif !important;
 }
 #sidebar
 {
@@ -307,9 +313,19 @@ footer
   top: 40px;
   padding-left: 47px;
 }
+.list-group-item.categories .list-group-item-heading
+{
+  height: 83px;
+  font-size: 18px;
+  margin-bottom: 0;
+  padding-top: 35px;
+  background-color: white;
+  font-family: 'PT Sans Narrow Bold', sans-serif;
+}
 ul.categories .list-group-item
 {
   padding: 0;
+  font-size: 15px;
   line-height: 28px;
   margin: 15px 0 0 10%;
 }
@@ -321,15 +337,8 @@ ul.subcategories
 {
   border: 0;
   padding: 0;
-  font-size: 13px;
+  font-size: 15px;
   background-color: #c2c2c2;
-}
-.list-group-item.categories .list-group-item-heading
-{
-  height: 83px;
-  margin-bottom: 0;
-  padding-top: 35px;
-  background-color: white;
 }
 .list-group.categories
 {
