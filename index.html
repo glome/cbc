@@ -33,14 +33,6 @@
 
     <script type="text/x-handlebars" data-template-name="header">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
         <ul class="collapse navbar-collapse list-inline">
           {{view view.leftBox}}
           {{view view.centerBox}}
@@ -109,14 +101,8 @@
             <!-- other boxes may come here, like wishlist, promotions etc -->
           </div>
         </div>
-
         <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 meat">
-          <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="cbc">Toggle nav</button>
-          </p>
-
           {{view App.SearchView}}
-
           {{outlet 'loading'}}
           {{outlet}}
         </div>
@@ -150,6 +136,7 @@
 
     <script type="text/x-handlebars" data-template-name="search">
       {{view Ember.TextField placeholder='Search' action='search' controller=App.ProductsController}}
+      <div class="button"></div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="products">
