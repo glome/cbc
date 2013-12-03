@@ -6,10 +6,19 @@ App.User = DS.Model.extend(
   glomeid: DS.attr('string'),
   status: DS.attr('boolean'),
   xcsrf: DS.attr('string'),
+  //"earnings":{"fresh":{},"pending":{},"failed":{},"paid":{},"transferred":{"EUR":110}}
+  earnings: DS.attr('raw'),
+  fresh: function()
+  {
+    var ret = false;
+    // Todo: parse different currencies separately, don't hardcode EUR
+    var money = (parseFloat(this.get('earnings')['fresh']['EUR'], 10) / 100).toFixed(2);
+    // Todo: do not hardocde this; get it from the server; minimum amount to redeem is 1 EUR
+    (money >= 1) ? ret = money.replace(/\./, ',') : ret = false;
+    return ret;
+  }.property('earnings'),
   didLoad: function(event)
   {
-    console.log(event);
-
     if (this.get('status'))
     {
       console.log('we have a current user: ' + this.get('id'));

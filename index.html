@@ -74,6 +74,13 @@
       <div class="redeem menu" data-elem="3">
         Cashback Catalog is the world’s first anonymous human-controlled cash
         back service. Browse, shop and get paid!
+        {{#if controllers.application.fresh}}
+        <div class="money">
+          {{controllers.application.fresh}}
+          <span class="symbol eur">€</span>
+          <span class="button">redeem</span>
+        </div>
+        {{/if}}
       </div>
     </script>
 

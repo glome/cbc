@@ -33,12 +33,14 @@ App.ApplicationRoute = Ember.Route.extend(
       promise = this.store.find('user', glomeid).then(function(data)
       {
         self.controllerFor('application').send('loadCategories', transition.params.category);
+        self.controllerFor('application').set('fresh', data.get('fresh'));
       });
     }
     else
     {
       promise = this.store.find('user');
     }
+
     return promise;
   },
   model: function(params, transition)
@@ -58,11 +60,11 @@ App.ApplicationRoute = Ember.Route.extend(
         controller.get('controllers.application').set('loggedin', true);
       });
     }
+
     controller.set('title', "Cashback Catalog");
     controller.set('categories', this.get('categories'));
     controller.set('contact', App.contact.email);
     controller.set('contactMailto', 'mailto: ' + App.contact.email + '?subject=' + App.contact.subject);
     controller.set('maintenance', App.maintenance || false);
-}
-
+  }
 });

@@ -13,6 +13,7 @@ App.ApplicationController = Ember.ArrayController.extend(
   inProgress: false,
   notification: false,
   token: false,
+  fresh: false,
 
   actions:
   {

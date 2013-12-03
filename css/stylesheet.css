@@ -420,3 +420,28 @@ ul.subcategories
   margin-bottom: 20px;
   text-transform: uppercase;
 }
+.redeem .money
+{
+  font-size: 58px;
+}
+.redeem .money .symbol
+{
+  top: -20px;
+  font-size: 40px;
+  position: relative;
+}
+.redeem .button
+{
+  top: -15px;
+  left: 30px;
+  width: 175px;
+  height: 45px;
+  cursor: pointer;
+  font-size: 20px;
+  padding-top: 6px;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  background-position: left -325px top -732px;
+  background-image: url('/images/cbc.png');
+}
