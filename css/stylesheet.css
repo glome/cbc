@@ -338,8 +338,8 @@ ul.subcategories
 .list-group-item.category.active,
 .list-group-item.capitalize.active
 {
-  background-image: url('/images/cbc.png');
-  background-position: left calc(100%) top -661px;
+  background-image: url('/images/list-active.png');
+  background-position: right 0;
 }
 .list-group-item.category.active .name,
 .list-group-item.capitalize.active .name
@@ -348,35 +348,22 @@ ul.subcategories
 }
 .search
 {
-/*
-  top: 65px;
-  float: none;
-  left: 16.6667%;
-*/
   width: 100%;
   height: 45px;
   text-align: left;
   margin: -20px 0 20px 0;
   background-color: #dedede;
 }
-.search .button
-{
-  width: 40px;
-  height: 40px;
-  float: right;
-  display: inline-block;
-  margin: 0 auto 10px auto;
-  background-position: left 0 top -598px;
-  background-image: url('/images/cbc.png');
-}
 .search input
 {
   border: 0;
-  width: 90%;
+  width: 98%;
   height: 45px;
-  font-size: 35px;
-  padding-left: 10px;
+  font-size: 30px;
   background-color: #dedede;
+  padding: 3px 40px 3px 10px;
+  background-position: right 6px;
+  background-image: url('/images/search.png');
 }
 .col-md-3.product
 {
