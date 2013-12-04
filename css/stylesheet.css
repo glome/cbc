@@ -407,7 +407,7 @@ ul.subcategories
 }
 .grid .product img
 {
-  margin-bottom: 10px;
+  margin: 0 auto 10px auto;
 }
 .grid .product > a
 {
