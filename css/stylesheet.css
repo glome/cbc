@@ -110,11 +110,11 @@ footer
     float: none;
     width: 100%;
   }
-  .col-xs-12
+  .col-xs-12.wrapper
   {
-    padding: 0;
+    display: block;
   }
-  .col-xs-12 .search
+  .col-xs-12.wrapper .search
   {
     top: 35px;
     display: block;
@@ -137,6 +137,10 @@ footer
 }
 @media screen and (min-width: 767px)
 {
+  .col-xs-12.wrapper
+  {
+    display: none;
+  }
   .meat
   {
     top: 40px;
@@ -373,6 +377,10 @@ ul.subcategories
 .list-group-item.capitalize.active .name
 {
   color: black;
+}
+.col-xs-12.wrapper
+{
+  padding: 0;
 }
 .search
 {
