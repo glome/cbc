@@ -14,6 +14,7 @@
     <script type="text/javascript" src="js/libs/handlebars-1.0.0.js"></script>
     <script type="text/javascript" src="js/libs/ember.js"></script>
     <script type="text/javascript" src="js/libs/ember-data.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
   </head>
   <body>
     <script type="text/x-handlebars">
@@ -32,13 +33,13 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="header">
-      <div class="container">
-        <ul class="collapse navbar-collapse list-inline">
+      <nav id="glomebar" role="navigation">
+        <ul>
           {{view view.leftBox}}
           {{view view.centerBox}}
           {{view view.rightBox}}
         </ul>
-      </div>
+      </nav>
     </script>
 
     <script type="text/x-handlebars" data-template-name="leftBox">
@@ -96,6 +97,9 @@
         <div class="col-xs-12 col-sm-10">
           <div class="small">Benefit from your data</div>
           <div class="big">Cashback Catalog</div>
+        </div>
+        <div class="col-xs-12">
+          {{view App.SearchView}}
         </div>
       </div>
     </script>
@@ -155,20 +159,22 @@
 
     <script type="text/x-handlebars" data-template-name="grid">
       {{#each product in model}}
-      <div class="col-xs-6 col-sm-2 col-md-3 product">
-        {{#link-to 'products.show' category product}}
-        <div class="image">
-          <img class="img-responsive img-rounded" {{bind-attr src=product.content}} {{bind-attr alt=product.title}}/>
-        </div>
-        <div class="name">{{product.title}}</div>
-        {{/link-to}}
-        {{#if product.last_price}}
-        <div class="price">
-          <span class="price-new">{{product.price}}</span>
-        </div>
-        {{/if}}
-        <div class="cart">
-          <input class="button" type="button" {{action 'cashBack' product target="controllers.product"}} {{bind-attr value=product.cashback}} />
+      <div class="col-xs-6 col-sm-4 col-md-3 wrapper">
+        <div class="product">
+          {{#link-to 'products.show' category product}}
+          <div class="image">
+            <img class="img-responsive img-rounded" {{bind-attr src=product.content}} {{bind-attr alt=product.title}}/>
+          </div>
+          <div class="name">{{product.title}}</div>
+          {{/link-to}}
+          {{#if product.last_price}}
+          <div class="price">
+            <span class="price-new">{{product.price}}</span>
+          </div>
+          {{/if}}
+          <div class="cart">
+            <input class="button" type="button" {{action 'cashBack' product target="controllers.product"}} {{bind-attr value=product.cashback}} />
+          </div>
         </div>
       </div>
       {{/each}}

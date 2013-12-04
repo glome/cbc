@@ -14,7 +14,7 @@ App.HeaderView = Ember.View.extend(
   {
     tagName: 'li',
     templateName: 'leftBox',
-    classNames: ['leftbox', 'col-sm-2'],
+    classNames: ['leftbox', 'col-xs-2', 'col-sm-2'],
 
     click: function(e)
     {
@@ -58,13 +58,14 @@ App.HeaderView = Ember.View.extend(
     info: true,
     tagName: 'li',
     templateName: 'centerBox',
-    classNames: ['centerbox', 'col-sm-9'],
+    classNames: ['centerbox', 'col-xs-9', 'col-sm-9'],
   }),
   rightBox: Ember.View.extend(
   {
     tagName: 'li',
     templateName: 'rightBox',
-    classNames: ['rightbox', 'col-sm-1'],
+    classNames: ['rightbox', 'col-xs-1', 'col-sm-1'],
+
     click: function(e)
     {
       Ember.$('.content').toggleClass('openhdr');
