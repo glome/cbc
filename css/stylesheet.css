@@ -409,21 +409,27 @@ ul.subcategories
 }
 .grid .wrapper .product
 {
-  min-height: 250px;
+  height: 270px;
+  padding-top: 5px;
   text-align: center;
   background-color: white;
+  border-radius: 6px 6px 6px 6px;
 }
-.grid .product img
+.grid .product .info
 {
-  margin: 0 auto 10px auto;
+  height: 75%;
+  overflow: hidden;
+  margin: 0 auto 5px auto;
 }
-.grid .product > a
+.grid .product .info > a
 {
   color: black;
-  height: 190px;
-  display: block;
-  overflow: hidden;
   text-decoration: none;
+}
+.grid .product .info > a .image
+{
+  height: 175px;
+  overflow: hidden;
 }
 .product .price,
 .single .price

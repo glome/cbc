@@ -158,14 +158,16 @@
 
     <script type="text/x-handlebars" data-template-name="grid">
       {{#each product in model}}
-      <div class="col-xs-6 col-sm-4 col-md-3 wrapper">
+      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 wrapper">
         <div class="product">
-          {{#link-to 'products.show' category product}}
-          <div class="image">
-            <img class="img-responsive img-rounded" {{bind-attr src=product.content}} {{bind-attr alt=product.title}}/>
+          <div class="info">
+            {{#link-to 'products.show' category product}}
+              <div class="image">
+                <img class="img-responsive img-rounded" {{bind-attr src=product.content}} {{bind-attr alt=product.title}}/>
+              </div>
+              <div class="name">{{product.title}}</div>
+            {{/link-to}}
           </div>
-          <div class="name">{{product.title}}</div>
-          {{/link-to}}
           {{#if product.last_price}}
           <div class="price">
             <span class="price-new">{{product.price}}</span>
