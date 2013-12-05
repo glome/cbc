@@ -20,7 +20,7 @@ var GlomeApp = Ember.Application.extend(
     subject: 'Interested in Glome Wallet for Android'
   },
   // insert the reason of the maintenance, false otherwise
-  maintenance: 'You may experience slow loading and response times due to our scheduled maintenance. We are sorry for the inconvenience.'
+  maintenance: false //'You may experience slow loading and response times due to our scheduled maintenance. We are sorry for the inconvenience.'
 });
 
 /**
