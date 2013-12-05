@@ -14,7 +14,7 @@ App.User = DS.Model.extend(
     // Todo: parse different currencies separately, don't hardcode EUR
     var money = (parseFloat(this.get('earnings')['fresh']['EUR'], 10) / 100).toFixed(2);
     // Todo: do not hardocde this; get it from the server; minimum amount to redeem is 1 EUR
-    (money >= 1) ? ret = money.replace(/\./, ',') : ret = false;
+    (money >= 0) ? ret = money.replace(/\./, ',') : ret = false;
     return ret;
   }.property('earnings'),
   didLoad: function(event)
