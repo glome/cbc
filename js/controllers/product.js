@@ -46,7 +46,9 @@ App.ProductController = Ember.ObjectController.extend(
 
         return Ember.$.getJSON(url).then(function(data)
         {
-          window.open(data.url, '_blank');
+          // old way: window.open(data.url, '_blank');
+          // click on the hidden a tag
+          Ember.$('a[data-pid="' + product.id + '"]')[0].click();
         });
       }
     }

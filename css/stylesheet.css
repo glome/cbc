@@ -68,6 +68,10 @@ body
   text-align: center;
   background-color: red;
 }
+.hidden
+{
+  display: none;
+}
 .container
 {
   padding: 0;
@@ -442,6 +446,24 @@ ul.subcategories
   font-weight: bold;
   margin-bottom: 5px;
 }
+.product .cart a,
+.single .cart a
+{
+  display: block;
+  padding-top: 3px;
+  text-align: center;
+}
+.product .cart a:hover,
+.single .cart a:hover
+{
+  text-decoration: none;
+}
+.product .cart a
+{
+  margin: 0 auto;
+}
+.product .cart a,
+.single .cart a,
 .product .cart input,
 .single .cart input
 {
