@@ -431,6 +431,10 @@ ul.subcategories
   height: 175px;
   overflow: hidden;
 }
+.grid .product .info > a .image img
+{
+  margin: 0 auto;
+}
 .product .price,
 .single .price
 {
