@@ -44,11 +44,10 @@ App.ProductController = Ember.ObjectController.extend(
           url += '?redirect=' + redirect
         }
 
+        var newWindow = window.open('');
         return Ember.$.getJSON(url).then(function(data)
         {
-          // old way: window.open(data.url, '_blank');
-          // click on the hidden a tag
-          Ember.$('a[data-pid="' + product.id + '"]')[0].click();
+          newWindow.location = data.url;
         });
       }
     }

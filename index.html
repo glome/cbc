@@ -175,7 +175,6 @@
           {{/if}}
           <div class="cart">
             <input class="button" type="button" {{action 'cashBack' product target="controllers.product"}} {{bind-attr value=product.cashback}} />
-            <a class="button hidden" target="_blank" {{bind-attr data-pid=product.id href=product.personal_action}}>{{product.cashback}}</a>
           </div>
         </div>
       </div>
@@ -201,7 +200,6 @@
         {{/if}}
         <div class="cart">
           <input class="button" type="button" {{action 'cashBack' currentProduct target="controllers.product"}} {{bind-attr value=currentProduct.cashback}} />
-          <a class="button hidden" target="_blank" {{bind-attr data-pid=currentProduct.id href=currentProduct.personal_action}}>{{currentProduct.cashback}}</a>
         </div>
       </div>
       {{/if}}
