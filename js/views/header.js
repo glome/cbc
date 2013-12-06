@@ -4,10 +4,11 @@
  */
 App.HeaderView = Ember.View.extend(
 {
-  tagName: 'div',
+  tagName: 'nav',
+  id: 'glomebar',
   role: 'navigation',
   templateName: 'header',
-  attributeBindings: ['role'],
+  attributeBindings: ['role', 'id'],
   classNames: ['navbar', 'navbar-fixed-top', 'header'],
 
   leftBox: Ember.View.extend(
