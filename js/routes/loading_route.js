@@ -2,14 +2,21 @@ App.LoadingRoute = Ember.Route.extend(
 {
   enter: function()
   {
-    Ember.$('#loading').fadeIn('fast');
+    Ember.$('.loading').fadeIn('fast');
   },
   exit: function()
   {
-    Ember.$('#loading').fadeOut('slow');
+    Ember.$('.loading').fadeOut('slow');
   },
   renderTemplate: function()
   {
-    this.render('loading', {into: 'application'});
+    if (this.controllerFor('products').get('categoryMap').length > 0)
+    {
+      this.render('loading', {into: 'application'});
+    }
+    else
+    {
+      this._super();
+    }
   }
 });
