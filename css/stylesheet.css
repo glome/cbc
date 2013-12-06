@@ -49,11 +49,14 @@ body
   background-color: #ebebeb;
   font-family: 'PT Sans Narrow', sans-serif !important;
 }
-#loading
+.loading
 {
-  width: 32px;
-  height: 32px;
-  margin: 20px auto 0 auto;
+  bottom: 0px;
+  z-index: 2000;
+  height: 120px;
+  position: fixed;
+  background-origin: content-box;
+  background-position: center center;
   background-image: url('/images/bigsnake.gif');
 }
 #maintenance
@@ -88,10 +91,6 @@ body
 .inline
 {
   display: inline-block;
-}
-footer
-{
-  padding: 30px 0;
 }
 .sidebar-cbc
 {
@@ -138,6 +137,10 @@ footer
     padding: 0;
     margin: 0 auto;
   }
+  .loading
+  {
+    width: 100%;
+  }
 }
 @media screen and (min-width: 767px)
 {
@@ -149,6 +152,10 @@ footer
   {
     top: 40px;
     padding-left: 47px;
+  }
+  .loading
+  {
+    right: 0px;
   }
 }
 .navbar
