@@ -20,6 +20,8 @@ App.ApplicationRoute = Ember.Route.extend(
           this.controllerFor('application').send('connect');
         }
       }
+
+      Ember.$('.loading').hide();
       console.log('-------------------------------------------------------------------------------------------------');
     }
   },
