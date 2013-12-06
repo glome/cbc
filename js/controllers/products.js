@@ -44,6 +44,8 @@ App.ProductsController = Ember.ArrayController.extend(
 
       if (! controller.get('lastPage'))
       {
+        Ember.$('.loading').show();
+
         if (controller.get('keywords'))
         {
           controller.send('search', controller.get('keywords'), nextPage, perPage);
@@ -75,7 +77,10 @@ App.ProductsController = Ember.ArrayController.extend(
 
       var results = this.store.find('product', { catid: catId, page: page });
 
-      controller.send('pageResults', page, results);
+      if (results)
+      {
+        controller.send('pageResults', page, results);
+      }
 
       return;
     },
@@ -119,7 +124,9 @@ App.ProductsController = Ember.ArrayController.extend(
         var lastPage = false;
         var controller = self.get('controllers.products');
 
+        Ember.$('.loading').hide();
         self.set('loadingMore', false);
+
         if (data.content.length)
         {
           if (data.content.length < controller.get('perPage'))
