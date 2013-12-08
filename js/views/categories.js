@@ -8,6 +8,12 @@ App.CategoriesView = Ember.View.extend(Ember.ViewTargetActionSupport,
   classNames: ['list-group-item', 'categories', 'cm-sm-3'],
   actions:
   {
+    toggle: function()
+    {
+      Ember.$('.categories .list-group-item-heading span.glyphicon').toggleClass('glyphicon-minus');
+      Ember.$('.categories .list-group-item-heading span.glyphicon').toggleClass('glyphicon-plus');
+      Ember.$('ul.categories').slideToggle();
+    },
     click: function(cat)
     {
       Ember.$('div.product-grid').scrollTop(0);

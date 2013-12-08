@@ -40,6 +40,13 @@ App.ProductsRoute = Ember.Route.extend(
           console.log('catid for ' + params.category + ' is ' + catId);
           console.log('page: ' + this.controllerFor('products').get('page'));
           data = this.store.find('product', { catid: catId, page: this.controllerFor('products').get('page') });
+          data.then(function()
+          {
+            if (window.matchMedia("(max-width: 767px)").matches)
+            {
+              Ember.$('ul.categories').slideUp();
+            }
+          });
         }
         else
         {

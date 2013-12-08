@@ -123,7 +123,10 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="categories">
-      <div class="list-group-item-heading uppercase text-center">Categories</div>
+      <div {{action 'toggle' target=view}} class="list-group-item-heading uppercase text-center">
+        Categories
+        <!--<span class="glyphicon glyphicon-minus"></span>-->
+      </div>
       <ul class="list-group categories">
       {{#each category in controllers.products.categories}}
         {{#if category.hasProducts}}

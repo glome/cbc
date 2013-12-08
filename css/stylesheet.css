@@ -17,21 +17,21 @@
   font-family: 'PT Sans Narrow';
   font-style: normal;
   font-weight: 400;
-  src: local('PT Sans Narrow'), local('PTSans-Narrow'), url('/PT_Sans-Narrow-Web-Regular.ttf');
+  src: local('PT Sans Narrow'), local('PTSans-Narrow'), url('/fonts/PT_Sans-Narrow-Web-Regular.ttf');
 }
 @font-face
 {
   font-family: 'PT Sans Narrow Bold';
   font-style: normal;
   font-weight: 400;
-  src: local('PT Sans Narrow Bold'), local('PTSans-Narrow-Bold'), url('/PT_Sans-Narrow-Web-Bold.ttf');
+  src: local('PT Sans Narrow Bold'), local('PTSans-Narrow-Bold'), url('/fonts/PT_Sans-Narrow-Web-Bold.ttf');
 }
 @font-face
 {
   font-family: 'PT Serif';
   font-style: normal;
   font-weight: 400;
-  src: local('PT Serif'), local('PTSerif'), url('/PT_Serif-Web-Regular.ttf');
+  src: local('PT Serif'), local('PTSerif'), url('/fonts/PT_Serif-Web-Regular.ttf');
 }
 
 *
@@ -141,6 +141,10 @@ body
   {
     width: 100%;
   }
+  .list-group.categories
+  {
+    display: none;
+  }
 }
 @media screen and (min-width: 767px)
 {
@@ -156,6 +160,10 @@ body
   .loading
   {
     right: 0px;
+  }
+  .list-group.categories
+  {
+    display: block;
   }
 }
 .navbar
@@ -335,6 +343,7 @@ body
 {
   height: 83px;
   font-size: 18px;
+  cursor: pointer;
   margin-bottom: 0;
   padding-top: 35px;
   background-color: white;
