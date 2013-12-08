@@ -25,15 +25,17 @@ App.HeaderView = Ember.View.extend(
       switch (elem)
       {
         case 1:
-          // pairing screen
+          // redeem screen
+          this.get('controller').get('controllers.sync').send('getSyncCode');
+          ++elem;
+          break;
         case 2:
-          // info screen
+          // pairing screen
           ++elem;
           break;
         case 3:
-          // redeem screen
+          // info screen
           elem = 1;
-          this.get('controller').get('controllers.sync').send('getSyncCode');
           break;
       }
 
@@ -79,7 +81,7 @@ App.HeaderView = Ember.View.extend(
         {
           this.get('controller').get('controllers.sync').send('getSyncCode');
         }
-        Ember.$('.header .centerbox .menu[data-elem="' + elem + '"], .header .centerbox .menu[data-elem="' + elem + '"] *').fadeIn('fast').css('display', 'inline-block');
+        Ember.$('.header .centerbox .menu[data-elem="' + elem + '"], .header .centerbox .menu[data-elem="' + elem + '"] *').fadeIn('fast');
       }
 
       return false;
