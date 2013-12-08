@@ -62,6 +62,16 @@ App.HeaderView = Ember.View.extend(
     tagName: 'li',
     templateName: 'centerBox',
     classNames: ['centerbox', 'col-xs-9', 'col-sm-9'],
+    actions:
+    {
+      'ack': function()
+      {
+        Ember.$('.redeem .response').fadeOut('fast', function()
+        {
+          Ember.$('.redeem .money').fadeIn('slow');
+        });
+      }
+    }
   }),
   rightBox: Ember.View.extend(
   {
