@@ -64,8 +64,9 @@
         <div class="money">
           {{controllers.application.fresh}}
           <span class="symbol eur">€</span>
-          <span class="button">redeem</span>
+          <span class="button" {{action 'redeem' target="controllers.user"}}>redeem</span>
         </div>
+        <div class="response" {{action 'ack' target=view}}></div>
         {{/if}}
       </div>
       <div class="pairing menu" data-elem="2">
