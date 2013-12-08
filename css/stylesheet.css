@@ -113,6 +113,18 @@ body
     float: none;
     width: 100%;
   }
+  .header .leftbox.open .menu
+  {
+    padding-top: 35px;
+  }
+  .header .centerbox .menu
+  {
+    margin-top: 5px;
+  }
+  .redeem .response
+  {
+    font-size: 22px;
+  }
   .col-xs-12.wrapper
   {
     display: block;
@@ -151,6 +163,18 @@ body
   .col-xs-12.wrapper
   {
     display: none;
+  }
+  .header .leftbox.open .menu
+  {
+    padding-top: 50px;
+  }
+  .header .centerbox .menu
+  {
+    margin-top: 40px;
+  }
+  .redeem .response
+  {
+    font-size: 35px;
   }
   .meat
   {
@@ -224,7 +248,6 @@ body
 {
   margin: 0 auto;
   font-size: 16px;
-  padding-top: 50px;
   text-align: center;
   text-transform: uppercase;
 }
@@ -232,7 +255,6 @@ body
 .header .centerbox .menu
 {
   display: none;
-  margin-top: 40px;
 }
 .header .leftbox.open .menu *
 {
@@ -532,7 +554,6 @@ ul.subcategories
 {
   display: none;
   color: #FA8072;
-  font-size: 35px;
   cursor: pointer;
   margin-top: 20px;
 }
