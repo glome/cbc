@@ -95,6 +95,29 @@ App.UserController = Ember.ObjectController.extend(
             success();
           }
         });
+    },
+    /**
+     *
+     */
+    redeem: function()
+    {
+      var self = this;
+      var url = App.apiHost + '/api/users/' + self.get('controllers.application').get('glomeid') + '/payments/redeem.json';
+
+      return Ember.$.getJSON(url).then(function(data)
+      {
+        if (data.status != '0')
+        {
+          Ember.$('.redeem .money').fadeOut('fast', function()
+          {
+            Ember.$('.redeem .response').text(data.message).fadeIn('slow');
+          });
+        }
+        else
+        {
+          window.location.replace(data.url);
+        }
+      });
     }
   }
 });
