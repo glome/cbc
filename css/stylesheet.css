@@ -519,3 +519,11 @@ ul.subcategories
   background-position: left -325px top -732px;
   background-image: url('/images/cbc.png');
 }
+.redeem .response
+{
+  display: none;
+  color: #FA8072;
+  font-size: 35px;
+  cursor: pointer;
+  margin-top: 20px;
+}
