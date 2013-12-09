@@ -34,8 +34,10 @@ App.ApplicationRoute = Ember.Route.extend(
     {
       promise = this.store.find('user', glomeid).then(function(data)
       {
+        self.controllerFor('application').set('user', data);
+        self.controllerFor('application').get('user').set('id', glomeid);
+
         self.controllerFor('application').send('loadCategories', transition.params.category);
-        self.controllerFor('application').set('fresh', data.get('fresh'));
       });
     }
     else

@@ -7,6 +7,7 @@ App.ApplicationController = Ember.ArrayController.extend(
   needs: ['user', 'application', 'category', 'products', 'pairing',
           'action', 'program', 'sync'],
 
+  user: false,
   glomeid: false,
   password: '',
   loggedin: false,

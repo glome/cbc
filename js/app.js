@@ -155,6 +155,9 @@ App.Adapter = DS.RESTAdapter.extend(
     //~ console.log(query);
     switch (type.typeKey)
     {
+      case 'user':
+        res = this.ajax(this.buildURL(type.typeKey, query['glomeid']), 'GET', { data: query });
+        break;
       case 'sync':
         res = this.ajax(this.buildURL(type.typeKey, query['glomeid']), 'GET', { data: query });
         break;

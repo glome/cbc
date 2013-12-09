@@ -26,6 +26,7 @@ App.HeaderView = Ember.View.extend(
       {
         case 1:
           // redeem screen
+          this.get('controller').get('controllers.user').send('reload');
           this.get('controller').get('controllers.sync').send('getSyncCode');
           ++elem;
           break;
@@ -86,6 +87,7 @@ App.HeaderView = Ember.View.extend(
 
       if (Ember.$('.header').hasClass('open'))
       {
+        this.get('controller').get('controllers.user').send('reload');
         var elem = Ember.$('.header .leftbox .menu.visible').attr('data-elem');
         if (elem == '1')
         {

@@ -6,6 +6,18 @@ App.UserSerializer = App.Serializer.extend({});
 /**
  *
  */
+App.UserAdapter = App.Adapter.extend(
+{
+  buildURL: function(type, glomeid)
+  {
+    var url = App.apiHost + '/api/users/' + glomeid + '.json';
+    return url;
+  }
+});
+
+/**
+ *
+ */
 App.UserController = Ember.ObjectController.extend(
 {
   needs: ['user', 'application', 'products'],
@@ -66,6 +78,15 @@ App.UserController = Ember.ObjectController.extend(
         self.get('controllers.application').send('setGlobals');
         self.transitionToRoute('index');
       });
+    },
+    /**
+     * Reloads user from backend
+     */
+    reload: function()
+    {
+      var self = this;
+      var glomeid = self.get('controllers.application').get('glomeid');
+      self.get('controllers.application').get('user').reload();
     },
     /**
      * Shows user's history
