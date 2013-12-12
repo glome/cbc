@@ -36,8 +36,11 @@ App.ApplicationRoute = Ember.Route.extend(
       {
         self.controllerFor('application').set('user', data);
         self.controllerFor('application').get('user').set('id', glomeid);
-
-        self.controllerFor('application').send('loadCategories', transition.params.category);
+        if ( ! self.controllerFor('products').get('categories')
+            && ! self.controllerFor('application').get('previousTransition'))
+        {
+          self.controllerFor('products').send('loadCategories', false);
+        }
       });
     }
     else
