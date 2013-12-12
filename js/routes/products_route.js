@@ -8,16 +8,13 @@ App.ProductsRoute = Ember.Route.extend(
   beforeModel: function(transition)
   {
     console.log('ProductsRoute::beforeModel');
-    console.log(transition.params.category);
-    console.log('---------------------------');
     if (transition.params.category)
     {
       this.controllerFor('products').set('category', transition.params.category);
       catMap = this.controllerFor('products').get('categoryMap');
       cat = catMap.findBy('urlName', transition.params.category);
-      if (typeof cat === 'undefined' && transition.targetName != 'products.search')
+      if (transition.params.category != 'all' && typeof cat === 'undefined' && transition.targetName != 'products.search')
       {
-        console.log('set previousTransition');
         this.controllerFor('application').set('previousTransition', transition);
         this.transitionTo('index');
       }
@@ -33,12 +30,9 @@ App.ProductsRoute = Ember.Route.extend(
     this.product_id = false;
 
     console.log('ProductsRoute::model');
-    console.log(transition.params);
-    console.log('------------------------------------------------------------');
-    //~ else
-    //~ {
-      //~ this.controllerFor('products').set('category', 'all');
-    //~ }
+    //~ console.log(transition.targetName);
+    //~ console.log(transition.params);
+    //~ console.log('------------------------------------------------------------');
 
     switch (transition.targetName)
     {
@@ -59,7 +53,6 @@ App.ProductsRoute = Ember.Route.extend(
           perPage: this.controllerFor('products').get('perPage'),
           keywords: this.controllerFor('products').get('keywords')
         }
-        console.log(searchParams);
 
         data = this.store.findQuery('product', searchParams);
 
@@ -72,30 +65,32 @@ App.ProductsRoute = Ember.Route.extend(
       case 'products.show':
         this.subAction = 'show';
 
-        if (this.controllerFor('products').get('currentCategory'))
+        if (transition['providedModelsArray'].length)
         {
-          if (transition['providedModelsArray'].length)
+          if (typeof transition['providedModels']['products.show']['_data'] != 'undefined')
           {
-            if (typeof transition['providedModels']['products.show']['_data'] != 'undefined')
-            {
-              this.product_id = transition['providedModels']['products.show']['_data']['id'];
-            }
-            else
-            {
-              this.product_id = transition['providedModels']['products.show']['product_id'];
-            }
+            this.product_id = transition['providedModels']['products.show']['_data']['id'];
           }
+          else
+          {
+            this.product_id = transition['providedModels']['products.show']['product_id'];
+          }
+        }
 
-          if (! this.product_id && typeof transition['params']['product_id'] != 'undefined')
-          {
-            // the last resort
-            this.product_id = transition['params']['product_id'];
-          }
+        if (! this.product_id && typeof transition['params']['product_id'] != 'undefined')
+        {
+          // the last resort
+          this.product_id = transition['params']['product_id'];
+        }
 
-          if (this.product_id)
-          {
-            data = this.store.find('product', this.product_id);
-          }
+        if (this.product_id)
+        {
+          data = this.store.find('product', this.product_id);
+        }
+        else
+        {
+          console.log('something is bad with transition:');
+          console.log(transition);
         }
         break;
     }
