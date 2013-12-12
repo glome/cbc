@@ -46,6 +46,6 @@ App.ProductsView = Ember.View.extend(
     {
       return false;
     }
-    return (scroll >= (dist - 1000));
+    return (scroll >= (dist - 1200));
   }
 });
