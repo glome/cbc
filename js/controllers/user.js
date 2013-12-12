@@ -62,7 +62,7 @@ App.UserController = Ember.ObjectController.extend(
         console.log('normal login completed: ' + data.glomeid);
         window.localStorage.setItem('loggedin', true);
         self.get('controllers.application').send('setGlobals');
-        self.get('controllers.application').send('loadCategories');
+        //self.get('controllers.products').send('loadCategories');
       });
     },
     /**
