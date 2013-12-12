@@ -28,9 +28,9 @@ var GlomeApp = Ember.Application.extend(
  */
 var App = GlomeApp.create(
 {
-  LOG_TRANSITIONS: true, // basic logging of successful transitions
-  LOG_TRANSITIONS_INTERNAL: true, // detailed logging of all routing steps
-  LOG_ACTIVE_GENERATION: true,
+  LOG_TRANSITIONS: false, // basic logging of successful transitions
+  LOG_TRANSITIONS_INTERNAL: false, // detailed logging of all routing steps
+  LOG_ACTIVE_GENERATION: false,
 });
 
 /**
@@ -130,6 +130,14 @@ App.Adapter = DS.RESTAdapter.extend(
     url = this._super(type, id) + '.json';
     console.log('return URL for type: ' + type + ', id: ' + id + '. URL is: ' + url);
     return url;
+  },
+  // the server does not return JSON API compatible results (missing root)
+  find: function(store, type, id)
+  {
+    return this._super(store, type, id).then(function(data)
+    {
+      return data;
+    });
   },
   // the server does not return JSON API compatible results (missing root)
   findAll: function(store, type, sinceToken)
