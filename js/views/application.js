@@ -35,7 +35,7 @@ App.ApplicationView = Ember.View.extend(
 
     Ember.$('.backtotop').click(function()
     {
-      Ember.$('html, body').animate({scrollTop:0}, 'slow');
+      Ember.$('html, body').animate({ scrollTop:0 }, 'slow');
     });
   }
 });
