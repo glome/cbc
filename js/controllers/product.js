@@ -9,9 +9,9 @@ App.ProductAdapter = App.Adapter.extend(
 {
   buildURL: function(type, id)
   {
-    var url = App.apiHost + '/api/products';
-
-    if (id == 'search')
+    console.log('build URL called. type: ' + type + ', id: ' + id);
+    var url = App.apiHost + '/api/products'
+    if (typeof id !== 'undefined')
     {
       url += '/' + id;
     }
