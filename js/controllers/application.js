@@ -15,6 +15,7 @@ App.ApplicationController = Ember.ArrayController.extend(
   notification: false,
   token: false,
   fresh: false,
+  previousTransition: null,
 
   actions:
   {
@@ -47,73 +48,6 @@ App.ApplicationController = Ember.ArrayController.extend(
           console.log('It is not a Glome enabled application.');
         }
       }
-    },
-    loadCategories: function(category)
-    {
-      var self = this;
-      var controller = this.get('controllers.products');
-      // load categories
-      controller.set('categories', this.store.find('category', { display: 'tree', filter: 'all', personal: App.personalizedContent, maxlevel: 1 }));
-      // map out categories
-      controller.get('categories').then(function(data)
-      {
-        data.content.forEach(function(item, index, enumerable)
-        {
-          controller.get('categoryMap').pushObject(item);
-          item.get('subcategories').forEach(function(_item, _index, _enum)
-          {
-            controller.get('categoryMap').pushObject(_item);
-          }, item);
-        });
-
-        // TODO: this is too expensive
-        controller.get('categoryMap').forEach(
-          function(item, index, enumerable)
-          {
-            // fetch all programs who have content in this category
-            var vars =
-            {
-              catid: item.get('id'),
-              application:
-              {
-                master_uid: App.apiHost,
-                master_apikey: App.apiKey
-              }
-            };
-
-            controller.get('categoryMap').objectAt(index)['programs'] = self.store.find('program', vars);
-          });
-
-        if (category)
-        {
-          controller.set('currentCategory', controller.get('categoryMap').findBy('urlName', category));
-        }
-
-        var prevT = self.get('controllers.application').get('previousTransition');
-        if (prevT)
-        {
-          console.log('go to');
-          console.log('target:');
-          console.log(prevT.targetName);
-          console.log('params:');
-          console.log(prevT.params);
-
-          switch (prevT.targetName)
-          {
-            case 'index':
-              self.transitionToRoute(prevT.targetName);
-              break;
-            case 'products.index':
-              self.transitionToRoute(prevT.targetName, prevT.params.category);
-              break;
-            case 'products.show':
-              self.transitionToRoute(prevT.targetName, prevT.params);
-              break;
-          }
-        }
-      });
-
-      return controller.get('categories');
     },
     /**
      * Shows a notification message

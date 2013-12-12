@@ -13,15 +13,16 @@ App.ProductsController = Ember.ArrayController.extend(
   currentCategory: null,
   currentProduct: null,
   category: '',
-  categories: [],
-  categoryMap: [],
+  categories: null,
+  categoryMap: Ember.ArrayProxy.create({ content: [] }),
 
   actions:
   {
-    show: function(product)
+    loadProduct: function(id)
     {
+      this.get('controllers.user').send('healthCheck');
       this.get('controllers.products').set('keywords', false);
-      this.transitionToRoute('products.show', product);
+      this.transitionToRoute('products.show', id);
     },
     loadProducts: function(cat)
     {
@@ -31,6 +32,87 @@ App.ProductsController = Ember.ArrayController.extend(
       this.get('controllers.products').set('keywords', false);
       this.transitionToRoute('products', cat.get('urlName'));
     },
+    loadCategories: function(transition)
+    {
+      console.log('loadCategories')
+      console.log(transition.params);
+      console.log('===========================================================');
+
+      var category = null;
+      var self = this;
+
+      var controller = self.get('controllers.products');
+
+      if (controller.get('categoryMap').content.length > 0)
+      {
+        // nothing to do anymore, we got the cats meanwhile
+        return;
+      }
+
+      if (transition.params)
+      {
+        category = transition.params.category;
+      }
+
+      // load categories
+      controller.set('categories', this.store.find('category', { display: 'tree', filter: 'all', personal: App.personalizedContent, maxlevel: 1 }));
+      // map out categories
+      controller.get('categories').then(function(data)
+      {
+        controller.get('categoryMap').set('content', []);
+
+        data.content.forEach(function(item, index, enumerable)
+        {
+          controller.get('categoryMap').pushObject(item);
+
+          if (category && item.get('urlName') == category)
+          {
+            controller.set('currentCategory', item);
+          }
+          item.get('subcategories').forEach(function(_item, _index, _enum)
+          {
+            controller.get('categoryMap').pushObject(_item);
+            if (category && _item.get('urlName') == category)
+            {
+              controller.set('currentCategory', _item);
+            }
+          }, item);
+        });
+
+        console.log('currentCategory: ' + controller.get('currentCategory'));
+
+        if (transition)
+        {
+          self.get('controllers.application').set('previousTransition', null);
+          console.log('retry transition');
+          console.log(transition);
+          transition.retry();
+        }
+
+        console.log('loadCategories end =========================================================');
+        // TODO: this is too expensive
+        //~ controller.get('categoryMap').forEach(
+          //~ function(item, index, enumerable)
+          //~ {
+            //~ // fetch all programs who have content in this category
+            //~ var vars =
+            //~ {
+              //~ catid: item.get('id'),
+              //~ application:
+              //~ {
+                //~ master_uid: App.apiHost,
+                //~ master_apikey: App.apiKey
+              //~ }
+            //~ };
+            //~ controller.get('categoryMap').objectAt(index)['programs'] = self.store.find('program', vars);
+          //~ });
+      });
+
+      return controller.get('categories');
+    },
+    /**
+     *
+     */
     getMore: function()
     {
       if (this.get('loadingMore') || this.get('lastPage'))
