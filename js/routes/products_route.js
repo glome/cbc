@@ -5,53 +5,49 @@ App.ProductsRoute = Ember.Route.extend(
 {
   subAction: 'index',
 
+  beforeModel: function(transition)
+  {
+    console.log('ProductsRoute::beforeModel');
+    console.log(transition.params.category);
+    console.log('---------------------------');
+    if (transition.params.category)
+    {
+      this.controllerFor('products').set('category', transition.params.category);
+      catMap = this.controllerFor('products').get('categoryMap');
+      cat = catMap.findBy('urlName', transition.params.category);
+      if (typeof cat === 'undefined' && transition.targetName != 'products.search')
+      {
+        console.log('set previousTransition');
+        this.controllerFor('application').set('previousTransition', transition);
+        this.transitionTo('index');
+      }
+      this.controllerFor('products').set('currentCategory', cat);
+    }
+  },
   model: function(params, transition)
   {
     var self = this;
     var data = null;
+    var cat = false;
+    var catMap = false;
+    this.product_id = false;
 
     console.log('ProductsRoute::model');
-
-    var catMap = this.controllerFor('products').get('categoryMap');
-
-    if (params.category)
-    {
-      this.controllerFor('products').set('category', params.category);
-
-      if (catMap)
-      {
-        var cat = catMap.findBy('urlName', transition.params.category);
-        this.controllerFor('products').set('currentCategory', cat);
-      }
-    }
-    else
-    {
-      this.controllerFor('products').set('category', 'all');
-    }
+    console.log(transition.params);
+    console.log('------------------------------------------------------------');
+    //~ else
+    //~ {
+      //~ this.controllerFor('products').set('category', 'all');
+    //~ }
 
     switch (transition.targetName)
     {
       case 'products.index':
         this.subAction = 'index';
-        var cur = this.controllerFor('products').get('currentCategory');
-        if (cur)
+        if (this.controllerFor('products').get('currentCategory'))
         {
-          catId = this.controllerFor('products').get('currentCategory').id
-          console.log('catid for ' + params.category + ' is ' + catId);
-          console.log('page: ' + this.controllerFor('products').get('page'));
+          catId = this.controllerFor('products').get('currentCategory').id;
           data = this.store.find('product', { catid: catId, page: this.controllerFor('products').get('page') });
-          //~ data.then(function()
-          //~ {
-            //~ if (window.matchMedia("(max-width: 767px)").matches)
-            //~ {
-              //~ Ember.$('ul.categories').slideUp();
-            //~ }
-          //~ });
-        }
-        else
-        {
-          transition.abort();
-          this.transitionTo('index');
         }
         break;
       case 'products.search':
@@ -63,6 +59,8 @@ App.ProductsRoute = Ember.Route.extend(
           perPage: this.controllerFor('products').get('perPage'),
           keywords: this.controllerFor('products').get('keywords')
         }
+        console.log(searchParams);
+
         data = this.store.findQuery('product', searchParams);
 
         if (! data)
@@ -73,15 +71,32 @@ App.ProductsRoute = Ember.Route.extend(
         break;
       case 'products.show':
         this.subAction = 'show';
-        if (transition.params.product_id)
+
+        if (this.controllerFor('products').get('currentCategory'))
         {
-          this.product_id = transition.params.product_id;
+          if (transition['providedModelsArray'].length)
+          {
+            if (typeof transition['providedModels']['products.show']['_data'] != 'undefined')
+            {
+              this.product_id = transition['providedModels']['products.show']['_data']['id'];
+            }
+            else
+            {
+              this.product_id = transition['providedModels']['products.show']['product_id'];
+            }
+          }
+
+          if (! this.product_id && typeof transition['params']['product_id'] != 'undefined')
+          {
+            // the last resort
+            this.product_id = transition['params']['product_id'];
+          }
+
+          if (this.product_id)
+          {
+            data = this.store.find('product', this.product_id);
+          }
         }
-        else
-        {
-          this.product_id = transition['providedModels']['products.show']['id'];
-        }
-        data = this.store.find('product', parseInt(this.product_id));
         break;
     }
     return data;
@@ -102,15 +117,22 @@ App.ProductsRoute = Ember.Route.extend(
     else
     {
       this.controllerFor('products').set('currentProduct', null);
-      this.controllerFor('products').set('model', model);
+      if (model)
+      {
+        this.controllerFor('products').set('model', model);
+      }
+      else
+      {
+        this.transitionTo('index');
+      }
     }
 
-    controller.set('programs', null);
-    if (this.subAction != 'search' && controller.get('category') != 'all')
-    {
-      // load all programs that have content in this category
-      controller.set('programs', this.controllerFor('products').get('categoryMap').findBy('urlName', controller.get('category'))['programs']);
-    }
+    //~ controller.set('programs', null);
+    //~ if (this.subAction != 'search' && controller.get('category') != 'all')
+    //~ {
+      //~ // load all programs that have content in this category
+      //~ controller.set('programs', this.controllerFor('products').get('categoryMap').findBy('urlName', controller.get('category'))['programs']);
+    //~ }
 
     model = [];
   },
