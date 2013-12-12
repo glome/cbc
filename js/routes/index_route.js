@@ -3,10 +3,13 @@
  */
 App.IndexRoute = Ember.Route.extend(
 {
-  //~ this redirect does not work
-  //~
-  //~ redirect: function()
-  //~ {
-    //~ this.transitionTo('products', 'business');
-  //~ }
+  beforeModel: function (transition)
+  {
+    var previousTransition = this.controllerFor('application').get('previousTransition');
+
+    if (previousTransition)
+    {
+      this.controllerFor('products').send('loadCategories', previousTransition);
+    }
+  }
 });
