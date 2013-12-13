@@ -9,7 +9,7 @@ App.IndexRoute = Ember.Route.extend(
 
     if (previousTransition)
     {
-      this.controllerFor('products').send('loadCategories', previousTransition);
+      this.controllerFor('products').send('loadCategories');
     }
   }
 });
