@@ -196,6 +196,7 @@ body
 }
 .header
 {
+  height: 2px;
   border-top: 2px solid #8c00db;
 }
 .header.open
