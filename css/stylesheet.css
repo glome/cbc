@@ -476,6 +476,7 @@ ul.subcategories
 .grid .product .info > a .image img
 {
   margin: 0 auto;
+  max-height: 175px;
 }
 .product .price,
 .single .price
@@ -524,6 +525,16 @@ ul.subcategories
 {
   margin-bottom: 20px;
   text-transform: uppercase;
+}
+.single div.image
+{
+  background-color: white;
+  border-radius: 5px 5px 5px 5px;
+  padding: 10px;
+}
+.single div.image img
+{
+  margin: 0 auto;
 }
 .redeem .money
 {
