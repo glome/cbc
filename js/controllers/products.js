@@ -32,12 +32,17 @@ App.ProductsController = Ember.ArrayController.extend(
       this.get('controllers.products').set('keywords', false);
       this.transitionToRoute('products', cat.get('urlName'));
     },
-    loadCategories: function(transition)
+    loadCategories: function()
     {
       console.log('loadCategories')
-      console.log(transition.params);
-      console.log('===========================================================');
 
+      var transition = this.get('controllers.application').get('previousTransition');
+
+      if (transition)
+      {
+        console.log(transition.params);
+        console.log('===========================================================');
+      }
       var category = null;
       var self = this;
 
@@ -49,7 +54,7 @@ App.ProductsController = Ember.ArrayController.extend(
         return;
       }
 
-      if (transition.params)
+      if (transition && transition.params)
       {
         category = transition.params.category;
       }
