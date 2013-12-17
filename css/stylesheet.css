@@ -444,6 +444,50 @@ ul.subcategories
   background-position: right 6px;
   background-image: url('/images/search.png');
 }
+.intro
+{
+  background-size: 40% 100%, 60% 100%;
+  background-position: left top, right center;
+  background-image: url('/images/cbc-intro-bg.jpg'), url('/images/cbc-front_woman.jpg');
+}
+/*
+.intro
+{
+  background-size: contain;
+  background-repeat: repeat-x;
+  background-image: url('/images/cbc-intro-bg.jpg');
+}
+*/
+.intro li
+{
+  color: black;
+  list-style: none;
+  background-size: 66px auto;
+  padding: 25px 0 5px 75px;
+  background-position: left 30px;
+  font-family: 'PT Sans Narrow', sans-serif !important;
+}
+.intro li.one
+{
+  background-image: url('/images/cbc-front-numbers1.png');
+}
+.intro li.two
+{
+  background-image: url('/images/cbc-front-numbers2.png');
+}
+.intro li.three
+{
+  background-image: url('/images/cbc-front-numbers3.png');
+}
+.intro li h4
+{
+  font-size: 25px;
+  text-transform: uppercase;
+}
+.intro li h5
+{
+  font-size: 16px;
+}
 .grid .wrapper
 {
   margin: 10px 0;
