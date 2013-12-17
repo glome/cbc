@@ -206,7 +206,7 @@
             {{currentProduct.price}}
           </div>
           {{/if}}
-          <input class="button" type="button" {{action 'cashBack' product target="controllers.product"}} value='buy' />
+          <input class="button" type="button" {{action 'cashBack' currentProduct target="controllers.product"}} value='buy' />
           <div class="cashback">Cashback: {{currentProduct.cashback}}</div>
         </div>
       </div>
