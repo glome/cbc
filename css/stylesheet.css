@@ -454,9 +454,9 @@ ul.subcategories
 {
   color: black;
   list-style: none;
-  background-size: 66px auto;
-  padding: 25px 0 5px 75px;
-  background-position: left 30px;
+  background-size: 65px auto;
+  padding: 25px 0 15px 80px;
+  background-position: left 20px;
   font-family: 'PT Sans Narrow', sans-serif !important;
 }
 .intro li.one
@@ -472,6 +472,12 @@ ul.subcategories
   padding-bottom: 60px;
   background-image: url('/images/cbc-front-numbers3.png');
 }
+.intro li h4,
+.intro li h5
+{
+  margin: 0;
+  width: 70%;
+}
 .intro li h4
 {
   font-size: 25px;
@@ -479,6 +485,7 @@ ul.subcategories
 }
 .intro li h5
 {
+  margin-top: 3px;
   font-size: 16px;
 }
 .grid .wrapper
