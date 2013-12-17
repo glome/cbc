@@ -9,7 +9,7 @@ App.ProductsView = Ember.View.extend(
   singleView: Ember.View.extend(
   {
     templateName: 'single',
-    classNames: ['single'],
+    classNames: ['single', 'col-xs-12', 'col-sm-12']
   }),
   /**
    *

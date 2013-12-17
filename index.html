@@ -174,13 +174,14 @@
               <div class="name">{{product.title}}</div>
             {{/link-to}}
           </div>
-          {{#if product.last_price}}
-          <div class="price">
-            <span class="price-new">{{product.price}}</span>
-          </div>
-          {{/if}}
           <div class="cart">
-            <input class="button" type="button" {{action 'cashBack' product target="controllers.product"}} {{bind-attr value=product.cashback}} />
+            {{#if product.last_price}}
+            <div class="price">
+              <span class="price-new">{{product.price}}</span>
+            </div>
+            {{/if}}
+            <input class="button" type="button" {{action 'cashBack' product target="controllers.product"}} value='buy' />
+            <div class="cashback">Cashback: {{product.cashback}}</div>
           </div>
         </div>
       </div>
@@ -189,23 +190,24 @@
 
     <script type="text/x-handlebars" data-template-name="single">
       {{#if controllers.products.currentCategory}}
-      <h3>{{currentProduct.title}}</h3>
-      <div class="col-xs-5 col-sm-5">
+      <div class="col-xs-4 col-sm-5">
         <div class="image">
           <img class="img-responsive img-rounded" {{action 'loadProducts' controllers.products.currentCategory target="controllers.products"}} {{bind-attr src=currentProduct.content}} {{bind-attr title=currentProduct.title}} {{bind-attr alt=currentProduct.title}} />
         </div>
       </div>
-      <div class="col-xs-5 col-sm-7">
+      <div class="col-xs-8 col-sm-7">
+        <h3>{{currentProduct.title}}</h3>
         <div class="description">
           {{currentProduct.description}}
         </div>
-        {{#if currentProduct.last_price}}
-        <div class="price">
-          {{currentProduct.price}}
-        </div>
-        {{/if}}
         <div class="cart">
-          <input class="button" type="button" {{action 'cashBack' currentProduct target="controllers.product"}} {{bind-attr value=currentProduct.cashback}} />
+          {{#if currentProduct.last_price}}
+          <div class="price">
+            {{currentProduct.price}}
+          </div>
+          {{/if}}
+          <input class="button" type="button" {{action 'cashBack' product target="controllers.product"}} value='buy' />
+          <div class="cashback">Cashback: {{currentProduct.cashback}}</div>
         </div>
       </div>
       {{/if}}
@@ -213,16 +215,16 @@
 
     <script type="text/x-handlebars" data-template-name="intro">
       <li class="one">
-        <h4>over 170000 offers waiting</h4>
-        <h5>No Sign Up or Sign In needed.</h5>
+        <h4>over 170000 fresh offers waiting</h4>
+        <h5>Start shopping - no sign-up or sing-in required.</h5>
       </li>
       <li class="two">
-        <h4>browse, shop and buy</h4>
-        <h5>When buying remember to finalize the purchase in redirected webstore.</h5>
+        <h4>browse and buy</h4>
+        <h5>Find what you are looking for and go to to the seller via our “BUY” button.</h5>
       </li>
       <li class="three">
-        <h4>earn money</h4>
-        <h5>We get a commission from webstores in order to pay you money.</h5>
+        <h4>get cashback for buying</h4>
+        <h5>We get a commission from the seller and put the cashback to your wallet.</h5>
       </li>
     </script>
 
