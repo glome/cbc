@@ -450,14 +450,6 @@ ul.subcategories
   background-position: left top, right center;
   background-image: url('/images/cbc-intro-bg.jpg'), url('/images/cbc-front_woman.jpg');
 }
-/*
-.intro
-{
-  background-size: contain;
-  background-repeat: repeat-x;
-  background-image: url('/images/cbc-intro-bg.jpg');
-}
-*/
 .intro li
 {
   color: black;
@@ -477,6 +469,7 @@ ul.subcategories
 }
 .intro li.three
 {
+  padding-bottom: 60px;
   background-image: url('/images/cbc-front-numbers3.png');
 }
 .intro li h4
