@@ -6,6 +6,10 @@ var GlomeApp = Ember.Application.extend(
   // configuration
   apiHost: 'http://catalogue.glome.me',
   apiKey: '4bb413fff13dabc7fcb5088287dcc98f',
+  // production host
+  productionHost: 'http://cashbackcatalog.com',
+  // piwik entry
+  piwikApi: '/piwik?idsite=4&amp;rec=1&amp;url=',
   // do not change
   loginPost: '/api/users/login.json',
   logoutGet: '/api/users/logout.json',
@@ -28,9 +32,42 @@ var GlomeApp = Ember.Application.extend(
  */
 var App = GlomeApp.create(
 {
-  LOG_TRANSITIONS: false, // basic logging of successful transitions
+  LOG_TRANSITIONS: true, // basic logging of successful transitions
   LOG_TRANSITIONS_INTERNAL: false, // detailed logging of all routing steps
   LOG_ACTIVE_GENERATION: false,
+});
+
+/**
+ *
+ */
+App.initializer
+({
+  name: 'cbc',
+
+  initialize: function(container, app)
+  {
+    if (App.apiHost == App.productionHost)
+    {
+      var router = container.lookup('router:main');
+      router.addObserver('url', function()
+      {
+        var lastUrl = undefined;
+        return function()
+        {
+          Ember.run.next(function()
+          {
+            var url = router.get('url');
+            if (url !== lastUrl)
+            {
+              lastUrl = url;
+              Ember.$.get(App.apiHost + App.piwikApi + encodeURIComponent(App.apiHost + url));
+              console.log("piwik: " + url);
+            }
+          });
+        };
+      }());
+    }
+  }
 });
 
 /**
@@ -113,7 +150,6 @@ App.Serializer = DS.RESTSerializer.extend(
     return this._super(store, primaryType, o);
   }
 });
-
 
 /**
  *
