@@ -4,7 +4,7 @@
 var GlomeApp = Ember.Application.extend(
 {
   // configuration
-  apiHost: 'http://catalogue.glome.me',
+  apiHost: 'http://cashbackcatalog.com',
   apiKey: '4bb413fff13dabc7fcb5088287dcc98f',
   // production host
   productionHost: 'http://cashbackcatalog.com',
