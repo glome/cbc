@@ -9,7 +9,7 @@ var GlomeApp = Ember.Application.extend(
   // production host
   productionHost: 'http://cashbackcatalog.com',
   // piwik entry
-  piwikApi: '/piwik/?idsite=4&amp;rec=1&amp;url=',
+  piwikApi: '/piwik/?idsite=4&rec=1&url=',
   // do not change
   loginPost: '/api/users/login.json',
   logoutGet: '/api/users/logout.json',
