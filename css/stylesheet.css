@@ -60,6 +60,18 @@ body
   background-image: url('/images/bigsnake.gif');
   display: none;
 }
+.backtotop
+{
+  top: 90%;
+  left: 7%;
+  color: gray;
+  z-index: 2000;
+  display: none;
+  color: gray;
+  position: fixed;
+  cursor: pointer;
+  font-size: 30px;
+}
 #maintenance
 {
   width: 100%;

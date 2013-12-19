@@ -25,11 +25,11 @@ App.ApplicationView = Ember.View.extend(
     {
       if (Ember.$(this).scrollTop() > 150)
       {
-        Ember.$('#back-top').fadeIn();
+        Ember.$('.backtotop').fadeIn();
       }
       else
       {
-        Ember.$('#back-top').fadeOut();
+        Ember.$('.backtotop').fadeOut();
       }
     });
 
