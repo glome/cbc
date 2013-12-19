@@ -337,7 +337,6 @@ body
 {
   color: gray;
   font-size: 22px;
-  margin-bottom: 40px;
 }
 .title .big
 {
@@ -345,9 +344,21 @@ body
   width: 300px;
   font-size: 40px;
   line-height: 41px;
+/*
+  margin-top: -20px;
+*/
   text-align: center;
   display: inline-block;
   font-family: 'PT Serif', serif !important;
+}
+.title .beta
+{
+  left: 49px;
+  width: 62px;
+  bottom: -56px;
+  display: block;
+  margin: 0 auto;
+  position: relative;
 }
 .main
 {
@@ -413,8 +424,8 @@ ul.subcategories
 .list-group-item.category.active,
 .list-group-item.capitalize.active
 {
-  background-image: url('/images/list-active.png');
   background-position: right 0;
+  background-image: url('/images/list-active.png');
 }
 .list-group-item.category.active .name,
 .list-group-item.capitalize.active .name
