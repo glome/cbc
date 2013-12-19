@@ -48,7 +48,7 @@ App.UserController = Ember.ObjectController.extend(
         xhrFields: { withCredentials: true },
         success: function(data, textStatus, jqXHR)
         {
-          console.log('status in user.auth: ' + textStatus);
+          //console.log('status in user.auth: ' + textStatus);
           App.Adapter.reopen(
           {
             headers:
@@ -106,7 +106,7 @@ App.UserController = Ember.ObjectController.extend(
       return this.store.find('user', 'login').then(
         function(data)
         {
-          console.log('xcsrf: ' + data.get('xcsrf'));
+          //console.log('xcsrf: ' + data.get('xcsrf'));
           App.Adapter.reopen(
           {
             headers:

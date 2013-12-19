@@ -38,11 +38,11 @@ App.ProductsController = Ember.ArrayController.extend(
 
       var transition = this.get('controllers.application').get('previousTransition');
 
-      if (transition)
-      {
-        console.log(transition.params);
-        console.log('===========================================================');
-      }
+      //~ if (transition)
+      //~ {
+        //~ console.log(transition.params);
+        //~ console.log('===========================================================');
+      //~ }
       var category = null;
       var self = this;
 
@@ -84,17 +84,17 @@ App.ProductsController = Ember.ArrayController.extend(
           }, item);
         });
 
-        console.log('currentCategory: ' + controller.get('currentCategory'));
+        //console.log('currentCategory: ' + controller.get('currentCategory'));
 
         if (transition)
         {
           self.get('controllers.application').set('previousTransition', null);
-          console.log('retry transition');
-          console.log(transition);
+          //console.log('retry transition');
+          //console.log(transition);
           transition.retry();
         }
 
-        console.log('loadCategories end =========================================================');
+        //console.log('loadCategories end =========================================================');
         // TODO: this is too expensive
         //~ controller.get('categoryMap').forEach(
           //~ function(item, index, enumerable)

@@ -32,9 +32,8 @@ App.ApplicationController = Ember.ArrayController.extend(
 
       if (window.localStorage.getItem('glomeid') && typeof window.localStorage.getItem('glomeid') != 'undefined')
       {
-        console.log('glomeid exists: ' + window.localStorage.getItem('glomeid'));
+        //console.log('glomeid exists: ' + window.localStorage.getItem('glomeid'));
         this.set('glomeid', window.localStorage.getItem('glomeid'));
-        console.log('lets login');
         this.get('controllers.user').send('auth', this.get('glomeid'), this.get('password'));
       }
       else
@@ -68,7 +67,7 @@ App.ApplicationController = Ember.ArrayController.extend(
       this.set('inProgress', false);
       this.set('glomeid', window.localStorage.getItem('glomeid'));
       this.set('loggedin', window.localStorage.getItem('loggedin') == 'true');
-      console.log('globals: glomeid: ' + this.get('glomeid') + ', loggedin: ' + this.get('loggedin'));
+      //console.log('globals: glomeid: ' + this.get('glomeid') + ', loggedin: ' + this.get('loggedin'));
     },
     open: function()
     {
