@@ -58,6 +58,7 @@ body
   background-origin: content-box;
   background-position: center center;
   background-image: url('/images/bigsnake.gif');
+  display: none;
 }
 #maintenance
 {
