@@ -47,6 +47,9 @@ App.ProductController = Ember.ObjectController.extend(
         var newWindow = window.open('');
         return Ember.$.getJSON(url).then(function(data)
         {
+          // measuring
+          Ember.$.get(App.apiHost + App.piwikApi + encodeURIComponent(url));
+
           newWindow.location = data.url;
         });
       }
