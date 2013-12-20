@@ -104,6 +104,8 @@ App.ApplicationController = Ember.ArrayController.extend(
         window.localStorage.setItem('glomeid', data.glomeid);
         self.get('controllers.application').send('setGlobals');
         self.get('controllers.user').send('auth', data.glomeid, '');
+        // measuring
+        Ember.$.get(App.apiHost + App.piwikApi + url);
       });
     },
     /**
