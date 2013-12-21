@@ -24,7 +24,7 @@ var GlomeApp = Ember.Application.extend(
     subject: 'Interested in Glome Wallet for Android'
   },
   // insert the reason of the maintenance, false otherwise
-  maintenance: false //'You may experience slow loading and response times due to our scheduled maintenance. We are sorry for the inconvenience.'
+  maintenance: false, //'You may experience slow loading and response times due to our scheduled maintenance. We are sorry for the inconvenience.'
 });
 
 /**
@@ -164,7 +164,7 @@ App.Adapter = DS.RESTAdapter.extend(
   {
     var url = ''
     url = this._super(type, id) + '.json';
-    console.log('return URL for type: ' + type + ', id: ' + id + '. URL is: ' + url);
+    //console.log('return URL for type: ' + type + ', id: ' + id + '. URL is: ' + url);
     return url;
   },
   // the server does not return JSON API compatible results (missing root)
@@ -208,7 +208,11 @@ App.Adapter = DS.RESTAdapter.extend(
       case 'product':
         if (query['keywords'])
         {
-          res = this.ajax(this.buildURL(type.typeKey, 'search'), 'GET', { data: query });
+          var url = this.buildURL(type.typeKey, 'search');
+          res = this.ajax(url, 'GET', { data: query });
+          var track = url + '?page=' + query.page + '&keywords=' + query.keywords;
+          // measuring
+          Ember.$.get(App.apiHost + App.piwikApi + encodeURIComponent(track));
         }
         else
         {
