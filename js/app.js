@@ -4,7 +4,7 @@
 var GlomeApp = Ember.Application.extend(
 {
   // configuration
-  apiHost: 'http://cashbackcatalog.com',
+  apiHost: 'http://catalogue.glome.me',
   apiKey: '4bb413fff13dabc7fcb5088287dcc98f',
   // production host
   productionHost: 'http://cashbackcatalog.com',
@@ -32,7 +32,7 @@ var GlomeApp = Ember.Application.extend(
  */
 var App = GlomeApp.create(
 {
-  LOG_TRANSITIONS: true, // basic logging of successful transitions
+  LOG_TRANSITIONS: false, // basic logging of successful transitions
   LOG_TRANSITIONS_INTERNAL: false, // detailed logging of all routing steps
   LOG_ACTIVE_GENERATION: false,
 });
@@ -60,8 +60,7 @@ App.initializer
             if (url !== lastUrl)
             {
               lastUrl = url;
-              Ember.$.get(App.apiHost + App.piwikApi + encodeURIComponent(App.apiHost + url));
-              console.log("piwik: " + url);
+              App.track(App.apiHost + '/#' + url);
             }
           });
         };
@@ -211,8 +210,7 @@ App.Adapter = DS.RESTAdapter.extend(
           var url = this.buildURL(type.typeKey, 'search');
           res = this.ajax(url, 'GET', { data: query });
           var track = url + '?page=' + query.page + '&keywords=' + query.keywords;
-          // measuring
-          Ember.$.get(App.apiHost + App.piwikApi + encodeURIComponent(track));
+          App.track(track);
         }
         else
         {
@@ -280,3 +278,12 @@ Ember.RSVP.configure('onerror', function(error)
 {
   Ember.Logger.assert(false, error);
 });
+
+/**
+ * Wrapper for analytics
+ */
+App.track = function(uri)
+{
+  //console.log('track: ' + uri);
+  Ember.$.get(App.apiHost + App.piwikApi + encodeURIComponent(uri));
+};
