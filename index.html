@@ -157,6 +157,7 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="special_categories">
+      {{#if controllers.products.special_categories.length }}
       <div {{action 'toggle' target=view}} class="list-group-item-heading uppercase text-center special">
         Special Selections
       </div>
@@ -165,6 +166,7 @@
           <div class="name uppercase" {{action 'click' category target=view}}>{{category.name}}</div>
         </li>
       {{/each}}
+      {{/if}}
     </script>
 
     <script type="text/x-handlebars" data-template-name="search">
