@@ -11,8 +11,9 @@ App.ProductsRoute = Ember.Route.extend(
     if (transition.params.category)
     {
       this.controllerFor('products').set('category', transition.params.category);
-      catMap = this.controllerFor('products').get('categoryMap');
+      var catMap = this.controllerFor('products').get('categoryMap');
       cat = catMap.findBy('urlName', transition.params.category);
+
       if (transition.params.category != 'all' && typeof cat === 'undefined' && transition.targetName != 'products.search')
       {
         this.controllerFor('application').set('previousTransition', transition);
