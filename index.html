@@ -150,6 +150,18 @@
         {{/if}}
       {{/each}}
       </ul>
+      {{partial 'special_categories'}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="special_categories">
+      <div {{action 'toggle' target=view}} class="list-group-item-heading uppercase text-center special">
+        Special Selections
+      </div>
+      {{#each category in controllers.products.special_categories}}
+        <li class="list-group-item category" {{bind-attr data-catid=category.id}} {{bind-attr data-urlname=category.urlName}}>
+          <div class="name uppercase" {{action 'click' category target=view}}>{{category.name}}</div>
+        </li>
+      {{/each}}
     </script>
 
     <script type="text/x-handlebars" data-template-name="search">

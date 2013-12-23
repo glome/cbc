@@ -14,6 +14,7 @@ App.ProductsController = Ember.ArrayController.extend(
   currentProduct: null,
   category: '',
   categories: null,
+  special_categories: null, // reserved for special campaign categories
   categoryMap: Ember.ArrayProxy.create({ content: [] }),
 
   actions:
@@ -111,6 +112,22 @@ App.ProductsController = Ember.ArrayController.extend(
             //~ };
             //~ controller.get('categoryMap').objectAt(index)['programs'] = self.store.find('program', vars);
           //~ });
+      });
+
+      // load special campaign categories
+      controller.set('special_categories', this.store.find('category', { display: 'tree', selector: 'x', filter: 'all', personal: App.personalizedContent, maxlevel: 1 }));
+      // map out categories
+      controller.get('special_categories').then(function(data)
+      {
+        data.content.forEach(function(item, index, enumerable)
+        {
+          controller.get('categoryMap').pushObject(item);
+
+          if (category && item.get('urlName') == category)
+          {
+            controller.set('currentCategory', item);
+          }
+        });
       });
 
       return controller.get('categories');
