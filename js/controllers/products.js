@@ -73,7 +73,10 @@ App.ProductsController = Ember.ArrayController.extend(
 
           if (item.get('selector') == 'x')
           {
-            controller.get('special_categories').pushObject(item);
+            if (! controller.get('special_categories').findBy('urlName', item.get('urlName')))
+            {
+              controller.get('special_categories').pushObject(item);
+            }
           }
 
           if (category && item.get('urlName') == category)
