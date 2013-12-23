@@ -129,9 +129,11 @@
         Categories
         <!--<span class="glyphicon glyphicon-minus"></span>-->
       </div>
+
       <ul class="list-group categories">
       {{#each category in controllers.products.categories}}
-        {{#if category.hasProducts}}
+        {{#if category.hasProducts }}
+        {{#if category.notSpecial }}
         <li class="list-group-item category" {{bind-attr data-catid=category.id}} {{bind-attr data-urlname=category.urlName}}>
           <div class="name uppercase" {{action 'click' category target=view}}>{{category.name}}</div>
           {{#if category.subcategories}}
@@ -147,6 +149,7 @@
             </ul>
           {{/if}}
         </li>
+        {{/if}}
         {{/if}}
       {{/each}}
       </ul>

@@ -4,6 +4,7 @@
 App.Category = DS.Model.extend(
 {
   name: DS.attr('string'),
+  selector: DS.attr('string'),
   linked_to: DS.attr('number'),
   linked_at: DS.attr('date'),
   num_published_products: DS.attr('number'),
@@ -56,5 +57,12 @@ App.Category = DS.Model.extend(
   urlName: function()
   {
     return this.get('name').replace(/\s/g, '_');
-  }.property('name')
+  }.property('name'),
+  /**
+   *
+   */
+  notSpecial: function()
+  {
+    return this.get('selector') != 'x';
+  }.property('selector')
 });
