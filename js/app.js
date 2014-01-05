@@ -4,7 +4,7 @@
 var GlomeApp = Ember.Application.extend(
 {
   // configuration
-  apiHost: 'http://cashbackcatalog.com',
+  apiHost: 'http://catalogue.glome.me',
   apiKey: '4bb413fff13dabc7fcb5088287dcc98f',
   // production host
   productionHost: 'http://cashbackcatalog.com',
@@ -17,6 +17,10 @@ var GlomeApp = Ember.Application.extend(
   generateGlomeIdPost: '/api/applications/generate_glomeid.json',
   // show personalized content
   personalizedContent: true,
+  // max rating; values:
+  // ec: early childhood, e: everyone, e10plus: ages 10+
+  // t: 13+, m: 17+, ao: 18+
+  maxRating: 't',
   // contact info
   contact:
   {

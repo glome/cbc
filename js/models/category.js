@@ -4,6 +4,7 @@
 App.Category = DS.Model.extend(
 {
   name: DS.attr('string'),
+  rating: DS.attr('number'),
   selector: DS.attr('string'),
   linked_to: DS.attr('number'),
   linked_at: DS.attr('date'),
