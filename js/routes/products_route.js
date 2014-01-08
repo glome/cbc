@@ -42,7 +42,7 @@ App.ProductsRoute = Ember.Route.extend(
         if (this.controllerFor('products').get('currentCategory'))
         {
           catId = this.controllerFor('products').get('currentCategory').id;
-          data = this.store.find('product', { catid: catId, page: this.controllerFor('products').get('page') });
+          data = this.store.find('product', { rating: App.maxRating, catid: catId, page: this.controllerFor('products').get('page') });
         }
         break;
       case 'products.search':
@@ -50,6 +50,7 @@ App.ProductsRoute = Ember.Route.extend(
 
         var searchParams =
         {
+          rating: App.maxRating,
           page: this.controllerFor('products').get('page'),
           perPage: this.controllerFor('products').get('perPage'),
           keywords: this.controllerFor('products').get('keywords')
