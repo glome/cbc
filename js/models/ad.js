@@ -9,6 +9,7 @@ App.Ad = DS.Model.extend(
   bonus_money: DS.attr('number'),
   bonus_percent: DS.attr('number'),
   bonus_text: DS.attr('string'),
+  rating: DS.attr('number'),
   /**
    *
    */
