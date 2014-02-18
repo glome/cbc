@@ -11,11 +11,28 @@ App.HeaderView = Ember.View.extend(
   attributeBindings: ['role', 'id'],
   classNames: ['navbar', 'navbar-fixed-top', 'header'],
 
+
   leftBox: Ember.View.extend(
   {
     tagName: 'li',
     templateName: 'leftBox',
     classNames: ['leftbox', 'col-xs-2', 'col-sm-2'],
+
+    didInsertElement: function()
+    {
+      var qrcode = new QRCode("qrcode",
+      {
+        text: 'http://glome.me',
+        width: 80,
+        height: 80,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
+      this.get('controller').get('controllers.sync').set('qrcode', qrcode);
+
+      console.log('qr placeholder activated');
+    },
 
     click: function(e)
     {

@@ -14,6 +14,7 @@
     <script type="text/javascript" src="js/libs/handlebars-v1.1.2.js"></script>
     <script type="text/javascript" src="js/libs/ember.js"></script>
     <script type="text/javascript" src="js/libs/ember-data.js"></script>
+    <script type="text/javascript" src="js/libs/qrcode.min.js"></script>
   </head>
   <body>
     <script type="text/x-handlebars">
@@ -70,14 +71,17 @@
         <div class="response" {{action 'ack' target=view}}></div>
         {{/if}}
       </div>
-      <div class="pairing menu" data-elem="2">
-        <div class="instruction">Pair your wallet:</div>
-        <div class="code">
-          <input type="text" name="code_1" class="code" placeholder="0000" maxlength="4" />
-          <input type="text" name="code_2" class="code" placeholder="0000" maxlength="4" />
-          <input type="text" name="code_3" class="code" placeholder="0000" maxlength="4" />
-          <div class="reply"></div>
+      <div class="pairing menu row" data-elem="2">
+        <div class="col-xs-9">
+          <div class="instruction">Pair your wallet:</div>
+          <div class="code">
+            <input type="text" name="code_1" class="code" placeholder="0000" maxlength="4" />
+            <input type="text" name="code_2" class="code" placeholder="0000" maxlength="4" />
+            <input type="text" name="code_3" class="code" placeholder="0000" maxlength="4" />
+            <div class="reply"></div>
+          </div>
         </div>
+        <div class="col-xs-3" id="qrcode"></div>
       </div>
       <div class="info menu" data-elem="3">
         Glome Wallet for Android is a tool for you to take control of and
