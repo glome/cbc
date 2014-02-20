@@ -100,9 +100,8 @@ App.Serializer = DS.RESTSerializer.extend(
         o['pairing'] = payload;
         break;
       case App.Earning:
-        payload.id = 1;
+        payload.id = id;
         o['earning'] = payload;
-        console.log(payload);
         break;
       case App.Action:
         // recorded actions have no ids
