@@ -53,6 +53,7 @@ App.HeaderView = Ember.View.extend(
           break;
         case 3:
           // info screen
+          this.get('controller').get('controllers.user').send('getEarnings');
           elem = 1;
           break;
       }
@@ -112,6 +113,8 @@ App.HeaderView = Ember.View.extend(
         }
         Ember.$('.header .centerbox .menu[data-elem="' + elem + '"], .header .centerbox .menu[data-elem="' + elem + '"] *').fadeIn('fast');
       }
+
+      this.get('controller').get('controllers.user').send('getEarnings');
 
       return false;
     }

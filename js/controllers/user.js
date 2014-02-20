@@ -66,7 +66,6 @@ App.UserController = Ember.ObjectController.extend(
 
         if (newprofile)
         {
-console.log('go to index');
           self.transitionToRoute('index');
         }
         else
@@ -83,8 +82,15 @@ console.log('go to index');
      */
     getEarnings: function()
     {
-      var earnings = this.store.find('earning', window.localStorage.getItem('glomeid'));
-      this.set('earnings', earnings);
+      if (this.get('controllers.user').get('earnings'))
+      {
+        this.get('controllers.user').get('earnings').content.reload();
+      }
+      else
+      {
+        var earnings = this.store.find('earning', window.localStorage.getItem('glomeid'));
+        this.get('controllers.user').set('earnings', earnings);
+      }
     },
     /**
      * Terminates the user session at the server

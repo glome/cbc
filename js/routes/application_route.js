@@ -41,7 +41,7 @@ App.ApplicationRoute = Ember.Route.extend(
         {
           self.controllerFor('products').send('loadCategories', false);
         }
-        self.controllerFor('user').send('getEarnings');
+        //self.controllerFor('user').send('getEarnings');
       });
     }
     else
@@ -75,7 +75,7 @@ App.ApplicationRoute = Ember.Route.extend(
         window.localStorage.setItem('loggedin', true);
         window.localStorage.setItem('glomeid', App.glomeid);
         controller.get('controllers.application').set('loggedin', true);
-        controller.get('controllers.user').send('getEarnings');
+        //controller.get('controllers.user').send('getEarnings');
       });
     }
 
