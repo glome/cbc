@@ -103,7 +103,7 @@ App.ApplicationController = Ember.ArrayController.extend(
         console.log('glome id created: ' + data.glomeid);
         window.localStorage.setItem('glomeid', data.glomeid);
         self.get('controllers.application').send('setGlobals');
-        self.get('controllers.user').send('auth', data.glomeid, '');
+        self.get('controllers.user').send('auth', data.glomeid, '', true);
       });
     },
     /**

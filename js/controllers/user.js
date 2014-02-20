@@ -28,7 +28,7 @@ App.UserController = Ember.ObjectController.extend(
     /**
      * Performs a standard login to the server
      */
-    auth: function(glomeid, password)
+    auth: function(glomeid, password, newprofile)
     {
       var self = this;
       var url = App.apiHost + App.loginPost;
@@ -63,6 +63,12 @@ App.UserController = Ember.ObjectController.extend(
         console.log('normal login completed: ' + data.glomeid);
         window.localStorage.setItem('loggedin', true);
         self.get('controllers.application').send('setGlobals');
+
+        if (newprofile)
+        {
+          self.transitionToRoute('index');
+        }
+
         self.get('controllers.user').send('getEarnings');
 
         if ( ! self.get('controllers.products').get('categories') )

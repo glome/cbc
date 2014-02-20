@@ -43,8 +43,6 @@ App.ApplicationRoute = Ember.Route.extend(
         }
         var earning = self.store.find('earning', glomeid);
         self.controllerFor('user').set('earnings', earning);
-        console.log(earning);
-        console.log('earning ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
       });
     }
     else

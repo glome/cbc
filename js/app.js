@@ -187,7 +187,7 @@ App.Adapter = DS.RESTAdapter.extend(
   findAll: function(store, type, sinceToken)
   {
     //console.log('find all called for ' + type);
-    return this.ajax(this.buildURL(type.typeKey, id), 'GET').then(function(data)
+    return this.ajax(this.buildURL(type.typeKey), 'GET').then(function(data)
     {
       var items = [];
       data.forEach(function (item)
