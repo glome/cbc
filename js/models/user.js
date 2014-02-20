@@ -8,6 +8,7 @@ App.User = DS.Model.extend(
   xcsrf: DS.attr('string'),
   //"earnings":{"fresh":{},"pending":{},"failed":{},"paid":{},"transferred":{"EUR":110}}
   earnings: DS.attr('raw'),
+  message: DS.attr('string'),
   fresh: function()
   {
     var ret = '0,00';
@@ -20,6 +21,10 @@ App.User = DS.Model.extend(
     }
     return ret;
   }.property('earnings'),
+  is_not_hello: function()
+  {
+    return (this.get('message') != 'Hello!');
+  }.property('message'),
   didLoad: function(event)
   {
     if (this.get('status'))

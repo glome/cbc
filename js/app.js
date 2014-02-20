@@ -99,6 +99,11 @@ App.Serializer = DS.RESTSerializer.extend(
       case App.Pairing:
         o['pairing'] = payload;
         break;
+      case App.Earning:
+        payload.id = 1;
+        o['earning'] = payload;
+        console.log(payload);
+        break;
       case App.Action:
         // recorded actions have no ids
         id = 0;
@@ -173,7 +178,7 @@ App.Adapter = DS.RESTAdapter.extend(
   // the server does not return JSON API compatible results (missing root)
   find: function(store, type, id)
   {
-    return this._super(store, type, id).then(function(data)
+    return this.ajax(this.buildURL(type.typeKey, id), 'GET').then(function(data)
     {
       return data;
     });
@@ -182,7 +187,7 @@ App.Adapter = DS.RESTAdapter.extend(
   findAll: function(store, type, sinceToken)
   {
     //console.log('find all called for ' + type);
-    return this._super(store, type, sinceToken).then(function(data)
+    return this.ajax(this.buildURL(type.typeKey, id), 'GET').then(function(data)
     {
       var items = [];
       data.forEach(function (item)
@@ -243,6 +248,23 @@ App.Adapter = DS.RESTAdapter.extend(
       }
       return items;
     });
+  },
+  /**
+   * make sure we send the API credentials in all request
+   */
+  ajax: function(url, type, hash)
+  {
+    if (typeof hash === 'undefined')
+    {
+      hash = { data: { application: {} } };
+    }
+    hash.data.application =
+    {
+      apikey: App.apiKey,
+      uid: App.apiHost
+    }
+
+    return this._super(url, type, hash);
   }
 });
 

@@ -41,6 +41,10 @@ App.ApplicationRoute = Ember.Route.extend(
         {
           self.controllerFor('products').send('loadCategories', false);
         }
+        var earning = self.store.find('earning', glomeid);
+        self.controllerFor('user').set('earnings', earning);
+        console.log(earning);
+        console.log('earning ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
       });
     }
     else
@@ -65,6 +69,8 @@ App.ApplicationRoute = Ember.Route.extend(
       {
         window.localStorage.setItem('loggedin', true);
         controller.get('controllers.application').set('loggedin', true);
+        var earning = self.store.find('earning', glomeid);
+        self.controllerFor('user').set('earnings', earning);
       });
     }
 

@@ -21,6 +21,7 @@ App.UserAdapter = App.Adapter.extend(
 App.UserController = Ember.ObjectController.extend(
 {
   needs: ['user', 'application', 'products'],
+  earnings: false,
 
   actions:
   {
@@ -62,6 +63,8 @@ App.UserController = Ember.ObjectController.extend(
         console.log('normal login completed: ' + data.glomeid);
         window.localStorage.setItem('loggedin', true);
         self.get('controllers.application').send('setGlobals');
+        self.get('controllers.user').send('getEarnings');
+
         if ( ! self.get('controllers.products').get('categories') )
         {
           self.get('controllers.products').send('loadCategories');
