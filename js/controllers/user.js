@@ -66,16 +66,25 @@ App.UserController = Ember.ObjectController.extend(
 
         if (newprofile)
         {
+console.log('go to index');
           self.transitionToRoute('index');
         }
-
-        self.get('controllers.user').send('getEarnings');
-
-        if ( ! self.get('controllers.products').get('categories') )
+        else
         {
-          self.get('controllers.products').send('loadCategories');
+          if ( ! self.get('controllers.products').get('categories') )
+          {
+            self.get('controllers.products').send('loadCategories');
+          }
         }
       });
+    },
+    /**
+     * load earnings
+     */
+    getEarnings: function()
+    {
+      var earnings = this.store.find('earning', window.localStorage.getItem('glomeid'));
+      this.set('earnings', earnings);
     },
     /**
      * Terminates the user session at the server
@@ -97,8 +106,10 @@ App.UserController = Ember.ObjectController.extend(
     reload: function()
     {
       var self = this;
-      var glomeid = self.get('controllers.application').get('glomeid');
-      self.get('controllers.application').get('user').reload();
+      if (self.get('controllers.application').get('user'))
+      {
+        self.get('controllers.application').get('user').reload();
+      }
     },
     /**
      * Shows user's history

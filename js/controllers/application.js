@@ -67,6 +67,7 @@ App.ApplicationController = Ember.ArrayController.extend(
       this.set('inProgress', false);
       this.set('glomeid', window.localStorage.getItem('glomeid'));
       this.set('loggedin', window.localStorage.getItem('loggedin') == 'true');
+      this.get('controllers.user').send('getEarnings');
       //console.log('globals: glomeid: ' + this.get('glomeid') + ', loggedin: ' + this.get('loggedin'));
     },
     open: function()

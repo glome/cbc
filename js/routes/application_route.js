@@ -41,13 +41,20 @@ App.ApplicationRoute = Ember.Route.extend(
         {
           self.controllerFor('products').send('loadCategories', false);
         }
-        var earning = self.store.find('earning', glomeid);
-        self.controllerFor('user').set('earnings', earning);
+        self.controllerFor('user').send('getEarnings');
       });
     }
     else
     {
-      promise = this.store.find('user');
+      if (App.apiKey)
+      {
+        self.controllerFor('application').send('generateGlomeId');
+      }
+      else
+      {
+        console.log('It is not a Glome enabled application.');
+      }
+      promise = false;//this.store.find('user');
     }
 
     return promise;
@@ -66,9 +73,9 @@ App.ApplicationRoute = Ember.Route.extend(
       this.store.find('user', App.glomeid).then(function(data)
       {
         window.localStorage.setItem('loggedin', true);
+        window.localStorage.setItem('glomeid', App.glomeid);
         controller.get('controllers.application').set('loggedin', true);
-        var earning = self.store.find('earning', glomeid);
-        self.controllerFor('user').set('earnings', earning);
+        controller.get('controllers.user').send('getEarnings');
       });
     }
 
