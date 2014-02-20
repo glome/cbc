@@ -25,9 +25,9 @@ App.HeaderView = Ember.View.extend(
         text: 'http://glome.me',
         width: 80,
         height: 80,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
+        //colorDark : "#000000",
+        //colorLight : "#ffffff",
+        //correctLevel : QRCode.CorrectLevel.H
       });
       this.get('controller').get('controllers.sync').set('qrcode', qrcode);
 

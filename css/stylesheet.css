@@ -326,10 +326,12 @@ body
 }
 .pairing #qrcode
 {
-  width: 90px;
-  height: 80px;
+  width: 82px;
+  height: 82px;
   position: relative;
-  top: 0px;
+  top: -6px;
+  padding: 1px;
+  background: white;
 }
 .content.openhdr
 {
