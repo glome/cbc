@@ -62,18 +62,14 @@ App.UserController = Ember.ObjectController.extend(
       {
         console.log('normal login completed: ' + data.glomeid);
         window.localStorage.setItem('loggedin', true);
-        self.get('controllers.application').send('setGlobals');
 
-        if (newprofile)
+        self.get('controllers.application').set('inProgress', false);
+        self.get('controllers.application').set('glomeid', window.localStorage.getItem('glomeid'));
+        self.get('controllers.application').set('loggedin', window.localStorage.getItem('loggedin') == 'true');
+
+        if (! self.get('controllers.products').get('categories'))
         {
-          self.transitionToRoute('index');
-        }
-        else
-        {
-          if ( ! self.get('controllers.products').get('categories') )
-          {
-            self.get('controllers.products').send('loadCategories');
-          }
+          self.get('controllers.products').send('loadCategories');
         }
       });
     },
@@ -106,8 +102,7 @@ App.UserController = Ember.ObjectController.extend(
         self.transitionToRoute('index');
       });
     },
-    /**
-     * Reloads user from backend
+    /**     * Reloads user from backend
      */
     reload: function()
     {
