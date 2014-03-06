@@ -32,6 +32,8 @@ App.ApplicationRoute = Ember.Route.extend(
     // check our session
     if (glomeid)
     {
+      window.localStorage.setItem('loggedin', false);
+
       promise = this.store.find('user', glomeid).then(function(data)
       {
         self.controllerFor('application').set('user', data);
@@ -39,7 +41,15 @@ App.ApplicationRoute = Ember.Route.extend(
         if ( ! self.controllerFor('products').get('categories')
             && ! self.controllerFor('application').get('previousTransition'))
         {
-          self.controllerFor('products').send('loadCategories', false);
+          if (window.localStorage.getItem('loggedin') == 'false')
+          {
+            password = self.controllerFor('application').get('password');
+            self.controllerFor('user').send('auth', glomeid, password);
+          }
+          else
+          {
+            self.controllerFor('products').send('loadCategories', false);
+          }
         }
         //self.controllerFor('user').send('getEarnings');
       });
