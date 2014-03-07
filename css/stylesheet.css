@@ -327,11 +327,11 @@ body
 .pairing #qrcode
 {
   background: none repeat scroll 0 0 #FFFFFF;
-  height: 86px;
+  height: 106px;
   padding: 3px;
   position: relative;
-  top: -10px;
-  width: 86px;
+  top: -20px;
+  width: 106px;
 }
 .content.openhdr
 {

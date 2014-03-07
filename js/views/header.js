@@ -20,18 +20,10 @@ App.HeaderView = Ember.View.extend(
 
     didInsertElement: function()
     {
-      var qrcode = new QRCode("qrcode",
-      {
-        text: 'http://glome.me',
-        width: 80,
-        height: 80,
-        //colorDark : "#000000",
-        //colorLight : "#ffffff",
-        //correctLevel : QRCode.CorrectLevel.H
-      });
-      this.get('controller').get('controllers.sync').set('qrcode', qrcode);
-
-      console.log('qr placeholder activated');
+      var qrcode = this.get('controller').get('controllers.sync').get('qrcode');
+      console.log('qr placeholder activated: ' + qrcode);
+      Ember.$('#qrcode').qrcode({width: 100,height: 100, text: qrcode});
+      console.log('qr placeholder activated: ' + qrcode);
     },
 
     click: function(e)
@@ -45,6 +37,9 @@ App.HeaderView = Ember.View.extend(
           // redeem screen
           this.get('controller').get('controllers.user').send('reload');
           this.get('controller').get('controllers.sync').send('getSyncCode');
+          var qrcode = this.get('controller').get('controllers.sync').get('qrcode');
+          Ember.$('#qrcode').empty();
+          Ember.$('#qrcode').qrcode({width: 100,height: 100, text: qrcode});
           ++elem;
           break;
         case 2:

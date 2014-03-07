@@ -33,7 +33,7 @@ App.SyncController = Ember.ArrayController.extend(
 {
   needs: ['user', 'application', 'products'],
 
-  qrcode: false,
+  qrcode: 'http://glome.me',
 
   actions:
   {
@@ -58,9 +58,8 @@ App.SyncController = Ember.ArrayController.extend(
       {
         if (data.content.length)
         {
+          self.set('qrcode', data.content[0].get('code'));
           fillCode(data.content[0].get('code'));
-          self.get('qrcode').clear();
-          self.get('qrcode').makeCode(data.content[0].get('code'));
         }
         else
         {
