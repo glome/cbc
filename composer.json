@@ -8,9 +8,8 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "rdlowrey/artax": "~0.6.2"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "4.*"
+    "rdlowrey/artax": "~0.6.2",
+    "fracture/routing": "~0.1",
+    "fracture/http": "~0.1"
   }
 }
