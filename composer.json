@@ -12,7 +12,6 @@
     "require": {
       "php": ">=5.4.0",
       "rdlowrey/artax": "dev-dev",
-      "fracture/autoload": "dev-master",
       "fracture/routing": "dev-master",
       "fracture/http": "dev-master"
     },
