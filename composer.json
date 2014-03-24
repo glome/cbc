@@ -1,15 +1,26 @@
 {
-  "name": "glome/cbc",
-  "homepage": "http://glome.me/",
-  "description": "Glome Cashback Catalog",
-  "keywords": [],
-  "license": "MIT",
-  "authors": [
-  ],
-  "require": {
-    "php": ">=5.4.0",
-    "rdlowrey/artax": "~0.6.2",
-    "fracture/routing": "~0.1",
-    "fracture/http": "~0.1"
-  }
+
+    "name": "glome/cbc",
+    "homepage": "http://glome.me/",
+    "description": "Glome Cashback Catalog",
+    "keywords": [],
+    "license": "MIT",
+
+    "authors": [
+    ],
+
+    "require": {
+      "php": ">=5.4.0",
+      "rdlowrey/artax": "dev-dev",
+      "fracture/autoload": "dev-master",
+      "fracture/routing": "dev-master",
+      "fracture/http": "dev-master"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Application\\Controllers\\": "src/application/controllers/",
+            "Application\\Views\\": "src/application/views/"
+        }
+    }
 }
