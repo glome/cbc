@@ -25,17 +25,6 @@ $router->import($configuration);
 
 $router->route($request);
 
+require 'launcher.php';
 
 
-$action = $request->getParameter('action');
-$command = $request->getMethod() . $action;
-$resource = ucfirst($request->getParameter('resource'));
-
-
-$class = '\\Application\\Controllers\\'.$resource;
-$controller = new $class;
-$controller->$command($request);
-
-$class = '\\Application\\Views\\' . $resource;
-$view = new $class;
-$view->$action();

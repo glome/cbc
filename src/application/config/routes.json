@@ -1,9 +1,10 @@
 {
 
     "main": {
-        "notation": ":resource[/:id][/:action]",
+        "notation": ":resource[/:action][/:id][/:name]",
         "conditions": {
-            "id"      : "[0-9]+"
+            "id"      : "[0-9]+",
+            "action"  : "[a-z]+"
         },
         "defaults": {
             "resource"  :   "landing",

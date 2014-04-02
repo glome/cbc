@@ -3,12 +3,10 @@
 namespace Application\Controllers;
 
 
-class Landing
+class Catalog
 {
     public function getIndex($request)
     {
-
-
 
 
     }

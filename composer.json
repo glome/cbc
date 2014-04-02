@@ -11,7 +11,7 @@
 
     "require": {
       "php": ">=5.4.0",
-      "rdlowrey/artax": "dev-dev",
+      "guzzle/guzzle": "v3.8.1",
       "fracture/routing": "dev-master",
       "fracture/http": "dev-master"
     },
@@ -19,7 +19,11 @@
     "autoload": {
         "psr-4": {
             "Application\\Controllers\\": "src/application/controllers/",
-            "Application\\Views\\": "src/application/views/"
+            "Application\\Views\\": "src/application/views/",
+            "Application\\Services\\": "src/application/cashback/services/",
+            "Application\\DomainObjects\\": "src/application/cashback/objects/",
+            "Application\\DataMappers\\": "src/application/cashback/mappers/",
+            "Application\\Common\\": "src/common/"
         }
     }
 }
