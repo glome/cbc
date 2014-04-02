@@ -15,7 +15,7 @@ class TemplateBuilder
 
     public function create($name)
     {
-        $filepath = $this->path . '/' . $name . '.php';
+        $filepath = $this->path . '/' . $name . '.html';
         $instance = new Template($filepath);
         return $instance;
     }

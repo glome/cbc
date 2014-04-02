@@ -63,7 +63,7 @@ class Template
     {
         ob_start();
         foreach ($this->parameters as $key => $value) {
-            if ($value instanceof \Common\Template) {
+            if ($value instanceof \Application\Common\Template) {
                 $this->parameters[$key] = $value->render();
             }
         }

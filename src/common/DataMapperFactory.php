@@ -20,6 +20,11 @@ class DataMapperFactory
         $this->namespace = $namespace;
     }
 
+    public function setShared($shared)
+    {
+        $this->shared = $shared;
+    }
+
 
     public function create( $class, $namespace = null )
     {
@@ -34,6 +39,9 @@ class DataMapperFactory
 
         $class = $this->namespace . '\\' . $class;
         $instance = new $class( $this->connection );
+        if ($instance instanceof CookieMapper) {
+            $instance->setCookieJar($this->shared['CookieJar']);
+        }
         return $instance;
     }
 
