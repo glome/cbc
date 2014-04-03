@@ -13,7 +13,8 @@ class Product extends \Application\Common\View
         $content = $builder->create('product');
         $navigation = $builder->create('navigation');
         $product = $builder->create('single-product');
-
+        $overlays = $builder->create('overlays');
+        $overlays->assign('product', $product);
 
         $content->assignAll([
             'navigation' => $navigation,
@@ -24,6 +25,7 @@ class Product extends \Application\Common\View
         $main->assignAll([
             'content' => $content,
             'user' => $builder->create('profile-brief'),
+            'overlays' => $overlays,
         ]);
 
         $shop = $this->serviceFactory->create('Shop');
