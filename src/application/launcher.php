@@ -10,7 +10,8 @@ if (isset($_SESSION['cache.cookies'])) {
     $cookieJar->unserialize($_SESSION['cache.cookies']);
 }
 
-
+$cache = new \Memcached;
+$cache->addServer('localhost', 11211);
 
 $templateBuilder = new TemplateBuilder(__DIR__ . '/templates');
 $domainFactory = new DomainObjectFactory;
@@ -18,7 +19,8 @@ $domainFactory->setNamespace('\\Application\\DomainObjects');
 $mapperFactory = new DataMapperFactory;
 $mapperFactory->setNamespace('\\Application\\DataMappers');
 $mapperFactory->setShared([
-    'CookieJar' => $cookieJar
+    'CookieJar' => $cookieJar,
+    'Cache' => $cache,
     ]);
 $serviceFactory = new ServiceFactory($domainFactory, $mapperFactory);
 $serviceFactory->setNamespace('\\Application\\Services');
@@ -37,7 +39,7 @@ $recognition->authenticate();
 
 
 $class = '\\Application\\Controllers\\'.$resource;
-$controller = new $class;
+$controller = new $class($serviceFactory);
 $controller->$command($request);
 
 $class = '\\Application\\Views\\' . $resource;

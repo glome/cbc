@@ -643,11 +643,13 @@ footer {
     font-size: 13px;
     text-transform: uppercase;
 }
+
+
 .cat-menu ul li .cat-sub-menu {
     position: absolute;
     top: 0;
+    width: 210px;
     left:225px;
-    width: 410px;
     max-width: 0;
     min-height: 270px;
     padding: 15px 0;
@@ -655,6 +657,9 @@ footer {
     overflow: hidden;
     opacity: 0;
 
+}
+.cat-menu.has-ads ul li .cat-sub-menu {
+    width: 410px;
 }
 .cat-menu ul li .cat-sub-menu ul {
     position: relative;
@@ -667,6 +672,7 @@ footer {
 .cat-menu ul li .cat-sub-menu ul li a {
     color: #ffffff;
     text-decoration: none;
+    text-transform: capitalize;
 }
 .cat-menu ul li .cat-sub-menu ul li:hover {
     background-color: transparent;
@@ -1396,6 +1402,7 @@ footer {
     color: #ffffff;
     text-decoration: none;
     font-size: 12px;
+    text-transform: capitalize;
 }
 .profile .cat-dropdown .cat-select-box .accordion-dropdown .item {
     float: left;
@@ -1406,6 +1413,7 @@ footer {
     background-repeat: no-repeat;
     background-position: 96% center;
     font-size: 13px;
+    text-transform: capitalize;
 }
 .profile .cat-dropdown .cat-select-box .accordion-dropdown li.opened .item {
     color: #FE7063;
@@ -1572,6 +1580,7 @@ footer {
     color: #31353D;
     border-bottom: 1px solid #7A7D7E;
     font-size: 17px;
+    text-transform: uppercase;
 }
 .filter-content-wrap {
     float: left;
@@ -1596,6 +1605,7 @@ footer {
     color: #595D5E;
     font-size: 14px;
     text-decoration: none;
+    text-transform: capitalize;
 }
 .filter-content-wrap ul li.selected a,
 .filter-content-wrap ul li a:hover {

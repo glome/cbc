@@ -4,7 +4,6 @@
 
 use Guzzle\Http\Client;
 use Guzzle\Plugin\Cookie\CookiePlugin;
-use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 
     class CategoryCollection extends \Application\Common\CookieMapper
     {
@@ -16,13 +15,30 @@ use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
             $client = new Client;
             $client->addSubscriber($cookiePlugin);
 
-            $response = $client->get('https://api.glome.me/categories.json?selector=a')->send();
-            $data = $response->json();
+            $id = $collection->getId();
 
-            foreach ($data as $entry) {
-                $collection->addItem($entry);
+            if ($id === null) {
+                $response = $client->get('https://api.glome.me/categories.json?selector=a')->send();
+                $data = $response->json();
+                foreach ($data as $entry) {
+                    $collection->addItem($entry);
+                }
+            } else {
+                $response = $client->get("https://api.glome.me/categories/$id.json?selector=a")->send();
+                $data = $response->json();
+                foreach ($data['children'] as $item) {
+                    $response = $client->get("https://api.glome.me/categories/{$item['id']}.json?selector=a")->send();
+                    $entry = $response->json();
+                    $collection->addItem($entry);
+                }
+
             }
 
 
+
+
+
         }
+
+
     }

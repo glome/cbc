@@ -1,0 +1,257 @@
+
+            <div class="product-single">
+                <div class="wrap">
+                    <div class="back-to-grid">
+                        <a href="" class="back-to-grid-btn">Back to products list</a>
+                    </div><!-- .back-to grid -->
+                    <div class="product-full">
+                        <div class="left">
+                            <div class="img-holder">
+                                <img src="<?=$product['image']?>" alt="optional image description" />
+                                <div class="tags">
+                                    <span class="popular-lbl">popular</span>
+                                </div><!-- .tags -->
+                            </div><!-- .img-holder -->
+                        </div><!-- .left-->
+                        <div class="right">
+                            <div class="product-title">
+                                <h1><?=$product['title']?></h1>
+                            </div><!-- .product-title -->
+                            <div class="price-info">
+                                <div class="cashback">
+                                    <span class="lbl">CASHBACK</span>
+                                    <div class="cb-amount">
+                                        <?php if ($product['bonusMoney'] !== null): ?>
+                                        <span><?=$product['currencySymbol']?> <?=$product['bonusMoney']?> </span>
+                                        <?php endif; ?>
+                                        <?php if ($product['bonusPercent'] !== null): ?>
+                                        <span><?=$product['bonusMoney'] !== null ? '&' : ''?> <?=$product['bonusPercent']?> %</span>
+                                        <?php endif; ?>
+                                    </div><!-- .cb-amount -->
+                                </div><!-- .cashback -->
+                                <div class="voucher">
+                                    <span class="lbl">VOUCHER</span>
+                                    <div class="voucher-amount">
+                                        <span>-10%</span>
+                                    </div><!-- .voucher-amount -->
+                                </div><!-- .voucher -->
+                                <div class="buy-now">
+                                    <span class="amount"><?=$product['currencySymbol']?><?=$product['price']?></span>
+                                    <a href="" class="buy-now-btn">BUY NOW</a>
+                                </div><!-- .buy-now-->
+                            </div><!-- .price-info -->
+                            <div class="discount-wrap">
+                                <a href="" class="add-to-wishlist">Add to Wish list</a>
+                                <div class="discount-code">Discount-code: <span>A4O88765iph</span></div><!-- .discount-code -->
+
+                            </div><!-- .price-info-->
+                            <div class="retailer">Retailer: <span>Ecco Finland</span></div><!-- .retailer -->
+                            <div class="product-desc">
+                                <p><span>DESCRIPTION OF THE PRODUCT</span> - <?=$product['description']?> </p>
+                            </div><!-- .product-desc-->
+                            <div class="social-media">
+                                <a href="" class="fb"></a>
+                                <a href="" class="tw"></a>
+                                <span>SHARE LINK</span>
+                            </div><!-- .share-link -->
+                        </div><!-- .right -->
+                    </div><!-- .product-full -->
+                    <div class="more-products">
+                        <span class="title">MORE ITEMS TO CONSIDER</span>
+                        <ul class="products masonry-grid" id="grid">
+                           <li class="product">
+                                <div class="product-content">
+                                    <a href="" class="add-to-wishlist-btn"></a>
+                                    <a href="">
+                                        <div class="labels">
+                                            <span class="new-lbl">NEW</span>
+                                            <span class="popular-lbl">POPULAR</span>
+                                        </div>
+                                        <div class="rating"></div>
+                                        <div class="img-wrap">
+                                            <img src="/assets/img/product-img1.jpg" alt="image description" />
+                                        </div><!-- .img-wrap -->
+                                        <div class="product-info">
+                                            <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                            <div class="price">
+                                                <span>CASHBACK:</span>
+                                                <span>25.99 & 28.5%</span>
+                                            </div>
+                                            <span class="voucher">VOUCHER: -10%</span>
+                                            <span class="buy_btn">VIEW</span>
+                                        </div><!-- .product-info -->
+                                    </a>
+                                </div><!-- .product-content -->
+                            </li><!-- .product -->
+                            <li class="product">
+                                <div class="product-content">
+                                    <a href="" class="add-to-wishlist-btn"></a>
+                                    <a href="">
+                                        <div class="labels">
+                                            <span class="new-lbl">NEW</span>
+                                            <span class="popular-lbl">POPULAR</span>
+                                        </div>
+                                        <div class="rating"></div>
+                                        <div class="img-wrap">
+                                            <img src="/assets/img/product-image2.jpg" alt="image description" />
+                                        </div><!-- .img-wrap -->
+                                        <div class="product-info">
+                                            <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                            <div class="price">
+                                                <span>CASHBACK:</span>
+                                                <span>25.99 & 28.5%</span>
+                                            </div>
+                                            <span class="voucher">VOUCHER: -10%</span>
+                                            <span class="buy_btn">VIEW</span>
+                                        </div><!-- .product-info -->
+                                    </a>
+                                </div><!-- .product-content -->
+                            </li><!-- .product -->
+                            <li class="product">
+                                <div class="product-content">
+                                    <a href="" class="add-to-wishlist-btn"></a>
+                                    <a href="">
+                                        <div class="labels">
+                                            <span class="new-lbl">NEW</span>
+                                            <span class="popular-lbl">POPULAR</span>
+                                        </div>
+                                        <div class="rating"></div>
+                                        <div class="img-wrap">
+                                            <img src="/assets/img/product-img3.jpg" alt="image description" />
+                                        </div><!-- .img-wrap -->
+                                        <div class="product-info">
+                                            <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                            <div class="price">
+                                                <span>CASHBACK:</span>
+                                                <span>25.99 & 28.5%</span>
+                                            </div>
+                                            <span class="voucher">VOUCHER: -10%</span>
+                                            <span class="buy_btn">VIEW</span>
+                                        </div><!-- .product-info -->
+                                    </a>
+                                </div><!-- .product-content -->
+                            </li><!-- .product -->
+                            <li class="product">
+                                <div class="product-content">
+                                    <a href="" class="add-to-wishlist-btn"></a>
+                                    <a href="">
+                                        <div class="labels">
+                                            <span class="new-lbl">NEW</span>
+                                            <span class="popular-lbl">POPULAR</span>
+                                        </div>
+                                        <div class="rating"></div>
+                                        <div class="img-wrap">
+                                            <img src="/assets/img/product-img4.jpg" alt="image description" />
+                                        </div><!-- .img-wrap -->
+                                        <div class="product-info">
+                                            <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                            <div class="price">
+                                                <span>CASHBACK:</span>
+                                                <span>25.99 & 28.5%</span>
+                                            </div>
+                                            <span class="voucher">VOUCHER: -10%</span>
+                                            <span class="buy_btn">VIEW</span>
+                                        </div><!-- .product-info -->
+                                    </a>
+                                </div><!-- .product-content-->
+                            </li><!-- .product -->
+                            <li class="product">
+                                <div class="product-content">
+                                    <a href="" class="add-to-wishlist-btn"></a>
+                                    <a href="">
+                                        <div class="labels">
+                                            <span class="new-lbl">NEW</span>
+                                            <span class="popular-lbl">POPULAR</span>
+                                        </div>
+                                        <div class="rating"></div>
+                                        <div class="img-wrap">
+                                            <img src="/assets/img/product-img1.jpg" alt="image description" />
+                                        </div><!-- .img-wrap -->
+                                        <div class="product-info">
+                                            <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                            <div class="price">
+                                                <span>CASHBACK:</span>
+                                                <span>25.99 & 28.5%</span>
+                                            </div>
+                                            <span class="voucher">VOUCHER: -10%</span>
+                                            <span class="buy_btn">VIEW</span>
+                                        </div><!-- .product-info -->
+                                    </a>
+                                </div><!-- .product-content -->
+                            </li><!-- .product -->
+                            <li class="product">
+                                <div class="product-content">
+                                    <a href="" class="add-to-wishlist-btn"></a>
+                                    <a href="">
+                                        <div class="labels">
+                                            <span class="new-lbl">NEW</span>
+                                            <span class="popular-lbl">POPULAR</span>
+                                        </div>
+                                        <div class="rating"></div>
+                                        <div class="img-wrap">
+                                            <img src="/assets/img/product-image2.jpg" alt="image description" />
+                                        </div><!-- .img-wrap -->
+                                        <div class="product-info">
+                                            <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                            <div class="price">
+                                                <span>CASHBACK:</span>
+                                                <span>25.99 & 28.5%</span>
+                                            </div>
+                                            <span class="voucher">VOUCHER: -10%</span>
+                                            <span class="buy_btn">VIEW</span>
+                                        </div><!-- .product-info -->
+                                    </a>
+                                </div><!-- .product-content -->
+                            </li><!-- .product -->
+                            <li class="product">
+                                <div class="product-content">
+                                    <a href="" class="add-to-wishlist-btn"></a>
+                                    <a href="">
+                                        <div class="labels">
+                                            <span class="new-lbl">NEW</span>
+                                            <span class="popular-lbl">POPULAR</span>
+                                        </div>
+                                        <div class="rating"></div>
+                                        <div class="img-wrap">
+                                            <img src="/assets/img/product-img3.jpg" alt="image description" />
+                                        </div><!-- .img-wrap -->
+                                        <div class="product-info">
+                                            <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                            <div class="price">
+                                                <span>CASHBACK:</span>
+                                                <span>25.99 & 28.5%</span>
+                                            </div>
+                                            <span class="voucher">VOUCHER: -10%</span>
+                                            <span class="buy_btn">VIEW</span>
+                                        </div><!-- .product-info -->
+                                    </a>
+                                </div><!-- .product-content -->
+                            </li><!-- .product -->
+                            <li class="product">
+                                <div class="product-content">
+                                    <a href="" class="add-to-wishlist-btn"></a>
+                                    <a href="">
+                                        <div class="labels">
+                                            <span class="new-lbl">NEW</span>
+                                            <span class="popular-lbl">POPULAR</span>
+                                        </div>
+                                        <div class="rating"></div>
+                                        <div class="img-wrap">
+                                            <img src="/assets/img/product-img4.jpg" alt="image description" />
+                                        </div><!-- .img-wrap -->
+                                        <div class="product-info">
+                                            <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                            <div class="price">
+                                                <span>CASHBACK:</span>
+                                                <span>25.99 & 28.5%</span>
+                                            </div>
+                                            <span class="voucher">VOUCHER: -10%</span>
+                                            <span class="buy_btn">VIEW</span>
+                                        </div><!-- .product-info -->
+                                    </a>
+                                </div><!-- .product-content-->
+                            </li><!-- .product -->
+                        </ul><!-- .products .masonry-grid #grid -->
+                    </div><!-- .more-products-->
+                </div><!-- .wrap -->
+            </div><!-- .product-single-->

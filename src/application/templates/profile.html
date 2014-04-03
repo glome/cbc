@@ -1,0 +1,211 @@
+
+            <div class="profile">
+                <div class="wrap">
+                    <div class="title">My Profile</div><!-- .title -->
+                    <div class="profile-bar">
+                        <div class="profile-tabs">
+                            <ul>
+                                <li class="active">
+                                    <a href="profile-wishlist">Wish list
+                                        <div class="caret">
+                                            <div class="caret-border"></div>
+                                            <div class="caret-body"></div>
+                                        </div><!-- .caret -->
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="profile-cashback-history">Cashback history
+                                        <div class="caret">
+                                            <div class="caret-border"></div>
+                                            <div class="caret-body"></div>
+                                        </div><!-- .caret -->
+                                    </a>
+                                </li>
+                            </ul>
+                        </div><!-- .profile tabs -->
+                        <div class="cat-dropdown">
+                            <span class="label">KEEP SHOPPING:</span>
+                            <div class="cat-select-box">
+                                <div class="selected-item">Choose Categories</div><!-- .selected-item -->
+                                <ul class="accordion-dropdown">
+
+                                    <?php foreach ($categories as $id => $category): ?>
+                                    <li>
+                                        <span class="item"><?=$category['name']?></span>
+                                    <?php if (count($category['subcategories'])): ?>
+                                        <ul class="accordion-submenu">
+                                        <?php foreach ($category['subcategories'] as $id => $subcategory): ?>
+                                            <li><a href="/catalog/<?=$id?>"><?=$subcategory['name']?></a></li>
+                                        <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
+                                    </li>
+                                    <?php endforeach; ?>
+
+                                </ul>
+                            </div><!-- .select-box -->
+                        </div><!-- .cat-dropdown -->
+                    </div><!-- .profile-bar -->
+                    <div class="profile-tab-content">
+                        <div class="profile-wishlist tab active">
+                            <div class="products">
+                                <div class="row">
+                                    <div class="product">
+                                        <a href="" class="delete-from-wishlist"></a>
+                                        <a href="">
+                                            <div class="labels">
+                                                <span class="new-lbl">NEW</span>
+                                                <span class="popular-lbl">POPULAR</span>
+                                            </div>
+
+                                            <div class="rating"></div>
+                                            <div class="img-wrap">
+                                                <img src="/assets/img/product-img1.jpg" alt="image description" />
+                                            </div><!-- .img-wrap -->
+                                            <div class="product-info">
+                                                <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                                <div class="price">
+                                                    <span>CASHBACK:</span>
+                                                    <span>25.99 & 28.5%</span>
+                                                </div>
+                                                <span class="voucher">VOUCHER: -10%</span>
+                                                <span class="buy_btn">VIEW</span>
+                                            </div><!-- .product-info -->
+                                        </a>
+                                    </div><!-- .product -->
+                                    <div class="product">
+                                        <a href="" class="delete-from-wishlist"></a>
+                                        <a href="">
+                                            <div class="labels">
+                                                <span class="new-lbl">NEW</span>
+                                                <span class="popular-lbl">POPULAR</span>
+                                            </div>
+
+                                            <div class="rating"></div>
+                                            <div class="img-wrap">
+                                                <img src="/assets/img/product-image2.jpg" alt="image description" />
+                                            </div><!-- .img-wrap -->
+                                            <div class="product-info">
+                                                <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                                <div class="price">
+                                                    <span>CASHBACK:</span>
+                                                    <span>25.99 & 28.5%</span>
+                                                </div>
+                                                <span class="voucher">VOUCHER: -10%</span>
+                                                <span class="buy_btn">VIEW</span>
+                                            </div><!-- .product-info -->
+                                        </a>
+                                    </div><!-- .product -->
+                                    <div class="product">
+                                        <a href="" class="delete-from-wishlist"></a>
+                                        <a href="">
+                                            <div class="labels">
+                                                <span class="new-lbl">NEW</span>
+                                                <span class="popular-lbl">POPULAR</span>
+                                            </div>
+                                            <div class="rating"></div>
+                                            <div class="img-wrap">
+                                                <img src="/assets/img/product-img3.jpg" alt="image description" />
+                                            </div><!-- .img-wrap -->
+                                            <div class="product-info">
+                                                <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                                <div class="price">
+                                                    <span>CASHBACK:</span>
+                                                    <span>25.99 & 28.5%</span>
+                                                </div>
+                                                <span class="voucher">VOUCHER: -10%</span>
+                                                <span class="buy_btn">VIEW</span>
+                                            </div><!-- .product-info -->
+                                        </a>
+                                    </div><!-- .product -->
+                                    <div class="product">
+                                        <a href="" class="delete-from-wishlist"></a>
+                                        <a href="">
+                                            <div class="labels">
+                                                <span class="new-lbl">NEW</span>
+                                                <span class="popular-lbl">POPULAR</span>
+                                            </div>
+                                            <div class="rating"></div>
+                                            <div class="img-wrap">
+                                                <img src="/assets/img/product-img4.jpg" alt="image description" />
+                                            </div><!-- .img-wrap -->
+                                            <div class="product-info">
+                                                <span class="title">Title of the product that is long and takes up to 3 rows</span>
+                                                <div class="price">
+                                                    <span>CASHBACK:</span>
+                                                    <span>25.99 & 28.5%</span>
+                                                </div>
+                                                <span class="voucher">VOUCHER: -10%</span>
+                                                <span class="buy_btn">VIEW</span>
+                                            </div><!-- .product-info -->
+                                        </a>
+                                    </div><!-- .product -->
+                                </div><!-- .row -->
+                            </div><!-- .products-->
+                        </div><!-- .profile-wishlist -->
+                        <div class="profile-cashback-history tab">
+                            <ul class="cashback-history">
+                                <li class="table-heading">
+                                    <span class="retailer">Retailer</span>
+                                    <div class="order">
+                                        <span class="order-title">Order</span>
+                                        <span class="date"><a href="">Date</a></span>
+                                        <span class="cashback"><a href="">Cashback</a></span>
+                                        <span class="status"><a href="">Status</a></span>
+                                    </div><!-- .order -->
+                                </li><!-- .table-heading -->
+                                <li>
+                                    <span>Title of retailer goes here</span>
+                                    <span>12/02/2014</span>
+                                    <span>€10</span>
+                                    <span>REDEEMED</span>
+                                </li>
+                                <li>
+                                    <span>Title of retailer goes here</span>
+                                    <span>12/02/2014</span>
+                                    <span>€10</span>
+                                    <span>REDEEMED</span>
+                                </li>
+                                <li>
+                                    <span>Title of retailer goes here</span>
+                                    <span>12/02/2014</span>
+                                    <span>€10</span>
+                                    <span>REDEEMED</span>
+                                </li>
+                                <li>
+                                    <span>Title of retailer goes here</span>
+                                    <span>12/02/2014</span>
+                                    <span>€10</span>
+                                    <span>REDEEMED</span>
+                                </li>
+                                <li>
+                                    <span>Title of retailer goes here</span>
+                                    <span>12/02/2014</span>
+                                    <span>€10</span>
+                                    <span>REDEEMED</span>
+                                </li><li>
+                                    <span>Title of retailer goes here</span>
+                                    <span>12/02/2014</span>
+                                    <span>€10</span>
+                                    <span>REDEEMED</span>
+                                </li>
+                                <li>
+                                    <span>Title of retailer goes here</span>
+                                    <span>12/02/2014</span>
+                                    <span>€10</span>
+                                    <span>REDEEMED</span>
+                                </li>
+                                <li>
+                                    <span>Title of retailer goes here</span>
+                                    <span>12/02/2014</span>
+                                    <span>€10</span>
+                                    <span>REDEEMED</span>
+                                </li>
+                            </ul><!-- .cashback-history -->
+                        </div><!-- .profile-cashback-history -->
+                    </div><!-- .profile-tab-content -->
+
+                    <?php echo $deals; ?>
+
+                </div><!-- .wrap -->
+            </div><!-- .profile -->

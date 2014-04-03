@@ -2,29 +2,29 @@
 
 namespace Application\Views;
 
-class Landing extends \Application\Common\View
+class Profile extends \Application\Common\View
 {
 
     public function index()
     {
+        return $this->wishlist();
+    }
+
+    public function wishlist()
+    {
         $builder = $this->templateBuilder;
-
         $main = $builder->create('main');
-        $content = $builder->create('landing');
-        $navigation = $builder->create('navigation');
-
+        $content = $builder->create('profile');
 
         $content->assignAll([
-            'navigation' => $navigation,
-            'banners' => $builder->create('banners'),
             'deals' => $builder->create('deals'),
-            'popular' => $builder->create('popular-categories'),
-            'about' => $builder->create('about'),
         ]);
+
+
 
         $shop = $this->serviceFactory->create('Shop');
         $categories = $shop->getCategories();
-        $navigation->assign('categories', $categories);
+        $content->assign('categories', $categories);
 
         $main->assignAll([
             'content' => $content,
@@ -32,4 +32,11 @@ class Landing extends \Application\Common\View
         ]);
         return $main->render();
     }
+
+
+    public function history()
+    {
+        return $this->wishlist();
+    }
+
 }

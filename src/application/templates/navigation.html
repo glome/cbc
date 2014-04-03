@@ -6,76 +6,20 @@
                         <ul>
 
                             <?php foreach ($categories as $id => $category): ?>
-                            <li><span><?=$category['name']?></span></li>
+                            <li>
+                                <span><?=$category['name']?></span>
+                            <?php if (count($category['subcategories'])): ?>
+                                <div class="cat-sub-menu">
+                                    <ul>
+                                    <?php foreach ($category['subcategories'] as $id => $subcategory): ?>
+                                        <li><a href="/catalog/<?=$id?>"><?=$subcategory['name']?></a></li>
+                                    <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+                            </li>
+
                             <?php endforeach; ?>
-                            <?php /*
-                            <li>
-                                <span>Business</span>
-                                <div class="cat-sub-menu">
-                                    <ul>
-                                        <li><a href="">Fashion & Jewelry</a></li>
-                                        <li><a href="">Department Stores</a></li>
-                                        <li><a href="">Health & Beauty</a></li>
-                                        <li><a href="">Food & Beverages</a></li>
-                                        <li><a href="">Hobby & Leisure</a></li>
-                                        <li><a href="">Gifts & Gadgets</a></li>
-                                    </ul>
-                                    <div class="cat-img-wrap">
-                                        <div class="img-center">
-                                            <img src="/assets/img/pic1.jpg" alt="image description"/>
-                                        </div><!-- .img-center -->
-                                    </div><!-- .cat-img-wrap -->
-                                </div>
-                            </li>
-                            <li>
-                                <span>Entertainment</span>
-                                <div class="cat-sub-menu">
-                                    <ul>
-                                        <li><a href="">Fashion & Jewelry</a></li>
-                                        <li><a href="">Department Stores</a></li>
-                                    </ul>
-                                    <div class="cat-img-wrap">
-                                        <div class="img-center">
-                                            <img src="/assets/img/pic1.jpg" alt="image description"/>
-                                        </div><!-- .img-center -->
-                                    </div><!-- .cat-img-wrap -->
-                                </div>
-                            </li>
-                            <li>
-                                <span>Home & Family</span>
-                                <div class="cat-sub-menu">
-                                    <ul>
-                                        <li><a href="">Fashion & Jewelry</a></li>
-                                        <li><a href="">Department Stores</a></li>
-                                    </ul>
-                                    <div class="cat-img-wrap">
-                                        <div class="img-center">
-                                            <img src="/assets/img/pic1.jpg" alt="image description"/>
-                                        </div><!-- .img-center -->
-                                    </div><!-- .cat-img-wrap -->
-                                </div>
-                            </li>
-                            <li>
-                                <span>Lifestyle</span>
-                                <div class="cat-sub-menu">
-                                    <ul>
-                                        <li><a href="">Health & Beauty</a></li>
-                                        <li><a href="">Food & Beverages</a></li>
-                                        <li><a href="">Hobby & Leisure</a></li>
-                                        <li><a href="">Gifts & Gadgets</a></li>
-                                    </ul>
-                                    <div class="cat-img-wrap">
-                                        <div class="img-center">
-                                            <img src="/assets/img/pic1.jpg" alt="image description"/>
-                                        </div><!-- .img-center -->
-                                    </div><!-- .cat-img-wrap -->
-                                </div>
-                            </li>
-                            <li><span>Living</span></li>
-                            <li><span>Sport</span></li>
-                            <li><span>Technology</span></li>
-                            <li><span>Travel</span></li>
-                            */ ?>
                         </ul>
                     </div><!-- .cat-menu -->
                     <div class="search">
@@ -83,15 +27,12 @@
                             <span class="selected">ALL</span>
                             <ul>
                                 <li><a href="">ALL</a></li>
-                                <li><a href="">menu item</a></li>
-                                <li><a href="">menu item</a></li>
-                                <li><a href="">menu item</a></li>
-                                <li><a href="">menu item</a></li>
+                                <li><a href="">CURRENT</a></li>
                             </ul>
                         </div>
                         <div class="search-btn"></div>
-                        <form method="post" class="search-form">
-                            <input type="text" name="search-field" id="search-input"/>
+                        <form method="post" class="search-form" action="/search">
+                            <input type="text" name="search-field" id="search-input" value="<?php echo isset($query)?$query : ''?>"/>
                             <input type="submit" value=" " name="search-submit" id="search-submit"/>
                         </form>
                     </div><!-- .search -->

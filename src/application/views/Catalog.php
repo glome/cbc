@@ -7,13 +7,32 @@ class Catalog extends \Application\Common\View
 
     public function index()
     {
-        $container = $this->templateBuilder->create('catalog');
+        $builder = $this->templateBuilder;
+
+        $main = $builder->create('main');
+        $content = $builder->create('catalog');
+        $navigation = $builder->create('navigation');
+
 
         $shop = $this->serviceFactory->create('Shop');
         $products = $shop->getProducts();
+        $categories = $shop->getCategories();
+        $navigation->assign('categories', $categories);
 
-        $navigation = $this->templateBuilder->create('navigation');
-        $container->assign('navigation', $navigation);
-        return $container->render();
+        $current = $shop->getParentCategoryId();
+
+        $content->assignAll([
+            'navigation' => $navigation,
+            'products'   => $products,
+            'category'   => $categories[$current],
+            'current'    => $shop->getCurrentCategoryId(),
+        ]);
+
+
+        $main->assignAll([
+            'content' => $content,
+            'user'    => $builder->create('profile-brief'),
+        ]);
+        return $main->render();
     }
 }

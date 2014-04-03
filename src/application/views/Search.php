@@ -2,7 +2,7 @@
 
 namespace Application\Views;
 
-class Landing extends \Application\Common\View
+class Search extends \Application\Common\View
 {
 
     public function index()
@@ -10,26 +10,29 @@ class Landing extends \Application\Common\View
         $builder = $this->templateBuilder;
 
         $main = $builder->create('main');
-        $content = $builder->create('landing');
+        $content = $builder->create('search');
         $navigation = $builder->create('navigation');
-
+        $results = $builder->create('results');
 
         $content->assignAll([
             'navigation' => $navigation,
-            'banners' => $builder->create('banners'),
-            'deals' => $builder->create('deals'),
-            'popular' => $builder->create('popular-categories'),
-            'about' => $builder->create('about'),
+            'results' => $results,
         ]);
 
         $shop = $this->serviceFactory->create('Shop');
-        $categories = $shop->getCategories();
-        $navigation->assign('categories', $categories);
+        $navigation->assignAll([
+            'categories' => $shop->getCategories(),
+            'query' => $shop->getSearchedTerm(),
+        ]);
+
+        $results->assign('products', $shop->getProducts());
 
         $main->assignAll([
             'content' => $content,
             'user' => $builder->create('profile-brief'),
         ]);
+
+
         return $main->render();
     }
 }

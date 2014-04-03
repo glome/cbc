@@ -1,0 +1,142 @@
+<?php
+
+    namespace Application\DomainObjects;
+
+    class Product
+    {
+
+        private $id;
+
+        public function setId($id) {
+            $this->id = $id;
+        }
+
+
+        public function getId() {
+            return $this->id;
+        }
+
+
+        private $title;
+
+        public function setTitle($title)
+        {
+            $this->title = $title;
+        }
+
+
+        public function getTitle()
+        {
+            return $this->title;
+        }
+
+        private $image;
+
+        public function setContent($image)
+        {
+            $this->setImage($image);
+        }
+
+        public function setImage($image)
+        {
+            $this->image = $image;
+        }
+
+        public function getImage()
+        {
+            return $this->image;
+        }
+
+
+        private $currency;
+        private $currencySymbol;
+
+        public function setCurrency($currency)
+        {
+            $map = [
+                'EUR' => '€',
+                'USD' => '$',
+            ];
+            $this->currency = $currency;
+            $this->currencySymbol = $map[$currency];
+        }
+        public function getCurrency($currency)
+        {
+            return $this->currency;
+        }
+
+        private $page;
+
+        public function setPage($page)
+        {
+            $this->page = $page;
+        }
+
+        public function getPage()
+        {
+            return $this->page;
+        }
+
+
+        private $description;
+
+        public function setDescription($description)
+        {
+            $this->description = $description;
+        }
+
+        public function getDescription()
+        {
+            return $this->description;
+        }
+
+
+        private $price;
+
+        public function setLastPrice($price)
+        {
+            $this->price = $price;
+        }
+
+        private $bonusMoney;
+
+        public function setBonusMoney($bonusMoney)
+        {
+            if ($bonusMoney !== '0.00') {
+                $this->bonusMoney = $bonusMoney;
+            }
+        }
+
+        public function getBonusMoney()
+        {
+            return $this->bonusMoney;
+        }
+
+
+        private $bonusPercent;
+
+        public function setBonusPercent($bonusPercent)
+        {
+            $this->bonusPercent = $bonusPercent;
+        }
+
+        public function getBonusPercent()
+        {
+            return $this->bonusPercent;
+        }
+
+        public function getParsedArray()
+        {
+            return [
+                'title' => $this->title,
+                'image' => $this->image,
+                'currencySymbol' => $this->currencySymbol,
+                'price' => $this->price,
+                'description' => $this->description,
+                'bonusMoney' => $this->bonusMoney,
+                'bonusPercent' => $this->bonusPercent,
+            ];
+        }
+
+
+    }

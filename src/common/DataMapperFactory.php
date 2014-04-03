@@ -42,6 +42,9 @@ class DataMapperFactory
         if ($instance instanceof CookieMapper) {
             $instance->setCookieJar($this->shared['CookieJar']);
         }
+        if ($instance instanceof CacheMapper) {
+            $instance->setCache($this->shared['Cache']);
+        }
         return $instance;
     }
 

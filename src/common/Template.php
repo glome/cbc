@@ -21,6 +21,14 @@ class Template
     }
 
 
+    public function assignAll($list)
+    {
+        foreach ($list as $key => $value) {
+            $this->parameters[$key] = $value;
+        }
+    }
+
+
     public function append($name, $value)
     {
         $type = gettype($value);

@@ -1,21 +1,21 @@
 
-            <?php echo $navigation; ?>
-
-
             <div class="products-page">
                 <div class="wrap">
+                    <?php /*
                     <div class="filter-sidebar">
                         <div class="filter-cat">
-                            <span class="filter-title"><?=$category['name']?></span>
+                            <span class="filter-title">LIVING</span>
                             <div class="filter-content-wrap">
                                 <ul>
-                                <?php foreach($category['subcategories'] as $id => $subcat): ?>
-                                    <li <?php echo (int)$id===(int)$current ? 'class="selected"' : ''?>><a href="/catalog/<?=$id?>"><?=$subcat['name']?></a></li>
-                                <?php endforeach; ?>
+                                    <li class="selected"><a href="">Fashion & Jewelery</a></li>
+                                    <li><a href="">Department stores</a></li>
+                                    <li><a href="">Health & Beauty</a></li>
+                                    <li><a href="">Food & Beverages</a></li>
+                                    <li><a href="">Hobby & Leisure</a></li>
+                                    <li><a href="">Gifts & Gadgets</a></li>
                                 </ul>
                             </div><!-- .filter-content-wrap -->
                         </div><!-- .filter-cat -->
-                        <?php /*
                         <div class="filter-retailer">
                             <span class="filter-title">Retailer <a href="" class="clear">clear</a></span>
                             <div class="filter-content-wrap">
@@ -44,66 +44,12 @@
                                 </ul>
                             </div><!-- .filter-content-wrap -->
                         </div><!-- .filter-retailer -->
-                        */ ?>
                     </div><!-- .filter-sidebar -->
-
-                    <div class="products-main">
+                    */ ?>
+                    <div class="more-products">
                         <div class="page-title">
-                            <h1><?=$category['subcategories'][(int)$current]['name']?></h1>
+                            <h1>Search results</h1>
                         </div>
-                        <div class="cat-banner">
-                            <div class="cat-slider flexslider">
-                                <ul class="slides">
-                                    <li>
-                                        <div class="bg-img">
-                                            <img src="/assets/img/cat-slider-img-1.jpg" alt="optional image description" />
-                                        </div><!-- .bg-img -->
-                                        <div class="left">
-                                            <div class="price">
-                                                <span>BEST OFFER</span>
-                                                <span>75 Eur</span>
-                                            </div><!-- .price -->
-                                            <span class="slide-title">A longer Title of the product in one row</span>
-                                            <span class="slide-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et viverra purus.</span>
-                                        </div><!-- .left -->
-                                        <div class="right">
-                                            <a href="" class="view_offer">VIEW OFFER</a>
-                                        </div><!-- .right -->
-                                    </li>
-                                    <li>
-                                        <div class="bg-img">
-                                            <img src="/assets/img/cat-slider-img-1.jpg" alt="optional image description" />
-                                        </div><!-- .bg-img -->
-                                        <div class="left">
-                                            <div class="price">
-                                                <span>BEST OFFER</span>
-                                                <span>80 Eur</span>
-                                            </div><!-- .price -->
-                                            <span class="slide-title">A longer Title of the product in one row</span>
-                                            <span class="slide-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et viverra purus.</span>
-                                        </div><!-- .left -->
-                                        <div class="right">
-                                            <a href="" class="view_offer">VIEW OFFER</a>
-                                        </div><!-- .right -->
-                                    </li>
-                                </ul>
-                            </div><!-- .cat-slider -->
-                        </div><!-- .cat-banner -->
-
-                        <?php /*
-                        <div class="options-bar">
-                            <div class="order">
-                                <span class="label">ORDER BY:</span>
-                                <div class="select-box select-box-white">
-                                    <span class="selected">Newest added</span>
-                                    <ul>
-                                        <li>newest->oldest</li>
-                                        <li>oldest->newest</li>
-                                    </ul>
-                                </div><!-- .select-box .select-box-white -->
-                            </div><!-- .order -->
-                        </div><!-- .product-bar -->
-                        */ ?>
 
                         <ul class="products masonry-grid" id="grid">
                             <?php foreach ($products as $id => $product): ?>
@@ -132,7 +78,9 @@
                                     </a>
                                 </div><!-- .product-content-->
                             </li><!-- .product -->
+
                             <?php endforeach; ?>
+
                         </ul><!-- .products -->
 
                     </div><!-- .products-main -->
