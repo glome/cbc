@@ -20,6 +20,7 @@ class ProductCollection extends \Application\Common\CookieMapper
             $cat = $collection->getCategory();
             $response = $client->get("https://api.glome.me/products.json?cat_id=$cat")->send();
             $data = $response->json();
+//            print_r($data);
             foreach ($data as $entry) {
                 $collection->addItem($entry);
             }

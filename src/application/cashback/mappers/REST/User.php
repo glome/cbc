@@ -37,6 +37,7 @@ class User extends \Application\Common\CookieMapper
 
         $response = $request->send();
 
+        //var_dump($response->json());
         $temp = $response->getHeader('X-Csrf-Token')->toArray();
         $instance->setToken(array_pop($temp));
 

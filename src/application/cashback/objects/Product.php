@@ -125,6 +125,19 @@
             return $this->bonusPercent;
         }
 
+
+        private $link;
+
+        public function setPersonalAction($link)
+        {
+            $this->link = $link;
+        }
+
+        public function getLink()
+        {
+            return $this->link;
+        }
+
         public function getParsedArray()
         {
             return [
@@ -135,6 +148,7 @@
                 'description' => $this->description,
                 'bonusMoney' => $this->bonusMoney,
                 'bonusPercent' => $this->bonusPercent,
+                'link' => $this->link,
             ];
         }
 

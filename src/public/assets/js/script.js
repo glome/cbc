@@ -320,7 +320,7 @@ $(document).ready(function() {
     });
 
     /* FILTER SIDEBAR */
-
+/*
     $(".filter-cat .filter-content-wrap ul li a").on("click", function(e) {
         e.preventDefault();
 
@@ -329,6 +329,7 @@ $(document).ready(function() {
             $(this).parent().addClass("selected");
         }
     });
+    */
     $(".filter-brand .filter-content-wrap ul li a, .filter-retailer .filter-content-wrap ul li a").on("click", function(e) {
         e.preventDefault();
 
@@ -468,15 +469,34 @@ $(document).ready(function() {
      }
      if(top2 < scrolled) {
      $(".filter-sidebar").removeClass("absolute");
-     }    
-     
-     
      }
-     
+
+
+     }
+
      console.log(scrolled);
      });
-     
+
      */
+
+    /* Overlay */
+
+    $(".buy-now-btn").on("click", function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+        $(".overlay1").addClass("open");
+        setTimeout(function(){
+            $(".overlay1").removeClass("open");
+            $(".overlay2").addClass("open");
+
+            window.open(link, '_blank');
+        },2500);
+    });
+
+    $(".close-overlay, .overlay-bg").on("click", function(e){
+        e.preventDefault();
+            $(".overlay").removeClass("open");
+    });
 
     /* Filter mobile */
     $(".filter-title").on("click", function(e) {
@@ -500,6 +520,7 @@ $(document).ready(function() {
             }
         }
     });
+
     $(".options-bar .order .select-box ul li").on("click", function() {
         if ($(window).width() < 731) {
             if (!$(this).hasClass("selected")) {
@@ -508,9 +529,9 @@ $(document).ready(function() {
             }
         }
     });
-    
+
     /* Overlay */
-    
+
     $()
 
     /* Masonry grid */
