@@ -71,6 +71,11 @@ use Guzzle\Plugin\Cookie\CookiePlugin;
         }
 
 
-        public function addSubcategories($categories, $data){}
+        public function addSubcategories($categories, $data){
+            $current = $categories->addItem($data);
+            foreach ($data['children'] as $item) {
+                $current->addItem($item);
+            }
+        }
 
     }

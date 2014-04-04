@@ -7,6 +7,7 @@
 
         public function fetch($collection)
         {
+            // return false;
             $data = $this->cache->get('glome.categories');
             if ($data) {
                 $collection->import(json_decode($data, true));
