@@ -97,6 +97,7 @@ header{
     background-image: url(/assets/img/logo.png);
     background-repeat: no-repeat;
     background-size: 70px auto;
+    text-decoration: none;
 }
 .logo .logo-text {
     float: left;
@@ -104,6 +105,7 @@ header{
     color: #595D5E;
     font-family: "noto sans",sans-serif;
     font-size: 18px;
+    text-decoration: none;
 }
 .logo .logo-text:nth-child(2) {
     margin-top: 0;
@@ -617,7 +619,7 @@ footer {
     top: 34px;
     left: 0;
     max-height: 0;
-    height: 270px;
+    height: 300px;
     padding: 0;
     background-color: #7A7D7E;
     color: #ffffff;
@@ -804,6 +806,9 @@ footer {
     width: 24%;
     margin-left: 1.333%;;
 }
+.top-deals .products .product a {
+    text-decoration: none;
+}
 .top-deals .products .product:first-child {
     margin-left: 0;
 }
@@ -825,6 +830,7 @@ footer {
     float: left;
     width: 22%;
     margin-left: 4%;
+    color: #595D5E;
     background-color: #ffffff;
     -webkit-box-shadow: 0 0 2px 1px rgba(170, 170, 170, 0.8);
     -moz-box-shadow:    0 0 2px 0 rgba(170, 170, 170, 0.8);
@@ -1870,6 +1876,9 @@ footer {
     box-shadow: 0 0 4px rgba(0,0,0,0.3);
     text-align: center;
 }
+.product-full .left .img-holder img {
+    max-width: 100%;
+}
 .product-full .left .img-holder .tags {
     position: absolute;
     top: 17px;
@@ -2222,6 +2231,8 @@ footer {
     }
     .header-profile:hover .profile-menu {
         max-height: 1000px;
+        padding-top: 30px;
+        top: 38px;
     }
     .header-profile:hover .profile-menu ul {
         opacity: 1;
