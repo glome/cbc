@@ -171,6 +171,7 @@ header{
     color: #7A7D7E;
     font-family: "roboto",sans-serif;
     font-size: 12px;
+    cursor: default; 
 }
 .select-box ul {
     position: absolute;
@@ -202,6 +203,7 @@ header{
     min-height: 12px;
     padding: 9px 10%;
     background-color: #ffffff;
+    cursor: default;
 }
 select {
     height: 0;
@@ -240,6 +242,7 @@ select {
     float: left;
     width: 500px;
     margin-right: 2px;
+    cursor: default;
 }
 .select-checkbox ul {
     position:absolute;
@@ -614,13 +617,13 @@ footer {
     width: 206px;
     margin: 10px;
     text-transform: uppercase;
+    cursor: default;
 }
 .cat-menu ul {
     position: absolute;
     top: 34px;
     left: 0;
     max-height: 0;
-    height: 300px;
     padding: 0;
     background-color: #7A7D7E;
     color: #ffffff;
@@ -645,6 +648,7 @@ footer {
 .cat-menu ul li span {
     font-size: 13px;
     text-transform: uppercase;
+    cursor: default;
 }
 
 
@@ -761,6 +765,7 @@ footer {
     background-image: url(/assets/img/arrow-down-white.png);
     background-repeat: no-repeat;
     background-position: 90% center;
+    cursor: default;
 }
 .search-form {
     float: left;
@@ -825,12 +830,12 @@ footer {
     right: 3px;
     width: 25px;
     height: 25px;
-    background-image: url(/assets/img/star-icon-red.png);
+    background-image: url(/assets/img/star_empty_red-16.png);
     background-repeat: no-repeat;
 }
 .add-to-wishlist-btn:hover,
 .add-to-wishlist-btn.active {
-    background-image: url(/assets/img/star-icon-red-full.png);
+    background-image: url(/assets/img/star_full_red-17.png);
 }
 
 .product {
@@ -861,6 +866,7 @@ footer {
     float: left;
     width: 88%;
     margin: 0 6% 15px;
+    color: #595D5E;
     font-size: 13px;
     font-weight: 400;
     line-height: 15px;
@@ -1813,6 +1819,9 @@ footer {
     margin: 0 2% 10px;
     background-color: #FFFFFF;
     box-shadow: 0 0 2px 0 rgba(170, 170, 170, 0.8);
+}
+.masonry-grid .product .product-content a {
+    
 }
 
 #grid2 li.animate,
