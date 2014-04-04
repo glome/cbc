@@ -12,7 +12,9 @@ class Redirect extends \Application\Common\View
         $main = $builder->create('redirect');
         $shop = $this->serviceFactory->create('Shop');
         $product = $shop->getCurrentProduct();
-        $main->assign('product', $product);
+        $main->assignAll([
+            'product' => $product,
+        ]);
 
         return $main->render();
     }

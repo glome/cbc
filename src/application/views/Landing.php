@@ -25,10 +25,14 @@ class Landing extends \Application\Common\View
         $shop = $this->serviceFactory->create('Shop');
         $categories = $shop->getCategories();
         $navigation->assign('categories', $categories);
+        $footer = $builder->create('footer');
+        $footer->assign('categories', $categories);
+
 
         $main->assignAll([
             'content' => $content,
-            'user' => $builder->create('profile-brief'),
+            'user'    => $builder->create('profile-brief'),
+            'footer'  => $footer,
         ]);
         return $main->render();
     }

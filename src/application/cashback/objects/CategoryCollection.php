@@ -55,6 +55,7 @@ class CategoryCollection extends \Application\Common\Collection
 
             $id = $category->getId();
             $data[$id] = [
+                'id' => $category->getId(),
                 'name' => $category->getName(),
                 'subcategories' => $category->getParsedArray(),
             ];

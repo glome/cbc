@@ -1,0 +1,30 @@
+
+        <footer class="page-footer">
+            <div class="footer-teaser">
+                <div class="wrap">
+                    <div class="footer-logo-wrap">
+                        <a href="/" class="footer-logo"></a>
+                    </div><!-- .footer-logo -->
+                    <div class="footer-teaser-txt">
+                        <span class="txt-small">Cashback catalog is brought to you by <a href="">Glome</a></span>
+                        <span>HUMAN-DRIVEN MARKETING PLATFORM</span>
+                    </div><!-- .footer-teaser-txt -->
+                </div><!-- .wrap -->
+            </div><!-- .footer-teaser -->
+            <nav class="footer-menu">
+                <div class="wrap">
+                    <ul>
+                    <?php foreach ($categories as $category): ?>
+                        <li class="col">
+                            <span class="title"><?=$category['name']?></span><!-- .item-title -->
+                            <ul>
+                            <?php foreach ($category['subcategories'] as $subcategory): ?>
+                                <li><a href="/catalog/<?=$subcategory['id']?>"><?=$subcategory['name']?></a></li>
+                            <?php endforeach; ?>
+                            </ul>
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                </div><!-- .wrap -->
+            </nav><!-- .footer-menu -->
+        </footer>

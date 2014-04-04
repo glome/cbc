@@ -16,12 +16,6 @@ class Product extends \Application\Common\View
         $overlays = $builder->create('overlays');
 
 
-        $main->assignAll([
-            'content' => $content,
-            'user' => $builder->create('profile-brief'),
-            'overlays' => $overlays,
-        ]);
-
         $shop = $this->serviceFactory->create('Shop');
         $product = $shop->getCurrentProduct();
 
@@ -34,7 +28,18 @@ class Product extends \Application\Common\View
         $overlays->assign('product', $product);
         $element->assign('product', $product);
         $categories = $shop->getCategories();
+        $footer = $builder->create('footer');
+        $footer->assign('categories', $categories);
         $navigation->assign('categories', $categories);
+
+        $main->assignAll([
+            'content' => $content,
+            'user' => $builder->create('profile-brief'),
+            'overlays' => $overlays,
+            'footer'  => $footer,
+        ]);
+
+
 
         return $main->render();
     }

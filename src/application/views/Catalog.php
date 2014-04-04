@@ -18,6 +18,8 @@ class Catalog extends \Application\Common\View
         $products = $shop->getProducts();
         $categories = $shop->getCategories();
         $navigation->assign('categories', $categories);
+        $footer = $builder->create('footer');
+        $footer->assign('categories', $categories);
 
         $current = $shop->getParentCategoryId();
 
@@ -32,6 +34,7 @@ class Catalog extends \Application\Common\View
         $main->assignAll([
             'content' => $content,
             'user'    => $builder->create('profile-brief'),
+            'footer'  => $footer,
         ]);
         return $main->render();
     }

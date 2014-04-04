@@ -20,16 +20,20 @@ class Search extends \Application\Common\View
         ]);
 
         $shop = $this->serviceFactory->create('Shop');
+        $categories = $shop->getCategories();
         $navigation->assignAll([
-            'categories' => $shop->getCategories(),
+            'categories' => $categories,
             'query' => $shop->getSearchedTerm(),
         ]);
 
         $results->assign('products', $shop->getProducts());
+        $footer = $builder->create('footer');
+        $footer->assign('categories', $categories);
 
         $main->assignAll([
             'content' => $content,
             'user' => $builder->create('profile-brief'),
+            'footer'  => $footer,
         ]);
 
 
