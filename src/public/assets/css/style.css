@@ -677,8 +677,9 @@ footer {
     color: #ffffff;
     text-decoration: none;
     text-transform: capitalize;
+    line-height: 1.2;
 }
-.cat-menu ul li .cat-sub-menu ul li a:hover {
+.cat-menu ul li .cat-sub-menu ul li:hover a {
     color: #595D5E;
 }
 .cat-menu ul li .cat-sub-menu ul li:hover {
@@ -1943,7 +1944,10 @@ footer {
 .product-full .price-info .cashback .cb-amount span {
     float: left;
     width: 100%;
-    margin: 14px 0;
+    margin: 3px 0;
+}
+.product-full .price-info .cashback .cb-amount.has-one span {
+    margin:14px 0;
 }
 .product-full .price-info .voucher .voucher-amount span {
     float: left;
@@ -2319,7 +2323,7 @@ footer {
     .sub-cat-menu ul li {
         color: #7a7d7e;
         background-color: #F2F2F2;
-        background-image: url();
+        
     }
 
     /* Product hover  */

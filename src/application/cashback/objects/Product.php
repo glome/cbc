@@ -140,7 +140,14 @@
 
         public function getParsedArray()
         {
+
+            $onebonus = ($this->bonusMoney === null && $this->bonusPercent !== null) ||
+                        ($this->bonusMoney !== null && $this->bonusPercent === null);
+
+
+
             return [
+                'one-bonus' => $onebonus,
                 'id' => $this->id,
                 'title' => $this->title,
                 'image' => $this->image,

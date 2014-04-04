@@ -20,7 +20,7 @@
                             <div class="price-info">
                                 <div class="cashback">
                                     <span class="lbl">CASHBACK</span>
-                                    <div class="cb-amount">
+                                    <div class="cb-amount <?php echo $product['one-bonus'] === true ? 'has-one' : ''; ?>">
                                         <?php if ($product['bonusMoney'] !== null): ?>
                                         <span><?=$product['currencySymbol']?> <?=$product['bonusMoney']?> </span>
                                         <?php endif; ?>
