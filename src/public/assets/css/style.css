@@ -830,12 +830,12 @@ footer {
     right: 3px;
     width: 25px;
     height: 25px;
-    background-image: url(/assets/img/star_empty_red-16.png);
+    background-image: url(/assets/img/star_empty_red-16.svg);
     background-repeat: no-repeat;
 }
 .add-to-wishlist-btn:hover,
 .add-to-wishlist-btn.active {
-    background-image: url(/assets/img/star_full_red-17.png);
+    background-image: url(/assets/img/star_full_red-17.svg);
 }
 
 .product {
