@@ -91,6 +91,22 @@
         }
 
 
+        private $creationDate;
+
+        public function setCreatedAt($date)
+        {
+            $this->creationDate = new \DateTime($date);
+        }
+
+        public function isNew()
+        {
+            $old = $this->creationDate->add(new \DateInterval('P1M'));
+            $now = new \DateTime("now");
+
+            return $now <= $old;
+        }
+
+
         private $price;
 
         public function setLastPrice($price)
@@ -148,6 +164,7 @@
 
             return [
                 'one-bonus' => $onebonus,
+                'new' => $this->isNew(),
                 'id' => $this->id,
                 'title' => $this->title,
                 'image' => $this->image,
