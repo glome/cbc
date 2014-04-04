@@ -364,7 +364,6 @@ select {
     max-height: 0px;
     right: -2px;
     width: 165px;
-    background-color: #ffffff;
     overflow: hidden;
     z-index: 0;
     /*
@@ -387,6 +386,7 @@ select {
 }
 .header-profile.active .profile-menu ul {
     opacity: 1;
+    background-color: #ffffff;
 }
 .profile-menu ul {
     float: left;
@@ -394,6 +394,7 @@ select {
     padding: 5px 0;
     border: 2px solid transparent;
     opacity: 0;
+    background-color: #FFFFFF;
     /*
     -webkit-transition: border 0.2s;
     -moz-transition:    border 0.2s;
@@ -656,6 +657,7 @@ footer {
     min-height: 270px;
     padding: 15px 0;
     background-color: #595D5E;
+    border-left: 1px solid #595D5E;
     overflow: hidden;
     opacity: 0;
 
@@ -676,9 +678,13 @@ footer {
     text-decoration: none;
     text-transform: capitalize;
 }
+.cat-menu ul li .cat-sub-menu ul li a:hover {
+    color: #595D5E;
+}
 .cat-menu ul li .cat-sub-menu ul li:hover {
-    background-color: transparent;
+    background-color: #F2F2F2;
     background-image: none;
+    color: #595D5E;
 }
 .cat-img-wrap {
     display: table;
@@ -821,6 +827,7 @@ footer {
     background-image: url(/assets/img/star-icon-red.png);
     background-repeat: no-repeat;
 }
+.add-to-wishlist-btn:hover,
 .add-to-wishlist-btn.active {
     background-image: url(/assets/img/star-icon-red-full.png);
 }
@@ -1936,7 +1943,7 @@ footer {
 .product-full .price-info .cashback .cb-amount span {
     float: left;
     width: 100%;
-    margin: 3px 0;
+    margin: 14px 0;
 }
 .product-full .price-info .voucher .voucher-amount span {
     float: left;
@@ -2034,6 +2041,9 @@ footer {
     background-image: url(/assets/img/fb.png);
     background-repeat: no-repeat;
 }
+.product-full .social-media .fb:hover {
+    background-image: url(/assets/img/fb-hover.png);
+}
 .product-full .social-media .tw {
     float: left;
     width: 38px;
@@ -2041,6 +2051,9 @@ footer {
     margin-right: 15px;
     background-image: url(/assets/img/tw.png);
     background-repeat: no-repeat;
+}
+.product-full .social-media .tw:hover {
+    background-image: url(/assets/img/tw-hover.png);
 }
 .product-full .social-media span {
     float: left;
@@ -2157,6 +2170,7 @@ footer {
     font-size: 13px;
     text-align: left;
     font-weight: 300;
+    line-height: 1.2;
 }
 .overlay .center .content-box .notice-msg .bold {
     margin-top: 0;
@@ -2181,6 +2195,35 @@ footer {
     font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 300;
+}
+
+/* REDIRECT */
+.overlay.redirect-msg {
+    opacity: 1;
+    z-index: 1000;
+}
+.overlay.redirect-msg .center .content-box {
+    -webkit-transform:  scale(1);
+    -moz-transform:     scale(1);
+    transform:          scale(1);
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:    0 0 4px rgba(0, 0, 0, 0.3);    
+    box-shadow:         0 0 4px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+.redirect-bg {
+    background-color: #FCFBFA;
+}
+.overlay.redirect-msg .center .content-box .title {
+    margin-top: 50px;
+    color: #FE7063;
+    text-align: center;
+}
+.overlay.redirect-msg .center .content-box {
+    padding-bottom: 80px;
+}
+.overlay.redirect-msg .center .content-box .notice-msg span:nth-child(2) {
+    color: #FE7063;
 }
 
 
@@ -2306,12 +2349,6 @@ footer {
 
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    /*
-    *   Retina displays
-   */
-
-}
 
 @media (max-width: 768px) {
     /*

@@ -141,6 +141,7 @@
         public function getParsedArray()
         {
             return [
+                'id' => $this->id,
                 'title' => $this->title,
                 'image' => $this->image,
                 'currencySymbol' => $this->currencySymbol,

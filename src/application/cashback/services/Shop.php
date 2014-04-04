@@ -30,8 +30,10 @@ class Shop extends \Application\Common\Service
         $categories = $this->domainObjectFactory->create('CategoryCollection');
         $cache = $this->dataMapperFactory->create('CategoryCollection', 'Cache');
 
+        $api = $this->dataMapperFactory->create('CategoryCollection', 'REST');
+        $api->fetch2($categories);
+
         if (!$cache->fetch($categories)) {
-            $api = $this->dataMapperFactory->create('CategoryCollection', 'REST');
             $api->fetch($categories);
             foreach ($categories as $category) {
                 $api->fetch($category);

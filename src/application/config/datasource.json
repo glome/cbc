@@ -1,0 +1,16 @@
+{
+    "rest": {
+        "host": "https://api.glome.me/users.json",
+        "params": {
+            "application[apikey]": "275b4d4bec43c0812795de8a3765631d",
+            "application[uid]": "me.glome.demo.cbc"
+        }
+    },
+
+    "sql": {
+        "dsn": "",
+        "username": "",
+        "password": ""
+    }
+
+}
