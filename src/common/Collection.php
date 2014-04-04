@@ -13,6 +13,8 @@ abstract class Collection implements \Iterator
 
     private $position = 0;
 
+    private $amount = 0;
+
     public function addItem($parameters)
     {
         $instance = $this->buildItem();
@@ -23,12 +25,15 @@ abstract class Collection implements \Iterator
             }
         }
 
-
+        $this->amount += 1;
         $this->pool[] = $instance;
         return $instance;
     }
 
-
+    public function getAmount()
+    {
+        return $this->amount;
+    }
 
     public function __construct() {
         $this->position = 0;

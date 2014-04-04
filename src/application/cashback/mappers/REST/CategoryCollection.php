@@ -53,7 +53,7 @@ use Guzzle\Plugin\Cookie\CookiePlugin;
                     }
                 }
 
-                var_dump($collection);
+              //  var_dump($collection);
             }
 
 

@@ -15,7 +15,6 @@
                                 </ul>
                             </div><!-- .filter-content-wrap -->
                         </div><!-- .filter-cat -->
-                        <?php /*
                         <div class="filter-retailer">
                             <span class="filter-title">Retailer <a href="" class="clear">clear</a></span>
                             <div class="filter-content-wrap">
@@ -30,6 +29,7 @@
                                 </ul>
                             </div><!-- .filter-content-wrap -->
                         </div><!-- .filter-retailer -->
+                        <?php /*
                         <div class="filter-brand">
                             <span class="filter-title">BRAND <a href="" class="clear">clear</a></span>
                             <div class="filter-content-wrap">
@@ -90,7 +90,6 @@
                             </div><!-- .cat-slider -->
                         </div><!-- .cat-banner -->
 
-                        <?php /*
                         <div class="options-bar">
                             <div class="order">
                                 <span class="label">ORDER BY:</span>
@@ -103,7 +102,6 @@
                                 </div><!-- .select-box .select-box-white -->
                             </div><!-- .order -->
                         </div><!-- .product-bar -->
-                        */ ?>
 
                         <ul class="products masonry-grid" id="grid">
                             <?php foreach ($products as $id => $product): ?>
@@ -124,7 +122,11 @@
                                             <span class="title"><?=$product['title']?></span>
                                             <div class="price">
                                                 <span>CASHBACK:</span>
-                                                <span><?=$product['currencySymbol']?>25.99 & 28.5%</span>
+                                                <span>
+                                                    <?=$product['currencySymbol'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
+                                                    <?=$product['one-bonus'] ? '' : '&'?>
+                                                    <?=$product['bonusPercent'] === null ? '' : ($product['bonusPercent'] . '%')?>
+                                                </span>
                                             </div>
                                             <span class="voucher">VOUCHER: -10%</span>
                                             <span class="buy_btn">VIEW</span>

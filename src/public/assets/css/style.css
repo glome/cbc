@@ -171,7 +171,7 @@ header{
     color: #7A7D7E;
     font-family: "roboto",sans-serif;
     font-size: 12px;
-    cursor: default; 
+    cursor: default;
 }
 .select-box ul {
     position: absolute;
@@ -515,6 +515,7 @@ footer {
     color: #F2F2F2;
     font-size: 18px;
     font-weight: 700;
+    text-transform: capitalize;
 }
 .col ul {
     width: 90%;
@@ -533,6 +534,7 @@ footer {
     font-size: 15px;
     font-weight: 300;
     text-decoration: none;
+    text-transform: capitalize;
 }
 
 /*
@@ -1821,7 +1823,7 @@ footer {
     box-shadow: 0 0 2px 0 rgba(170, 170, 170, 0.8);
 }
 .masonry-grid .product .product-content a {
-    
+
 }
 
 #grid2 li.animate,
@@ -2220,7 +2222,7 @@ footer {
     -moz-transform:     scale(1);
     transform:          scale(1);
     -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow:    0 0 4px rgba(0, 0, 0, 0.3);    
+    -moz-box-shadow:    0 0 4px rgba(0, 0, 0, 0.3);
     box-shadow:         0 0 4px rgba(0, 0, 0, 0.3);
     border: none;
 }
@@ -2332,7 +2334,7 @@ footer {
     .sub-cat-menu ul li {
         color: #7a7d7e;
         background-color: #F2F2F2;
-        
+
     }
 
     /* Product hover  */
