@@ -7,6 +7,9 @@ class Search extends \Application\Common\View
 
     public function index()
     {
+        $configuration = $this->serviceFactory->create('Configuration');
+        $settings = $configuration->getCurrentSettings();
+
         $builder = $this->templateBuilder;
 
         $main = $builder->create('main');
@@ -34,6 +37,7 @@ class Search extends \Application\Common\View
             'content' => $content,
             'user' => $builder->create('profile-brief'),
             'footer'  => $footer,
+            'settings' => $settings,
         ]);
 
 

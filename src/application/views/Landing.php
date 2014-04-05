@@ -7,6 +7,10 @@ class Landing extends \Application\Common\View
 
     public function index()
     {
+        $configuration = $this->serviceFactory->create('Configuration');
+        $settings = $configuration->getCurrentSettings();
+
+
         $builder = $this->templateBuilder;
 
         $main = $builder->create('main');
@@ -31,6 +35,7 @@ class Landing extends \Application\Common\View
 
         $main->assignAll([
             'content' => $content,
+            'settings' => $settings,
             'user'    => $builder->create('profile-brief'),
             'footer'  => $footer,
         ]);

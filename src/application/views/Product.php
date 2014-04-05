@@ -7,6 +7,9 @@ class Product extends \Application\Common\View
 
     public function index()
     {
+        $configuration = $this->serviceFactory->create('Configuration');
+        $settings = $configuration->getCurrentSettings();
+
         $builder = $this->templateBuilder;
 
         $main = $builder->create('main');
@@ -37,6 +40,7 @@ class Product extends \Application\Common\View
             'user' => $builder->create('profile-brief'),
             'overlays' => $overlays,
             'footer'  => $footer,
+            'settings' => $settings,
         ]);
 
 

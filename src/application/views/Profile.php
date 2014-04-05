@@ -12,6 +12,10 @@ class Profile extends \Application\Common\View
 
     public function wishlist()
     {
+
+        $configuration = $this->serviceFactory->create('Configuration');
+        $settings = $configuration->getCurrentSettings();
+
         $builder = $this->templateBuilder;
         $main = $builder->create('main');
         $content = $builder->create('profile');
@@ -32,6 +36,7 @@ class Profile extends \Application\Common\View
             'content' => $content,
             'user' => $builder->create('profile-brief'),
             'footer'  => $footer,
+            'settings' => $settings,
         ]);
         return $main->render();
     }
