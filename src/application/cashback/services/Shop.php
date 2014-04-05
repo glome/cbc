@@ -8,6 +8,7 @@ class Shop extends \Application\Common\Service
 
     private $currentCategoryId = null;
     private $currentProductId = null;
+    private $categoryTree = null;
 
     public function useCategory($id)
     {
@@ -26,20 +27,18 @@ class Shop extends \Application\Common\Service
 
     public function getCategories()
     {
-
-        $categories = $this->domainObjectFactory->create('CategoryCollection');
-        $cache = $this->dataMapperFactory->create('CategoryCollection', 'Cache');
-
-        $api = $this->dataMapperFactory->create('CategoryCollection', 'REST');
-        $api->fetch2($categories);
-
-        if (!$cache->fetch($categories)) {
-            $api->fetch($categories);
-            foreach ($categories as $category) {
-                $api->fetch($category);
-            }
-            $cache->store($categories);
+        if ($this->categoryTree === null) {
+            $this->categoryTree = $this->collectCategoryTree();
         }
+        return $this->categoryTree;
+    }
+
+
+    private function collectCategoryTree()
+    {
+        $categories = $this->domainObjectFactory->create('CategoryCollection');
+        $api = $this->dataMapperFactory->create('CategoryCollection', 'REST');
+        $api->fetch($categories);
 
         return $categories->getParsedArray();
     }
