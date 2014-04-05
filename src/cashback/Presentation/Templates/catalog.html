@@ -107,7 +107,7 @@
                             <?php foreach ($products as $id => $product): ?>
                             <li class="product">
                                 <div class="product-content">
-                                    <a href="" class="add-to-wishlist-btn"></a>
+                                    <a href="/profile/wish/<?=$id?>" class="add-to-wishlist-btn"></a>
                                     <a href="/product/<?=$id?>">
                                         <div class="labels">
                                         <?php if($product['new']): ?>
