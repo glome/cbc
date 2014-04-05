@@ -9,6 +9,18 @@ use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 class User extends \Application\Common\CookieMapper
 {
 
+    private $host;
+    private $apikey;
+    private $uid;
+
+    public function __construct($configuration)
+    {
+        $this->host = $configuration['rest']['host'];
+        $this->apikey = $configuration['rest']['params']['application[apikey]'];
+        $this->uid = $configuration['rest']['params']['application[uid]'];
+    }
+
+
     public function fetch($instance)
     {
         $cookiePlugin = new CookiePlugin($this->cookieJar);
@@ -17,10 +29,10 @@ class User extends \Application\Common\CookieMapper
         $client->addSubscriber($cookiePlugin);
 
         if ($instance->getId() === null) {
-            $request = $client->post('https://api.glome.me/users.json', [],
+            $request = $client->post($this->host . '/users.json', [],
                 [
-                    'application[apikey]' => '275b4d4bec43c0812795de8a3765631d',
-                    'application[uid]' => 'me.glome.demo.cbc'
+                    'application[apikey]' => $this->apikey,
+                    'application[uid]' => $this->uid
                 ]
             );
             $response = $request->send();
@@ -29,7 +41,7 @@ class User extends \Application\Common\CookieMapper
         }
 
 
-        $request = $client->post('https://api.glome.me/users/login.json', [],
+        $request = $client->post($this->host . '/users/login.json', [],
             [
                 'user[glomeid]' => $instance->getId(),
             ]

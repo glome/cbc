@@ -8,6 +8,14 @@ use Guzzle\Plugin\Cookie\CookiePlugin;
 class CategoryCollection extends \Application\Common\CookieMapper
 {
 
+    public function __construct($configuration)
+    {
+        $this->host = $configuration['rest']['host'];
+        $this->apikey = $configuration['rest']['params']['application[apikey]'];
+        $this->uid = $configuration['rest']['params']['application[uid]'];
+    }
+
+
     public function fetch($collection) {
         $cookiePlugin = new CookiePlugin($this->cookieJar);
 
@@ -16,7 +24,7 @@ class CategoryCollection extends \Application\Common\CookieMapper
 
         $list = $this->fetchTopLevelCategories($client);
 
-        $response = $client->get('https://api.glome.me/categories.json?display=tree&filter=all&selector=a')->send();
+        $response = $client->get($this->host . '/categories.json?display=tree&filter=all&selector=a')->send();
         $data = $response->json();
 
         foreach ($data as $item) {
@@ -28,7 +36,7 @@ class CategoryCollection extends \Application\Common\CookieMapper
 
     public function fetchTopLevelCategories($client)
     {
-        $response = $client->get('https://api.glome.me/categories.json?selector=a')->send();
+        $response = $client->get($this->host . '/categories.json?selector=a')->send();
         $data = $response->json();
         return $this->collectIdValues($data);
     }

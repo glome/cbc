@@ -9,6 +9,13 @@ use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 class ProductCollection extends \Application\Common\CookieMapper
 {
 
+    public function __construct($configuration)
+    {
+        $this->host = $configuration['rest']['host'];
+        $this->apikey = $configuration['rest']['params']['application[apikey]'];
+        $this->uid = $configuration['rest']['params']['application[uid]'];
+    }
+
     public function fetch($collection)
     {
         $cookiePlugin = new CookiePlugin($this->cookieJar);
@@ -18,7 +25,7 @@ class ProductCollection extends \Application\Common\CookieMapper
 
         if ($collection->hasCategory()) {
             $cat = $collection->getCategory();
-            $response = $client->get("https://api.glome.me/products.json?cat_id=$cat")->send();
+            $response = $client->get($this->host . "/products.json?cat_id=$cat")->send();
             $data = $response->json();
 //            print_r($data);
             foreach ($data as $entry) {
@@ -29,7 +36,7 @@ class ProductCollection extends \Application\Common\CookieMapper
 
         if ($collection->hasQuery()) {
             $query = $collection->getQuery();
-            $response = $client->get("https://api.glome.me/products/search.json?keywords=$query&per_page=20&page=1")->send();
+            $response = $client->get($this->host . "/products/search.json?keywords=$query&per_page=20&page=1")->send();
             $data = $response->json();
             if (isset($data['status']) && $data['status'] === 1){
                 return;

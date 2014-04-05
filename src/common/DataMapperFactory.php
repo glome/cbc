@@ -6,13 +6,12 @@ class DataMapperFactory
 {
 
     private $namespace = '';
-    private $provider = null;
-    private $connection = null;
+    private $datasources = [];
 
 
-    public function __construct(callable $provider = null)
+    public function __construct($datasources = null)
     {
-        $this->provider = $provider;
+        $this->datasources = $datasources;
     }
 
     public function setNamespace( $namespace )
@@ -28,17 +27,14 @@ class DataMapperFactory
 
     public function create( $class, $namespace = null )
     {
-        if ( $this->connection === null  && $this->provider !== null)
-        {
-            $this->connection = call_user_func( $this->provider );
-        }
+
 
         if ($namespace !== null) {
             $class = $namespace . '\\' . $class;
         }
 
         $class = $this->namespace . '\\' . $class;
-        $instance = new $class( $this->connection );
+        $instance = new $class($this->datasources);
         if ($instance instanceof CookieMapper) {
             $instance->setCookieJar($this->shared['CookieJar']);
         }

@@ -1,6 +1,6 @@
 {
     "rest": {
-        "host": "https://api.glome.me/users.json",
+        "host": "https://api.glome.me",
         "params": {
             "application[apikey]": "275b4d4bec43c0812795de8a3765631d",
             "application[uid]": "me.glome.demo.cbc"
@@ -8,9 +8,9 @@
     },
 
     "sql": {
-        "dsn": "",
-        "username": "",
-        "password": ""
+        "dsn": "mysql:host=localhost;dbname=cashback;charset=utf8",
+        "username": "demo",
+        "password": "demo"
     }
 
 }

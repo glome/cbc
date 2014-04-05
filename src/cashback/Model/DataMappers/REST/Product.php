@@ -9,6 +9,14 @@ use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 class Product extends \Application\Common\CookieMapper
 {
 
+    public function __construct($configuration)
+    {
+        $this->host = $configuration['rest']['host'];
+        $this->apikey = $configuration['rest']['params']['application[apikey]'];
+        $this->uid = $configuration['rest']['params']['application[uid]'];
+    }
+
+
     public function fetch($instance)
     {
         $cookiePlugin = new CookiePlugin($this->cookieJar);
@@ -19,7 +27,7 @@ class Product extends \Application\Common\CookieMapper
         $id = $instance->getId();
         if ($id !== null)
         {
-            $response = $client->get("https://api.glome.me/products/$id.json")->send();
+            $response = $client->get($this->host . "/products/$id.json")->send();
             $data = $response->json();
             $this->applyParameter($instance,$data);
 
