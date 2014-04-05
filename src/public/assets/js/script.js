@@ -126,6 +126,7 @@ $(document).ready(function() {
     $(".close-download-bar").on("click", function(e) {
         e.preventDefault();
         $(".download-bar").removeClass("show");
+        $.get('/options/download/1');
     });
 
     /* Header profile button */
@@ -323,7 +324,7 @@ $(document).ready(function() {
     /*
      $(".filter-cat .filter-content-wrap ul li a").on("click", function(e) {
      e.preventDefault();
-     
+
      if (!$(this).parent().hasClass("selected")) {
      $(".filter-cat .filter-content-wrap ul li").removeClass("selected");
      $(this).parent().addClass("selected");
@@ -470,13 +471,13 @@ $(document).ready(function() {
      if(top2 < scrolled) {
      $(".filter-sidebar").removeClass("absolute");
      }
-     
-     
+
+
      }
-     
+
      console.log(scrolled);
      });
-     
+
      */
 
     /* Overlay */
