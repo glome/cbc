@@ -10,34 +10,35 @@ class Landing extends \Application\Common\View
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
+        $shop = $this->serviceFactory->create('Shop');
+        $categories = $shop->getCategories();
+
 
         $builder = $this->templateBuilder;
 
-        $main = $builder->create('main');
-        $content = $builder->create('landing');
+        $main       = $builder->create('main');
+        $content    = $builder->create('landing');
         $navigation = $builder->create('navigation');
+        $footer     = $builder->create('footer');
 
 
-        $content->assignAll([
-            'navigation' => $navigation,
-            'banners' => $builder->create('banners'),
-            'deals' => $builder->create('deals'),
-            'popular' => $builder->create('popular-categories'),
-            'about' => $builder->create('about'),
-        ]);
-
-        $shop = $this->serviceFactory->create('Shop');
-        $categories = $shop->getCategories();
         $navigation->assign('categories', $categories);
-        $footer = $builder->create('footer');
         $footer->assign('categories', $categories);
 
 
+        $content->assignAll([
+            'about'      => $builder->create('about'),
+            'deals'      => $builder->create('deals'),
+            'banners'    => $builder->create('banners'),
+            'navigation' => $navigation,
+            'popular'    => $builder->create('popular-categories'),
+        ]);
+
         $main->assignAll([
-            'content' => $content,
-            'settings' => $settings,
-            'user'    => $builder->create('profile-brief'),
-            'footer'  => $footer,
+            'content'    => $content,
+            'footer'     => $footer,
+            'settings'   => $settings,
+            'user'       => $builder->create('profile-brief'),
         ]);
         return $main->render();
     }

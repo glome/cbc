@@ -16,26 +16,29 @@ class Profile extends \Application\Common\View
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
-        $builder = $this->templateBuilder;
-        $main = $builder->create('main');
-        $content = $builder->create('profile');
-
-        $content->assignAll([
-            'deals' => $builder->create('deals'),
-        ]);
-
-
-
         $shop = $this->serviceFactory->create('Shop');
         $categories = $shop->getCategories();
+
+
+        $builder = $this->templateBuilder;
+
+        $main    = $builder->create('main');
+        $content = $builder->create('profile');
+        $footer  = $builder->create('footer');
+
+
         $content->assign('categories', $categories);
-        $footer = $builder->create('footer');
         $footer->assign('categories', $categories);
 
+
+        $content->assignAll([
+            'deals'    => $builder->create('deals'),
+        ]);
+
         $main->assignAll([
-            'content' => $content,
-            'user' => $builder->create('profile-brief'),
-            'footer'  => $footer,
+            'content'  => $content,
+            'user'     => $builder->create('profile-brief'),
+            'footer'   => $footer,
             'settings' => $settings,
         ]);
         return $main->render();

@@ -7,11 +7,10 @@ class Redirect extends \Application\Common\View
 
     public function index()
     {
-        $builder = $this->templateBuilder;
-
-        $main = $builder->create('redirect');
         $shop = $this->serviceFactory->create('Shop');
         $product = $shop->getCurrentProduct();
+
+        $main = $this->templateBuilder->create('redirect');
         $main->assignAll([
             'product' => $product,
         ]);

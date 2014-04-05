@@ -10,41 +10,39 @@ class Product extends \Application\Common\View
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
-        $builder = $this->templateBuilder;
-
-        $main = $builder->create('main');
-        $content = $builder->create('product');
-        $navigation = $builder->create('navigation');
-        $element = $builder->create('single-product');
-        $overlays = $builder->create('overlays');
-
-
         $shop = $this->serviceFactory->create('Shop');
+        $categories = $shop->getCategories();
         $product = $shop->getCurrentProduct();
 
-        $content->assignAll([
-            'navigation' => $navigation,
-            'details' => $element,
-        ]);
+
+        $builder = $this->templateBuilder;
+
+        $main       = $builder->create('main');
+        $content    = $builder->create('product');
+        $navigation = $builder->create('navigation');
+        $element    = $builder->create('single-product');
+        $overlays   = $builder->create('overlays');
+        $footer     = $builder->create('footer');
 
 
+        $navigation->assign('categories', $categories);
         $overlays->assign('product', $product);
         $element->assign('product', $product);
-        $categories = $shop->getCategories();
-        $footer = $builder->create('footer');
         $footer->assign('categories', $categories);
-        $navigation->assign('categories', $categories);
 
-        $main->assignAll([
-            'content' => $content,
-            'user' => $builder->create('profile-brief'),
-            'overlays' => $overlays,
-            'footer'  => $footer,
-            'settings' => $settings,
+
+        $content->assignAll([
+            'details'    => $element,
+            'navigation' => $navigation,
         ]);
 
-
-
+        $main->assignAll([
+            'content'    => $content,
+            'footer'     => $footer,
+            'overlays'   => $overlays,
+            'settings'   => $settings,
+            'user'       => $builder->create('profile-brief'),
+        ]);
         return $main->render();
     }
 }

@@ -10,37 +10,41 @@ class Search extends \Application\Common\View
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
+        $shop = $this->serviceFactory->create('Shop');
+        $categories = $shop->getCategories();
+        $query = $shop->getSearchedTerm();
+        $products = $shop->getProducts();
+
+
         $builder = $this->templateBuilder;
 
-        $main = $builder->create('main');
-        $content = $builder->create('search');
+        $main       = $builder->create('main');
+        $content    = $builder->create('search');
         $navigation = $builder->create('navigation');
-        $results = $builder->create('results');
+        $results    = $builder->create('results');
+        $footer     = $builder->create('footer');
+
+
+        $results->assign('products', $products);
+        $footer->assign('categories', $categories);
+
 
         $content->assignAll([
             'navigation' => $navigation,
-            'results' => $results,
+            'results'    => $results,
         ]);
 
-        $shop = $this->serviceFactory->create('Shop');
-        $categories = $shop->getCategories();
         $navigation->assignAll([
             'categories' => $categories,
-            'query' => $shop->getSearchedTerm(),
+            'query'      => $query,
         ]);
-
-        $results->assign('products', $shop->getProducts());
-        $footer = $builder->create('footer');
-        $footer->assign('categories', $categories);
 
         $main->assignAll([
-            'content' => $content,
-            'user' => $builder->create('profile-brief'),
-            'footer'  => $footer,
-            'settings' => $settings,
+            'content'    => $content,
+            'user'       => $builder->create('profile-brief'),
+            'footer'     => $footer,
+            'settings'   => $settings,
         ]);
-
-
         return $main->render();
     }
 }
