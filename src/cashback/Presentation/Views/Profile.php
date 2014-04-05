@@ -50,4 +50,15 @@ class Profile extends \Application\Common\View
         return $this->wishlist();
     }
 
+
+    public function wish()
+    {
+
+    }
+
+    public function spurn()
+    {
+
+    }
+
 }

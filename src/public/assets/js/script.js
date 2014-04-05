@@ -297,8 +297,10 @@ $(document).ready(function() {
         e.preventDefault();
         if ($(this).hasClass("active")) {
             $(this).removeClass("active");
+            $.get(this.href.replace('wish', 'spurn'));
         } else {
             $(this).addClass("active");
+            $.get(this.href);
         }
     });
 

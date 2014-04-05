@@ -20,4 +20,16 @@ class Profile extends \Application\Common\Controller
     {
 
     }
+
+
+    public function getWish($request)
+    {
+
+    }
+
+    public function getSpurn($request)
+    {
+
+    }
+
 }
