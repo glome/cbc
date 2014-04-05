@@ -18,7 +18,7 @@ $request = $builder->create([
 ]);
 $request->setUri($uri);
 
-$configuration = json_decode(file_get_contents(__DIR__ . '/config/routes.json'), true);
+$configuration = json_decode(file_get_contents(__DIR__ . '/../config/routes.json'), true);
 
 $router = new Fracture\Routing\Router(new Fracture\Routing\RouteBuilder);
 $router->import($configuration);

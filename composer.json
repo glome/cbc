@@ -10,19 +10,19 @@
     ],
 
     "require": {
-      "php": ">=5.4.0",
-      "guzzle/guzzle": "v3.8.1",
-      "fracture/routing": "dev-master",
-      "fracture/http": "dev-master"
+        "php": ">=5.4.0",
+        "guzzle/guzzle": "v3.8.1",
+        "fracture/routing": "dev-master",
+        "fracture/http": "dev-master"
     },
 
     "autoload": {
         "psr-4": {
-            "Application\\Controllers\\": "src/application/controllers/",
-            "Application\\Views\\": "src/application/views/",
-            "Application\\Services\\": "src/application/cashback/services/",
-            "Application\\DomainObjects\\": "src/application/cashback/objects/",
-            "Application\\DataMappers\\": "src/application/cashback/mappers/",
+            "Application\\": [
+                "src/cashback/",
+                "src/cashback/Model/",
+                "src/cashback/Presentation/"
+            ],
             "Application\\Common\\": "src/common/"
         }
     }

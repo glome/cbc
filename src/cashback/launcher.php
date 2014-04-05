@@ -13,7 +13,7 @@ if (isset($_SESSION['cache.cookies'])) {
 $cache = new \Memcached;
 $cache->addServer('localhost', 11211);
 
-$templateBuilder = new TemplateBuilder(__DIR__ . '/templates');
+$templateBuilder = new TemplateBuilder(__DIR__ . '/Presentation/Templates');
 $domainFactory = new DomainObjectFactory;
 $domainFactory->setNamespace('\\Application\\DomainObjects');
 $mapperFactory = new DataMapperFactory;
