@@ -7,6 +7,7 @@ class Landing extends \Application\Common\View
 
     public function index()
     {
+        $itinerary = $this->serviceFactory->create('Itinerary');
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
@@ -20,11 +21,16 @@ class Landing extends \Application\Common\View
         $content    = $builder->create('landing');
         $navigation = $builder->create('navigation');
         $footer     = $builder->create('footer');
+        $profile    = $builder->create('profile-brief');
 
 
         $navigation->assign('categories', $categories);
         $footer->assign('categories', $categories);
 
+
+        $profile->assignAll([
+            'wishes' => $itinerary->getWishlistLength(),
+        ]);
 
         $content->assignAll([
             'about'      => $builder->create('about'),
@@ -38,7 +44,7 @@ class Landing extends \Application\Common\View
             'content'    => $content,
             'footer'     => $footer,
             'settings'   => $settings,
-            'user'       => $builder->create('profile-brief'),
+            'user'       => $profile,
         ]);
         return $main->render();
     }

@@ -107,10 +107,10 @@
                             <?php foreach ($products as $id => $product): ?>
                             <li class="product">
                                 <div class="product-content">
-                                    <a href="/profile/wish/<?=$id?>" class="add-to-wishlist-btn"></a>
+                                    <a href="/profile/wish/<?=$id?>" class="add-to-wishlist-btn <?=$product['is-favorite']? 'active':''?>"></a>
                                     <a href="/product/<?=$id?>">
                                         <div class="labels">
-                                        <?php if($product['new']): ?>
+                                        <?php if($product['is-new']): ?>
                                             <span class="new-lbl">NEW</span>
                                         <?php endif; ?>
                                             <span class="popular-lbl">POPULAR</span>

@@ -6,8 +6,20 @@ class ProductCollection extends \Application\Common\Collection
 {
 
     private $categoryId = null;
-
     private $query = null;
+    private $userId = null;
+
+
+    public function setUserID($id)
+    {
+        $this->userId = $id;
+    }
+
+
+    public function getUserId()
+    {
+        return $this->userId;
+    }
 
 
     protected function buildItem()

@@ -39,6 +39,11 @@ abstract class Collection implements \Iterator
         $this->position = 0;
     }
 
+    public function hasItems()
+    {
+        return $this->amount > 0;
+    }
+
     function rewind() {
         $this->position = 0;
     }

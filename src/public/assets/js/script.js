@@ -293,15 +293,47 @@ $(document).ready(function() {
     });
 
     /* Add to wishlist */
-    $(".add-to-wishlist-btn").on("click", function(e) {
+    $(".add-to-wishlist-btn, .add-to-wishlist").on("click", function(e) {
+        var counter = $('#wish-counter'),
+            indicator = $('#wish-indicator'),
+            total = parseInt(counter.text()) || 0;
         e.preventDefault();
         if ($(this).hasClass("active")) {
             $(this).removeClass("active");
             $.get(this.href.replace('wish', 'spurn'));
+            total -= 1;
         } else {
             $(this).addClass("active");
             $.get(this.href);
+            total += 1;
         }
+        if (total === 1) {
+            indicator.addClass('amount')
+        }
+        if (total === 0) {
+            indicator.removeClass('amount')
+            total = '';
+        }
+
+        counter.text(total);
+
+
+    });
+
+    $('.delete-from-wishlist').on('click', function(e) {
+        var parent = this.parentNode,
+            counter = $('#wish-counter'),
+            indicator = $('#wish-indicator'),
+            total = parseInt(counter.text()) || 0;
+        e.preventDefault();
+        $.get(this.href);
+        $(parent).fadeOut(200, function() { $(parent).remove(); });
+        total -= 1;
+        if (total === 0) {
+            indicator.removeClass('amount')
+            total = '';
+        }
+        counter.text(total);
     });
 
     /* MOBILE Cashback history - order */

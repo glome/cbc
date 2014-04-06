@@ -7,6 +7,7 @@ class Search extends \Application\Common\View
 
     public function index()
     {
+        $itinerary = $this->serviceFactory->create('Itinerary');
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
@@ -23,11 +24,15 @@ class Search extends \Application\Common\View
         $navigation = $builder->create('navigation');
         $results    = $builder->create('results');
         $footer     = $builder->create('footer');
+        $profile = $builder->create('profile-brief');
 
 
         $results->assign('products', $products);
         $footer->assign('categories', $categories);
 
+        $profile->assignAll([
+            'wishes' => $itinerary->getWishlistLength(),
+        ]);
 
         $content->assignAll([
             'navigation' => $navigation,
@@ -41,7 +46,7 @@ class Search extends \Application\Common\View
 
         $main->assignAll([
             'content'    => $content,
-            'user'       => $builder->create('profile-brief'),
+            'user'       => $profile,
             'footer'     => $footer,
             'settings'   => $settings,
         ]);

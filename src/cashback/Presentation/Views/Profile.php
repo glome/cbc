@@ -13,6 +13,7 @@ class Profile extends \Application\Common\View
     public function wishlist()
     {
 
+        $itinerary = $this->serviceFactory->create('Itinerary');
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
@@ -20,24 +21,32 @@ class Profile extends \Application\Common\View
         $categories = $shop->getCategories();
 
 
+
+
         $builder = $this->templateBuilder;
 
         $main    = $builder->create('main');
         $content = $builder->create('profile');
         $footer  = $builder->create('footer');
+        $profile = $builder->create('profile-brief');
 
 
         $content->assign('categories', $categories);
         $footer->assign('categories', $categories);
 
 
+        $profile->assignAll([
+            'wishes' => $itinerary->getWishlistLength(),
+        ]);
+
         $content->assignAll([
             'deals'    => $builder->create('deals'),
+            'products' => $itinerary->getWishlist(),
         ]);
 
         $main->assignAll([
             'content'  => $content,
-            'user'     => $builder->create('profile-brief'),
+            'user'     => $profile,
             'footer'   => $footer,
             'settings' => $settings,
         ]);

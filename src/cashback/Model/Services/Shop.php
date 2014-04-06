@@ -9,6 +9,13 @@ class Shop extends \Application\Common\Service
     private $currentCategoryId = null;
     private $currentProductId = null;
     private $categoryTree = null;
+    private $currentUser = null;
+
+
+    public function forUser($user)
+    {
+        $this->currentUser = $user;
+    }
 
     public function useCategory($id)
     {
@@ -62,6 +69,8 @@ class Shop extends \Application\Common\Service
 
     public function getProducts()
     {
+
+
         $products = $this->domainObjectFactory->create('ProductCollection');
         $products->setCategory($this->currentCategoryId);
 
@@ -72,6 +81,11 @@ class Shop extends \Application\Common\Service
 
         $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
         $api->fetch($products);
+
+
+        $db = $this->dataMapperFactory->create('ProductCollection', 'SQL');
+        $products->setUserId($this->currentUser->getId());
+        $db->fetch($products);
 
 
 
@@ -114,6 +128,16 @@ class Shop extends \Application\Common\Service
         $product->setId($this->currentProductId);
         $api->fetch($product);
 
+
+        $db = $this->dataMapperFactory->create('Wish', 'SQL');
+        $wish = $this->domainObjectFactory->create('Wish');
+        $wish->setUserId($this->currentUser->getId());
+        $wish->setProductId($product->getId());
+
+        if ($db->fetch($wish))
+        {
+            $product->markAsFavorite();
+        }
         return $product->getParsedArray();
     }
 

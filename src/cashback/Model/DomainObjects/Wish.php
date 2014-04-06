@@ -7,6 +7,18 @@ class Wish
 
     private $visitorId;
     private $productId;
+    private $userId;
+
+    public function setUserId($id)
+    {
+        $this->userId = $id;
+    }
+
+
+    public function getUserId()
+    {
+        return $this->userId;
+    }
 
 
     public function setVisitorId($id)

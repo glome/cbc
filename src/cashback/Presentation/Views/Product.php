@@ -7,6 +7,7 @@ class Product extends \Application\Common\View
 
     public function index()
     {
+        $itinerary = $this->serviceFactory->create('Itinerary');
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
@@ -23,6 +24,7 @@ class Product extends \Application\Common\View
         $element    = $builder->create('single-product');
         $overlays   = $builder->create('overlays');
         $footer     = $builder->create('footer');
+        $profile    = $builder->create('profile-brief');
 
 
         $navigation->assign('categories', $categories);
@@ -30,6 +32,9 @@ class Product extends \Application\Common\View
         $element->assign('product', $product);
         $footer->assign('categories', $categories);
 
+        $profile->assignAll([
+            'wishes' => $itinerary->getWishlistLength(),
+        ]);
 
         $content->assignAll([
             'details'    => $element,
@@ -41,7 +46,7 @@ class Product extends \Application\Common\View
             'footer'     => $footer,
             'overlays'   => $overlays,
             'settings'   => $settings,
-            'user'       => $builder->create('profile-brief'),
+            'user'       => $profile,
         ]);
         return $main->render();
     }

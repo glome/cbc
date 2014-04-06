@@ -23,9 +23,20 @@ class ProductCollection extends \Application\Common\CookieMapper
         $client = new Client;
         $client->addSubscriber($cookiePlugin);
 
+
+        if ($collection->hasItems())
+        {
+            foreach ($collection as $product) {
+                $response = $client->get($this->host . "/products/{$product->getId()}.json")->send();
+                $data = $response->json();
+                $this->applyParameter($product,$data);
+            }
+        }
+
+
         if ($collection->hasCategory()) {
             $cat = $collection->getCategory();
-            $response = $client->get($this->host . "/products.json?cat_id=$cat")->send();
+            $response = $client->get($this->host . "/products.json?cat_id=$cat&per_page=30&page=1")->send();
             $data = $response->json();
 //            print_r($data);
             foreach ($data as $entry) {
@@ -51,7 +62,17 @@ class ProductCollection extends \Application\Common\CookieMapper
 
       //  var_dump($data);
 
+    }
 
 
+
+    private function applyParameter($instance, $parameters)
+    {
+        foreach ($parameters as $key => $value) {
+            $method = 'set' . str_replace('_', '', $key);
+            if (method_exists($instance, $method)) {
+                $instance->{$method}($value);
+            }
+        }
     }
 }

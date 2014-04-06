@@ -6,6 +6,26 @@
     {
 
         private $id;
+        private $title;
+        private $image;
+        private $currency;
+        private $currencySymbol;
+        private $page;
+        private $description;
+        private $creationDate;
+        private $price;
+        private $bonusMoney;
+        private $bonusPercent;
+        private $link;
+        private $isFavorite = false;
+
+
+        public function markAsFavorite()
+        {
+            $this->isFavorite = true;
+        }
+
+
 
         public function setId($id) {
             $this->id = $id;
@@ -17,7 +37,6 @@
         }
 
 
-        private $title;
 
         public function setTitle($title)
         {
@@ -30,7 +49,6 @@
             return $this->title;
         }
 
-        private $image;
 
         public function setContent($image)
         {
@@ -47,9 +65,6 @@
             return $this->image;
         }
 
-
-        private $currency;
-        private $currencySymbol;
 
         public function setCurrency($currency)
         {
@@ -69,7 +84,6 @@
             return $this->currency;
         }
 
-        private $page;
 
         public function setPage($page)
         {
@@ -82,7 +96,6 @@
         }
 
 
-        private $description;
 
         public function setDescription($description)
         {
@@ -95,7 +108,6 @@
         }
 
 
-        private $creationDate;
 
         public function setCreatedAt($date)
         {
@@ -111,14 +123,12 @@
         }
 
 
-        private $price;
 
         public function setLastPrice($price)
         {
             $this->price = $price;
         }
 
-        private $bonusMoney;
 
         public function setBonusMoney($bonusMoney)
         {
@@ -133,7 +143,6 @@
         }
 
 
-        private $bonusPercent;
 
         public function setBonusPercent($bonusPercent)
         {
@@ -146,7 +155,6 @@
         }
 
 
-        private $link;
 
         public function setPersonalAction($link)
         {
@@ -168,7 +176,8 @@
 
             return [
                 'one-bonus' => $onebonus,
-                'new' => $this->isNew(),
+                'is-new' => $this->isNew(),
+                'is-favorite' => $this->isFavorite,
                 'id' => $this->id,
                 'title' => $this->title,
                 'image' => $this->image,
@@ -180,6 +189,7 @@
                 'link' => $this->link,
             ];
         }
+
 
 
     }

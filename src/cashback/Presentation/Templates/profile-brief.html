@@ -8,11 +8,11 @@
                             <a href="" class="redeem-btn">REDEEM</a>
                         </div><!-- .redeem -->
                         <div class="header-profile">
-                            <span class="amount"></span>
+                            <span id ="wish-indicator" class="<?=$wishes>0?'amount':''?>"></span>
                             <a href="/profile" class="header-profile-btn"></a>
                             <div class="profile-menu">
                                 <ul>
-                                    <li class="wishlist"><a href="/profile/wishlist">My wishlist<span class="amount">3</span></a></li>
+                                    <li class="wishlist"><a href="/profile/wishlist">My wishlist<span class="amount" id="wish-counter"><?=$wishes>0?$wishes:''?></span></a></li>
                                     <li class="history"><a href="/profile/history">Cashback history</a></li>
                                 </ul>
                             </div><!-- .profile-menu -->

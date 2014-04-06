@@ -2015,6 +2015,11 @@ footer {
     font-size: 13px;
     text-decoration: none;
 }
+.product-full .discount-wrap .add-to-wishlist.active {
+    background-image: url(/assets/img/star_full_red-17.svg);
+    background-position: -50px 1px;
+}
+
 .product-full .retailer {
     float: left;
     width: 100%;
