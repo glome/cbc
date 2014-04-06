@@ -56,9 +56,13 @@
             $map = [
                 'EUR' => '€',
                 'USD' => '$',
+                'GBP' => '£',
             ];
             $this->currency = $currency;
-            $this->currencySymbol = $map[$currency];
+            $this->currencySymbol = $currency;
+            if (isset($map[$currency])) {
+                $this->currencySymbol = $map[$currency];
+            }
         }
         public function getCurrency($currency)
         {
