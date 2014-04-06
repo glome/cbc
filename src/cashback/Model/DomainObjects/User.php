@@ -44,4 +44,17 @@
         }
 
 
+        private $visitorId = null;
+
+        public function setVisitorId($id)
+        {
+            $this->visitorId = $id;
+        }
+
+        public function getVisitorId()
+        {
+            return $this->visitorId;
+        }
+
+
     }

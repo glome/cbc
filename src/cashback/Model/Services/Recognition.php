@@ -25,4 +25,10 @@ class Recognition extends \Application\Common\Service
         $cookies->store($user);
         $this->current = $user;
     }
+
+
+    public function getCurrentUser()
+    {
+        return $this->current;
+    }
 }
