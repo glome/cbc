@@ -8,6 +8,7 @@ class Itinerary extends \Application\Common\Service
 
 
     private $currentUser;
+    private $finances = null;
 
     public function forUser($user)
     {
@@ -70,6 +71,51 @@ class Itinerary extends \Application\Common\Service
         $db->fetch($wishlist);
 
         return $wishlist->getAmount();
+    }
+
+
+    private function acquireFinanceDetails()
+    {
+        $finances = $this->domainObjectFactory->create('Finances');
+        $api = $this->dataMapperFactory->create('Finances', 'REST');
+        $finances->setUserId($this->currentUser->getId());
+        $api->fetch($finances);
+        return $finances;
+    }
+
+    public function getEarnings()
+    {
+        $finances = $this->finances;
+
+        if ($finances === null) {
+            $finances = $this->acquireFinanceDetails();
+            $this->finances = $finances;
+        }
+
+
+        $total = 0;
+        if (!$finances->hasError()) {
+            $total = $finances->getTotal();
+        }
+        return number_format($total, 2 , '.', '');
+    }
+
+    public function getHistory()
+    {
+        $finances = $this->finances;
+
+        if ($finances === null) {
+            $finances = $this->acquireFinanceDetails();
+            $this->finances = $finances;
+        }
+
+        if (!$finances->hasError()) {
+            $backlog = $finances->getBacklog();
+        } else {
+            $backlog = ['error' => $finances->getErrorMessage()];
+        }
+
+        return $backlog;
     }
 
 }

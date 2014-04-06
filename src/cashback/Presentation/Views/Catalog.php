@@ -29,7 +29,9 @@ class Catalog extends \Application\Common\View
 
 
         $profile->assignAll([
-            'wishes' => $itinerary->getWishlistLength(),
+            'wishes'   => $itinerary->getWishlistLength(),
+            'earnings' => $itinerary->getEarnings(),
+            'currency' => $configuration->getPreferredCurrency(),
         ]);
 
         $content->assignAll([

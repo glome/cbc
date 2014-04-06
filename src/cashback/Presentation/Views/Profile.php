@@ -5,6 +5,8 @@ namespace Application\Views;
 class Profile extends \Application\Common\View
 {
 
+    private $currentTab = 'wishlist';
+
     public function index()
     {
         return $this->wishlist();
@@ -34,14 +36,17 @@ class Profile extends \Application\Common\View
         $content->assign('categories', $categories);
         $footer->assign('categories', $categories);
 
-
         $profile->assignAll([
-            'wishes' => $itinerary->getWishlistLength(),
+            'wishes'   => $itinerary->getWishlistLength(),
+            'earnings' => $itinerary->getEarnings(),
+            'currency' => $configuration->getPreferredCurrency(),
         ]);
 
         $content->assignAll([
             'deals'    => $builder->create('deals'),
             'products' => $itinerary->getWishlist(),
+            'history'  => $itinerary->getHistory(),
+            'tab'      => $this->currentTab,
         ]);
 
         $main->assignAll([
@@ -56,6 +61,7 @@ class Profile extends \Application\Common\View
 
     public function history()
     {
+        $this->currentTab = 'history';
         return $this->wishlist();
     }
 

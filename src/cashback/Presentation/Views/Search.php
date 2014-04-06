@@ -31,7 +31,9 @@ class Search extends \Application\Common\View
         $footer->assign('categories', $categories);
 
         $profile->assignAll([
-            'wishes' => $itinerary->getWishlistLength(),
+            'wishes'   => $itinerary->getWishlistLength(),
+            'earnings' => $itinerary->getEarnings(),
+            'currency' => $configuration->getPreferredCurrency(),
         ]);
 
         $content->assignAll([

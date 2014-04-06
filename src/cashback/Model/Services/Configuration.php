@@ -27,4 +27,13 @@ class Configuration extends \Application\Common\Service
 
     }
 
+
+    public function getPreferredCurrency()
+    {
+        return [
+            'name' => 'EUR',
+            'symbol' => '€',
+        ];
+    }
+
 }

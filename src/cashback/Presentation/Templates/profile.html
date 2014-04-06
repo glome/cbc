@@ -5,7 +5,7 @@
                     <div class="profile-bar">
                         <div class="profile-tabs">
                             <ul>
-                                <li class="active">
+                                <li <?=$tab === 'wishlist'? 'class="active"':''?>>
                                     <a href="profile-wishlist">Wish list
                                         <div class="caret">
                                             <div class="caret-border"></div>
@@ -13,7 +13,7 @@
                                         </div><!-- .caret -->
                                     </a>
                                 </li>
-                                <li>
+                                <li <?=$tab === 'history'? 'class="active"':''?>>
                                     <a href="profile-cashback-history">Cashback history
                                         <div class="caret">
                                             <div class="caret-border"></div>
@@ -47,7 +47,7 @@
                         </div><!-- .cat-dropdown -->
                     </div><!-- .profile-bar -->
                     <div class="profile-tab-content">
-                        <div class="profile-wishlist tab active">
+                        <div class="profile-wishlist tab <?=$tab === 'wishlist'? 'active':''?>">
                             <div class="products">
                                 <div class="row">
                                 <?php foreach ($products as $id => $product): ?>
@@ -153,7 +153,10 @@
                                 </div><!-- .row -->
                             </div><!-- .products-->
                         </div><!-- .profile-wishlist -->
-                        <div class="profile-cashback-history tab">
+                        <div class="profile-cashback-history tab  <?=$tab === 'history'? 'active':''?>">
+                            <?php if(isset($history['error'])): ?>
+                                <p><?=$history['error']?></p>
+                            <?php else: ?>
                             <ul class="cashback-history">
                                 <li class="table-heading">
                                     <span class="retailer">Retailer</span>
@@ -212,6 +215,7 @@
                                     <span>REDEEMED</span>
                                 </li>
                             </ul><!-- .cashback-history -->
+                        <?php endif; ?>
                         </div><!-- .profile-cashback-history -->
                     </div><!-- .profile-tab-content -->
 
