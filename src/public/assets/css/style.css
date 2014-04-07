@@ -109,6 +109,7 @@ header{
 }
 .logo .logo-text:nth-child(2) {
     margin-top: 0;
+    font-weight: 700;
 }
 
 /* Header options */
@@ -136,6 +137,7 @@ header{
     font-family: "noto sans", sans-serif;
     font-size: 10px;
     text-transform: uppercase;
+    color: #595D5E;
 }
 .location-filter .row .col-1,
 .location-filter .row .col-2 {
@@ -282,6 +284,7 @@ select {
     display: inline;
     float: left;
     width: 100%;
+    color: #595D5E;
     text-align: right;
     font-family: "noto sans",sans-serif;
     font-size: 12px;
@@ -619,6 +622,7 @@ footer {
     width: 206px;
     margin: 10px;
     text-transform: uppercase;
+    font-weight: 700;
     cursor: default;
 }
 .cat-menu ul {
@@ -761,7 +765,7 @@ footer {
 .search-select .selected {
     float: left;
     margin: 2px;
-    padding: 7px 30px 8px 7px;
+    padding: 7px 30px 7px 7px;
     color: #ffffff;
     background-color: #FE7063;
     background-image: url(/assets/img/arrow-down-white.png);
@@ -775,7 +779,7 @@ footer {
 .search-form input[type="text"] {
     float: left;
     width: 380px;
-    padding: 7px 0;
+    padding: 10px 0 0;
     color: #7A7D7E;
     font-size: 14px;
 }
@@ -814,15 +818,14 @@ footer {
 .top-deals .products {
     position: relative;
     width: 100%;
-    height: 450px;
 }
 .top-deals .products .product {
     position: relative;
-    width: 24%;
-    margin-left: 1.333%;;
+    width: 25%;
 }
 .top-deals .products .product a {
     float: left;
+    max-width: 100%;
     text-decoration: none;
 }
 .top-deals .products .product:first-child {
@@ -845,8 +848,7 @@ footer {
 .product {
     position: relative;
     float: left;
-    width: 22%;
-    margin-left: 4%;
+    width: 22%; 
     color: #595D5E;
     background-color: #ffffff;
     -webkit-box-shadow: 0 0 2px 1px rgba(170, 170, 170, 0.8);
@@ -874,6 +876,9 @@ footer {
     font-size: 13px;
     font-weight: 400;
     line-height: 15px;
+    text-transform: none;
+    text-align: center;
+    line-height: 1.3;
 }
 .product .labels {
     position: absolute;
@@ -889,11 +894,11 @@ footer {
     color: #ffffff;
 }
 .product .labels .new-lbl {
-    background-color: #abc5c2;
+    background-color: #FE7063;
     margin-bottom: 10px;
 }
 .product .labels .popular-lbl {
-    background-color: #FE7063;
+    background-color: #ABC5C2;
 }
 .product .img-wrap {
     float: left;
@@ -921,6 +926,9 @@ footer {
     font-size: 13px;
     text-transform: uppercase;
 }
+.product .price span:nth-child(2) {
+    font-weight: 700;
+}
 .product .price span:first-child {
     margin-bottom: 0;
 }
@@ -931,8 +939,10 @@ footer {
     color: #FE7063;
     text-align: center;
     font-size: 13px;
+    font-weight: bold;
     text-transform: uppercase;
 }
+
 .product .delete-from-wishlist {
     position: absolute;
     top: 0;
@@ -1087,11 +1097,11 @@ footer {
 .about {
     float: left;
     width: 100%;
-    padding-bottom:  30px;
+    padding: 75px 0 30px;
     background-color: #FCFBFA;
-    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow:    0 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow:         0 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.3) inset;
+    -moz-box-shadow:    0 -2px 2px rgba(0, 0, 0, 0.3) inset;
+    box-shadow:         0 -2px 2px rgba(0, 0, 0, 0.3) inset;
 }
 .about .tab-menu {
     float: left;
@@ -1142,7 +1152,7 @@ footer {
 }
 .caret .caret-body {
     position: absolute;
-    left: 3px;
+    left: 2px;
     right: 0;
     float: left;
     width: 0;
@@ -1287,9 +1297,9 @@ footer {
     padding-bottom: 80px;
     border-top: 5px solid #FE7063;
     background-color: #FCFBFA;
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    -moz-box-shadow:    0 1px 3px rgba(0,0,0,0.3);
-    box-shadow:         0 1px 3px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 -1px 3px rgba(0,0,0,0.3) inset;
+    -moz-box-shadow:    0 -1px 3px rgba(0,0,0,0.3) inset;
+    box-shadow:         0 -1px 3px rgba(0,0,0,0.3) inset;
 }
 .profile-open {
     position: relative;
@@ -1607,12 +1617,13 @@ footer {
     color: #31353D;
     border-bottom: 1px solid #7A7D7E;
     font-size: 17px;
+    font-weight: 700;
     text-transform: uppercase;
 }
 .filter-content-wrap {
     float: left;
     width: 100%;
-    max-height: 200px;
+    max-height: 215px;
     margin-top: 10px;
     outline: none;
     overflow: hidden;
@@ -1629,7 +1640,7 @@ footer {
     float: left;
     width: 90%;
     padding: 8px 5%;
-    color: #595D5E;
+    color: #7A7D7E;
     font-size: 14px;
     text-decoration: none;
     text-transform: capitalize;
@@ -1834,6 +1845,8 @@ footer {
 }
 .masonry-grid .product .product-content a {
     float: left;
+    max-width: 100%;
+    text-decoration: none;
 }
 
 #grid2 li.animate,
@@ -1985,6 +1998,7 @@ footer {
     margin-bottom: 15px;
     color: #7A7D7E;
     font-size: 33px;
+    font-weight: 700;
     text-align: center;
 }
 .product-full .buy-now-btn {
@@ -2027,9 +2041,7 @@ footer {
 }
 .product-full .discount-wrap .add-to-wishlist.active {
     background-image: url(/assets/img/star_full_red-17.svg);
-    background-position: -50px 1px;
 }
-
 .product-full .retailer {
     float: left;
     width: 100%;
@@ -2476,7 +2488,7 @@ footer {
         width: 100%;
     }
     .masonry-grid .product {
-        width: 50%;
+        width: 49%;
     }
     .product-full .buy-now {
         width: 152px;
@@ -2520,6 +2532,13 @@ footer {
     .cat-menu ul li.mob-opened .cat-sub-menu {
         max-width: 1000px;
         opacity: 1;
+    }
+    
+    .filter-content-wrap ul li div {
+        width: 110px;
+    }
+    .product-link-wrap {
+        width: 100%;
     }
 }
 
@@ -2605,7 +2624,6 @@ footer {
         background-color: #ABC5C2;
         border: none;
         color: #ffffff;
-
     }
     .header-profile-btn {
         width: 47px;
@@ -2913,13 +2931,7 @@ footer {
     .top-deals .products .product:nth-child(4) {
         left: 0;
     }
-    .top-deals .products .product:nth-child(3){
-        margin-left: 0;
-    }
-    .top-deals .products .product:nth-child(2),
-    .top-deals .products .product:nth-child(4) {
-        margin-left: 2%;
-    }
+    
     .top-deals .products .product:nth-child(3) {
         clear: both;
     }
