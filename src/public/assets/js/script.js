@@ -102,6 +102,7 @@ $(document).ready(function() {
             $(this).addClass("selected");
             var txt = $(this).text();
             $(this).parent().prev(".selected").text(txt);
+            $.get('/options?param=' + txt);
         } else {
             $(this).parent().children().removeClass("selected");
             $(this).addClass("selected");

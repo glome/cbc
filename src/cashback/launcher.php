@@ -12,8 +12,6 @@ if (isset($_SESSION['cache.cookies'])) {
 
 $datasources = json_decode(file_get_contents(__DIR__ . '/../config/datasource.json'), true);
 
-$cache = new \Memcached;
-$cache->addServer('localhost', 11211);
 
 $templateBuilder = new TemplateBuilder(__DIR__ . '/Presentation/Templates');
 $domainFactory = new DomainObjectFactory;
@@ -22,7 +20,6 @@ $mapperFactory = new DataMapperFactory($datasources);
 $mapperFactory->setNamespace('\\Application\\DataMappers');
 $mapperFactory->setShared([
     'CookieJar' => $cookieJar,
-    'Cache' => $cache,
     ]);
 $serviceFactory = new ServiceFactory($domainFactory, $mapperFactory);
 $serviceFactory->setNamespace('\\Application\\Services');

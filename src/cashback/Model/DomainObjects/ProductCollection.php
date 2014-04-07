@@ -10,6 +10,27 @@ class ProductCollection extends \Application\Common\Collection
     private $userId = null;
     private $page = null;
 
+    private $langauge = null;
+    private $currency = null;
+    private $order = false;
+
+
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
+
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+    }
+
+    public function setOrder($order)
+    {
+        $this->order = $order;
+    }
+
+
     public function setUserID($id)
     {
         $this->userId = $id;

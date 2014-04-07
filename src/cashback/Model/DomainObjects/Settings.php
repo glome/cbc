@@ -7,6 +7,9 @@
 
 
         private $persistent = [];
+        private $language = 'English';
+        private $currency = 'EUR';
+        private $order = false;
 
         public function setParam($name, $value)
         {
@@ -25,6 +28,40 @@
             }
 
             return $this->persistent[$name];
+        }
+
+
+        public function setLanguage($language)
+        {
+            $this->language = $language;
+        }
+
+        public function getLanguage()
+        {
+            return $this->language;
+        }
+
+
+        public function setCurrency($currency)
+        {
+            $this->currency = $currency;
+        }
+
+
+        public function getCurrency()
+        {
+            return $this->currency;
+        }
+
+
+        public function setOrder($order)
+        {
+            $this->order = $order;
+        }
+
+        public function getOrder()
+        {
+            return $this->order;
         }
 
     }

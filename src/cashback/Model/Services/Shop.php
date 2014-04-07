@@ -78,6 +78,11 @@ class Shop extends \Application\Common\Service
     public function getProducts()
     {
 
+        $settings = $this->domainObjectFactory->create('Settings');
+
+        $session = $this->dataMapperFactory->create('Settings', 'Session');
+        $session->fetch($settings);
+
 
         $products = $this->domainObjectFactory->create('ProductCollection');
         $products->setCategory($this->currentCategoryId);
@@ -89,6 +94,9 @@ class Shop extends \Application\Common\Service
 
         $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
         $products->setPage($this->currentPage);
+        $products->setLanguage($settings->getLanguage());
+        $products->setCurrency($settings->getCurrency());
+        $products->setOrder($settings->getOrder());
         $api->fetch($products);
 
 

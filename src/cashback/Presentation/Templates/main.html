@@ -51,23 +51,21 @@
                         <div class="row">
                             <div class="form-item col-1">
                                 <div class="select-box">
-                                    <span class="selected">DKK</span>
+                                    <span class="selected"><?=$settings['currency']?></span>
                                     <ul>
-                                        <li class="selected">DKK</li>
-                                        <li>EUR</li>
-                                        <li>SKK</li>
-                                        <li>NKK</li>
+                                        <li <?=$settings['currency'] === 'EUR'? 'class="selected"':''?>>EUR</li>
+                                        <li <?=$settings['currency'] === 'USD'? 'class="selected"':''?>>USD</li>
+                                        <li <?=$settings['currency'] === 'GBP'? 'class="selected"':''?>>GBP</li>
                                     </ul>
                                 </div><!-- .select-box -->
                             </div><!-- .form-item -->
                             <div class="form-item col-2">
                                 <div class="select-box">
-                                    <span class="selected">Lit</span>
+                                    <span class="selected"><?=$settings['language']?></span>
                                     <ul>
-                                        <li class="selected">Lit</li>
-                                        <li>Eng</li>
-                                        <li>Dansk</li>
-                                        <li>Lat</li>
+                                        <li <?=$settings['language'] === 'English'? 'class="selected"':''?>>English</li>
+                                        <li <?=$settings['language'] === 'Suomi'? 'class="selected"':''?>>Suomi</li>
+                                        <li <?=$settings['language'] === 'Deutsch'? 'class="selected"':''?>>Deutsch</li>
                                     </ul>
                                 </div><!-- .select-box -->
                             </div><!-- .form-item -->
