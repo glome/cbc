@@ -17,10 +17,20 @@ class CategoryCollection extends \Application\Common\CookieMapper
 
 
     public function fetch($collection) {
+
+
+
         $cookiePlugin = new CookiePlugin($this->cookieJar);
 
         $client = new Client;
         $client->addSubscriber($cookiePlugin);
+
+
+
+            $response = $client->get($this->host . "/incentives.json")->send();
+            $data = $response->json();
+
+            //var_dump($data);
 
         $list = $this->fetchTopLevelCategories($client);
 
