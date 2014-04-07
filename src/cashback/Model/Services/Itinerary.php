@@ -99,7 +99,7 @@ class Itinerary extends \Application\Common\Service
         return $finances;
     }
 
-    public function getEarnings()
+    public function getEarnings($currency)
     {
         $finances = $this->finances;
 
@@ -111,9 +111,9 @@ class Itinerary extends \Application\Common\Service
 
         $total = 0;
         if (!$finances->hasError()) {
-            $total = $finances->getTotal();
+            $total = $finances->getTotal($currency);
         }
-        return number_format($total, 2 , '.', '');
+        return number_format($total/100, 2 , '.', '');
     }
 
     public function getHistory()
@@ -132,6 +132,12 @@ class Itinerary extends \Application\Common\Service
         }
 
         return $backlog;
+    }
+
+
+    public function getTotalEarnings()
+    {
+
     }
 
 }

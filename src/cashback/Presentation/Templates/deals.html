@@ -3,16 +3,17 @@
             <div class="top-deals">
                 <div class="wrap">
                     <span class="title">Top cashback deals</span>
-                    <ul class="products" >
+                    <ul class="products masonry-grid" id="grid" >
                     <?php foreach ($products as $id => $product): ?>
                         <li class="product">
+                            <div class="product-content">
                             <a href="/profile/wish/<?=$id?>" class="add-to-wishlist-btn <?=$product['is-favorite']? 'active':''?>"></a>
                             <a href="/product/<?=$id?>">
                                 <div class="labels">
                                 <?php if($product['is-new']): ?>
                                     <span class="new-lbl">NEW</span>
                                 <?php endif; ?>
-                                    <span class="popular-lbl">POPULAR</span>
+                                <span class="popular-lbl">POPULAR</span>
                                 </div>
                                 <div class="rating"></div>
                                 <div class="img-wrap">
@@ -23,7 +24,7 @@
                                     <div class="price">
                                         <span>CASHBACK:</span>
                                         <span>
-                                            <?=$product['currencySymbol'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
+                                            <?=$product['bonusMoney'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
                                             <?=$product['one-bonus'] ? '' : '&'?>
                                             <?=$product['bonusPercent'] === null ? '' : ($product['bonusPercent'] . '%')?>
                                         </span>
@@ -32,6 +33,7 @@
                                     <span class="buy_btn">VIEW</span>
                                 </div><!-- .product-info -->
                             </a>
+                            </div><!-- .product-content -->
                         </li><!-- .product -->
                     <?php endforeach; ?>
                     </ul><!-- .products -->

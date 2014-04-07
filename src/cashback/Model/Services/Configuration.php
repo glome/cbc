@@ -5,6 +5,38 @@ namespace Application\Services;
 
 class Configuration extends \Application\Common\Service
 {
+
+    private $data = [];
+
+
+    public function import($config) {
+        $this->inportParameters('languages', $config['languages']);
+        $this->inportParameters('currencies', $config['currencies']);
+    }
+
+
+    private function inportParameters($key, $parameters) {
+        $this->data[$key] = [];
+        foreach ($parameters as $item) {
+            if (isset($item['default']) && $item['default'] === true) {
+                unset($item['default']);
+                array_unshift($this->data[$key], $item);
+                continue;
+            }
+            $this->data[$key][] = $item;
+        }
+    }
+
+
+    public function getParameter($key)
+    {
+        if (isset($this->data[$key])) {
+            return $this->data[$key];
+        }
+    }
+
+
+
     public function disableDownlaodBar()
     {
         $settings = $this->domainObjectFactory->create('Settings');
@@ -40,6 +72,9 @@ class Configuration extends \Application\Common\Service
         $session = $this->dataMapperFactory->create('Settings', 'Session');
         $settings = $this->domainObjectFactory->create('Settings');
 
+
+
+
         if (in_array($param, ['EUR', 'USD', 'GBP'])) {
             $settings->setCurrency($param);
         }
@@ -63,6 +98,25 @@ class Configuration extends \Application\Common\Service
             'name' => 'EUR',
             'symbol' => '€',
         ];
+    }
+
+
+    public function getCurrencyList()
+    {
+        $data = [];
+
+        $session = $this->dataMapperFactory->create('Settings', 'Session');
+        $settings = $this->domainObjectFactory->create('Settings');
+
+        $session->fetch($settings);
+
+        $current = $settings->getCurrency();
+        if (c)
+
+
+        foreach ($this->data['currencies'] as $item) {
+
+        }
     }
 
 }

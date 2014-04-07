@@ -8,9 +8,16 @@
                         <div class="left">
                             <div class="img-holder">
                                 <img src="<?=$product['image']?>" alt="optional image description" />
+                            <?php if($product['is-new'] || $product['is-popular'] ): ?>
                                 <div class="tags">
-                                    <span class="popular-lbl">popular</span>
+                                <?php if($product['is-new']): ?>
+                                    <span class="new-lbl">NEW</span>
+                                <?php endif; ?>
+                                <?php if($product['is-popular']): ?>
+                                    <span class="popular-lbl">POPULAR</span>
+                                <?php endif; ?>
                                 </div><!-- .tags -->
+                            <?php endif; ?>
                             </div><!-- .img-holder -->
                         </div><!-- .left-->
                         <div class="right">
@@ -64,12 +71,16 @@
                                 <div class="product-content">
                                     <a href="/profile/wish/<?=$id?>" class="add-to-wishlist-btn <?=$product['is-favorite']? 'active':''?>"></a>
                                     <a href="/product/<?=$id?>">
+                                    <?php if($product['is-new'] || $product['is-popular'] ): ?>
                                         <div class="labels">
                                         <?php if($product['is-new']): ?>
                                             <span class="new-lbl">NEW</span>
                                         <?php endif; ?>
+                                        <?php if($product['is-popular']): ?>
                                             <span class="popular-lbl">POPULAR</span>
+                                        <?php endif; ?>
                                         </div>
+                                    <?php endif; ?>
                                         <div class="rating"></div>
                                         <div class="img-wrap">
                                             <img src="<?=$product['image']?>" alt="image description" />

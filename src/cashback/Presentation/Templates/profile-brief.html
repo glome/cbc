@@ -7,8 +7,16 @@
                             </div><!-- .earning -->
                             <a href="" class="redeem-btn">REDEEM</a>
                         </div><!-- .redeem -->
+
+
+                    <?php if (isset($opened)): ?>
+                        <div class="header-profile profile-open">
+                            <span id ="wish-indicator" class="<?=$wishes>0?'amount':''?>"><?=$wishes>0?$wishes:''?></span>
+                            <a class="header-profile-btn"></a>
+                        </div><!-- .header-profile -->
+                    <?php else: ?>
                         <div class="header-profile">
-                            <span id ="wish-indicator" class="<?=$wishes>0?'amount':''?>"></span>
+                            <span id ="wish-indicator" class="<?=$wishes>0?'amount':''?>"><?=$wishes>0?$wishes:''?></span>
                             <a href="/profile" class="header-profile-btn"></a>
                             <div class="profile-menu">
                                 <ul>
@@ -17,4 +25,5 @@
                                 </ul>
                             </div><!-- .profile-menu -->
                         </div><!-- .header-profile -->
+                    <?php endif; ?>
                     </div><!-- .header-profile-wrap -->

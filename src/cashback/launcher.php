@@ -35,7 +35,9 @@ $resource = ucfirst($request->getParameter('resource'));
 $recognition = $serviceFactory->create('Recognition');
 $recognition->authenticate();
 
-
+$configuration = $serviceFactory->create('Configuration');
+$params = json_decode(file_get_contents(__DIR__ . '/../config/content.json'), true);
+$configuration->import($params);
 
 $class = '\\Application\\Controllers\\'.$resource;
 $controller = new $class($serviceFactory);

@@ -7,6 +7,7 @@ class Finances
 
     private $userId;
     private $error = null;
+    private $earnings = [];
 
     public function setUserId($id)
     {
@@ -39,6 +40,21 @@ class Finances
     public function getBacklog()
     {
         return [];
+    }
+
+
+    public function getTotal($currency = null)
+    {
+        if (isset($this->earnings['fresh']['total'][$currency])) {
+            return $this->earnings['fresh']['total'][$currency];
+        }
+        return 0;
+    }
+
+
+    public function setEarnings($earnings)
+    {
+        $this->earnings = $earnings;
     }
 
 

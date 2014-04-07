@@ -1,0 +1,29 @@
+{
+    "currencies": [
+        {
+            "code": "USD",
+            "symbol": "$",
+            "default": true
+        },
+        {
+            "code": "EUR",
+            "symbol": "€"
+        }
+    ],
+
+    "languages": [
+        {
+            "code": "EN",
+            "title": "English",
+            "default": true
+        },
+        {
+            "code": "FI",
+            "title": "Suomi"
+        },
+        {
+            "code": "DE",
+            "title": "Deutsch"
+        }
+    ]
+}

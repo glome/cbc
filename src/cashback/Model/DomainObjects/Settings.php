@@ -7,7 +7,7 @@
 
 
         private $persistent = [];
-        private $language = 'English';
+        private $language = 'EN';
         private $currency = 'EUR';
         private $order = false;
 

@@ -37,7 +37,7 @@ class Product extends \Application\Common\View
 
         $profile->assignAll([
             'wishes'   => $itinerary->getWishlistLength(),
-            'earnings' => $itinerary->getEarnings(),
+            'earnings' => $itinerary->getEarnings('EUR'),
             'currency' => $configuration->getPreferredCurrency(),
         ]);
 

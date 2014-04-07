@@ -28,7 +28,7 @@ class Finances extends \Application\Common\CookieMapper
         $cookiePlugin = new CookiePlugin($this->cookieJar);
 
         $client = new Client;
-        $client->addSubscriber($cookiePlugin);
+        //$client->addSubscriber($cookiePlugin);
 
         $client->getEventDispatcher()->addListener(
             'request.error',
@@ -39,8 +39,11 @@ class Finances extends \Application\Common\CookieMapper
         $id = $instance->getUserId();
         if ($id !== null)
         {
-            $response = $client->get($this->host . "/users/$id/earnings.json")->send();
+            $id = 'cd_65631d_1e12f98457926c4f06cc13f670ef09e5';
+            $response = $client->get($this->host . "/users/$id/earnings.json?application[apikey]={$this->apikey}&application[uid]={$this->uid}")->send();
             $data = $response->json();
+           // / print_r($data);
+            $instance->setEarnings($data);
             if (isset($data['error']))
             {
                 $instance->setError($data['error']);
