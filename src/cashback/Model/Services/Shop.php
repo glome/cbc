@@ -128,6 +128,10 @@ class Shop extends \Application\Common\Service
         $session = $this->dataMapperFactory->create('ProductCollection', 'Session');
         $session->fetch($products);
 
+
+        $db = $this->dataMapperFactory->create('RecommendationCollection', 'SQL');
+        $db->fetch($products);
+
         $term = $products->getQuery();
         return $term !== null ? $term : '';
     }

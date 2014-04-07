@@ -61,7 +61,9 @@
                                         <?php if($product['is-new']): ?>
                                             <span class="new-lbl">NEW</span>
                                         <?php endif; ?>
+                                        <?php if($product['is-popular']): ?>
                                             <span class="popular-lbl">POPULAR</span>
+                                        <?php endif; ?>
                                         </div>
 
                                         <div class="rating"></div>
@@ -72,7 +74,11 @@
                                             <span class="title"><?=$product['title']?></span>
                                             <div class="price">
                                                 <span>CASHBACK:</span>
-                                                <span>25.99 & 28.5%</span>
+                                                <span>
+                                                    <?=$product['currencySymbol'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
+                                                    <?=$product['one-bonus'] ? '' : '&'?>
+                                                    <?=$product['bonusPercent'] === null ? '' : ($product['bonusPercent'] . '%')?>
+                                                </span>
                                             </div>
                                             <span class="voucher">VOUCHER: -10%</span>
                                             <span class="buy_btn">VIEW</span>
