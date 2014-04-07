@@ -27,11 +27,12 @@
 
         public function store($instance)
         {
-            $statement = $this->pdo->prepare('INSERT INTO Wishes(visitorId, productID)
-                                              VALUES (:visitor, :product)');
+            $statement = $this->pdo->prepare('INSERT INTO Wishes(visitorId, productID, categoryId)
+                                              VALUES (:visitor, :product, :category)');
             try {
                 $statement->bindValue(':visitor', $instance->getVisitorId(), \PDO::PARAM_INT);
                 $statement->bindValue(':product', $instance->getProductId(), \PDO::PARAM_INT);
+                $statement->bindValue(':category', $instance->getCategoryId(), \PDO::PARAM_INT);
                 $statement->execute();
             } catch (\PDOException $e) {
                 $instance->setError($e->getCode(), $e->getMessage());

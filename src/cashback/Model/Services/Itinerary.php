@@ -15,8 +15,23 @@ class Itinerary extends \Application\Common\Service
         $this->currentUser = $user;
     }
 
+
+    private function acquireProduct($id)
+    {
+        $product = $this->domainObjectFactory->create('Product');
+        $api = $this->dataMapperFactory->create('Product', 'REST');
+
+        $product->setId($id);
+        $api->fetch($product);
+
+        return $product;
+    }
+
+
     public function addWish($productId)
     {
+        $product = $this->acquireProduct($productId);
+
         $wish = $this->domainObjectFactory->create('Wish');
         $wishMapper = $this->dataMapperFactory->create('Wish', 'SQL');
 
@@ -25,6 +40,7 @@ class Itinerary extends \Application\Common\Service
 
         $wish->setVisitorId($this->currentUser->getVisitorId());
         $wish->setProductId($productId);
+        $wish->setCategoryId($product->getCategoryId());
 
         $wishMapper->store($wish);
     }

@@ -7,6 +7,8 @@ class Wish
 
     private $visitorId;
     private $productId;
+    private $categoryId;
+
     private $userId;
 
     public function setUserId($id)
@@ -43,6 +45,17 @@ class Wish
         return $this->productId;
     }
 
+
+    public function setCategoryId($id)
+    {
+        $this->categoryId = $id;
+    }
+
+
+    public function getCategoryId()
+    {
+        return $this->categoryId;
+    }
 
     public function setError($code, $message)
     {

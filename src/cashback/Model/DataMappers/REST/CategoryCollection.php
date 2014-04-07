@@ -34,7 +34,7 @@ class CategoryCollection extends \Application\Common\CookieMapper
 
         $list = $this->fetchTopLevelCategories($client);
 
-        $response = $client->get($this->host . '/categories.json?display=tree&filter=all&selector=a')->send();
+        $response = $client->get($this->host . '/categories.json?display=tree&filter=all')->send();
         $data = $response->json();
 
         foreach ($data as $item) {
@@ -46,7 +46,7 @@ class CategoryCollection extends \Application\Common\CookieMapper
 
     public function fetchTopLevelCategories($client)
     {
-        $response = $client->get($this->host . '/categories.json?selector=a')->send();
+        $response = $client->get($this->host . '/categories.json?display=tree&filter=all')->send();
         $data = $response->json();
         return $this->collectIdValues($data);
     }
@@ -64,6 +64,9 @@ class CategoryCollection extends \Application\Common\CookieMapper
 
     public function addSubcategories($categories, $data){
         $current = $categories->addItem($data);
+        if (!isset($data['children'])) {
+            return;
+        }
         foreach ($data['children'] as $item) {
             $current->addItem($item);
         }
