@@ -14,6 +14,7 @@ class Catalog extends \Application\Common\Controller
         $user = $recognition->getCurrentUser();
         $itinerary->forUser($user);
         $shop->forUser($user);
+        $shop->setPage($request->getParameter('page'));
         $shop->useCategory($request->getParameter('id'));
     }
 }

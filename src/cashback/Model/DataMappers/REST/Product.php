@@ -30,10 +30,8 @@ class Product extends \Application\Common\CookieMapper
             $response = $client->get($this->host . "/products/$id.json")->send();
             $data = $response->json();
             $this->applyParameter($instance,$data);
-
-        /*    $response = $client->get("https://api.glome.me/categories.json?display=tree&filter=all&selector=a")->send();
-            $data = $response->json();
-            var_dump($data); */
+            $topCategory = $data['categories'][0];
+            $instance->setCategoryId($topCategory['id']);
         }
 
     }

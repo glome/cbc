@@ -18,6 +18,7 @@
         private $bonusPercent;
         private $link;
         private $isFavorite = false;
+        private $categoryId;
 
 
         public function markAsFavorite()
@@ -116,6 +117,9 @@
 
         public function isNew()
         {
+            if ($this->creationDate === null) {
+                return false;
+            }
             $old = $this->creationDate->add(new \DateInterval('P1M'));
             $now = new \DateTime("now");
 
@@ -166,6 +170,18 @@
             return $this->link;
         }
 
+
+        public function setCategoryId($id)
+        {
+            $this->categoryId = $id;
+        }
+
+        public function getCategoryId()
+        {
+            return $this->categoryId;
+        }
+
+
         public function getParsedArray()
         {
 
@@ -179,6 +195,7 @@
                 'is-new' => $this->isNew(),
                 'is-favorite' => $this->isFavorite,
                 'id' => $this->id,
+                'category' => $this->categoryId,
                 'title' => $this->title,
                 'image' => $this->image,
                 'currencySymbol' => $this->currencySymbol,

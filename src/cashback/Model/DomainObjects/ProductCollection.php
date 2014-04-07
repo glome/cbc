@@ -8,13 +8,29 @@ class ProductCollection extends \Application\Common\Collection
     private $categoryId = null;
     private $query = null;
     private $userId = null;
-
+    private $page = null;
 
     public function setUserID($id)
     {
         $this->userId = $id;
     }
 
+
+    public function setPage($page)
+    {
+        $this->page = $page;
+    }
+
+
+    public function getPage()
+    {
+        $page = (int)$this->page;
+        if ($page === 0)
+        {
+            $page = 1;
+        }
+        return $page;
+    }
 
     public function getUserId()
     {

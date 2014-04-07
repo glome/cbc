@@ -10,7 +10,15 @@ class Shop extends \Application\Common\Service
     private $currentProductId = null;
     private $categoryTree = null;
     private $currentUser = null;
+    private $currentProduct = null;
+    private $currentPage = null;
 
+
+
+    public function setPage($page)
+    {
+        $this->currentPage = $page;
+    }
 
     public function forUser($user)
     {
@@ -80,6 +88,7 @@ class Shop extends \Application\Common\Service
 
 
         $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
+        $products->setPage($this->currentPage);
         $api->fetch($products);
 
 
@@ -122,12 +131,11 @@ class Shop extends \Application\Common\Service
 
     public function getCurrentProduct()
     {
-        $product = $this->domainObjectFactory->create('Product');
-        $api = $this->dataMapperFactory->create('Product', 'REST');
+        if ($this->currentProduct === null ) {
+            $this->currentProduct = $this->acquireProduct();
+        }
 
-        $product->setId($this->currentProductId);
-        $api->fetch($product);
-
+        $product = $this->currentProduct;
 
         $db = $this->dataMapperFactory->create('Wish', 'SQL');
         $wish = $this->domainObjectFactory->create('Wish');
@@ -138,9 +146,57 @@ class Shop extends \Application\Common\Service
         {
             $product->markAsFavorite();
         }
+
+        $visit = $this->domainObjectFactory->create('Visit');
+        $visit->setProductId($product->getId());
+        $visit->setCategoryId($product->getCategoryId());
+
+        $session = $this->dataMapperFactory->create('Visit', 'Session');
+        if (!$session->fetch($visit)) {
+            $db = $this->dataMapperFactory->create('Visitor', 'SQL');
+            $db->store($this->currentUser);
+            $visit->setVisitorId($this->currentUser->getVisitorId());
+            $db = $this->dataMapperFactory->create('Visit', 'SQL');
+            $db->store($visit);
+            $session->store($visit);
+        }
+
         return $product->getParsedArray();
     }
 
+
+    private function acquireProduct()
+    {
+        $product = $this->domainObjectFactory->create('Product');
+        $api = $this->dataMapperFactory->create('Product', 'REST');
+
+        $product->setId($this->currentProductId);
+        $api->fetch($product);
+
+        return $product;
+    }
+
+
+    public function registerRedirect()
+    {
+        if ($this->currentProduct === null ) {
+            $this->currentProduct = $this->acquireProduct();
+        }
+
+        $product = $this->currentProduct;
+
+        $db = $this->dataMapperFactory->create('Visitor', 'SQL');
+        $db->store($this->currentUser);
+
+        $redirect = $this->domainObjectFactory->create('Visit');
+        $redirect->setProductId($product->getId());
+        $redirect->setCategoryId($product->getCategoryId());
+        $redirect->setVisitorId($this->currentUser->getVisitorId());
+
+        $db = $this->dataMapperFactory->create('Redirect', 'SQL');
+        $db->store($redirect);
+
+    }
 
 
 }

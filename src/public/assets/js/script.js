@@ -8,6 +8,36 @@ var mouse_on_header_profile = false;
 
 $(document).ready(function() {
 
+
+
+
+    var $container = $('#grid');
+
+
+
+     $container.infinitescroll({
+       navSelector  : '#page-nav',    // selector for the paged navigation
+       nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
+       itemSelector : '.product',     // selector for all items you'll retrieve
+       loading: {
+           finishedMsg: 'No more pages to load.',
+           img: 'http://i.imgur.com/6RMhx.gif'
+         }
+       },
+       // trigger Masonry as a callback
+        function( newElements ) {
+            // hide new items while they are loading
+            var $newElems = $( newElements ).css({ opacity: 0 });
+            // ensure that images load before adding to masonry layout
+            $newElems.css({ opacity: 0 });
+            $newElems.animate({ opacity: 1 });
+            $container.masonry( 'appended', $newElems);
+        }
+     );
+     $container.masonry({
+       itemSelector: '.product'
+    });
+
     /* Close open elements on click outside the element */
     $(".select-box, .select-checkbox").hover(function() {
         mouse_on_selectbox = true;
@@ -574,6 +604,8 @@ $(document).ready(function() {
         maxDuration: 0.7,
         viewportFactor: 0.01
     });
+
+
 
 
 

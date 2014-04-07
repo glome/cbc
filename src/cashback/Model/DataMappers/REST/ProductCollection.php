@@ -36,7 +36,8 @@ class ProductCollection extends \Application\Common\CookieMapper
 
         if ($collection->hasCategory()) {
             $cat = $collection->getCategory();
-            $response = $client->get($this->host . "/products.json?cat_id=$cat&per_page=30&page=1")->send();
+            $page = $collection->getPage();
+            $response = $client->get($this->host . "/products.json?cat_id=$cat&per_page=20&page=$page")->send();
             $data = $response->json();
 //            print_r($data);
             foreach ($data as $entry) {
@@ -47,7 +48,8 @@ class ProductCollection extends \Application\Common\CookieMapper
 
         if ($collection->hasQuery()) {
             $query = $collection->getQuery();
-            $response = $client->get($this->host . "/products/search.json?keywords=$query&per_page=20&page=1")->send();
+            $page = $collection->getPage();
+            $response = $client->get($this->host . "/products/search.json?keywords=$query&per_page=20&page=$page")->send();
             $data = $response->json();
             if (isset($data['status']) && $data['status'] === 1){
                 return;
