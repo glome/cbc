@@ -22,10 +22,12 @@ class Landing extends \Application\Common\View
         $navigation = $builder->create('navigation');
         $footer     = $builder->create('footer');
         $profile    = $builder->create('profile-brief');
-
+        $deals      = $builder->create('deals');
 
         $navigation->assign('categories', $categories);
         $footer->assign('categories', $categories);
+        $deals->assign('products', $shop->getRecommendations(4));
+
 
 
         $profile->assignAll([
@@ -35,11 +37,11 @@ class Landing extends \Application\Common\View
         ]);
 
         $content->assignAll([
-            'about'      => $builder->create('about'),
-            'deals'      => $builder->create('deals'),
-            'banners'    => $builder->create('banners'),
-            'navigation' => $navigation,
-            'popular'    => $builder->create('popular-categories'),
+            'about'           => $builder->create('about'),
+            'deals'           => $deals,
+            'banners'         => $builder->create('banners'),
+            'navigation'      => $navigation,
+            'popular'         => $builder->create('popular-categories'),
         ]);
 
         $main->assignAll([

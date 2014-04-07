@@ -35,10 +35,10 @@ class Catalog extends \Application\Common\View
         ]);
 
         $content->assignAll([
-            'category'   => $categories[$shop->getParentCategoryId()],
-            'current'    => $shop->getCurrentCategoryId(),
-            'navigation' => $navigation,
-            'products'   => $products,
+            'category'        => $categories[$shop->getParentCategoryId()],
+            'current'         => $shop->getCurrentCategoryId(),
+            'navigation'      => $navigation,
+            'products'        => $products,
         ]);
 
         $main->assignAll([

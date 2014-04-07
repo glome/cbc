@@ -42,7 +42,7 @@
                     $statement->bindValue(':user', $collection->getUserId(), \PDO::PARAM_STR);
                     if ($statement->execute()) {
                         $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
-                        foreach ($data as$entry) {
+                        foreach ($data as $entry) {
                             $collection->addItem($entry);
                         }
                     }

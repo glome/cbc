@@ -10,6 +10,8 @@ class Profile extends \Application\Common\Controller
         $itinerary = $this->serviceFactory->create('Itinerary');
         $recognition = $this->serviceFactory->create('Recognition');
         $user = $recognition->getCurrentUser();
+        $shop = $this->serviceFactory->create('Shop');
+        $shop->forUser($user);
 
         $itinerary->forUser($user);
     }

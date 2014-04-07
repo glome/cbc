@@ -10,9 +10,25 @@ class ProductCollection extends \Application\Common\Collection
     private $userId = null;
     private $page = null;
 
+
     private $langauge = null;
     private $currency = null;
     private $order = false;
+
+    private $limit = null;
+
+
+    public function setLimit($limit)
+    {
+        $this->limit = $limit;
+    }
+
+
+    public function getLimit()
+    {
+        return $this->limit;
+    }
+
 
 
     public function setLanguage($language)

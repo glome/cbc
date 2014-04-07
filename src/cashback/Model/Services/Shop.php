@@ -104,6 +104,8 @@ class Shop extends \Application\Common\Service
         $products->setUserId($this->currentUser->getId());
         $db->fetch($products);
 
+        $db = $this->dataMapperFactory->create('RecommendationCollection', 'SQL');
+        $db->fetch($products);
 
 
 
@@ -207,4 +209,22 @@ class Shop extends \Application\Common\Service
     }
 
 
+    public function getRecommendations($count)
+    {
+        $products = $this->domainObjectFactory->create('ProductCollection');
+        $products->setLimit($count);
+        $products->setUserId($this->currentUser->getId());
+
+        $db = $this->dataMapperFactory->create('RecommendationCollection', 'SQL');
+        $db->fetch($products);
+
+
+        $db = $this->dataMapperFactory->create('ProductCollection', 'SQL');
+        $db->fetch($products);
+
+        $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
+        $api->fetch($products);
+
+        return $products->getParsedArray();
+    }
 }

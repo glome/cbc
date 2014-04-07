@@ -29,7 +29,10 @@ class Product extends \Application\Common\View
 
         $navigation->assign('categories', $categories);
         $overlays->assign('product', $product);
-        $element->assign('product', $product);
+        $element->assignAll([
+            'product' => $product,
+            'products'   => $shop->getRecommendations(8),
+        ]);
         $footer->assign('categories', $categories);
 
         $profile->assignAll([

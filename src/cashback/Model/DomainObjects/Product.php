@@ -18,12 +18,30 @@
         private $bonusPercent;
         private $link;
         private $isFavorite = false;
+        private $isPopular = false;
         private $categoryId;
+        private $score = 0;
 
+
+
+        public function setScore($score)
+        {
+            $this->score = $score;
+        }
+
+        public function getScore()
+        {
+            return $this->score;
+        }
 
         public function markAsFavorite()
         {
             $this->isFavorite = true;
+        }
+
+        public function markAsPopular()
+        {
+            $this->isPopular = true;
         }
 
 
@@ -194,6 +212,7 @@
                 'one-bonus' => $onebonus,
                 'is-new' => $this->isNew(),
                 'is-favorite' => $this->isFavorite,
+                'is-popular' => $this->isPopular,
                 'id' => $this->id,
                 'category' => $this->categoryId,
                 'title' => $this->title,

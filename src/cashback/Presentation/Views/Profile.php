@@ -31,10 +31,12 @@ class Profile extends \Application\Common\View
         $content = $builder->create('profile');
         $footer  = $builder->create('footer');
         $profile = $builder->create('profile-brief');
+        $deals   = $builder->create('deals');
 
 
         $content->assign('categories', $categories);
         $footer->assign('categories', $categories);
+        $deals->assign('products', $shop->getRecommendations(4));
 
         $profile->assignAll([
             'wishes'   => $itinerary->getWishlistLength(),
@@ -43,7 +45,7 @@ class Profile extends \Application\Common\View
         ]);
 
         $content->assignAll([
-            'deals'    => $builder->create('deals'),
+            'deals'    => $deals,
             'products' => $itinerary->getWishlist(),
             'history'  => $itinerary->getHistory(),
             'tab'      => $this->currentTab,
