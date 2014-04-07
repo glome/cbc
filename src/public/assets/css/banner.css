@@ -85,14 +85,14 @@ p {
 
 
 .banner.first {
-    background-image: url("/assets/img/banners/banner-bg-1_01.jpg");
+    background-image: url("/assets/img/banners/Shopping.jpg");
 }
 
 .first .txt-bottom .txt-large {
-    color: #FE7063;
+    color: #fff;
 }
 .first .txt-bottom .txt-small {
-    color: #595D5E;
+    color: #fff;
 
 }
 
@@ -100,19 +100,26 @@ p {
 /* banner 2 */
 
 .banner.second{
-    background-image: url("/assets/img/banners/banner2_02.jpg");
+    background-image: url("/assets/img/banners/Glome_galva.jpg");
 }
 
 .second .txt-bottom .txt-large {
-    color: #595D5E;
+    color: #323232;
 }
 .second .txt-bottom .txt-small {
-    color: #7A7D7E;
+    color: #595d5e;
 }
 
 /* banner 3 */
 
 
 .banner.third{
-    background-image: url("/assets/img/banners/banner3_02.jpg");
+    background-image: url("/assets/img/banners/Ger_ready_for_spring_for_banner.jpg");
+}
+
+.third .txt-bottom .txt-large {
+    color: #fd7162;
+}
+.third .txt-bottom .txt-small {
+    color: #595d5e;
 }
