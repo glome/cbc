@@ -25,13 +25,6 @@ class CategoryCollection extends \Application\Common\CookieMapper
         $client = new Client;
         $client->addSubscriber($cookiePlugin);
 
-
-
-            $response = $client->get($this->host . "/incentives.json")->send();
-            $data = $response->json();
-
-            //var_dump($data);
-
         $list = $this->fetchTopLevelCategories($client);
 
         $response = $client->get($this->host . '/categories.json?display=tree&filter=all')->send();
