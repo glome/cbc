@@ -5,14 +5,14 @@
                                 <span>You have earned</span>
                                 <span class="amount"><?=$currency['symbol'].$earnings?></span>
                             </div><!-- .earning -->
-                            <a href="" class="redeem-btn">REDEEM</a>
+                            <a href="/redirect/redeem" class="redeem-btn">REDEEM</a>
                         </div><!-- .redeem -->
 
 
                     <?php if (isset($opened)): ?>
                         <div class="header-profile profile-open">
                             <span id ="wish-indicator" class="<?=$wishes>0?'amount':''?>"><?=$wishes>0?$wishes:''?></span>
-                            <a class="header-profile-btn"></a>
+                            <a href="/profile" class="header-profile-btn"></a>
                         </div><!-- .header-profile -->
                     <?php else: ?>
                         <div class="header-profile">

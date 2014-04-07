@@ -645,7 +645,7 @@ function getWidth() {
         var content_width = $(".wrap").width();
         $(".location-filter .row").width(content_width);
         $(".header-profile .profile-menu").width(content_width);
-        $(".search-form input[type='text']").width(content_width - 5);
+        $(".search-form input[type='text']").width(content_width - 25);
         $(".filter-content-wrap").width(content_width);
     } else {
         $(".location-filter .row").removeAttr("style");

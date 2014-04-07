@@ -116,7 +116,7 @@ class Itinerary extends \Application\Common\Service
         return number_format($total/100, 2 , '.', '');
     }
 
-    public function getHistory()
+    public function getHistory($currency)
     {
         $finances = $this->finances;
 
@@ -126,13 +126,26 @@ class Itinerary extends \Application\Common\Service
         }
 
         if (!$finances->hasError()) {
-            $backlog = $finances->getBacklog();
+            $backlog = $finances->getBacklog($currency);
         } else {
             $backlog = ['error' => $finances->getErrorMessage()];
         }
 
         return $backlog;
     }
+
+
+    public function getRedeemMessage()
+    {
+        $wallet = $this->domainObjectFactory->create('Wallet');
+        $api = $this->dataMapperFactory->create('Wallet', 'REST');
+        $wallet->setUserId($this->currentUser->getId());
+        $api->fetch($wallet);
+
+        return $wallet->getParsedArray();
+
+    }
+
 
 
     public function getTotalEarnings()

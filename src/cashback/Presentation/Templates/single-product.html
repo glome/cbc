@@ -90,7 +90,7 @@
                                             <div class="price">
                                                 <span>CASHBACK:</span>
                                                 <span>
-                                                    <?=$product['currencySymbol'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
+                                                    <?=$product['bonusMoney'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
                                                     <?=$product['one-bonus'] ? '' : '&'?>
                                                     <?=$product['bonusPercent'] === null ? '' : ($product['bonusPercent'] . '%')?>
                                                 </span>

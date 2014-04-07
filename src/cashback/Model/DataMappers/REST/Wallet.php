@@ -8,7 +8,7 @@ use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 use Guzzle\Http\Exception\ClientErrorResponseException;
 use Guzzle\Common\Event;
 
-class Finances extends \Application\Common\CookieMapper
+class Wallet extends \Application\Common\CookieMapper
 {
 
     private $host;
@@ -28,26 +28,15 @@ class Finances extends \Application\Common\CookieMapper
         $cookiePlugin = new CookiePlugin($this->cookieJar);
 
         $client = new Client;
-        //$client->addSubscriber($cookiePlugin);
+        $client->addSubscriber($cookiePlugin);
 
-        $client->getEventDispatcher()->addListener(
-            'request.error',
-            function(Event $event) use ($instance) {
-                $event->stopPropagation();
-            }
-        );
+
         $id = $instance->getUserId();
         if ($id !== null)
         {
-            $response = $client->get($this->host . "/users/$id/earnings.json?application[apikey]={$this->apikey}&application[uid]={$this->uid}")->send();
+            $response = $client->get($this->host . "/users/$id/payments/redeem.json")->send();
             $data = $response->json();
-           // / print_r($data);
-            $instance->setEarnings($data);
-            if (isset($data['error']))
-            {
-                $instance->setError($data['error']);
-            }
-
+            $instance->setResponse($data);
         }
 
 

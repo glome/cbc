@@ -50,9 +50,11 @@ class Profile extends \Application\Common\View
         $content->assignAll([
             'deals'    => $deals,
             'products' => $itinerary->getWishlist(),
-            'history'  => $itinerary->getHistory(),
+            'history'  => $itinerary->getHistory('EUR'),
+            'currency'   => $configuration->getPreferredCurrency(),
             'tab'      => $this->currentTab,
         ]);
+
 
         $main->assignAll([
             'content'  => $content,

@@ -15,4 +15,16 @@ class Redirect extends \Application\Common\Controller
         $shop->forUser($user);
         $shop->registerRedirect();
     }
+
+
+
+    public function getRedeem($request)
+    {
+        $itinerary = $this->serviceFactory->create('Itinerary');
+        $recognition = $this->serviceFactory->create('Recognition');
+        $user = $recognition->getCurrentUser();
+
+        $itinerary->forUser($user);
+    }
+
 }

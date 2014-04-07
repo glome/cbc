@@ -56,7 +56,7 @@
                             <li class="product">
                                 <div class="product-content">
                                     <a href="/profile/wish/<?=$id?>" class="add-to-wishlist-btn <?=$product['is-favorite']? 'active':''?>"></a>
-                                    <a href="/product/<?=$id?>">
+                                    <a href="/product/<?=$id?>" class="product-link-wrap">
                                         <div class="labels">
                                         <?php if($product['is-new']): ?>
                                             <span class="new-lbl">NEW</span>
@@ -72,6 +72,7 @@
                                         </div><!-- .img-wrap -->
                                         <div class="product-info">
                                             <span class="title"><?=$product['title']?></span>
+                                            <span class="product-price"><?=$product['currencySymbol']?><?=$product['price']?></span>
                                             <div class="price">
                                                 <span>CASHBACK:</span>
                                                 <span>

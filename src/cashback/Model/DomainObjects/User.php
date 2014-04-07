@@ -10,7 +10,6 @@
         public function setId($id)
         {
             $this->id = $id;
-            $this->id = 'cd_65631d_1e12f98457926c4f06cc13f670ef09e5';
         }
 
         public function getId()

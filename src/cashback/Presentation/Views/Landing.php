@@ -26,7 +26,7 @@ class Landing extends \Application\Common\View
 
         $navigation->assign('categories', $categories);
         $footer->assign('categories', $categories);
-        $deals->assign('products', $shop->getRecommendations(4));
+        $deals->assign('products', $shop->getRecommendations(8));
 
 
 

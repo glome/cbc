@@ -17,4 +17,18 @@ class Redirect extends \Application\Common\View
 
         return $main->render();
     }
+
+    public function redeem()
+    {
+        $itinerary = $this->serviceFactory->create('Itinerary');
+        $main = $this->templateBuilder->create('redeem');
+        $message = $itinerary->getRedeemMessage();
+
+        $main->assignAll([
+            'link' => isset($message['url'])? $message['url'] : false,
+        ]);
+
+        return $main->render();
+    }
+
 }

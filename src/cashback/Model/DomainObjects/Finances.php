@@ -37,8 +37,17 @@ class Finances
     }
 
 
-    public function getBacklog()
+    public function getBacklog($currency)
     {
+        if (isset($this->earnings['fresh'][$currency])) {
+            foreach ($this->earnings['fresh'][$currency]['details'] as $key => $value) {
+                $datetime = new \DateTime($this->earnings['fresh'][$currency]['details'][$key]['date']);
+                $this->earnings['fresh'][$currency]['details'][$key]['amount'] = number_format($value['amount']/100, 2 , '.', '');
+                $this->earnings['fresh'][$currency]['details'][$key]['date'] = $datetime->format('d/m/Y');
+            }
+            return $this->earnings['fresh'][$currency];
+        }
+
         return [];
     }
 
