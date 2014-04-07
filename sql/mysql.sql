@@ -10,8 +10,12 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE `cashback`.`Wishes` (
   `visitorId` INT NOT NULL,
   `productId` INT NOT NULL,
+  `categoryId` INT NOT NULL,
   `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (`visitorId`) REFERENCES `cashback`.`Visitors` (`visitorId`),
+  CONSTRAINT `wishVisitors`
+    FOREIGN KEY (`visitorId`)
+    REFERENCES `cashback`.`Visitors` (`visitorId`),
+  INDEX `wishCategoryIndex` (`categoryId` ASC),
   UNIQUE INDEX `uniqueWish` (`visitorId` ASC, `productId` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -24,7 +28,7 @@ CREATE TABLE `cashback`.`VisitorViews` (
   `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE INDEX `uniqueViews` (`visitorId` ASC, `productId` ASC),
   INDEX `viewCategoryIndex` (`categoryId` ASC),
-  CONSTRAINT `viewV    isitors`
+  CONSTRAINT `viewVisitors`
     FOREIGN KEY (`visitorId`)
     REFERENCES `cashback`.`Visitors` (`visitorId`)
     ON DELETE NO ACTION
