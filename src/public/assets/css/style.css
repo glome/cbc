@@ -775,6 +775,7 @@ footer {
     cursor: default;
 }
 .search-form {
+    position: relative;
     float: left;
 }
 .search-form input[type="text"] {
@@ -2290,6 +2291,19 @@ footer {
 .overlay.redirect-msg .center .content-box .notice-msg span:nth-child(2) {
     color: #FE7063;
 }
+
+/* Search autocomplete */
+.ui-helper-hidden-accessible {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 380px;
+    padding: 10px;
+    color: #7a7d7e;
+    background-color: #ffffff;
+    z-index: 9999;
+}
+
 
 
 

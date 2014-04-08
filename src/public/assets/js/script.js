@@ -15,27 +15,27 @@ $(document).ready(function() {
 
 
 
-     $container.infinitescroll({
-       navSelector  : '#page-nav',    // selector for the paged navigation
-       nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
-       itemSelector : '.product',     // selector for all items you'll retrieve
-       loading: {
-           finishedMsg: 'No more pages to load.',
-           img: 'http://i.imgur.com/6RMhx.gif'
-         }
-       },
-       // trigger Masonry as a callback
-        function( newElements ) {
-            // hide new items while they are loading
-            var $newElems = $( newElements ).css({ opacity: 0 });
-            // ensure that images load before adding to masonry layout
-            $newElems.css({ opacity: 0 });
-            $newElems.animate({ opacity: 1 });
-            $container.masonry( 'appended', $newElems);
+    $container.infinitescroll({
+        navSelector: '#page-nav', // selector for the paged navigation
+        nextSelector: '#page-nav a', // selector for the NEXT link (to page 2)
+        itemSelector: '.product', // selector for all items you'll retrieve
+        loading: {
+            finishedMsg: 'No more pages to load.',
+            img: 'http://i.imgur.com/6RMhx.gif'
         }
-     );
-     $container.masonry({
-       itemSelector: '.product'
+    },
+    // trigger Masonry as a callback
+    function(newElements) {
+        // hide new items while they are loading
+        var $newElems = $(newElements).css({opacity: 0});
+        // ensure that images load before adding to masonry layout
+        $newElems.css({opacity: 0});
+        $newElems.animate({opacity: 1});
+        $container.masonry('appended', $newElems);
+    }
+    );
+    $container.masonry({
+        itemSelector: '.product'
     });
 
     /* Close open elements on click outside the element */
@@ -164,9 +164,10 @@ $(document).ready(function() {
 
 
     $(".header-profile-btn").on("click", function(e) {
-        e.preventDefault();
-        console.log("click");
         if ($(window).width() < 769) {
+            e.preventDefault();
+
+
             e.preventDefault();
             if ($(this).parent().hasClass("active")) {
                 $(this).parent().removeClass("active");
@@ -326,8 +327,8 @@ $(document).ready(function() {
     /* Add to wishlist */
     $(".add-to-wishlist-btn, .add-to-wishlist").on("click", function(e) {
         var counter = $('#wish-counter'),
-            indicator = $('#wish-indicator'),
-            total = parseInt(counter.text()) || 0;
+                indicator = $('#wish-indicator'),
+                total = parseInt(counter.text()) || 0;
         e.preventDefault();
         if ($(this).hasClass("active")) {
             $(this).removeClass("active");
@@ -353,12 +354,14 @@ $(document).ready(function() {
 
     $('.delete-from-wishlist').on('click', function(e) {
         var parent = this.parentNode,
-            counter = $('#wish-counter'),
-            indicator = $('#wish-indicator'),
-            total = parseInt(counter.text()) || 0;
+                counter = $('#wish-counter'),
+                indicator = $('#wish-indicator'),
+                total = parseInt(counter.text()) || 0;
         e.preventDefault();
         $.get(this.href);
-        $(parent).fadeOut(200, function() { $(parent).remove(); });
+        $(parent).fadeOut(200, function() {
+            $(parent).remove();
+        });
         total -= 1;
         if (total === 0) {
             indicator.removeClass('amount')
@@ -389,7 +392,7 @@ $(document).ready(function() {
     /*
      $(".filter-cat .filter-content-wrap ul li a").on("click", function(e) {
      e.preventDefault();
-
+     
      if (!$(this).parent().hasClass("selected")) {
      $(".filter-cat .filter-content-wrap ul li").removeClass("selected");
      $(this).parent().addClass("selected");
@@ -536,13 +539,13 @@ $(document).ready(function() {
      if(top2 < scrolled) {
      $(".filter-sidebar").removeClass("absolute");
      }
-
-
+     
+     
      }
-
+     
      console.log(scrolled);
      });
-
+     
      */
 
     /* Overlay */
@@ -594,9 +597,19 @@ $(document).ready(function() {
         }
     });
 
-    /* Overlay */
+    /* SEARCH AUTOCOMPLETE */
 
-    $()
+    var jsondata = $.getJSON('http://glome.mt.aurumit.com/search/autocomplete?q=test', function(data) {
+        console.log(data);
+    });
+    console.log(jsondata);
+    $("#search-input").autocomplete({
+        source: jsondata
+    });
+    
+
+
+
 
     /* Masonry grid */
 
