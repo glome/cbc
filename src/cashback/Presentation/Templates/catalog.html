@@ -5,6 +5,7 @@
             <div class="products-page">
                 <div class="wrap">
                     <div class="filter-sidebar">
+                    <?php if($category !== null): ?>
                         <div class="filter-cat">
                             <span class="filter-title"><?=$category['name']?></span>
                             <div class="filter-content-wrap">
@@ -29,7 +30,8 @@
                                 </ul>
                             </div><!-- .filter-content-wrap -->
                         </div><!-- .filter-retailer -->
-                        <?php /*
+                    <?php endif; ?>
+                    <?php /*
                         <div class="filter-brand">
                             <span class="filter-title">BRAND <a href="" class="clear">clear</a></span>
                             <div class="filter-content-wrap">
@@ -44,12 +46,14 @@
                                 </ul>
                             </div><!-- .filter-content-wrap -->
                         </div><!-- .filter-retailer -->
-                        */ ?>
+                    */ ?>
                     </div><!-- .filter-sidebar -->
 
                     <div class="products-main">
                         <div class="page-title">
+                        <?php if($current !== null): ?>
                             <h1><?=$category['subcategories'][(int)$current]['name']?></h1>
+                        <?php endif; ?>
                         </div>
                         <div class="cat-banner">
                             <div class="cat-slider flexslider">

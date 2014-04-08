@@ -34,12 +34,22 @@ class Catalog extends \Application\Common\View
             'currency' => $configuration->getPreferredCurrency(),
         ]);
 
-        $content->assignAll([
-            'category'        => $categories[$shop->getParentCategoryId()],
-            'current'         => $shop->getCurrentCategoryId(),
+        $currentCategory = $shop->getParentCategoryId();
+
+        $params = [
             'navigation'      => $navigation,
-            'products'        => $products,
-        ]);
+            'category'        => null,
+            'current'         => null,
+            'products'        => [],
+        ];
+
+        if ($currentCategory) {
+            $params['category'] = $categories[$currentCategory];
+            $params['current'] = $currentCategory;
+            $params['products'] = $products;
+        }
+
+        $content->assignAll($params);
 
         $main->assignAll([
             'content'    => $content,

@@ -52,7 +52,7 @@ class ProductCollection extends \Application\Common\CookieMapper
             $page = $collection->getPage();
             $response = $client->get($this->host . "/products.json?cat_id=$cat&per_page=20&page=$page")->send();
             $data = $response->json();
-            foreach ($data as $entry) {
+            foreach ($data as $id => $entry) {
                 if (isset($data['error'])) {
                     $collection->removeItem($id);
                     continue;

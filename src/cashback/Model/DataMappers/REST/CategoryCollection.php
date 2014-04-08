@@ -4,6 +4,7 @@ namespace Application\DataMappers\REST;
 
 use Guzzle\Http\Client;
 use Guzzle\Plugin\Cookie\CookiePlugin;
+use Guzzle\Common\Event;
 
 class CategoryCollection extends \Application\Common\CookieMapper
 {
@@ -25,6 +26,14 @@ class CategoryCollection extends \Application\Common\CookieMapper
         $client = new Client;
         $client->addSubscriber($cookiePlugin);
 
+        $client->getEventDispatcher()->addListener(
+            'request.error',
+            function(Event $event) use ($collection) {
+                $event->stopPropagation();
+            }
+        );
+
+
         $list = $this->fetchTopLevelCategories($client);
 
         $response = $client->get($this->host . '/categories.json?display=tree&filter=all')->send();
@@ -41,6 +50,9 @@ class CategoryCollection extends \Application\Common\CookieMapper
     {
         $response = $client->get($this->host . '/categories.json?display=tree&filter=all')->send();
         $data = $response->json();
+        if (isset($data['error'])) {
+            return;
+        }
         return $this->collectIdValues($data);
     }
 
