@@ -5,6 +5,8 @@ namespace Application\DataMappers\REST;
 use Guzzle\Http\Client;
 use Guzzle\Plugin\Cookie\CookiePlugin;
 use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
+use Guzzle\Common\Event;
+
 
 class ProductCollection extends \Application\Common\CookieMapper
 {
@@ -23,12 +25,23 @@ class ProductCollection extends \Application\Common\CookieMapper
         $client = new Client;
         $client->addSubscriber($cookiePlugin);
 
+        $client->getEventDispatcher()->addListener(
+            'request.error',
+            function(Event $event) use ($collection) {
+                $event->stopPropagation();
+            }
+        );
+
 
         if ($collection->hasItems())
         {
-            foreach ($collection as $product) {
+            foreach ($collection as $id => $product) {
                 $response = $client->get($this->host . "/products/{$product->getId()}.json")->send();
                 $data = $response->json();
+                if (isset($data['error'])) {
+                    $collection->removeItem($id);
+                    continue;
+                }
                 $this->applyParameter($product,$data);
             }
         }
@@ -39,8 +52,11 @@ class ProductCollection extends \Application\Common\CookieMapper
             $page = $collection->getPage();
             $response = $client->get($this->host . "/products.json?cat_id=$cat&per_page=20&page=$page")->send();
             $data = $response->json();
-//            print_r($data);
             foreach ($data as $entry) {
+                if (isset($data['error'])) {
+                    $collection->removeItem($id);
+                    continue;
+                }
                 $collection->addItem($entry);
             }
         }

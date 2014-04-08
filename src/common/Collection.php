@@ -11,6 +11,8 @@ abstract class Collection implements \Iterator
 
     protected $pool = [];
 
+    protected $forRemoval = [];
+
     private $position = 0;
 
     private $amount = 0;
@@ -28,6 +30,16 @@ abstract class Collection implements \Iterator
         $this->amount += 1;
         $this->pool[] = $instance;
         return $instance;
+    }
+
+    public function removeItem($id)
+    {
+        if (isset($this->pool[$id])) {
+            $this->forRemoval[] = $this->pool[$id];
+            unset($this->pool[$id]);
+            $this->amount -= 1;
+        }
+
     }
 
     public function getAmount()

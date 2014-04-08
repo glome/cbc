@@ -5,6 +5,8 @@ namespace Application\DataMappers\REST;
 use Guzzle\Http\Client;
 use Guzzle\Plugin\Cookie\CookiePlugin;
 use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
+use Guzzle\Common\Event;
+
 
 class Product extends \Application\Common\CookieMapper
 {
@@ -24,15 +26,28 @@ class Product extends \Application\Common\CookieMapper
         $client = new Client;
         $client->addSubscriber($cookiePlugin);
 
+        $client->getEventDispatcher()->addListener(
+            'request.error',
+            function(Event $event) use ($instance) {
+                $event->stopPropagation();
+            }
+        );
+
         $id = $instance->getId();
         if ($id !== null)
         {
             $response = $client->get($this->host . "/products/$id.json")->send();
             $data = $response->json();
+            if (isset($data['error'])) {
+
+                return false;
+            }
             $this->applyParameter($instance,$data);
             $topCategory = $data['categories'][0];
             $instance->setCategoryId($topCategory['id']);
+            return true;
         }
+        return false;
 
     }
 

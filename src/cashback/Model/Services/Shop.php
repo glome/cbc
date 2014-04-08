@@ -12,6 +12,7 @@ class Shop extends \Application\Common\Service
     private $currentUser = null;
     private $currentProduct = null;
     private $currentPage = null;
+    private $currentQuery = null;
 
 
 
@@ -115,11 +116,30 @@ class Shop extends \Application\Common\Service
 
     public function prepareSearch($query)
     {
+        $this->currentQuery = $query;
         $products = $this->domainObjectFactory->create('ProductCollection');
         $products->setQuery($query);
         $session = $this->dataMapperFactory->create('ProductCollection', 'Session');
         $session->store($products);
     }
+
+
+    public function getProductSuggestions()
+    {
+        $products = $this->domainObjectFactory->create('ProductCollection');
+        $products->setQuery($this->currentQuery);
+        $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
+        $api->fetch($products);
+
+        $list = [];
+        foreach($products as $product) {
+            $list[] = $product->getTitle();
+        }
+
+        return $list;
+
+    }
+
 
 
     public function getSearchedTerm()
