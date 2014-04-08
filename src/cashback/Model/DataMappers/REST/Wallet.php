@@ -20,6 +20,7 @@ class Wallet extends \Application\Common\CookieMapper
         $this->host = $configuration['rest']['host'];
         $this->apikey = $configuration['rest']['params']['application[apikey]'];
         $this->uid = $configuration['rest']['params']['application[uid]'];
+        $this->resources = $configuration['rest']['resources'];
     }
 
 
@@ -30,11 +31,19 @@ class Wallet extends \Application\Common\CookieMapper
         $client = new Client;
         $client->addSubscriber($cookiePlugin);
 
+        $client->getEventDispatcher()->addListener(
+            'request.error',
+            function(Event $event) use ($instance) {
+                $event->stopPropagation();
+            }
+        );
+
 
         $id = $instance->getUserId();
         if ($id !== null)
         {
-            $response = $client->get($this->host . "/users/$id/payments/redeem.json")->send();
+            $url = $this->applyValuesToURL($this->resources['user-redeem'], ['{id}' => $id ]);
+            $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             $instance->setResponse($data);
         }

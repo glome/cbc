@@ -14,6 +14,7 @@ class CategoryCollection extends \Application\Common\CookieMapper
         $this->host = $configuration['rest']['host'];
         $this->apikey = $configuration['rest']['params']['application[apikey]'];
         $this->uid = $configuration['rest']['params']['application[uid]'];
+        $this->resources = $configuration['rest']['resources'];
     }
 
 
@@ -34,36 +35,13 @@ class CategoryCollection extends \Application\Common\CookieMapper
         );
 
 
-        $list = $this->fetchTopLevelCategories($client);
-
-        $response = $client->get($this->host . '/categories.json?display=tree&filter=all')->send();
+        $response = $client->get($this->host . $this->resources['categories'])->send();
         $data = $response->json();
 
+
         foreach ($data as $item) {
-            if (in_array($item['id'], $list)) {
-                $this->addSubcategories($collection, $item);
-            }
+            $this->addSubcategories($collection, $item);
         }
-    }
-
-    public function fetchTopLevelCategories($client)
-    {
-        $response = $client->get($this->host . '/categories.json?display=tree&filter=all')->send();
-        $data = $response->json();
-        if (isset($data['error'])) {
-            return;
-        }
-        return $this->collectIdValues($data);
-    }
-
-
-    private function collectIdValues($data)
-    {
-        $list = [];
-        foreach ($data as $item) {
-            $list[] = $item['id'];
-        }
-        return $list;
     }
 
 

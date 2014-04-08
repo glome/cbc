@@ -20,6 +20,7 @@ class Finances extends \Application\Common\CookieMapper
         $this->host = $configuration['rest']['host'];
         $this->apikey = $configuration['rest']['params']['application[apikey]'];
         $this->uid = $configuration['rest']['params']['application[uid]'];
+        $this->resources = $configuration['rest']['resources'];
     }
 
 
@@ -39,7 +40,8 @@ class Finances extends \Application\Common\CookieMapper
         $id = $instance->getUserId();
         if ($id !== null)
         {
-            $response = $client->get($this->host . "/users/$id/earnings.json?application[apikey]={$this->apikey}&application[uid]={$this->uid}")->send();
+            $url = $this->applyValuesToURL($this->resources['user-earnings'], ['{id}' => $id, '{apikey}' => $this->apikey, '{uid}' => $this->uid]);
+            $response = $client->get($this->host . $url)->send();
             $data = $response->json();
            // / print_r($data);
             $instance->setEarnings($data);

@@ -4,7 +4,24 @@
         "params": {
             "application[apikey]": "275b4d4bec43c0812795de8a3765631d",
             "application[uid]": "me.glome.demo.cbc"
+        },
+
+        "resources":{
+            "category":        "/categories/{id}.json",
+            "categories":      "/categories.json?display=tree&filter=all",
+
+            "product":         "/products/{id}.json",
+            "product-visit":   "/products/{id}/getit.json",
+            "product-buy":     "/products/{id}/click/{user}.json",
+            "products":        "/products.json?cat_id={id}&per_page=20&page={page}",
+            "products-search": "/products/search.json?keywords={query}&per_page=20&page={page}",
+
+            "user":            "/users.json",
+            "user-login":      "/users/login.json",
+            "user-redeem":     "/users/{id}/payments/redeem.json",
+            "user-earnings":   "/users/{id}/earnings.json?application[apikey]={apikey}&application[uid]={uid}"
         }
+
     },
 
     "sql": {

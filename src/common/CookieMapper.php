@@ -14,4 +14,10 @@
         }
 
 
+        protected function applyValuesToURL($url, $parameters)
+        {
+            return strtr($url, $parameters);
+        }
+
+
     }

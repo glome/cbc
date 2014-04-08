@@ -18,6 +18,8 @@ class User extends \Application\Common\CookieMapper
         $this->host = $configuration['rest']['host'];
         $this->apikey = $configuration['rest']['params']['application[apikey]'];
         $this->uid = $configuration['rest']['params']['application[uid]'];
+        $this->resources = $configuration['rest']['resources'];
+
     }
 
 
@@ -29,7 +31,7 @@ class User extends \Application\Common\CookieMapper
         $client->addSubscriber($cookiePlugin);
 
         if ($instance->getId() === null) {
-            $request = $client->post($this->host . '/users.json', [],
+            $request = $client->post($this->host . $this->resources['user'], [],
                 [
                     'application[apikey]' => $this->apikey,
                     'application[uid]' => $this->uid
@@ -41,13 +43,14 @@ class User extends \Application\Common\CookieMapper
         }
 
 
-        $request = $client->post($this->host . '/users/login.json', [],
+        $request = $client->post($this->host . $this->resources['user-login'], [],
             [
                 'user[glomeid]' => $instance->getId(),
             ]
         );
 
         $response = $request->send();
+
 
         //var_dump($response->json());
         $temp = $response->getHeader('X-Csrf-Token')->toArray();

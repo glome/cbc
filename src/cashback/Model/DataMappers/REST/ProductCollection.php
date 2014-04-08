@@ -16,6 +16,7 @@ class ProductCollection extends \Application\Common\CookieMapper
         $this->host = $configuration['rest']['host'];
         $this->apikey = $configuration['rest']['params']['application[apikey]'];
         $this->uid = $configuration['rest']['params']['application[uid]'];
+        $this->resources = $configuration['rest']['resources'];
     }
 
     public function fetch($collection)
@@ -36,7 +37,9 @@ class ProductCollection extends \Application\Common\CookieMapper
         if ($collection->hasItems())
         {
             foreach ($collection as $id => $product) {
-                $response = $client->get($this->host . "/products/{$product->getId()}.json")->send();
+
+                $url = $this->applyValuesToURL($this->resources['product'], ['{id}' => $product->getId() ]);
+                $response = $client->get($this->host . $url)->send();
                 $data = $response->json();
                 if (isset($data['error'])) {
                     $collection->removeItem($id);
@@ -48,9 +51,9 @@ class ProductCollection extends \Application\Common\CookieMapper
 
 
         if ($collection->hasCategory()) {
-            $cat = $collection->getCategory();
-            $page = $collection->getPage();
-            $response = $client->get($this->host . "/products.json?cat_id=$cat&per_page=20&page=$page")->send();
+
+            $url = $this->applyValuesToURL($this->resources['products'], ['{id}' => $collection->getCategory(), '{page}' => $collection->getPage()]);
+            $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             foreach ($data as $id => $entry) {
                 if (isset($data['error'])) {
@@ -63,9 +66,10 @@ class ProductCollection extends \Application\Common\CookieMapper
 
 
         if ($collection->hasQuery()) {
-            $query = $collection->getQuery();
-            $page = $collection->getPage();
-            $response = $client->get($this->host . "/products/search.json?keywords=$query&per_page=20&page=$page")->send();
+
+            $url = $this->applyValuesToURL($this->resources['products-search'], ['{query}' => $collection->getQuery(), '{page}' => $collection->getPage()  ]);
+
+            $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             if (isset($data['status']) && $data['status'] === 1){
                 return;

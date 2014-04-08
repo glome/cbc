@@ -16,6 +16,7 @@ class Visit extends \Application\Common\CookieMapper
         $this->host = $configuration['rest']['host'];
         $this->apikey = $configuration['rest']['params']['application[apikey]'];
         $this->uid = $configuration['rest']['params']['application[uid]'];
+        $this->resources = $configuration['rest']['resources'];
     }
 
 
@@ -36,8 +37,9 @@ class Visit extends \Application\Common\CookieMapper
         $id = $instance->getProductId();
         if ($id !== null)
         {
-            $user = $instance->getUserId();
-            $response = $client->post($this->host . "/products/$id/getit.json", [],
+
+            $url = $this->applyValuesToURL($this->resources['product-visit'], ['{id}' => $instance->getProductId() ]);
+            $response = $client->post($this->host . $url, [],
             [
                 'user[glomeid]' => $instance->getUserId(),
             ])->send();
@@ -75,7 +77,8 @@ class Visit extends \Application\Common\CookieMapper
         if ($id !== null)
         {
             $user = $instance->getUserId();
-            $response = $client->get($this->host . "/products/$id/click/$user.json")->send();
+            $url = $this->applyValuesToURL($this->resources['product-buy'], ['{id}' => $instance->getProductId(), '{user}' => $instance->getUserId()  ]);
+            $response = $client->get($this->host . $url)->send();
             $data = $response->json();
 
             if (isset($data['error'])) {
