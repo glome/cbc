@@ -86,16 +86,22 @@ class Itinerary extends \Application\Common\Service
         $wishlist->setUserId($this->currentUser->getId());
         $db->fetch($wishlist);
 
+        $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
+        $api->fetch($wishlist);
+
         return $wishlist->getAmount();
     }
 
 
     private function acquireFinanceDetails()
     {
+        $id = $this->currentUser->getId();
+       // $id = 'cd_65631d_1e12f98457926c4f06cc13f670ef09e5';
         $finances = $this->domainObjectFactory->create('Finances');
         $api = $this->dataMapperFactory->create('Finances', 'REST');
-        $finances->setUserId($this->currentUser->getId());
+        $finances->setUserId($id);
         $api->fetch($finances);
+//        var_dump($finances);
         return $finances;
     }
 

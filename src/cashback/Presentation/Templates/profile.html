@@ -48,6 +48,7 @@
                     </div><!-- .profile-bar -->
                     <div class="profile-tab-content">
                         <div class="profile-wishlist tab <?=$tab === 'wishlist'? 'active':''?>">
+                        <?php if (count($products)): ?>
                             <div class="products">
                                 <div class="row">
                                 <?php foreach ($products as $id => $product): ?>
@@ -155,11 +156,15 @@
                                     */ ?>
                                 </div><!-- .row -->
                             </div><!-- .products-->
+                        <?php else: ?>
+                            Currently there are no products added to your wishlist.
+                        <?php endif; ?>
                         </div><!-- .profile-wishlist -->
                         <div class="profile-cashback-history tab  <?=$tab === 'history'? 'active':''?>">
                             <?php if(isset($history['error'])): ?>
                                 <p><?=$history['error']?></p>
                             <?php else: ?>
+                            <?php if (isset($history['details']) && count($history['details'])): ?>
                             <ul class="cashback-history">
                                 <li class="table-heading">
                                     <span class="retailer">Retailer</span>
@@ -170,54 +175,18 @@
                                         <span class="status"><a href="">Status</a></span>
                                     </div><!-- .order -->
                                 </li><!-- .table-heading -->
+                                <?php foreach ($history['details'] as $key => $value): ?>
                                 <li>
-                                    <span>Title of retailer goes here</span>
-                                    <span>12/02/2014</span>
-                                    <span>€10</span>
-                                    <span>REDEEMED</span>
+                                    <span><?=$value['advertiser']?></span>
+                                    <span><?=$value['date']?></span>
+                                    <span><?=$value['amount']?></span>
+                                    <span>NEW</span>
                                 </li>
-                                <li>
-                                    <span>Title of retailer goes here</span>
-                                    <span>12/02/2014</span>
-                                    <span>€10</span>
-                                    <span>REDEEMED</span>
-                                </li>
-                                <li>
-                                    <span>Title of retailer goes here</span>
-                                    <span>12/02/2014</span>
-                                    <span>€10</span>
-                                    <span>REDEEMED</span>
-                                </li>
-                                <li>
-                                    <span>Title of retailer goes here</span>
-                                    <span>12/02/2014</span>
-                                    <span>€10</span>
-                                    <span>REDEEMED</span>
-                                </li>
-                                <li>
-                                    <span>Title of retailer goes here</span>
-                                    <span>12/02/2014</span>
-                                    <span>€10</span>
-                                    <span>REDEEMED</span>
-                                </li><li>
-                                    <span>Title of retailer goes here</span>
-                                    <span>12/02/2014</span>
-                                    <span>€10</span>
-                                    <span>REDEEMED</span>
-                                </li>
-                                <li>
-                                    <span>Title of retailer goes here</span>
-                                    <span>12/02/2014</span>
-                                    <span>€10</span>
-                                    <span>REDEEMED</span>
-                                </li>
-                                <li>
-                                    <span>Title of retailer goes here</span>
-                                    <span>12/02/2014</span>
-                                    <span>€10</span>
-                                    <span>REDEEMED</span>
-                                </li>
+                                <?php endforeach; ?>
                             </ul><!-- .cashback-history -->
+                            <?php else: ?>
+                                Now purchases have been made.
+                            <?php endif;?>
                         <?php endif; ?>
                         </div><!-- .profile-cashback-history -->
                     </div><!-- .profile-tab-content -->

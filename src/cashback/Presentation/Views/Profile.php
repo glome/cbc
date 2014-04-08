@@ -56,6 +56,7 @@ class Profile extends \Application\Common\View
         ]);
 
 
+
         $main->assignAll([
             'content'  => $content,
             'user'     => $profile,

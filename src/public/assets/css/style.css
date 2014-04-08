@@ -339,6 +339,7 @@ select {
     background-color: #7a7d7e;
     text-align: center;
     line-height: 0.7;
+    cursor: default;
 }
 .redeem-btn span {  
     display: inline-block;
@@ -346,7 +347,7 @@ select {
 }
 .redeem-btn .min {
     font-size: 8px;
-    
+
 }
 .header-profile-btn {
     float: right;
@@ -375,7 +376,7 @@ select {
 }
 .profile-menu {
     position: absolute;
-    top: 68px;
+    top: 66px;
     max-height: 0px;
     right: -2px;
     width: 165px;
@@ -685,13 +686,24 @@ footer {
 .cat-menu.has-ads ul li .cat-sub-menu {
     width: 410px;
 }
+.cat-menu ul li .cat-sub-menu ul li {
+    padding: 0;
+    width: 100%;
+}
+.cat-menu ul li .cat-sub-menu ul li a {
+    float: left;
+    padding: 8px 25px;
+    width: 175px;
+}
+
 .cat-menu ul li .cat-sub-menu ul {
     position: relative;
     top: 0;
     float: left;
-    width: 200px;
+    width: 210px;
     padding: 0;
     background-color: transparent;
+    
 }
 .cat-menu ul li .cat-sub-menu ul li a {
     color: #ffffff;
@@ -1313,6 +1325,7 @@ footer {
 */
 
 .profile {
+    position: relative;
     float: left;
     width: 100%;
     padding-bottom: 80px;
@@ -1321,6 +1334,7 @@ footer {
     -webkit-box-shadow: 0 -1px 3px rgba(0,0,0,0.3) inset;
     -moz-box-shadow:    0 -1px 3px rgba(0,0,0,0.3) inset;
     box-shadow:         0 -1px 3px rgba(0,0,0,0.3) inset;
+    z-index: 1;
 }
 .profile-open {
     position: relative;
@@ -1444,7 +1458,7 @@ footer {
     float: left;
     width: 100%;
     max-height: 0;
-    
+
     background-color: #595D5E;
     overflow: hidden;
     -webkit-transition: max-height 0.5s;
@@ -1474,7 +1488,7 @@ footer {
     width: 90%;
     padding: 10px 5%;
     color: #ffffff;
-    
+
     background-repeat: no-repeat;
     background-position: 96% center;
     font-size: 13px;
@@ -1703,7 +1717,10 @@ footer {
     width: 10px;
     height: 10px;
     margin-right: 10px;
-    border: 2px solid #7A7D7E;
+    border: 1px solid #7A7D7E;
+}
+.filter-content-wrap  ul li.selected .checkbox {
+    border: 1px solid #595D5E;
 }
 .filter-content-wrap  ul li.selected .checkbox .tick {
     display: block;
@@ -2072,6 +2089,7 @@ footer {
     float: right;
     padding: 7px 0 3px 30px;
     margin-top: 10px;
+    margin-right: 36px;
     color: #7A7D7E;
     background-image: url(/assets/img/star-icon-red.png);
     background-repeat: no-repeat;
@@ -2369,11 +2387,12 @@ footer {
     }
     /* header profile icon hover */
     .header-profile:hover {
-        height: 70px;
+        height: 68px;
         border: 2px solid #ABC5C2;
         border-bottom: none;
         background-color: #ffffff;
         z-index: 1;
+        
     }
     .header-profile:hover .header-profile-btn {
         position: relative;
@@ -2614,6 +2633,9 @@ footer {
     .product-link-wrap {
         width: 100%;
     }
+    .product-full .discount-wrap .add-to-wishlist {
+        margin-right: 9px;
+    }
 }
 
 @media (max-width: 730px) {
@@ -2722,6 +2744,11 @@ footer {
         font-size: 13px;
         padding: 17px 15px;
     }
+    .redeem-btn.disabled {
+        padding: 14px 10px;
+
+    }
+
     .location-filter {
         right: 0;
         float: left;
@@ -3387,6 +3414,7 @@ footer {
     }
     .product-full .discount-wrap {
         margin-top: 20px;
+        margin-right: 0;
         text-align: center;
     }
     .product-full .discount-wrap .add-to-wishlist {
