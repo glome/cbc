@@ -8,6 +8,19 @@ class Visit
     private $visitorId;
     private $categoryId;
     private $productId;
+    private $link;
+    private $userId;
+
+
+    public function setUserId($id)
+    {
+        $this->userId = $id;
+    }
+
+    public function getUserId()
+    {
+        return $this->userId;
+    }
 
 
     public function setVisitorId($visitorId)
@@ -41,6 +54,15 @@ class Visit
     }
 
 
+    public function setTrackingLink($link)
+    {
+        $this->link = $link;
+    }
+
+    public function getTrackingLink()
+    {
+        return $this->link;
+    }
 
     public function setError($code, $message)
     {

@@ -13,6 +13,7 @@ class Shop extends \Application\Common\Service
     private $currentProduct = null;
     private $currentPage = null;
     private $currentQuery = null;
+    private $redirect = null;
 
 
 
@@ -226,12 +227,29 @@ class Shop extends \Application\Common\Service
         $redirect->setProductId($product->getId());
         $redirect->setCategoryId($product->getCategoryId());
         $redirect->setVisitorId($this->currentUser->getVisitorId());
+        $redirect->setUserId($this->currentUser->getId());
+
+
 
         $db = $this->dataMapperFactory->create('Redirect', 'SQL');
         $db->store($redirect);
 
+
+        $api = $this->dataMapperFactory->create('Visit', 'REST');
+        $api->fetch($redirect);
+
+        $this->redirect = $redirect;
+
     }
 
+
+    public function getRedirectDetails()
+    {
+        if ($this->redirect) {
+            return ['link' => $this->redirect->getTrackingLink()];
+        }
+        return null;
+    }
 
     public function getRecommendations($count)
     {
