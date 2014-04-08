@@ -13,7 +13,7 @@ class Shop extends \Application\Common\Service
     private $currentProduct = null;
     private $currentPage = null;
     private $currentQuery = null;
-    private $redirect = null;
+    private $visit = null;
 
 
 
@@ -188,12 +188,18 @@ class Shop extends \Application\Common\Service
 
         $session = $this->dataMapperFactory->create('Visit', 'Session');
         if (!$session->fetch($visit)) {
+
             $db = $this->dataMapperFactory->create('Visitor', 'SQL');
             $db->store($this->currentUser);
             $visit->setVisitorId($this->currentUser->getVisitorId());
+
             $db = $this->dataMapperFactory->create('Visit', 'SQL');
+
             $db->store($visit);
             $session->store($visit);
+
+            $api = $this->dataMapperFactory->create('Visit', 'REST');
+            $api->fetch($visit);
         }
 
         return $product->getParsedArray();
@@ -212,7 +218,7 @@ class Shop extends \Application\Common\Service
     }
 
 
-    public function registerRedirect()
+    public function registerVisit()
     {
         if ($this->currentProduct === null ) {
             $this->currentProduct = $this->acquireProduct();
@@ -223,30 +229,30 @@ class Shop extends \Application\Common\Service
         $db = $this->dataMapperFactory->create('Visitor', 'SQL');
         $db->store($this->currentUser);
 
-        $redirect = $this->domainObjectFactory->create('Visit');
-        $redirect->setProductId($product->getId());
-        $redirect->setCategoryId($product->getCategoryId());
-        $redirect->setVisitorId($this->currentUser->getVisitorId());
-        $redirect->setUserId($this->currentUser->getId());
+        $visit = $this->domainObjectFactory->create('Visit');
+        $visit->setProductId($product->getId());
+        $visit->setCategoryId($product->getCategoryId());
+        $visit->setVisitorId($this->currentUser->getVisitorId());
+        $visit->setUserId($this->currentUser->getId());
 
 
 
         $db = $this->dataMapperFactory->create('Redirect', 'SQL');
-        $db->store($redirect);
+        $db->store($visit);
 
 
         $api = $this->dataMapperFactory->create('Visit', 'REST');
-        $api->fetch($redirect);
+        $api->fetch($visit);
 
-        $this->redirect = $redirect;
+        $this->visit = $visit;
 
     }
 
 
-    public function getRedirectDetails()
+    public function getVisitDetails()
     {
-        if ($this->redirect) {
-            return ['link' => $this->redirect->getTrackingLink()];
+        if ($this->visit) {
+            return ['link' => $this->visit->getTrackingLink()];
         }
         return null;
     }

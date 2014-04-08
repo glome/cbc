@@ -19,6 +19,44 @@ class Visit extends \Application\Common\CookieMapper
     }
 
 
+    public function store($instance)
+    {
+        $cookiePlugin = new CookiePlugin($this->cookieJar);
+
+        $client = new Client;
+        $client->addSubscriber($cookiePlugin);
+
+        $client->getEventDispatcher()->addListener(
+            'request.error',
+            function(Event $event) use ($instance) {
+                $event->stopPropagation();
+            }
+        );
+
+        $id = $instance->getProductId();
+        if ($id !== null)
+        {
+            $user = $instance->getUserId();
+            $response = $client->post($this->host . "/products/$id/getit.json", [],
+            [
+                'user[glomeid]' => $instance->getUserId(),
+            ])->send();
+            $data = $response->json();
+
+            if (isset($data['error'])) {
+
+                return false;
+            }
+
+            return true;
+        }
+        return false;
+
+    }
+
+
+
+
     public function fetch($instance)
     {
         $cookiePlugin = new CookiePlugin($this->cookieJar);
@@ -54,14 +92,6 @@ class Visit extends \Application\Common\CookieMapper
     }
 
 
-    private function applyParameter($instance, $parameters)
-    {
-        foreach ($parameters as $key => $value) {
-            $method = 'set' . str_replace('_', '', $key);
-            if (method_exists($instance, $method)) {
-                $instance->{$method}($value);
-            }
-        }
-    }
+
 
 }
