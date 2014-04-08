@@ -54,4 +54,13 @@ class Search extends \Application\Common\View
         ]);
         return $main->render();
     }
+
+
+    public function autocomplete()
+    {
+        header('Content-Type: application/json');
+        $shop = $this->serviceFactory->create('Shop');
+        return json_encode(['suggestions' => $shop->getProductSuggestions()]);
+    }
+
 }

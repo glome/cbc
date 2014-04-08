@@ -43,13 +43,14 @@ class Catalog extends \Application\Common\View
             'products'        => [],
         ];
 
-        if ($currentCategory) {
+        if ($currentCategory !== null) {
             $params['category'] = $categories[$currentCategory];
-            $params['current'] = $currentCategory;
+            $params['current'] = $shop->getCurrentCategoryId();
             $params['products'] = $products;
         }
 
         $content->assignAll($params);
+
 
         $main->assignAll([
             'content'    => $content,

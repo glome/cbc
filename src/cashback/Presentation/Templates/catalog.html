@@ -51,8 +51,10 @@
 
                     <div class="products-main">
                         <div class="page-title">
-                        <?php if($current !== null): ?>
+                        <?php if($current !== null && isset($category['subcategories'][(int)$current])): ?>
                             <h1><?=$category['subcategories'][(int)$current]['name']?></h1>
+                        <?php else: ?>
+                            <h1>Unknown</h1>
                         <?php endif; ?>
                         </div>
                         <div class="cat-banner">
