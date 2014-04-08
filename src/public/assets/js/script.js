@@ -91,6 +91,7 @@ $(document).ready(function() {
             if ($(this).hasClass("active")) {
                 $(this).removeClass("active");
             } else {
+                $(".select-box").removeClass("active");
                 $(this).addClass("active");
             }
         }
@@ -547,6 +548,26 @@ $(document).ready(function() {
      });
      
      */
+    $(window).on("scroll", function() {
+        var scrolled = $(window).scrollTop();
+        var html = "<a href='' class='nav-up'>BACK UP</a>";
+        if (scrolled > 1000) {
+            if ($(".nav-up").length < 1) {
+                $("body").append(html);
+            }
+        } else {
+            $(".nav-up").remove();
+
+        }
+    });
+    
+    $("body").on("click", ".nav-up" , function(e){
+        e.preventDefault();
+        $("html,body").animate({
+            "scrollTop": 0
+        }, 500);
+        console.log("bu");
+    });
 
     /* Overlay */
 
@@ -599,16 +620,14 @@ $(document).ready(function() {
 
     /* SEARCH AUTOCOMPLETE */
 
-    var jsondata = $.getJSON('http://glome.mt.aurumit.com/search/autocomplete?q=test', function(data) {
-        console.log(data);
-    });
-    console.log(jsondata);
     $("#search-input").autocomplete({
-        source: jsondata
+        source: function(request, response){
+            $.getJSON('http://glome.mt.aurumit.com/search/autocomplete?q=test', function(data) {
+                response(data.suggestions);
+            });          
+        },
+        minLength: 2
     });
-    
-
-
 
 
     /* Masonry grid */
