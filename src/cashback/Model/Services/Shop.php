@@ -185,22 +185,22 @@ class Shop extends \Application\Common\Service
         $visit = $this->domainObjectFactory->create('Visit');
         $visit->setProductId($product->getId());
         $visit->setCategoryId($product->getCategoryId());
+        $visit->setUserId($this->currentUser->getId());
 
         $session = $this->dataMapperFactory->create('Visit', 'Session');
         if (!$session->fetch($visit)) {
 
+            $visit->setVisitorId($this->currentUser->getVisitorId());
             $db = $this->dataMapperFactory->create('Visitor', 'SQL');
             $db->store($this->currentUser);
-            $visit->setVisitorId($this->currentUser->getVisitorId());
 
             $db = $this->dataMapperFactory->create('Visit', 'SQL');
-
             $db->store($visit);
-            $session->store($visit);
 
-            $api = $this->dataMapperFactory->create('Visit', 'REST');
-            $api->fetch($visit);
+            $session->store($visit);
         }
+        $api = $this->dataMapperFactory->create('Visit', 'REST');
+        $api->fetch($visit);
 
         return $product->getParsedArray();
     }

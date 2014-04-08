@@ -43,6 +43,7 @@ class Visit extends \Application\Common\CookieMapper
             [
                 'user[glomeid]' => $instance->getUserId(),
             ])->send();
+
             $data = $response->json();
 
             if (isset($data['error'])) {

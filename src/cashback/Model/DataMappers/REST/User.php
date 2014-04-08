@@ -56,6 +56,7 @@ class User extends \Application\Common\CookieMapper
         $temp = $response->getHeader('X-Csrf-Token')->toArray();
         $instance->setToken(array_pop($temp));
 
+
         foreach ($this->cookieJar->getMatchingCookies($request) as $cookie)
         {
             if ($cookie->getName() === '_session_id') {
