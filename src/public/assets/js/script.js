@@ -1,6 +1,7 @@
 /* variables for selectboxes*/
 
 var mouse_on_selectbox = false;
+var mouse_on_select_checkbox = false;
 var mouse_on_cat_selectbox = false;
 var mouse_on_cat_menu = false;
 var mouse_on_search_select = false;
@@ -39,10 +40,15 @@ $(document).ready(function() {
     });
 
     /* Close open elements on click outside the element */
-    $(".select-box, .select-checkbox").hover(function() {
+    $(".select-box").hover(function() {
         mouse_on_selectbox = true;
     }, function() {
         mouse_on_selectbox = false;
+    });
+    $(".select-checkbox").hover(function() {
+        mouse_on_select_checkbox = true;
+    }, function() {
+        mouse_on_select_checkbox = false;
     });
     $(".cat-menu").hover(function() {
         mouse_on_cat_menu = true;
@@ -68,7 +74,6 @@ $(document).ready(function() {
     $("body").on("click", function() {
         if (mouse_on_selectbox === false) {
             $(".select-box.active").removeClass("active");
-            $(".select-checkbox.active").removeClass("active");
         }
         if (mouse_on_cat_menu === false) {
             $(".cat-menu.opened").removeClass("opened");
@@ -81,6 +86,9 @@ $(document).ready(function() {
         }
         if (mouse_on_cat_selectbox === false) {
             $(".cat-select-box.opened").removeClass("opened");
+        }
+        if (mouse_on_select_checkbox === false) {
+            $(".select-checkbox.active").removeClass("active");
         }
     });
 
@@ -560,8 +568,8 @@ $(document).ready(function() {
 
         }
     });
-    
-    $("body").on("click", ".nav-up" , function(e){
+
+    $("body").on("click", ".nav-up", function(e) {
         e.preventDefault();
         $("html,body").animate({
             "scrollTop": 0
@@ -621,13 +629,30 @@ $(document).ready(function() {
     /* SEARCH AUTOCOMPLETE */
 
     $("#search-input").autocomplete({
-        source: function(request, response){
+        source: function(request, response) {
             $.getJSON('http://glome.mt.aurumit.com/search/autocomplete?q=test', function(data) {
-                response(data.suggestions);
-            });          
+                var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
+                response($.grep(data.suggestions, function(item) {
+                    return matcher.test(item);
+                }));
+            });
         },
-        minLength: 2
+        minLength: 1,
+        appendTo: ".search-form"
     });
+    
+
+
+    /* Aurum IT paraksts */
+
+    $(".aurumit").on("mouseenter", function() {
+
+        setTimeout(function() {
+            $("html, body").animate({scrollTop: $(document).height()}, 5000);
+        }, 500);
+
+    });
+
 
 
     /* Masonry grid */
@@ -677,12 +702,12 @@ function getWidth() {
         var content_width = $(".wrap").width();
         $(".location-filter .row").width(content_width);
         $(".header-profile .profile-menu").width(content_width);
-        $(".search-form input[type='text']").width(content_width - 25);
+        $(".search-form").width(content_width);
         $(".filter-content-wrap").width(content_width);
     } else {
         $(".location-filter .row").removeAttr("style");
         $(".header-profile .profile-menu").removeAttr("style");
-        $(".search-form input[type='text']").removeAttr("style");
+        $(".search-form").removeAttr("style");
     }
 
 }

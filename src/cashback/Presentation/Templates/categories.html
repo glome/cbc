@@ -1,0 +1,18 @@
+<div class="full-cat-list">
+    <div class="wrap">
+    <?php foreach ($categories as $id => $category): ?>
+        <div class="cat">
+            <div class="cat-title"><?=$category['name']?></div>
+            <div class="cat-content">
+            <?php foreach ($category['groups'] as $group): ?>
+                <ul>
+                <?php foreach ($group as $key => $subcategory): ?>
+                    <li><a href="/catalog/<?=$key?>"><?=$subcategory['name']?></a></li>
+                <?php endforeach; ?>
+                </ul>
+            <?php endforeach; ?>
+            </div><!-- .cat-content -->
+        </div><!-- .cat -->
+    <?php endforeach; ?>
+    </div><!-- .wrap -->
+</div><!-- .full-cat-list -->
