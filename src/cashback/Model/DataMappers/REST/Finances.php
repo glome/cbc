@@ -8,7 +8,7 @@ use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 use Guzzle\Http\Exception\ClientErrorResponseException;
 use Guzzle\Common\Event;
 
-class Finances extends \Application\Common\CookieMapper
+class Finances extends \Application\Common\RestMapper
 {
 
     private $host;

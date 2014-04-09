@@ -2,7 +2,7 @@
 
     namespace Application\Common;
 
-    class CookieMapper
+    class RestMapper
     {
 
         protected $cookieJar;

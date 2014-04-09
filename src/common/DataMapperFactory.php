@@ -30,17 +30,23 @@ class DataMapperFactory
         if ($namespace !== null) {
             $class = $namespace . '\\' . $class;
         }
-
         $class = $this->namespace . '\\' . $class;
-        $instance = new $class($this->datasources);
 
-        if ($instance instanceof CookieMapper) {
-            $instance->setCookieJar($this->shared['CookieJar']);
+
+        if (!array_key_exists($class, $this->cache)) {
+            $instance = new $class($this->datasources);
+
+            if ($instance instanceof RestMapper) {
+                $instance->setCookieJar($this->shared['CookieJar']);
+            }
+            if ($instance instanceof SQLMapper) {
+                $instance->setConnection($this->getPDOInstance($this->datasources['sql']));
+            }
+
+            $this->cache[$class] = $instance;
         }
-        if ($instance instanceof SQLMapper) {
-            $instance->setConnection($this->getPDOInstance($this->datasources['sql']));
-        }
-        return $instance;
+
+        return $this->cache[$class];
     }
 
 

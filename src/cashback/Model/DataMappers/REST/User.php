@@ -6,7 +6,7 @@ use Guzzle\Http\Client;
 use Guzzle\Plugin\Cookie\CookiePlugin;
 use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 
-class User extends \Application\Common\CookieMapper
+class User extends \Application\Common\RestMapper
 {
 
     private $host;

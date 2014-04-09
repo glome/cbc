@@ -6,7 +6,7 @@ use Guzzle\Http\Client;
 use Guzzle\Plugin\Cookie\CookiePlugin;
 use Guzzle\Common\Event;
 
-class CategoryCollection extends \Application\Common\CookieMapper
+class CategoryCollection extends \Application\Common\RestMapper
 {
 
     public function __construct($configuration)
