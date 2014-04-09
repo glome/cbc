@@ -206,6 +206,21 @@ class Shop extends \Application\Common\Service
     }
 
 
+    public function getCategoryRetailers()
+    {
+        $id = $this->currentCategoryId;
+        $retailers = $this->domainObjectFactory->create('RetailerCollection');
+        $retailers->setCategoryId($id);
+
+
+        $api = $this->dataMapperFactory->create('RetailerCollection', 'REST');
+        $api->fetch($retailers);
+
+        return $retailers->getParsedArray();
+
+    }
+
+
     private function acquireProduct()
     {
         $product = $this->domainObjectFactory->create('Product');

@@ -21,12 +21,9 @@
                             <div class="filter-content-wrap">
                                 <ul>
                                     <li class="selected all"><a href=""><span class="checkbox"><span class="tick"></span></span><div>All</div></a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span><div>Retailer title</div></a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span><div>Traidtracker</div></a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span><div>Retailer title in two rows</div></a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span><div>Retailer title</div></a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span><div>Traidtracker</div></a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span><div>Retailer title in two rows</div></a></li>
+                                <?php foreach ($retailers as $id => $retailer): ?>
+                                    <li><a href="?param=<?=$id?>"><span class="checkbox"><span class="tick"></span></span><div><?=$retailer['name']?></div></a></li>
+                                <?php endforeach; ?>
                                 </ul>
                             </div><!-- .filter-content-wrap -->
                         </div><!-- .filter-retailer -->

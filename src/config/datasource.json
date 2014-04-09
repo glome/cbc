@@ -10,6 +10,9 @@
             "category":        "/categories/{id}.json",
             "categories":      "/categories.json?display=tree&filter=all",
 
+            "categories-retailers": "/advertisers.json?cat_id={id}",
+
+
             "product":         "/products/{id}.json",
             "product-visit":   "/products/{id}/getit.json",
             "product-buy":     "/products/{id}/click/{user}.json",

@@ -14,6 +14,9 @@ class Catalog extends \Application\Common\View
         $shop = $this->serviceFactory->create('Shop');
         $categories = $shop->getCategories();
         $products = $shop->getProducts();
+        $retailers = $shop->getCategoryRetailers();
+
+
 
 
         $builder = $this->templateBuilder;
@@ -41,12 +44,14 @@ class Catalog extends \Application\Common\View
             'category'        => null,
             'current'         => null,
             'products'        => [],
+            'retailers'       => [],
         ];
 
         if ($currentCategory !== null) {
             $params['category'] = $categories[$currentCategory];
             $params['current'] = $shop->getCurrentCategoryId();
             $params['products'] = $products;
+            $params['retailers'] = $retailers;
         }
 
         $content->assignAll($params);
