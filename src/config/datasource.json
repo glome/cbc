@@ -8,7 +8,7 @@
 
         "resources":{
             "category":        "/categories/{id}.json",
-            "categories":      "/categories.json?display=tree&filter=all",
+            "categories":      "/categories.json?display=tree&filter=allowed",
 
             "categories-retailers": "/advertisers.json?cat_id={id}",
 

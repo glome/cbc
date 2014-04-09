@@ -2,7 +2,7 @@
 
 namespace Application\Common;
 
-abstract class Collection implements \Iterator
+abstract class Collection implements \Iterator, \ArrayAccess
 {
 
 
@@ -37,6 +37,11 @@ abstract class Collection implements \Iterator
         if (isset($this->pool[$id])) {
             $this->forRemoval[] = $this->pool[$id];
             unset($this->pool[$id]);
+            $temp = [];
+            foreach ($this->pool as $element) {
+                $temp[] = $element;
+            }
+            $this->pool = $temp;
             $this->amount -= 1;
         }
 
@@ -55,6 +60,8 @@ abstract class Collection implements \Iterator
     {
         return $this->amount > 0;
     }
+
+    // implementing Iterator
 
     function rewind() {
         $this->position = 0;
@@ -76,5 +83,24 @@ abstract class Collection implements \Iterator
         return isset($this->pool[$this->position]);
     }
 
+
+    // implementing ArrayAccess
+
+    public function offsetSet($offset, $value) {
+        if (is_null($offset)) {
+            $this->pool[] = $value;
+        } else {
+            $this->pool[$offset] = $value;
+        }
+    }
+    public function offsetExists($offset) {
+        return isset($this->pool[$offset]);
+    }
+    public function offsetUnset($offset) {
+        unset($this->pool[$offset]);
+    }
+    public function offsetGet($offset) {
+        return isset($this->pool[$offset]) ? $this->pool[$offset] : null;
+    }
 
 }

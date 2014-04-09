@@ -22,6 +22,12 @@ class Shop extends \Application\Common\Service
         $this->currentPage = $page;
     }
 
+
+    public function getPage()
+    {
+        return $this->currentPage;
+    }
+
     public function forUser($user)
     {
         $this->currentUser = $user;
@@ -54,8 +60,13 @@ class Shop extends \Application\Common\Service
     private function collectCategoryTree()
     {
         $categories = $this->domainObjectFactory->create('CategoryCollection');
-        $api = $this->dataMapperFactory->create('CategoryCollection', 'REST');
-        $api->fetch($categories);
+        $session = $this->dataMapperFactory->create('CategoryCollection', 'Session');
+
+        if (!$session->fetch($categories)) {
+            $api = $this->dataMapperFactory->create('CategoryCollection', 'REST');
+            $api->fetch($categories);
+            $session->store($categories);
+        }
 
         return $categories->getParsedArray();
     }
@@ -70,7 +81,11 @@ class Shop extends \Application\Common\Service
         $category = $this->domainObjectFactory->create('CategoryCollection');
         $category->setId($id);
         $api = $this->dataMapperFactory->create('Category', 'REST');
-        $api->fetch($category);
+
+        $session = $this->dataMapperFactory->create('Category', 'Session');
+        if (!$session->fetch($category)) {
+            $api->fetch($category);
+        }
 
         return $category->getParentId();
 
@@ -290,4 +305,20 @@ class Shop extends \Application\Common\Service
 
         return $products->getParsedArray();
     }
+
+    public function toggleRetailer($id)
+    {
+        $retailers = $this->domainObjectFactory->create('RetailerCollection');
+        $session = $this->dataMapperFactory->create('RetailerCollection', 'Session');
+
+        $retailers->setCategoryId($this->currentCategoryId);
+        $session->fetch($retailers);
+
+        $retailers->toggleItem(['id' => $id]);
+
+        $session->store($retailers);
+
+
+    }
+
 }

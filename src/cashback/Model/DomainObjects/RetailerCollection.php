@@ -35,5 +35,27 @@ class RetailerCollection extends \Application\Common\Collection
         return $list;
     }
 
+    public function toggleItem($params)
+    {
+        foreach ($this as $key => $item) {
+            if ($item->getId() === $params['id']) {
+                $this->removeItem($key);
+                return;
+            }
+        }
+
+        $this->addItem($params);
+        return;
+    }
+
+    public function getRemovableIdList()
+    {
+        $list = [];
+        foreach ($this->forRemoval as $key => $item) {
+            $list[] = $item->getId();
+        }
+
+        return $list;
+    }
 
 }
