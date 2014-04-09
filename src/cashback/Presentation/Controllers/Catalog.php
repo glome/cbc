@@ -16,5 +16,11 @@ class Catalog extends \Application\Common\Controller
         $shop->forUser($user);
         $shop->setPage($request->getParameter('page'));
         $shop->useCategory($request->getParameter('id'));
+
+        $retailer = $request->getParameter('param');
+        if ($retailer) {
+            $shop->toggleRetailer($retailer);
+            exit;
+        }
     }
 }

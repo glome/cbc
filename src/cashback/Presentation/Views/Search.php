@@ -42,7 +42,7 @@ class Search extends \Application\Common\View
         ]);
 
         $navigation->assignAll([
-            'categories' => $categories,
+            'categories' => array_slice($categories, 0 , 10),
             'query'      => $query,
         ]);
 

@@ -34,7 +34,7 @@ class Profile extends \Application\Common\View
         $deals   = $builder->create('deals');
 
 
-        $content->assign('categories', $categories);
+        $content->assign('categories', array_slice($categories, 0 , 10));
         $footer->assign('categories', $categories);
         $deals->assign('products', $shop->getRecommendations(4));
 

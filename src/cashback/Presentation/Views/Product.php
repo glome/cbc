@@ -27,7 +27,7 @@ class Product extends \Application\Common\View
         $profile    = $builder->create('profile-brief');
 
 
-        $navigation->assign('categories', $categories);
+        $navigation->assign('categories', array_slice($categories, 0 , 10));
         $overlays->assign('product', $product);
         $element->assignAll([
             'product' => $product,

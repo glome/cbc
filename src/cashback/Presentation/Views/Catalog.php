@@ -7,14 +7,20 @@ class Catalog extends \Application\Common\View
 
     public function index()
     {
+
+        $time = microtime(true);
+
         $itinerary = $this->serviceFactory->create('Itinerary');
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
         $shop = $this->serviceFactory->create('Shop');
-        $categories = $shop->getCategories();
+
+        if ($shop->getPage() !== null ) { var_dump(111111111111); }
+
+        $categories = ($shop->getPage() === null ) ? $shop->getCategories() : [];
         $products = $shop->getProducts();
-        $retailers = $shop->getCategoryRetailers();
+        $retailers = ($shop->getPage() === null ) ? $shop->getCategoryRetailers() : [];
 
 
 
@@ -28,12 +34,12 @@ class Catalog extends \Application\Common\View
         $profile    = $builder->create('profile-brief');
 
         $footer->assign('categories', $categories);
-        $navigation->assign('categories', $categories);
+        $navigation->assign('categories', array_slice($categories, 0 , 10));
 
 
         $profile->assignAll([
-            'wishes'   => $itinerary->getWishlistLength(),
-            'earnings' => $itinerary->getEarnings('EUR'),
+            'wishes'   => ($shop->getPage() === null ) ? $itinerary->getWishlistLength() : '',
+            'earnings' => ($shop->getPage() === null ) ? $itinerary->getEarnings('EUR') : '',
             'currency' => $configuration->getPreferredCurrency(),
         ]);
 
@@ -48,7 +54,7 @@ class Catalog extends \Application\Common\View
         ];
 
         if ($currentCategory !== null) {
-            $params['category'] = $categories[$currentCategory];
+            $params['category'] = isset($categories[$currentCategory]) ? $categories[$currentCategory] : null;
             $params['current'] = $shop->getCurrentCategoryId();
             $params['products'] = $products;
             $params['retailers'] = $retailers;
