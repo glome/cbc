@@ -34,6 +34,8 @@ class ProductCollection extends \Application\Common\RestMapper
         );
 
 
+
+
         if ($collection->hasItems())
         {
             foreach ($collection as $id => $product) {

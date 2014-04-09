@@ -32,6 +32,8 @@ class Category extends \Application\Common\RestMapper
             }
         );
 
+
+
         $id = $instance->getId();
         if ($id !== null)
         {

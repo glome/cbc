@@ -20,7 +20,7 @@ class CategoryCollection extends \Application\Common\RestMapper
 
     public function fetch($collection) {
 
-
+        $time = microtime(true);
 
         $cookiePlugin = new CookiePlugin($this->cookieJar);
 
@@ -42,6 +42,12 @@ class CategoryCollection extends \Application\Common\RestMapper
         foreach ($data as $item) {
             $this->addSubcategories($collection, $item);
         }
+
+
+        $time = microtime(true) - $time;
+
+        //var_dump($time);
+
     }
 
 

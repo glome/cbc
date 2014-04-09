@@ -34,6 +34,8 @@ class Product extends \Application\Common\RestMapper
             }
         );
 
+
+
         $id = $instance->getId();
         if ($id !== null)
         {
@@ -44,6 +46,7 @@ class Product extends \Application\Common\RestMapper
 
                 return false;
             }
+            //var_dump($data);
             $this->applyParameter($instance,$data);
             $topCategory = $data['categories'][0];
             $instance->setCategoryId($topCategory['id']);

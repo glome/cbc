@@ -34,6 +34,8 @@ class Visit extends \Application\Common\RestMapper
             }
         );
 
+
+
         $id = $instance->getProductId();
         if ($id !== null)
         {

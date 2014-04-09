@@ -42,6 +42,8 @@ class RetailerCollection extends \Application\Common\RestMapper
             }
         );
 
+
+
         $id = $collection->getCategoryId();
 
         if ($id !== null)

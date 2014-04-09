@@ -37,6 +37,9 @@ class Finances extends \Application\Common\RestMapper
                 $event->stopPropagation();
             }
         );
+
+
+
         $id = $instance->getUserId();
         if ($id !== null)
         {
