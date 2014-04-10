@@ -249,7 +249,7 @@ class Shop extends \Application\Common\Service
             $session->store($visit);
         }
         $api = $this->dataMapperFactory->create('Visit', 'REST');
-        $api->fetch($visit);
+        $api->store($visit);
 
     }
 
@@ -306,7 +306,7 @@ class Shop extends \Application\Common\Service
 
 
         $api = $this->dataMapperFactory->create('Visit', 'REST');
-        $api->store($visit);
+        $api->fetch($visit);
 
         $this->visit = $visit;
     }
