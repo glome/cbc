@@ -32,12 +32,28 @@ $(document).ready(function() {
         // ensure that images load before adding to masonry layout
         $newElems.css({opacity: 0});
         $newElems.animate({opacity: 1});
-        $container.masonry('appended', $newElems);
+        setTimeout(function() {
+            $container.masonry('appended', $newElems);
+        }, 200);
+
     }
     );
     $container.masonry({
         itemSelector: '.product'
     });
+    $(".product").each(function() {
+        if ($(this).isOnScreen() === true && $(this).hasClass("animated") === false) {
+            $(this).addClass("animated");
+        }
+    });
+    $(window).on("scroll", function() {
+        $(".product").each(function() {
+            if ($(this).isOnScreen() === true && $(this).hasClass("animated") === false) {
+                $(this).addClass("animated");
+            }
+        });
+    });
+
 
     /* Close open elements on click outside the element */
     $(".select-box").hover(function() {
@@ -640,7 +656,7 @@ $(document).ready(function() {
         minLength: 1,
         appendTo: ".search-form"
     });
-    
+
 
 
     /* Aurum IT paraksts */
@@ -656,15 +672,17 @@ $(document).ready(function() {
 
 
     /* Masonry grid */
+    /*
+     new AnimOnScroll(document.getElementById('grid'), {
+     minDuration: 0.4,
+     maxDuration: 0.7,
+     viewportFactor: 0.01
+     });
+     */
 
-    new AnimOnScroll(document.getElementById('grid'), {
-        minDuration: 0.4,
-        maxDuration: 0.7,
-        viewportFactor: 0.01
+    $('#grid').masonry({
+        itemSelector: '.product'
     });
-
-
-
 
 
 
@@ -711,6 +729,26 @@ function getWidth() {
     }
 
 }
+
+// JQUERY VIEWPORT PLUGIN
+$.fn.isOnScreen = function() {
+
+    var win = $(window);
+
+    var viewport = {
+        top: win.scrollTop(),
+        left: win.scrollLeft()
+    };
+    viewport.right = viewport.left + win.width();
+    viewport.bottom = viewport.top + win.height();
+
+    var bounds = this.offset();
+    bounds.right = bounds.left + this.outerWidth();
+    bounds.bottom = bounds.top + this.outerHeight();
+
+    return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+
+};
 
 
 
