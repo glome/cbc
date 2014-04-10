@@ -32,7 +32,9 @@
                     <span class="title">Just a second, we are opening <?=$product['advertiser']?> site</span>
                     <div class="notice-msg">
                         <span class="bold">Do not forget to use voucher code to get discount for Title of the product</span>
-                        <span>Voucher code: 678HHk790</span>
+                        <?php if ($product['incentive']): ?>
+                        <span>Voucher code: <?=$product['incentive']['code']?></span>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
