@@ -8,7 +8,7 @@ class Catalog extends \Application\Common\View
     public function index()
     {
 
-        $time = microtime(true);
+        $builder = $this->templateBuilder;
 
         $itinerary = $this->serviceFactory->create('Itinerary');
         $configuration = $this->serviceFactory->create('Configuration');
@@ -16,16 +16,23 @@ class Catalog extends \Application\Common\View
 
         $shop = $this->serviceFactory->create('Shop');
 
-        if ($shop->getPage() !== null ) { var_dump(111111111111); }
-
-        $categories = ($shop->getPage() === null ) ? $shop->getCategories() : [];
         $products = $shop->getProducts();
-        $retailers = ($shop->getPage() === null ) ? $shop->getCategoryRetailers() : [];
+
+        if ($shop->getPage() !== null ) {
+            $main       = $builder->create('clean');
+            $content    = $builder->create('product-list');
+            $main->assign('content', $content);
+            $content->assign('products', $products);
+            return $main->render();
+        }
+
+
+        $categories = $shop->getCategories();
+        $retailers = $shop->getCategoryRetailers();
 
 
 
 
-        $builder = $this->templateBuilder;
 
         $main       = $builder->create('main');
         $content    = $builder->create('catalog');
@@ -38,8 +45,8 @@ class Catalog extends \Application\Common\View
 
 
         $profile->assignAll([
-            'wishes'   => ($shop->getPage() === null ) ? $itinerary->getWishlistLength() : '',
-            'earnings' => ($shop->getPage() === null ) ? $itinerary->getEarnings('EUR') : '',
+            'wishes'   => $itinerary->getWishlistLength(),
+            'earnings' => $itinerary->getEarnings('EUR'),
             'currency' => $configuration->getPreferredCurrency(),
         ]);
 
@@ -54,7 +61,7 @@ class Catalog extends \Application\Common\View
         ];
 
         if ($currentCategory !== null) {
-            $params['category'] = isset($categories[$currentCategory]) ? $categories[$currentCategory] : null;
+            $params['category'] = $categories[$currentCategory];
             $params['current'] = $shop->getCurrentCategoryId();
             $params['products'] = $products;
             $params['retailers'] = $retailers;
