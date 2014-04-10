@@ -13,7 +13,7 @@ class Redirect extends \Application\Common\Controller
         $shop = $this->serviceFactory->create('Shop');
         $shop->setCurrentProduct($request->getParameter('id'));
         $shop->forUser($user);
-        $shop->registerVisit();
+        $shop->registerBuy();
     }
 
 

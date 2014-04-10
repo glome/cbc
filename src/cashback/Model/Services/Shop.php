@@ -88,7 +88,6 @@ class Shop extends \Application\Common\Service
         }
 
         return $category->getParentId();
-
     }
 
 
@@ -116,15 +115,11 @@ class Shop extends \Application\Common\Service
         $api->fetch($products);
 
 
-        //*
         $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
         $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');
         $api->fetch($incentives);
 
         $products->applyIncentives($incentives);
-        //*/
-        //var_dump($incentives);
-
 
         $db = $this->dataMapperFactory->create('ProductCollection', 'SQL');
         $products->setUserId($this->currentUser->getId());
@@ -132,8 +127,6 @@ class Shop extends \Application\Common\Service
 
         $db = $this->dataMapperFactory->create('RecommendationCollection', 'SQL');
         $db->fetch($products);
-
-
 
         return $products->getParsedArray();
     }
@@ -292,7 +285,7 @@ class Shop extends \Application\Common\Service
     }
 
 
-    public function registerVisit()
+    public function registerBuy()
     {
         if ($this->currentProduct === null ) {
             $this->currentProduct = $this->acquireProduct();
@@ -308,16 +301,14 @@ class Shop extends \Application\Common\Service
         $visit->setVisitorId($this->currentUser->getVisitorId());
 
 
-
         $db = $this->dataMapperFactory->create('Redirect', 'SQL');
         $db->store($visit);
 
 
         $api = $this->dataMapperFactory->create('Visit', 'REST');
-        $api->fetch($visit);
+        $api->store($visit);
 
         $this->visit = $visit;
-
     }
 
 
