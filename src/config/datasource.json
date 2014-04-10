@@ -10,7 +10,7 @@
             "category":        "/categories/{id}.json",
             "categories":      "/categories.json?display=tree&filter=allowed",
 
-            "categories-retailers": "/advertisers.json?cat_id={id}",
+            "categories-retailers": "/advertisers.json?cat_id={id}&per_page=200",
 
 
             "product":         "/products/{id}.json",

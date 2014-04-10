@@ -217,6 +217,13 @@ class Shop extends \Application\Common\Service
         $api = $this->dataMapperFactory->create('Visit', 'REST');
         $api->fetch($visit);
 
+
+
+        $this->currentCategoryId = $product->getCategoryId();
+        $retailers = $this->getCategoryRetailers();
+        $product->associateRetailer($retailers);
+
+
         return $product->getParsedArray();
     }
 
@@ -231,6 +238,8 @@ class Shop extends \Application\Common\Service
         $api = $this->dataMapperFactory->create('RetailerCollection', 'REST');
         $api->fetch($retailers);
 
+        //var_dump($retailers->getParsedArray());
+
         return $retailers->getParsedArray();
 
     }
@@ -240,6 +249,7 @@ class Shop extends \Application\Common\Service
     {
         $product = $this->domainObjectFactory->create('Product');
         $api = $this->dataMapperFactory->create('Product', 'REST');
+
 
         $product->setId($this->currentProductId);
         $api->fetch($product);

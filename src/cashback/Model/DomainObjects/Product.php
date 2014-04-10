@@ -21,7 +21,8 @@
         private $isPopular = false;
         private $categoryId;
         private $score = 0;
-
+        private $advertiserId;
+        private $advertiserName;
 
 
         public function setScore($score)
@@ -200,6 +201,19 @@
         }
 
 
+        public function setAdvertiser($list)
+        {
+            $this->advertiserId = array_shift($list);
+        }
+
+
+        public function associateRetailer($list)
+        {
+            if (array_key_exists($this->advertiserId, $list)) {
+                $this->advertiserName = $list[$this->advertiserId]['name'];
+            }
+        }
+
         public function getParsedArray()
         {
 
@@ -223,6 +237,7 @@
                 'bonusMoney' => $this->bonusMoney,
                 'bonusPercent' => $this->bonusPercent,
                 'link' => $this->link,
+                'advertiser' => $this->advertiserName,
             ];
         }
 
