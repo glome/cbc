@@ -113,6 +113,60 @@
         <script type="text/javascript" src="/assets/js/libs/jquery-ui-1.10.4.custom.min.js"></script>
 
         <script type="text/javascript" src="/assets/js/script.js"></script>
+
+        <?php if (isset($isProductPage)): ?>
+        <script type="text/javascript">
+        window.twttr = (function (d,s,id) {
+
+            var t, js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+
+            js=d.createElement(s);
+            js.id=id;
+            js.src="https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+
+        }(document, "script", "twitter-wjs"));
+        </script>
+
+        <div id="fb-root"></div>
+        <div id="result"></div>
+
+        <script type="text/javascript">
+
+         window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '686339584740764',
+              status     : true,
+              xfbml      : true
+            });
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/all.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+
+        var shareFB = function () {
+            FB.ui({
+              method: 'feed',
+              link: '<?=$fb_link?>',
+              caption: '<?=$fb_title?>',
+              picture: '<?=$fb_image?>',
+              app_id: '686339584740764'
+            }, function(response){
+
+                console.log(response);
+            });
+        };
+        </script>
+        <?php endif; ?>
+
     </body>
 </html>
 

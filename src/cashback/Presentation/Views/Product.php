@@ -27,11 +27,14 @@ class Product extends \Application\Common\View
         $profile    = $builder->create('profile-brief');
 
 
+        $url = 'http' . (isset($_SERVER['HTTPS'])? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/product/' . $product['id'];
+
         $navigation->assign('categories', array_slice($categories, 0 , 10));
         $overlays->assign('product', $product);
         $element->assignAll([
             'product' => $product,
             'products'   => $shop->getRecommendations(4),
+            'link' =>   urlencode('some random text and link: http' . $url),
         ]);
         $footer->assign('categories', $categories);
 
@@ -47,11 +50,15 @@ class Product extends \Application\Common\View
         ]);
 
         $main->assignAll([
-            'content'    => $content,
-            'footer'     => $footer,
-            'overlays'   => $overlays,
-            'settings'   => $settings,
-            'user'       => $profile,
+            'content'       => $content,
+            'footer'        => $footer,
+            'overlays'      => $overlays,
+            'settings'      => $settings,
+            'user'          => $profile,
+            'isProductPage' => true,
+            'fb_link'       => $url,
+            'fb_image'      => $product['image'],
+            'fb_title'      => 'cutomizable longer description .. with words',
         ]);
         return $main->render();
     }
