@@ -206,25 +206,8 @@ class Shop extends \Application\Common\Service
             $product->markAsFavorite();
         }
 
-        $visit = $this->domainObjectFactory->create('Visit');
-        $visit->setProductId($product->getId());
-        $visit->setCategoryId($product->getCategoryId());
-        $visit->setUserId($this->currentUser->getId());
 
-        $session = $this->dataMapperFactory->create('Visit', 'Session');
-        if (!$session->fetch($visit)) {
-
-            $visit->setVisitorId($this->currentUser->getVisitorId());
-            $db = $this->dataMapperFactory->create('Visitor', 'SQL');
-            $db->store($this->currentUser);
-
-            $db = $this->dataMapperFactory->create('Visit', 'SQL');
-            $db->store($visit);
-
-            $session->store($visit);
-        }
-        $api = $this->dataMapperFactory->create('Visit', 'REST');
-        $api->fetch($visit);
+        $this->registerVisitFor($product);
 
 
         $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
@@ -243,6 +226,40 @@ class Shop extends \Application\Common\Service
 
         return $product->getParsedArray();
     }
+
+
+    private function acquireVisit($product)
+    {
+        $visit = $this->domainObjectFactory->create('Visit');
+        $visit->setCategoryId($product->getCategoryId());
+        $visit->setProductId($product->getId());
+        $visit->setUserId($this->currentUser->getId());
+        return $visit;
+    }
+
+
+    private function registerVisitFor($product)
+    {
+
+        $visit = $this->acquireVisit($product);
+
+        $session = $this->dataMapperFactory->create('Visit', 'Session');
+        if (!$session->fetch($visit)) {
+
+            $visit->setVisitorId($this->currentUser->getVisitorId());
+            $db = $this->dataMapperFactory->create('Visitor', 'SQL');
+            $db->store($this->currentUser);
+
+            $db = $this->dataMapperFactory->create('Visit', 'SQL');
+            $db->store($visit);
+
+            $session->store($visit);
+        }
+        $api = $this->dataMapperFactory->create('Visit', 'REST');
+        $api->fetch($visit);
+
+    }
+
 
 
     public function getCategoryRetailers()
@@ -286,11 +303,9 @@ class Shop extends \Application\Common\Service
         $db = $this->dataMapperFactory->create('Visitor', 'SQL');
         $db->store($this->currentUser);
 
-        $visit = $this->domainObjectFactory->create('Visit');
-        $visit->setProductId($product->getId());
-        $visit->setCategoryId($product->getCategoryId());
+
+        $visit = $this->acquireVisit($product);
         $visit->setVisitorId($this->currentUser->getVisitorId());
-        $visit->setUserId($this->currentUser->getId());
 
 
 

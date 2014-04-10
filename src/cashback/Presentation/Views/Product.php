@@ -31,7 +31,7 @@ class Product extends \Application\Common\View
         $overlays->assign('product', $product);
         $element->assignAll([
             'product' => $product,
-            'products'   => $shop->getRecommendations(8),
+            'products'   => $shop->getRecommendations(4),
         ]);
         $footer->assign('categories', $categories);
 
