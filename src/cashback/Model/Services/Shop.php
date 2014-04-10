@@ -181,7 +181,7 @@ class Shop extends \Application\Common\Service
         $this->currentProductId = $productId;
     }
 
-    public function getCurrentProduct()
+    public function getCurrentProduct($mustRegister = true)
     {
         if ($this->currentProduct === null ) {
             $this->currentProduct = $this->acquireProduct();
@@ -199,8 +199,9 @@ class Shop extends \Application\Common\Service
             $product->markAsFavorite();
         }
 
-
-        $this->registerVisitFor($product);
+        if ($mustRegister) {
+            $this->registerVisitFor($product);
+        }
 
 
         $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
