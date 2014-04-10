@@ -23,6 +23,9 @@
         private $score = 0;
         private $advertiserId;
         private $advertiserName;
+        private $programId;
+        private $incentivesData;
+        private $incentive;
 
 
         public function setScore($score)
@@ -146,6 +149,17 @@
         }
 
 
+        public function setProgramId($id)
+        {
+            $this->programId = $id;
+        }
+
+        public function getProgramId()
+        {
+            return $this->programId;
+        }
+
+
 
         public function setLastPrice($price)
         {
@@ -214,6 +228,29 @@
             }
         }
 
+
+        public function setIncentives($list)
+        {
+            if (count($list)){
+                $this->incentivesData = array_shift($list);
+            }
+        }
+
+
+        public function applyIncentive($incentive)
+        {
+            $this->incentive = $incentive;
+        }
+
+
+        public function getIncentiveId()
+        {
+            if (isset($this->incentivesData['id'])) {
+                return $this->incentivesData['id'];
+            }
+            return false;
+        }
+
         public function getParsedArray()
         {
 
@@ -238,6 +275,7 @@
                 'bonusPercent' => $this->bonusPercent,
                 'link' => $this->link,
                 'advertiser' => $this->advertiserName,
+                'incentive' => ($this->incentive) ? $this->incentive->getParsedArray() : false,
             ];
         }
 

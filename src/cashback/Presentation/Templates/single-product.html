@@ -36,12 +36,14 @@
                                         <?php endif; ?>
                                     </div><!-- .cb-amount -->
                                 </div><!-- .cashback -->
+                                <?php if ($product['incentive']): ?>
                                 <div class="voucher">
                                     <span class="lbl">VOUCHER</span>
                                     <div class="voucher-amount">
-                                        <span>-10%</span>
+                                        <span>-<?=$product['incentive']['percentage']?>%</span>
                                     </div><!-- .voucher-amount -->
                                 </div><!-- .voucher -->
+                                <?php endif;?>
                                 <div class="buy-now">
                                     <span class="amount"><?=$product['currencySymbol']?><?=$product['price']?></span>
                                     <a href="/redirect/<?=$product['id']?>" class="buy-now-btn">BUY NOW</a>
@@ -49,7 +51,9 @@
                             </div><!-- .price-info -->
                             <div class="discount-wrap">
                                 <a href="/profile/wish/<?=$product['id']?>" class="add-to-wishlist <?=$product['is-favorite']? 'active':''?>">Add to Wish list</a>
-                                <div class="discount-code">DISCOUNT-CODE: <span>A4O88765iph</span></div><!-- .discount-code -->
+                                <?php if ($product['incentive']): ?>
+                                <div class="discount-code">DISCOUNT-CODE: <span><?=$product['incentive']['code']?></span></div><!-- .discount-code -->
+                                <?php endif; ?>
 
                             </div><!-- .price-info-->
                             <div class="retailer">RETAILER: <span><?=$product['advertiser']?></span></div><!-- .retailer -->
@@ -95,7 +99,9 @@
                                                     <?=$product['bonusPercent'] === null ? '' : ($product['bonusPercent'] . '%')?>
                                                 </span>
                                             </div>
-                                            <span class="voucher">VOUCHER: -10%</span>
+                                            <?php if ($product['incentive']): ?>
+                                            <span class="voucher">VOUCHER: -<?=$product['incentive']['percentage']?>%</span>
+                                            <?php endif;?>
                                             <span class="buy_btn">VIEW</span>
                                         </div><!-- .product-info -->
                                     </a>

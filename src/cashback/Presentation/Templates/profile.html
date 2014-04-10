@@ -79,7 +79,9 @@
                                             <?=$product['bonusPercent'] === null ? '' : ($product['bonusPercent'] . '%')?>
                                         </span>
                                     </div>
-                                    <span class="voucher">VOUCHER: -10%</span>
+                                    <?php if ($product['incentive']): ?>
+                                    <span class="voucher">VOUCHER: -<?=$product['incentive']['percentage']?>%</span>
+                                    <?php endif;?>
                                     <span class="buy_btn">VIEW</span>
                                 </div><!-- .product-info -->
                             </a>

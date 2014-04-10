@@ -19,6 +19,8 @@
             "products":        "/products.json?cat_id={id}&per_page=20&page={page}",
             "products-search": "/products/search.json?keywords={query}&per_page=20&page={page}",
 
+            "incentives":      "/incentives.json?per_page=200&filter=valid",
+
             "user":            "/users.json",
             "user-login":      "/users/login.json",
             "user-redeem":     "/users/{id}/payments/redeem.json",

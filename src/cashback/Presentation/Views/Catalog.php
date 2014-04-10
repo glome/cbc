@@ -18,6 +18,7 @@ class Catalog extends \Application\Common\View
 
         $products = $shop->getProducts();
 
+
         if ($shop->getPage() !== null ) {
             $main       = $builder->create('clean');
             $content    = $builder->create('product-list');
@@ -29,7 +30,6 @@ class Catalog extends \Application\Common\View
 
         $categories = $shop->getCategories();
         $retailers = $shop->getCategoryRetailers();
-
 
 
 

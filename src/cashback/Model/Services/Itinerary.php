@@ -75,6 +75,13 @@ class Itinerary extends \Application\Common\Service
         $api->fetch($wishlist);
 
 
+        $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
+        $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');
+        $api->fetch($incentives);
+
+        $wishlist->applyIncentives($incentives);
+        //*/
+
         return $wishlist->getParsedArray();
     }
 

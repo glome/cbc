@@ -129,5 +129,25 @@ class ProductCollection extends \Application\Common\Collection
     }
 
 
+    public function applyIncentives($incentives)
+    {
+        $cache = [];
+        foreach ($this as $product) {
+            $id = $product->getIncentiveId();
+
+            if ($id === false) {
+                continue;
+            }
+
+            if (!array_key_exists($id, $cache)) {
+                $cache[$id] = $incentives->locateIncentive($id);
+            }
+
+            $product->applyIncentive($cache[$id]);
+        }
+    }
+
+
+
 
 }

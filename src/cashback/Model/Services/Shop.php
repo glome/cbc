@@ -108,13 +108,22 @@ class Shop extends \Application\Common\Service
         $session = $this->dataMapperFactory->create('ProductCollection', 'Session');
         $session->fetch($products);
 
-
         $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
         $products->setPage($this->currentPage);
         $products->setLanguage($settings->getLanguage());
         $products->setCurrency($settings->getCurrency());
         $products->setOrder($settings->getOrder());
         $api->fetch($products);
+
+
+        //*
+        $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
+        $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');
+        $api->fetch($incentives);
+
+        $products->applyIncentives($incentives);
+        //*/
+        //var_dump($incentives);
 
 
         $db = $this->dataMapperFactory->create('ProductCollection', 'SQL');
@@ -217,6 +226,14 @@ class Shop extends \Application\Common\Service
         $api = $this->dataMapperFactory->create('Visit', 'REST');
         $api->fetch($visit);
 
+
+        $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
+        $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');
+        $api->fetch($incentives);
+
+        $incentive = $incentives->locateIncentive($product->getIncentiveId());
+
+        $product->applyIncentive($incentive);
 
 
         $this->currentCategoryId = $product->getCategoryId();
