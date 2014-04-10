@@ -373,6 +373,7 @@ $(document).ready(function() {
         }
 
         counter.text(total);
+        indicator.text(total);
 
 
     });
@@ -417,7 +418,7 @@ $(document).ready(function() {
     /*
      $(".filter-cat .filter-content-wrap ul li a").on("click", function(e) {
      e.preventDefault();
-     
+
      if (!$(this).parent().hasClass("selected")) {
      $(".filter-cat .filter-content-wrap ul li").removeClass("selected");
      $(this).parent().addClass("selected");
@@ -564,13 +565,13 @@ $(document).ready(function() {
      if(top2 < scrolled) {
      $(".filter-sidebar").removeClass("absolute");
      }
-     
-     
+
+
      }
-     
+
      console.log(scrolled);
      });
-     
+
      */
     $(window).on("scroll", function() {
         var scrolled = $(window).scrollTop();
