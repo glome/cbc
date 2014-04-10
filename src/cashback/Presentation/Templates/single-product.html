@@ -61,8 +61,8 @@
                                 <p><span>DESCRIPTION OF THE PRODUCT</span> - <?=$product['description']?> </p>
                             </div><!-- .product-desc-->
                             <div class="social-media">
-                                <a href="" class="fb" onclick="shareFB()"></a>
-                                <a href="https://twitter.com/share?url=<?=$link?>" class="tw" target="_blank"></a>
+                                <a href="" class="fb" onclick="shareFB(); return false;"></a>
+                                <a href="https://twitter.com/share?url=<?=$tw_url?>&amp;text=<?=$tw_text?>" class="tw" target="_blank"></a>
                                 <span>SHARE LINK</span>
                             </div><!-- .share-link -->
                         </div><!-- .right -->

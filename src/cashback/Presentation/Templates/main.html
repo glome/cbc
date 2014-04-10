@@ -18,6 +18,7 @@
         <![endif]-->
     </head>
     <body>
+        <div id="fb-root"></div>
 
     <?php if($settings['has-download-bar']): ?>
         <div class="download-bar">
@@ -131,7 +132,6 @@
         }(document, "script", "twitter-wjs"));
         </script>
 
-        <div id="fb-root"></div>
         <div id="result"></div>
 
         <script type="text/javascript">
@@ -159,10 +159,7 @@
               caption: '<?=$fb_title?>',
               picture: '<?=$fb_image?>',
               app_id: '686339584740764'
-            }, function(response){
-
-                console.log(response);
-            });
+            }, function(response){});
         };
         </script>
         <?php endif; ?>
