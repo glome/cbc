@@ -47,7 +47,10 @@ class Catalog extends \Application\Common\View
         $profile->assignAll([
             'wishes'   => $itinerary->getWishlistLength(),
             'earnings' => $itinerary->getEarnings('EUR'),
-            'currency' => $configuration->getPreferredCurrency(),
+            'currencies' => $configuration->getListOf('currencies'),
+            'current'    => [
+                'currency'    => $configuration->getPreferredCurrency(),
+            ],
         ]);
 
         $currentCategory = $shop->getParentCategoryId();
@@ -75,6 +78,10 @@ class Catalog extends \Application\Common\View
             'footer'     => $footer,
             'settings'   => $settings,
             'user'       => $profile,
+            'currencies' => $configuration->getListOf('currencies'),
+            'current'    => [
+                'currency'    => $configuration->getPreferredCurrency(),
+            ],
         ]);
         return $main->render();
     }

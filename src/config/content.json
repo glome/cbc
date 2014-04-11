@@ -8,6 +8,14 @@
         {
             "code": "EUR",
             "symbol": "€"
+        },
+        {
+            "code": "zzzz",
+            "symbol": "a"
+        },
+        {
+            "code": "EasdasdasUR",
+            "symbol": "b"
         }
     ],
 

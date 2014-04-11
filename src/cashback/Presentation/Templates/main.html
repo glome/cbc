@@ -53,11 +53,11 @@
                         <div class="row">
                             <div class="form-item col-1">
                                 <div class="select-box">
-                                    <span class="selected"><?=$settings['currency']?></span>
+                                    <span class="selected"><?=$current['currency']['code']?></span>
                                     <ul>
-                                        <li <?=$settings['currency'] === 'EUR'? 'class="selected"':''?>>EUR</li>
-                                        <li <?=$settings['currency'] === 'USD'? 'class="selected"':''?>>USD</li>
-                                        <li <?=$settings['currency'] === 'GBP'? 'class="selected"':''?>>GBP</li>
+                                        <?php foreach($currencies as $currency ): ?>
+                                        <li <?=$currency['code'] === $current['currency']['code']? 'class="selected"':''?>><?=$currency['code']?></li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div><!-- .select-box -->
                             </div><!-- .form-item -->

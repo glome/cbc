@@ -29,11 +29,15 @@ class Landing extends \Application\Common\View
         $deals->assign('products', $shop->getRecommendations(4));
 
 
+        //var_dump( $configuration->getPreferredCurrency() );
 
         $profile->assignAll([
-            'wishes'   => $itinerary->getWishlistLength(),
-            'earnings' => $itinerary->getEarnings('EUR'),
-            'currency' => $configuration->getPreferredCurrency(),
+            'wishes'     => $itinerary->getWishlistLength(),
+            'earnings'   => $itinerary->getEarnings('EUR'),
+            'currencies' => $configuration->getListOf('currencies'),
+            'current'    => [
+                'currency'    => $configuration->getPreferredCurrency(),
+            ],
         ]);
 
         $content->assignAll([
@@ -49,6 +53,10 @@ class Landing extends \Application\Common\View
             'footer'     => $footer,
             'settings'   => $settings,
             'user'       => $profile,
+            'currencies' => $configuration->getListOf('currencies'),
+            'current'    => [
+                'currency'    => $configuration->getPreferredCurrency(),
+            ],
         ]);
         return $main->render();
     }

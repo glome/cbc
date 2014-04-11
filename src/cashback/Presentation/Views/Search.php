@@ -33,7 +33,10 @@ class Search extends \Application\Common\View
         $profile->assignAll([
             'wishes'   => $itinerary->getWishlistLength(),
             'earnings' => $itinerary->getEarnings('EUR'),
-            'currency' => $configuration->getPreferredCurrency(),
+            'currencies' => $configuration->getListOf('currencies'),
+            'current'    => [
+                'currency'    => $configuration->getPreferredCurrency(),
+            ],
         ]);
 
         $content->assignAll([
@@ -51,6 +54,10 @@ class Search extends \Application\Common\View
             'user'       => $profile,
             'footer'     => $footer,
             'settings'   => $settings,
+            'currencies' => $configuration->getListOf('currencies'),
+            'current'    => [
+                'currency'    => $configuration->getPreferredCurrency(),
+            ],
         ]);
         return $main->render();
     }

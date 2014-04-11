@@ -45,7 +45,10 @@ class Product extends \Application\Common\View
         $profile->assignAll([
             'wishes'   => $itinerary->getWishlistLength(),
             'earnings' => $itinerary->getEarnings('EUR'),
-            'currency' => $configuration->getPreferredCurrency(),
+            'currencies' => $configuration->getListOf('currencies'),
+            'current'    => [
+                'currency'    => $configuration->getPreferredCurrency(),
+            ],
         ]);
 
         $content->assignAll([
@@ -63,6 +66,10 @@ class Product extends \Application\Common\View
             'fb_link'       => $tw_url,
             'fb_image'      => $product['image'],
             'fb_title'      => 'cutomizable longer description .. with words',
+            'currencies' => $configuration->getListOf('currencies'),
+            'current'    => [
+                'currency'    => $configuration->getPreferredCurrency(),
+            ],
         ]);
         return $main->render();
     }

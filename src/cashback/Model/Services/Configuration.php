@@ -28,11 +28,12 @@ class Configuration extends \Application\Common\Service
     }
 
 
-    public function getParameter($key)
+    public function getListOf($key)
     {
         if (isset($this->data[$key])) {
             return $this->data[$key];
         }
+        return false;
     }
 
 
@@ -73,8 +74,6 @@ class Configuration extends \Application\Common\Service
         $settings = $this->domainObjectFactory->create('Settings');
 
 
-
-
         if (in_array($param, ['EUR', 'USD', 'GBP'])) {
             $settings->setCurrency($param);
         }
@@ -88,16 +87,25 @@ class Configuration extends \Application\Common\Service
         }
 
         $session->store($settings);
-
     }
 
 
     public function getPreferredCurrency()
     {
-        return [
-            'name' => 'EUR',
-            'symbol' => '€',
-        ];
+        $settings = $this->domainObjectFactory->create('Settings');
+
+        $cookies = $this->dataMapperFactory->create('Settings', 'Session');
+        $cookies->fetch($settings);
+
+
+        foreach ($this->data['currencies'] as $key => $value) {
+            //var_dump( $value['code'] , $settings->getCurrency(), $value['code'] === $settings->getCurrency());
+            if ($value['code'] === $settings->getCurrency()) {
+                return $value;
+            }
+        }
+
+        return $this->data['currencies'][0];
     }
 
 
