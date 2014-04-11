@@ -56,6 +56,7 @@ class Landing extends \Application\Common\View
             'currencies' => $configuration->getListOf('currencies'),
             'current'    => [
                 'currency'    => $configuration->getPreferredCurrency(),
+                'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
         return $main->render();

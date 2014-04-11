@@ -16,7 +16,6 @@ class Shop extends \Application\Common\Service
     private $visit = null;
 
 
-
     public function setPage($page)
     {
         $this->currentPage = $page;
@@ -112,7 +111,10 @@ class Shop extends \Application\Common\Service
         $products->setLanguage($settings->getLanguage());
         $products->setCurrency($settings->getCurrency());
         $products->setOrder($settings->getOrder());
+
         $api->fetch($products);
+
+//        var_dump($products);
 
 
         $incentives =  $this->domainObjectFactory->create('IncentiveCollection');

@@ -41,10 +41,21 @@ class ProductCollection extends \Application\Common\Collection
         $this->currency = $currency;
     }
 
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
     public function setOrder($order)
     {
         $this->order = $order;
     }
+
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
 
 
     public function setUserID($id)

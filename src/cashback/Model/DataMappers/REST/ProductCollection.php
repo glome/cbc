@@ -54,14 +54,16 @@ class ProductCollection extends \Application\Common\RestMapper
 
         if ($collection->hasCategory()) {
 
-            $url = $this->applyValuesToURL($this->resources['products'], ['{id}' => $collection->getCategory(), '{page}' => $collection->getPage()]);
+            $url = $this->applyValuesToURL($this->resources['products'], [
+                '{id}'       => $collection->getCategory(),
+                '{page}'     => $collection->getPage(),
+                '{currency}' => $collection->getCurrency(),
+                '{order}'    => $collection->getOrder() ? 'desc':'asc',
+            ]);
+//            var_dump($url);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             foreach ($data as $id => $entry) {
-                if (isset($data['error'])) {
-                    $collection->removeItem($id);
-                    continue;
-                }
                 $collection->addItem($entry);
             }
         }

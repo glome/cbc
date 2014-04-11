@@ -99,7 +99,6 @@ class Configuration extends \Application\Common\Service
 
 
         foreach ($this->data['currencies'] as $key => $value) {
-            //var_dump( $value['code'] , $settings->getCurrency(), $value['code'] === $settings->getCurrency());
             if ($value['code'] === $settings->getCurrency()) {
                 return $value;
             }
@@ -109,22 +108,21 @@ class Configuration extends \Application\Common\Service
     }
 
 
-    public function getCurrencyList()
+    public function getPreferredLanguage()
     {
-        $data = [];
-
-        $session = $this->dataMapperFactory->create('Settings', 'Session');
         $settings = $this->domainObjectFactory->create('Settings');
 
-        $session->fetch($settings);
+        $cookies = $this->dataMapperFactory->create('Settings', 'Session');
+        $cookies->fetch($settings);
 
-        $current = $settings->getCurrency();
-        if (c)
-
-
-        foreach ($this->data['currencies'] as $item) {
-
+        foreach ($this->data['languages'] as $key => $value) {
+            if ($value['code'] === $settings->getLanguage()) {
+                return $value;
+            }
         }
+
+        return $this->data['currencies'][0];
     }
+
 
 }
