@@ -13,7 +13,7 @@ if (isset($_SESSION['cache.cookies'])) {
 $datasources = json_decode(file_get_contents(__DIR__ . '/../config/datasource.json'), true);
 
 
-$templateBuilder = new TemplateBuilder(__DIR__ . '/Presentation/Templates');
+
 $domainFactory = new DomainObjectFactory;
 $domainFactory->setNamespace('\\Application\\DomainObjects');
 $mapperFactory = new DataMapperFactory($datasources);
@@ -30,6 +30,11 @@ $action = $request->getParameter('action');
 $command = $request->getMethod() . $action;
 $resource = ucfirst($request->getParameter('resource'));
 
+$translation = $serviceFactory->create('Translation');
+$translation->setTranslationRoot(__DIR__ . '/../config/translations');
+
+
+$templateBuilder = new TemplateBuilder(__DIR__ . '/Presentation/Templates', $translation);
 
 
 $recognition = $serviceFactory->create('Recognition');
