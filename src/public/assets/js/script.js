@@ -256,16 +256,18 @@ $(document).ready(function() {
 
     $(".select-checkbox ul li").on("click", function(e) {
 
+        var txt = $(this).text();
         if ($(this).hasClass("selected")) {
             $(this).removeClass("selected");
+            $.get('/options?del=' + txt);
         } else {
             $(this).addClass("selected");
+            $.get('/options?param=' + txt);
         }
 
         var selecteditems = "";
         $(this).parent().children(".selected").each(function() {
             selecteditems = selecteditems + $(this).text() + ", ";
-
         });
         if (selecteditems === "") {
             selecteditems = "Choose location";
@@ -392,18 +394,20 @@ $(document).ready(function() {
 
     $('.delete-from-wishlist').on('click', function(e) {
         var parent = this.parentNode,
-                counter = $('#wish-counter'),
-                indicator = $('#wish-indicator'),
-                total = parseInt(counter.text()) || 0;
+            counter = $('#wish-counter'),
+            indicator = $('#wish-indicator'),
+            total = parseInt(indicator.text()) || 0;
         e.preventDefault();
         $.get(this.href);
         $(parent).fadeOut(200, function() {
             $(parent).remove();
         });
         total -= 1;
+        console.log(parseInt(indicator.text()));
         if (total === 0) {
             indicator.removeClass('amount')
             total = '';
+            $('#wish-notice').removeClass('hidden');
         }
         counter.text(total);
     });

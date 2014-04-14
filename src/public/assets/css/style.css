@@ -348,7 +348,7 @@ select {
     background-image: url("/assets/img/close-white.png");
     background-repeat: no-repeat;
     background-position: center 36px;
-} 
+}
 .redeem-btn.disabled {
     padding: 8px 24px 9px;
     background-color: #7a7d7e;
@@ -1302,6 +1302,8 @@ footer {
     position: relative;
     float: left;
     max-width: 100%;
+    overflow: hidden; /* ugly hack */
+    height: 156px;  /* ugly hack */
 }
 .about .tab-content .tab .steps .img-wrap img {
     max-width: 100%;
@@ -2529,6 +2531,12 @@ footer {
 .redeem-inlay.open {
     max-height: 700px;
 }
+
+.redeem-options{
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
 .redeem-title {
     float: left;
     width: 100%;
@@ -2536,7 +2544,7 @@ footer {
     font-family: "noto sans", sans-serif;
     font-size: 24px;
     color: #FFFFFF;
-    
+
 }
 .redeem-title strong {
     font-weight: 700;
@@ -2550,7 +2558,8 @@ footer {
     font-size: 16px;
 }
 .redeem-inlay .code {
-    display: inline-block;
+    padding: 20px 20% 0;
+    float: left;
     margin-bottom: 50px;
 }
 .redeem-inlay .code span {
@@ -2587,10 +2596,14 @@ footer {
     color: #ffffff;
     text-decoration: none;
     border: 1px solid #ffffff;
-    margin-top: 38px;
+    margin-top: 8px;
     padding: 8px 30px;
     font-size: 14px;
     text-transform: uppercase;
+}
+
+.redeem-options.redeem-inlay {
+    width: 400px;
 }
 
 /*
@@ -3919,14 +3932,14 @@ footer {
         top: 39px !important;
         padding: 0 !important;
     }
-    
+
     /* Redeem inlay */
     .redeem-title {
         font-size: 22px;
     }
     .redeem-inlay .txt {
         width: 76%;
-        margin: 0 12% 20px; 
+        margin: 0 12% 20px;
     }
     .redeem-inlay .code {
         margin-bottom: 30px;
@@ -4193,4 +4206,8 @@ html[xmlns] .slides {display: block;}
 	width: 100%;
 	height: 60px;
 	z-index: 1;
+}
+
+.hidden {
+    display:none;
 }
