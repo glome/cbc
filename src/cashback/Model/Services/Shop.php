@@ -349,7 +349,6 @@ class Shop extends \Application\Common\Service
 
         $session->store($retailers);
 
-
     }
 
 }

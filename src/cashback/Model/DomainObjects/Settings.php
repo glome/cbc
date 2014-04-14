@@ -11,6 +11,8 @@
         private $currency = 'EUR';
         private $order = false;
 
+        private $locations = [];
+
         public function setParam($name, $value)
         {
             $this->persistent[$name] = $value;
@@ -62,6 +64,30 @@
         public function getOrder()
         {
             return $this->order;
+        }
+
+
+        public function getLocations()
+        {
+            return $this->locations;
+        }
+
+
+        public function addLocation($location)
+        {
+            $this->locations[$location] = 1;
+        }
+
+
+        public function removeLocation($location)
+        {
+            unset($this->locations[$location]);
+        }
+
+
+        public function setLocations($list)
+        {
+            $this->locations = $list;
         }
 
     }

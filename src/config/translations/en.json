@@ -47,6 +47,11 @@
     "profile.empty_wishlist":      "Currently You don't have any items in Your wish list. Keep searching!",
     "profile.empty_history":       "Your Cashback history is still empty. Don't You think it's time for shopping?",
     "profile.category_title":      "KEEP SHOPPING",
-    "profile.category_prompt":     "Choose Category"
+    "profile.category_prompt":     "Choose Category",
+
+
+
+    "redeem.title":                 "Redeem you money using one of these two options:"
+
 
 }

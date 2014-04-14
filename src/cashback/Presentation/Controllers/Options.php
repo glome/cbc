@@ -9,6 +9,7 @@ class Options extends \Application\Common\Controller
     {
         $configuration = $this->serviceFactory->create('Configuration');
         $configuration->applyParam($request->getParameter('param'));
+        $configuration->delParam($request->getParameter('del'));
     }
 
     public function getDownload($request)

@@ -29,5 +29,28 @@
             "code": "DE",
             "title": "Deutsch"
         }
+    ],
+
+    "locations": [
+        {
+            "title": "Finland",
+            "code": "FI"
+        },
+        {
+            "title": "Sweden",
+            "code": "SE"
+        },
+        {
+            "title": "Denmark",
+            "code": "DK"
+        },
+        {
+            "title": "Norway",
+            "code": "NO"
+        },
+        {
+            "title": "Latvia",
+            "code": "LV"
+        }
     ]
 }

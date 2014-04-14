@@ -90,11 +90,10 @@
 
                     </div><!-- .row -->
                 </div><!-- .products-->
-                <?php else: ?>
-                <div class="msg-box-fullpage">
+                <?php endif; ?>
+                <div id="wish-notice" class="msg-box-fullpage <?=count($products)?'hidden':''?>">
                     <div><?=$this->translate('profile.empty_wishlist')?></div>
                 </div>
-                <?php endif; ?>
             </div><!-- .profile-wishlist -->
             <div class="profile-cashback-history tab  <?=$tab === 'history'? 'active':''?>">
                 <?php if(isset($history['error'])): ?>

@@ -446,8 +446,10 @@ $(document).ready(function() {
 
         if ($(this).parent().hasClass("selected")) {
             $(this).parent().removeClass("selected");
+            $.get(this.href);
         } else {
             $(this).parent().addClass("selected");
+            $.get(this.href);
         }
     });
 

@@ -12,12 +12,13 @@ class Configuration extends \Application\Common\Service
 
 
     public function import($config) {
-        $this->inportParameters('languages', $config['languages']);
-        $this->inportParameters('currencies', $config['currencies']);
+        $this->importParameters('languages', $config['languages']);
+        $this->importParameters('currencies', $config['currencies']);
+        $this->importParameters('locations', $config['locations']);
     }
 
 
-    private function inportParameters($key, $parameters) {
+    private function importParameters($key, $parameters) {
         $this->data[$key] = [];
         foreach ($parameters as $item) {
             if (isset($item['code'])) {
@@ -68,12 +69,25 @@ class Configuration extends \Application\Common\Service
         $session->fetch($settings);
 
 
+        $locations = array_keys($settings->getLocations());
+        $temp = [];
+        foreach ($this->data['locations'] as $value) {
+            if (in_array($value['code'], $locations)) {
+                $temp[] = $value['title'];
+            }
+        }
+
+
+
         return [
-            'has-download-bar' => $settings->getParam('no-download') != true,
-            'order-by'         => $settings->getOrder(),
-            'language'         => $settings->getLanguage(),
-            'languages'        => $this->data['languages'],
-            'currency'         => $settings->getCurrency(),
+            'has-download-bar'   => $settings->getParam('no-download') != true,
+            'selected-locations' => $locations,
+            'location-list'      => $temp,
+            'order-by'           => $settings->getOrder(),
+            'currency'           => $settings->getCurrency(),
+            'language'           => $settings->getLanguage(),
+            'languages'          => $this->data['languages'],
+            'locations'          => $this->data['locations'],
         ];
 
     }
@@ -95,11 +109,38 @@ class Configuration extends \Application\Common\Service
             $settings->setLanguage($code);
         }
 
+
+        if (in_array($param, $this->titles['locations'])) {
+            $code = $this->findByTitle($param, 'locations');
+            $settings->addLocation($code);
+        }
+
+
         if (in_array($param, ['Newest added', 'Oldest added'])) {
             $settings->setOrder($param === 'Oldest added');
         }
 
         $session->store($settings);
+    }
+
+
+
+    public function delParam($param)
+    {
+        $session = $this->dataMapperFactory->create('Settings', 'Session');
+        $settings = $this->domainObjectFactory->create('Settings');
+
+        $session->fetch($settings);
+
+
+
+        if (in_array($param, $this->titles['locations'])) {
+            $code = $this->findByTitle($param, 'locations');
+            $settings->removeLocation($code);
+        }
+
+        $session->store($settings);
+
     }
 
     private function findByTitle($title, $key)

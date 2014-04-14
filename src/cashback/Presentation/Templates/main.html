@@ -74,14 +74,14 @@
                             <div class="form-item col-3">
                                 <div class="select-checkbox dropdown">
                                     <div class="selected-items">
-                                        <span class="checkbox-content"><?=$this->translate('header.location_prompt')?></span>
+                                        <span class="checkbox-content"><?=empty($settings['selected-locations'])
+                                                                                ? $this->translate('header.location_prompt')
+                                                                                : implode(', ', $settings['location-list'])?></span>
                                     </div>
                                     <ul>
-                                        <li class="option">Finland</li>
-                                        <li class="option">Sweden</li>
-                                        <li class="option">Denmark</li>
-                                        <li class="option">Norway</li>
-                                        <li class="option">Latvia</li>
+                                    <?php foreach ($settings['locations'] as $location): ?>
+                                        <li class="option <?=in_array($location['code'], $settings['selected-locations'])?'selected':''?>"><?=$location['title']?></li>
+                                    <?php endforeach; ?>
                                     </ul>
                                 </div><!-- .select -->
                             </div><!-- .form-item -->
@@ -95,22 +95,25 @@
         </header>
         <div class="redeem-inlay">
             <div class="wrap">
-                <div class="redeem-title">Pair with <strong>Glome Wallet</strong> to redeem your money </div>
-                <div class="txt">Copy this pairing code to Glome Wallet:</div>
-                <div class="code">
-                    <span>2047</span>
-                    <span>GH89</span>
-                    <span>6G8U</span>
-                </div>
-                <div class="txt">Links to Glome Wallet:</div>
-                <div class="links-center-wrap">
-                <div class="links-center">
-                    <div class="qr">
+                <div class="redeem-title"><?=$this->translate('redeem.title')?></div>
+                <div class="txt">1) Pair with Your <strong>Glome Wallet</strong> using this Pairing or QR code!</div>
+
+                <ul class="redeem-options redeem-inlay">
+                    <li class="code">
+                        <span>2047</span>
+                        <span>GH89</span>
+                        <span>6G8U</span>
+                    </li>
+                    <li class="divider">or</li>
+                    <li class="qr">
                         <img src="assets/img/qr-code_19.png" />
-                    </div><!-- .qr -->
-                    <div class="divider">or</div>
-                    <a href="" class="btn">GO TO SITE</a>
-                </div><!-- .links-center -->
+                    </li><!-- .qr -->
+                </ul>
+                <div class="txt">2) Redeem Your money using "Checkout Finland"!</div>
+                <div class="links-center-wrap">
+                    <div class="links-center">
+                        <a href="" class="btn">GO TO SITE</a>
+                    </div><!-- .links-center -->
                 </div><!-- .links-center-wrap -->
             </div><!-- .wrap -->
         </div><!-- .redeem-inlay -->

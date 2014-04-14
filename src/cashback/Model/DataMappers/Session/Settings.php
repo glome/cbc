@@ -15,6 +15,11 @@
                 $instance->setCurrency($_SESSION['config.currency']);
             }
 
+            if (isset($_SESSION['config.locations'])) {
+                $instance->setLocations($_SESSION['config.locations']);
+            }
+
+
             if (isset($_SESSION['config.order'])) {
                 $instance->setOrder($_SESSION['config.order']);
             }
@@ -28,6 +33,7 @@
         {
             $_SESSION['config.language'] = $instance->getLanguage();
             $_SESSION['config.currency'] = $instance->getCurrency();
+            $_SESSION['config.locations'] = $instance->getLocations();
             $_SESSION['config.order'] = $instance->getOrder();
         }
 
