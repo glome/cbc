@@ -11,10 +11,10 @@
                             <?php if($product['is-new'] || $product['is-popular'] ): ?>
                                 <div class="tags">
                                 <?php if($product['is-new']): ?>
-                                    <span class="new-lbl">NEW</span>
+                                    <span class="new-lbl"><?=$this->translate('product.badge_new')?></span>
                                 <?php endif; ?>
                                 <?php if($product['is-popular']): ?>
-                                    <span class="popular-lbl">POPULAR</span>
+                                    <span class="popular-lbl"><?=$this->translate('product.badge_popular')?></span>
                                 <?php endif; ?>
                                 </div><!-- .tags -->
                             <?php endif; ?>
@@ -26,7 +26,7 @@
                             </div><!-- .product-title -->
                             <div class="price-info">
                                 <div class="cashback">
-                                    <span class="lbl">CASHBACK</span>
+                                    <span class="lbl"><?=$this->translate('product.cashback')?></span>
                                     <div class="cb-amount <?php echo $product['one-bonus'] === true ? 'has-one' : ''; ?>">
                                         <?php if ($product['bonusMoney'] !== null): ?>
                                         <span><?=$product['currencySymbol']?> <?=$product['bonusMoney']?> </span>
@@ -78,10 +78,10 @@
                                     <?php if($product['is-new'] || $product['is-popular'] ): ?>
                                         <div class="labels">
                                         <?php if($product['is-new']): ?>
-                                            <span class="new-lbl">NEW</span>
+                                            <span class="new-lbl"><?=$this->translate('product.badge_new')?></span>
                                         <?php endif; ?>
                                         <?php if($product['is-popular']): ?>
-                                            <span class="popular-lbl">POPULAR</span>
+                                            <span class="popular-lbl"><?=$this->translate('product.badge_popular')?></span>
                                         <?php endif; ?>
                                         </div>
                                     <?php endif; ?>
@@ -92,7 +92,7 @@
                                         <div class="product-info">
                                             <span class="title"><?=$product['title']?></span>
                                             <div class="price">
-                                                <span>CASHBACK:</span>
+                                                <span><?=$this->translate('product.cashback')?>:</span>
                                                 <span>
                                                     <?=$product['bonusMoney'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
                                                     <?=$product['one-bonus'] ? '' : '&'?>
@@ -100,9 +100,9 @@
                                                 </span>
                                             </div>
                                             <?php if ($product['incentive']): ?>
-                                            <span class="voucher">VOUCHER: -<?=$product['incentive']['percentage']?>%</span>
+                                            <span class="voucher"><?=$this->translate('product.voucher')?>: -<?=$product['incentive']['percentage']?>%</span>
                                             <?php endif;?>
-                                            <span class="buy_btn">VIEW</span>
+                                            <span class="buy_btn"><?=$this->translate('product.button_view')?></span>
                                         </div><!-- .product-info -->
                                     </a>
                                 </div><!-- .product-content -->

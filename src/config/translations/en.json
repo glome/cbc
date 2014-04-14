@@ -1,0 +1,52 @@
+{
+    "header.download_prompt":      "Download %s to get your cashback",
+    "header.currency":             "Currency",
+    "header.language":             "Language",
+    "header.location":             "Location",
+    "header.location_prompt":      "Choose location",
+    "header.earnings_title":       "You have earned",
+
+
+    "banners.first_title":         "Crazy about shopping?",
+    "banners.first_subtitle":      "Buy online and get payed for your passion!",
+    "banners.second_title":        "EARN 2,5 EUR",
+    "banners.second_subtitle":     "by installing Glome Wallet",
+    "banners.third_title":         "Crazy about shopping?",
+    "banners.third_subtitle":      "Buy online and get payed for your passion!",
+
+
+    "product.badge_new":           "NEW",
+    "product.badge_popular":       "POPULAR",
+    "product.voucher":             "VOUCHER",
+    "product.button_view":         "VIEW",
+    "product.cashback":            "CASHBACK",
+
+
+    "navigation.order_title":      "ORDER BY",
+    "navigation.order_newest":     "Newest added",
+    "navigation.order_oldest":     "Oldest added",
+    "navigation.top_deals":        "Top cashback deals",
+    "navigation.categories":       "shop by category",
+    "navigation.search_all":       "ALL",
+    "navigation.search_current":   "CURRENT",
+    "navigation.search_prompt":    "What are you looking for?",
+    "navigation.to_wishlist":      "My wishlist",
+    "navigation.to_history":       "Cashback history",
+    "navigation.to_redeem":        "REDEEM",
+    "navigation.redeem_condition": "(minimum 5 EUR)",
+
+
+    "info.about_title":            "About us",
+    "info.faq_title":              "FAQ",
+    "info.contact_title":          "Contact",
+
+    "profile.title":               "My Profile",
+    "profile.wishlist_title":      "Wish list",
+    "profile.history_title":       "Cashback history",
+
+    "profile.empty_wishlist":      "Currently You don't have any items in Your wish list. Keep searching!",
+    "profile.empty_history":       "Your Cashback history is still empty. Don't You think it's time for shopping?",
+    "profile.category_title":      "KEEP SHOPPING",
+    "profile.category_prompt":     "Choose Category"
+
+}

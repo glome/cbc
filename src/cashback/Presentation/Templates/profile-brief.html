@@ -2,14 +2,16 @@
                     <div class="header-profile-wrap">
                         <div class="redeem">
                             <div class="earnings">
-                                <span>You have earned</span>
+                                <span><?=$this->translate('header.earnings_title')?></span>
                                 <span class="amount"><?=$current['currency']['symbol'].$earnings?></span>
                             </div><!-- .earning -->
-                            <!-- <a href="/redirect/redeem" class="redeem-btn">REDEEM</a> -->
+                            <a href="/redirect/redeem" class="redeem-btn redeem-btn-enabled">REDEEM</a>
+                            <!--
                             <div class="redeem-btn disabled">
-                                <span>REDEEM</span>
-                                <span class="min">(minimum 5 EUR)</span>
+                                <span><?=$this->translate('navigation.to_redeem')?></span>
+                                <span class="min"><?=$this->translate('navigation.redeem_condition')?></span>
                             </div>
+                            -->
                         </div><!-- .redeem -->
 
 
@@ -24,8 +26,8 @@
                             <a href="/profile" class="header-profile-btn"></a>
                             <div class="profile-menu">
                                 <ul>
-                                    <li class="wishlist"><a href="/profile/wishlist">My wishlist<span class="amount" id="wish-counter"><?=$wishes>0?$wishes:''?></span></a></li>
-                                    <li class="history"><a href="/profile/history">Cashback history</a></li>
+                                    <li class="wishlist"><a href="/profile/wishlist"><?=$this->translate('navigation.to_wishlist')?><span class="amount" id="wish-counter"><?=$wishes>0?$wishes:''?></span></a></li>
+                                    <li class="history"><a href="/profile/history"><?=$this->translate('navigation.to_history')?></a></li>
                                 </ul>
                             </div><!-- .profile-menu -->
                         </div><!-- .header-profile -->

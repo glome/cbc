@@ -7,9 +7,12 @@ class TemplateBuilder
 
     private $path;
 
-    public function __construct($path)
+    private $translations;
+
+    public function __construct($path, $translations)
     {
         $this->path = $path;
+        $this->translations = $translations;
     }
 
 
@@ -17,6 +20,7 @@ class TemplateBuilder
     {
         $filepath = $this->path . '/' . $name . '.html';
         $instance = new Template($filepath);
+        $instance->useTranslations($this->translations->fetchTranslations());
         return $instance;
     }
 

@@ -1,12 +1,12 @@
 
 <div class="profile">
     <div class="wrap">
-        <div class="title">My Profile</div><!-- .title -->
+        <div class="title"><?=$this->translate('profile.title')?></div><!-- .title -->
         <div class="profile-bar">
             <div class="profile-tabs">
                 <ul>
                     <li <?=$tab === 'wishlist'? 'class="active"':''?>>
-                        <a href="profile-wishlist">Wish list
+                        <a href="profile-wishlist"><?=$this->translate('profile.wishlist_title')?>
                             <div class="caret">
                                 <div class="caret-border"></div>
                                 <div class="caret-body"></div>
@@ -14,7 +14,7 @@
                         </a>
                     </li>
                     <li <?=$tab === 'history'? 'class="active"':''?>>
-                        <a href="profile-cashback-history">Cashback history
+                        <a href="profile-cashback-history"><?=$this->translate('profile.history_title')?>
                             <div class="caret">
                                 <div class="caret-border"></div>
                                 <div class="caret-body"></div>
@@ -24,9 +24,9 @@
                 </ul>
             </div><!-- .profile tabs -->
             <div class="cat-dropdown">
-                <span class="label">KEEP SHOPPING:</span>
+                <span class="label"><?=$this->translate('profile.category_title')?>:</span>
                 <div class="cat-select-box">
-                    <div class="selected-item">Choose Categories</div><!-- .selected-item -->
+                    <div class="selected-item"><?=$this->translate('profile.category_prompt')?></div><!-- .selected-item -->
                     <ul class="accordion-dropdown">
 
                         <?php foreach ($categories as $id => $category): ?>
@@ -57,10 +57,10 @@
                             <a href="/product/<?=$id?>">
                                 <div class="labels">
                                     <?php if($product['is-new']): ?>
-                                    <span class="new-lbl">NEW</span>
+                                    <span class="new-lbl"><?=$this->translate('product.badge_new')?></span>
                                     <?php endif; ?>
                                     <?php if($product['is-popular']): ?>
-                                    <span class="popular-lbl">POPULAR</span>
+                                    <span class="popular-lbl"><?=$this->translate('product.badge_popular')?></span>
                                     <?php endif; ?>
                                 </div>
 
@@ -72,7 +72,7 @@
                                     <span class="title"><?=$product['title']?></span>
                                     <span class="product-price"><?=$product['currencySymbol']?><?=$product['price']?></span>
                                     <div class="price">
-                                        <span>CASHBACK:</span>
+                                        <span><?=$this->translate('product.cashback')?>:</span>
                                         <span>
                                             <?=$product['currencySymbol'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
                                             <?=$product['one-bonus'] ? '' : '&'?>
@@ -80,87 +80,19 @@
                                         </span>
                                     </div>
                                     <?php if ($product['incentive']): ?>
-                                    <span class="voucher">VOUCHER: -<?=$product['incentive']['percentage']?>%</span>
+                                    <span class="voucher"><?=$this->translate('product.voucher')?>: -<?=$product['incentive']['percentage']?>%</span>
                                     <?php endif;?>
-                                    <span class="buy_btn">VIEW</span>
+                                    <span class="buy_btn"><?=$this->translate('product.button_view')?></span>
                                 </div><!-- .product-info -->
                             </a>
                         </div><!-- .product -->
                         <?php endforeach; ?>
-                        <?php /*
-                        <div class="product">
-                        <a href="" class="delete-from-wishlist"></a>
-                        <a href="">
-                        <div class="labels">
-                        <span class="new-lbl">NEW</span>
-                        <span class="popular-lbl">POPULAR</span>
-                        </div>
 
-                        <div class="rating"></div>
-                        <div class="img-wrap">
-                        <img src="/assets/img/product-image2.jpg" alt="image description" />
-                        </div><!-- .img-wrap -->
-                        <div class="product-info">
-                        <span class="title">Title of the product that is long and takes up to 3 rows</span>
-                        <div class="price">
-                        <span>CASHBACK:</span>
-                        <span>25.99 & 28.5%</span>
-                        </div>
-                        <span class="voucher">VOUCHER: -10%</span>
-                        <span class="buy_btn">VIEW</span>
-                        </div><!-- .product-info -->
-                        </a>
-                        </div><!-- .product -->
-                        <div class="product">
-                        <a href="" class="delete-from-wishlist"></a>
-                        <a href="">
-                        <div class="labels">
-                        <span class="new-lbl">NEW</span>
-                        <span class="popular-lbl">POPULAR</span>
-                        </div>
-                        <div class="rating"></div>
-                        <div class="img-wrap">
-                        <img src="/assets/img/product-img3.jpg" alt="image description" />
-                        </div><!-- .img-wrap -->
-                        <div class="product-info">
-                        <span class="title">Title of the product that is long and takes up to 3 rows</span>
-                        <div class="price">
-                        <span>CASHBACK:</span>
-                        <span>25.99 & 28.5%</span>
-                        </div>
-                        <span class="voucher">VOUCHER: -10%</span>
-                        <span class="buy_btn">VIEW</span>
-                        </div><!-- .product-info -->
-                        </a>
-                        </div><!-- .product -->
-                        <div class="product">
-                        <a href="" class="delete-from-wishlist"></a>
-                        <a href="">
-                        <div class="labels">
-                        <span class="new-lbl">NEW</span>
-                        <span class="popular-lbl">POPULAR</span>
-                        </div>
-                        <div class="rating"></div>
-                        <div class="img-wrap">
-                        <img src="/assets/img/product-img4.jpg" alt="image description" />
-                        </div><!-- .img-wrap -->
-                        <div class="product-info">
-                        <span class="title">Title of the product that is long and takes up to 3 rows</span>
-                        <div class="price">
-                        <span>CASHBACK:</span>
-                        <span>25.99 & 28.5%</span>
-                        </div>
-                        <span class="voucher">VOUCHER: -10%</span>
-                        <span class="buy_btn">VIEW</span>
-                        </div><!-- .product-info -->
-                        </a>
-                        </div><!-- .product -->
-                        */ ?>
                     </div><!-- .row -->
                 </div><!-- .products-->
                 <?php else: ?>
                 <div class="msg-box-fullpage">
-                    <div>Currently You don't have any items in Your wish list. Keep searching! </div>
+                    <div><?=$this->translate('profile.empty_wishlist')?></div>
                 </div>
                 <?php endif; ?>
             </div><!-- .profile-wishlist -->
@@ -190,7 +122,7 @@
                 </ul><!-- .cashback-history -->
                 <?php else: ?>
                 <div class="msg-box-fullpage">
-                    <div>Your Cashback history is still empty. Don't You think it's time for shopping?</div>
+                    <div><?=$this->translate('profile.empty_history')?></div>
                 </div>
                 <?php endif;?>
                 <?php endif; ?>

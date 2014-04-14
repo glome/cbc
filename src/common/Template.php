@@ -7,6 +7,8 @@ class Template
 
     private $parameters = [];
 
+    protected $translations = [];
+
     private $filepath;
 
     public function __construct($filepath)
@@ -78,6 +80,23 @@ class Template
         extract($this->parameters, \EXTR_SKIP);
         require $this->filepath;
         return ob_get_clean();
+    }
+
+
+    public function useTranslations($translations)
+    {
+        $this->translations = $translations;
+    }
+
+    public function translate($param, $replacement = '')
+    {
+        if (array_key_exists($param, $this->translations)) {
+            $text = $this->translations[$param];
+            $text = str_replace('%s', $replacement, $text);
+            return $text;
+        }
+
+        return $param;
     }
 
 }

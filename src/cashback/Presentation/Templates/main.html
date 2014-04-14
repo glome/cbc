@@ -20,19 +20,19 @@
     <body>
         <div id="fb-root"></div>
 
-    <?php if($settings['has-download-bar']): ?>
+        <?php if($settings['has-download-bar']): ?>
         <div class="download-bar">
             <div class="wrap">
                 <div class="center">
                     <div class="center-content">
-                        <span>Download <a href="">Glome Wallet</a> to get your cashback</span>
+                        <span><?=$this->translate('header.download_prompt', '<a href="">Glome Wallet</a>')?></span>
                         <a href="" class="google-play"></a>
                     </div>
                     <a href="" class="close-download-bar"></a>
                 </div><!-- .center-->
             </div><!-- .wrap -->
         </div><!-- .dowload-bar-->
-    <?php endif; ?>
+        <?php endif; ?>
 
         <header class="page_header">
             <div class="wrap">
@@ -46,42 +46,42 @@
                     <div class="location-filter">
                         <a class="mob-filter-btn"></a>
                         <div class="row">
-                            <div class="lbl col-1" id="col-1">Currency</div>
-                            <div class="lbl col-2" id="col-2">Language</div>
-                            <div class="lbl col-3" id="col-3">Location</div>
+                            <div class="lbl col-1" id="col-1"><?=$this->translate('header.currency')?></div>
+                            <div class="lbl col-2" id="col-2"><?=$this->translate('header.language')?></div>
+                            <div class="lbl col-3" id="col-3"><?=$this->translate('header.location')?></div>
                         </div><!-- .row -->
                         <div class="row">
                             <div class="form-item col-1">
-                                <div class="select-box">
+                                <div class="select-box dropdown">
                                     <span class="selected"><?=$current['currency']['code']?></span>
                                     <ul>
                                         <?php foreach($currencies as $currency ): ?>
-                                        <li <?=$currency['code'] === $current['currency']['code']? 'class="selected"':''?>><?=$currency['code']?></li>
+                                        <li class="option <?=$currency['code'] === $current['currency']['code']? 'selected':''?>"><?=$currency['code']?></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </div><!-- .select-box -->
                             </div><!-- .form-item -->
                             <div class="form-item col-2">
-                                <div class="select-box">
-                                    <span class="selected"><?=$settings['language']?></span>
+                                <div class="select-box dropdown switch-full">
+                                    <span class="selected"><?=$current['language']['title']?></span>
                                     <ul>
-                                        <li <?=$settings['language'] === 'English'? 'class="selected"':''?>>English</li>
-                                        <li <?=$settings['language'] === 'Suomi'? 'class="selected"':''?>>Suomi</li>
-                                        <li <?=$settings['language'] === 'Deutsch'? 'class="selected"':''?>>Deutsch</li>
+                                        <?php  foreach ($settings['languages'] as $language): ?>
+                                            <li class="option <?=$language['code'] === $settings['language']? 'selected':''?>"><?=$language['title']?></li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div><!-- .select-box -->
                             </div><!-- .form-item -->
                             <div class="form-item col-3">
-                                <div class="select-checkbox">
+                                <div class="select-checkbox dropdown">
                                     <div class="selected-items">
-                                        <span class="checkbox-content">Choose location</span>
+                                        <span class="checkbox-content"><?=$this->translate('header.location_prompt')?></span>
                                     </div>
                                     <ul>
-                                        <li>Finland</li>
-                                        <li>Sweden</li>
-                                        <li>Denmark</li>
-                                        <li>Norway</li>
-                                        <li>Latvia</li>
+                                        <li class="option">Finland</li>
+                                        <li class="option">Sweden</li>
+                                        <li class="option">Denmark</li>
+                                        <li class="option">Norway</li>
+                                        <li class="option">Latvia</li>
                                     </ul>
                                 </div><!-- .select -->
                             </div><!-- .form-item -->
@@ -93,8 +93,29 @@
                 </div><!-- .header-options-->
             </div><!-- .wrap -->
         </header>
+        <div class="redeem-inlay">
+            <div class="wrap">
+                <div class="redeem-title">Pair with <strong>Glome Wallet</strong> to redeem your money </div>
+                <div class="txt">Copy this pairing code to Glome Wallet:</div>
+                <div class="code">
+                    <span>2047</span>
+                    <span>GH89</span>
+                    <span>6G8U</span>
+                </div>
+                <div class="txt">Links to Glome Wallet:</div>
+                <div class="links-center-wrap">
+                <div class="links-center">
+                    <div class="qr">
+                        <img src="assets/img/qr-code_19.png" />
+                    </div><!-- .qr -->
+                    <div class="divider">or</div>
+                    <a href="" class="btn">GO TO SITE</a>
+                </div><!-- .links-center -->
+                </div><!-- .links-center-wrap -->
+            </div><!-- .wrap -->
+        </div><!-- .redeem-inlay -->
         <div class="main">
-        <?php echo $content; ?>
+            <?php echo $content; ?>
         </div><!-- .main -->
 
         <?php echo $footer; ?>
@@ -106,7 +127,7 @@
         <script type="text/javascript" src="/assets/js/libs/masonry.js"></script>
         <script type="text/javascript" src="/assets/js/libs/jquery.jscrollpane.min.js"></script>
         <script type="text/javascript" src="/assets/js/libs/jquery.mousewheel.js"></script>
-        <script type="text/javascript" src="/assets/js/libs/jquery.flexslider-min.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/jquery.flexslider.js"></script>
         <script type="text/javascript" src="/assets/js/libs/jquery.infinitescroll.min.js"></script>
         <script type="text/javascript" src="/assets/js/libs/imagesloaded.js"></script>
         <script type="text/javascript" src="/assets/js/libs/classie.js"></script>
@@ -117,51 +138,63 @@
 
         <?php if (isset($isProductPage)): ?>
         <script type="text/javascript">
-        window.twttr = (function (d,s,id) {
+            window.twttr = (function(d, s, id) {
 
-            var t, js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
+                var t, js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
 
-            js=d.createElement(s);
-            js.id=id;
-            js.src="https://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
 
-            return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+                return window.twttr || (t = {_e: [], ready: function(f) {
+                        t._e.push(f)
+                    }});
 
-        }(document, "script", "twitter-wjs"));
+            }(document, "script", "twitter-wjs"));
         </script>
 
         <div id="result"></div>
 
+        <?php /*
+
         <script type="text/javascript">
 
-         window.fbAsyncInit = function() {
-            FB.init({
-              appId      : '686339584740764',
-              status     : true,
-              xfbml      : true
-            });
-          };
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId: '686339584740764',
+                    status: true,
+                    xfbml: true
+                });
+            };
 
-          (function(d, s, id){
-             var js, fjs = d.getElementsByTagName(s)[0];
-             if (d.getElementById(id)) {return;}
-             js = d.createElement(s); js.id = id;
-             js.src = "//connect.facebook.net/en_US/all.js";
-             fjs.parentNode.insertBefore(js, fjs);
-           }(document, 'script', 'facebook-jssdk'));
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
 
-        var shareFB = function () {
-            FB.ui({
-              method: 'feed',
-              link: '<?=$fb_link?>',
-              caption: '<?=$fb_title?>',
-              picture: '<?=$fb_image?>'
-            }, function(response){});
-        };
+            var shareFB = function() {
+                FB.ui({
+                    method: 'feed',
+                    link: '<?=$fb_link?>',
+                    caption: '<?=$fb_title?>',
+                    picture: '<?=$fb_image?>'
+                }, function(response) {
+                });
+            };
         </script>
+
+        */ ?>
         <?php endif; ?>
+
 
     </body>
 </html>

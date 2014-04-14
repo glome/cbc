@@ -1,24 +1,24 @@
 {
     "currencies": [
         {
-            "code": "USD",
             "symbol": "$",
+            "code": "USD",
             "default": true
         },
         {
-            "code": "EUR",
-            "symbol": "€"
+            "symbol": "€",
+            "code": "EUR"
         },
         {
-            "code": "GBP",
-            "symbol": "£"
+            "symbol": "£",
+            "code": "GBP"
         }
     ],
 
     "languages": [
         {
-            "code": "EN",
             "title": "English",
+            "code": "EN",
             "default": true
         },
         {
