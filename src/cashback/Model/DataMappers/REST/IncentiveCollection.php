@@ -46,9 +46,6 @@ class IncentiveCollection extends \Application\Common\RestMapper
             }
             $collection->addItem($entry);
         }
-
-        //var_dump($data);
-
     }
 
 

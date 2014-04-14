@@ -114,9 +114,6 @@ class Shop extends \Application\Common\Service
 
         $api->fetch($products);
 
-//        var_dump($products);
-
-
         $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
         $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');
         $api->fetch($incentives);
@@ -267,8 +264,6 @@ class Shop extends \Application\Common\Service
 
         $api = $this->dataMapperFactory->create('RetailerCollection', 'REST');
         $api->fetch($retailers);
-
-        //var_dump($retailers->getParsedArray());
 
         return $retailers->getParsedArray();
 

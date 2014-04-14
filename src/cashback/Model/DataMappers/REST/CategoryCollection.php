@@ -45,9 +45,6 @@ class CategoryCollection extends \Application\Common\RestMapper
 
 
         $time = microtime(true) - $time;
-
-        //var_dump($time);
-
     }
 
 

@@ -32,8 +32,6 @@ class Landing extends \Application\Common\View
         $deals->assign('products', $shop->getRecommendations(4));
 
 
-        //var_dump( $configuration->getPreferredCurrency() );
-
         $profile->assignAll([
             'wishes'     => $itinerary->getWishlistLength(),
             'earnings'   => $itinerary->getEarnings('EUR'),

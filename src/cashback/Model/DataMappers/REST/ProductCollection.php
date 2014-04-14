@@ -60,7 +60,6 @@ class ProductCollection extends \Application\Common\RestMapper
                 '{currency}' => $collection->getCurrency(),
                 '{order}'    => $collection->getOrder() ? 'desc':'asc',
             ]);
-//            var_dump($url);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             foreach ($data as $id => $entry) {
@@ -82,12 +81,6 @@ class ProductCollection extends \Application\Common\RestMapper
                 $collection->addItem($entry);
             }
         }
-
-        //$response = $client->get('https://api.glome.me/categories.json?display=flat')->send();
-        //$data = $response->json();
-
-      //  var_dump($data);
-
     }
 
 

@@ -9,7 +9,7 @@
         {
             if (isset($_SESSION['glome.categories'])) {
                 $categories = $_SESSION['glome.categories'];
-                //var_dump($data);
+
                 foreach ($categories as $category) {
                     $i = $category['id'];
                     foreach ($category['subcategories'] as $subcategory) {

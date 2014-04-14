@@ -108,7 +108,6 @@ class Itinerary extends \Application\Common\Service
         $api = $this->dataMapperFactory->create('Finances', 'REST');
         $finances->setUserId($id);
         $api->fetch($finances);
-//        var_dump($finances);
         return $finances;
     }
 

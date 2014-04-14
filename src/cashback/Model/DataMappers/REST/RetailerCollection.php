@@ -54,12 +54,7 @@ class RetailerCollection extends \Application\Common\RestMapper
             foreach ($data as $entry) {
                 $collection->addItem($entry);
             }
-            //var_dump($data);
-
-            //$collection->setResponse($data);
         }
-
-
     }
 
 

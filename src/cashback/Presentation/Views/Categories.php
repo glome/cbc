@@ -94,7 +94,6 @@ class Categories extends \Application\Common\View
             $i += 1;
         }
 
-      //  var_dump($groups);
         return $groups;
     }
 
@@ -107,14 +106,6 @@ class Categories extends \Application\Common\View
         $groups[1] = array_slice($list, $a , $b);
         $groups[2] = array_slice($list, $a + $b);
         return $groups;
-        // foreach ($list as $key => $value) {
-        //     $limit
-
-        //     if (!isset($groups[$n])) {
-        //         $groups[$n] = [];
-        //     }
-        //     # code...
-        // }
     }
 
 }
