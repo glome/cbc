@@ -22,6 +22,8 @@ class Profile extends \Application\Common\View
         $shop = $this->serviceFactory->create('Shop');
         $categories = $shop->getCategories();
 
+        $translation = $this->serviceFactory->create('Translation');
+        $translation->checkSettings();
 
 
 
@@ -68,6 +70,7 @@ class Profile extends \Application\Common\View
             'currencies' => $configuration->getListOf('currencies'),
             'current'    => [
                 'currency'    => $configuration->getPreferredCurrency(),
+                'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
         return $main->render();

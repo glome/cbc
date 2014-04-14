@@ -11,6 +11,10 @@ class Categories extends \Application\Common\View
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
+        $translation = $this->serviceFactory->create('Translation');
+        $translation->checkSettings();
+
+
         $shop = $this->serviceFactory->create('Shop');
         $categories = $shop->getCategories();
         $query = $shop->getSearchedTerm();
@@ -68,6 +72,10 @@ class Categories extends \Application\Common\View
             'user'       => $profile,
             'footer'     => $footer,
             'settings'   => $settings,
+            'current'    => [
+                'currency'    => $configuration->getPreferredCurrency(),
+                'language'    => $configuration->getPreferredLanguage(),
+            ],
         ]);
         return $main->render();
     }

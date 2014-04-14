@@ -16,6 +16,8 @@ class Search extends \Application\Common\View
         $query = $shop->getSearchedTerm();
         $products = $shop->getProducts();
 
+        $translation = $this->serviceFactory->create('Translation');
+        $translation->checkSettings();
 
         $builder = $this->templateBuilder;
 
@@ -57,6 +59,7 @@ class Search extends \Application\Common\View
             'currencies' => $configuration->getListOf('currencies'),
             'current'    => [
                 'currency'    => $configuration->getPreferredCurrency(),
+                'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
         return $main->render();

@@ -14,7 +14,6 @@ class IncentiveCollection extends \Application\Common\Collection
 
     public function locateIncentive($id)
     {
-        //var_dump($this);
         foreach ($this as $incentive) {
             $current = $incentive->getId();
             if ($current == $id) {

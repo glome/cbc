@@ -20,7 +20,6 @@
         {
 
             $params = $instance->getParams();
-            var_dump($params);
             foreach ($params as $key => $value) {
                 setcookie("config.$key", $value, time() + 157680000 /*5 years*/, '/', '', false, true);
             }

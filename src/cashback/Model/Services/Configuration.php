@@ -7,6 +7,8 @@ class Configuration extends \Application\Common\Service
 {
 
     private $data = [];
+    private $codes = [];
+    private $titles = [];
 
 
     public function import($config) {
@@ -18,6 +20,14 @@ class Configuration extends \Application\Common\Service
     private function inportParameters($key, $parameters) {
         $this->data[$key] = [];
         foreach ($parameters as $item) {
+            if (isset($item['code'])) {
+                $this->codes[$key][] = $item['code'];
+            }
+
+            if (isset($item['title'])) {
+                $this->titles[$key][] = $item['title'];
+            }
+
             if (isset($item['default']) && $item['default'] === true) {
                 unset($item['default']);
                 array_unshift($this->data[$key], $item);
@@ -62,6 +72,7 @@ class Configuration extends \Application\Common\Service
             'has-download-bar' => $settings->getParam('no-download') != true,
             'order-by'         => $settings->getOrder(),
             'language'         => $settings->getLanguage(),
+            'languages'        => $this->data['languages'],
             'currency'         => $settings->getCurrency(),
         ];
 
@@ -73,13 +84,15 @@ class Configuration extends \Application\Common\Service
         $session = $this->dataMapperFactory->create('Settings', 'Session');
         $settings = $this->domainObjectFactory->create('Settings');
 
+        $session->fetch($settings);
 
-        if (in_array($param, ['EUR', 'USD', 'GBP'])) {
+        if (in_array($param, $this->codes['currencies'])) {
             $settings->setCurrency($param);
         }
 
-        if (in_array($param, ['Deutsch', 'English', 'Suomi'])) {
-            $settings->setLanguage($param);
+        if (in_array($param, $this->titles['languages'])) {
+            $code = $this->findByTitle($param, 'languages');
+            $settings->setLanguage($code);
         }
 
         if (in_array($param, ['Newest added', 'Oldest added'])) {
@@ -87,6 +100,17 @@ class Configuration extends \Application\Common\Service
         }
 
         $session->store($settings);
+    }
+
+    private function findByTitle($title, $key)
+    {
+        foreach ($this->data[$key] as $item) {
+            if ($item['title'] === $title) {
+                return $item['code'];
+            }
+        }
+
+        return $item[0]['code'];
     }
 
 
@@ -121,7 +145,7 @@ class Configuration extends \Application\Common\Service
             }
         }
 
-        return $this->data['currencies'][0];
+        return $this->data['languages'][0];
     }
 
 

@@ -11,6 +11,9 @@ class Redirect extends \Application\Common\View
         $product = $shop->getCurrentProduct($mustRegister = false);
         $redirect = $shop->getVisitDetails();
 
+        $translation = $this->serviceFactory->create('Translation');
+        $translation->checkSettings();
+
         $main = $this->templateBuilder->create('redirect');
         $main->assignAll([
             'product' => $product,

@@ -11,6 +11,12 @@ class Product extends \Application\Common\View
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
 
+        $translation = $this->serviceFactory->create('Translation');
+        $translation->checkSettings();
+
+        $translation = $this->serviceFactory->create('Translation');
+        $translation->checkSettings();
+
         $shop = $this->serviceFactory->create('Shop');
         $categories = $shop->getCategories();
         $product = $shop->getCurrentProduct();
@@ -69,6 +75,7 @@ class Product extends \Application\Common\View
             'currencies' => $configuration->getListOf('currencies'),
             'current'    => [
                 'currency'    => $configuration->getPreferredCurrency(),
+                'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
         return $main->render();

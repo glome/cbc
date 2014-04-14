@@ -14,6 +14,9 @@ class Landing extends \Application\Common\View
         $shop = $this->serviceFactory->create('Shop');
         $categories = $shop->getCategories();
 
+        $translation = $this->serviceFactory->create('Translation');
+        $translation->checkSettings();
+
 
         $builder = $this->templateBuilder;
 

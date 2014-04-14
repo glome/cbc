@@ -16,6 +16,9 @@ class Catalog extends \Application\Common\View
 
         $shop = $this->serviceFactory->create('Shop');
 
+        $translation = $this->serviceFactory->create('Translation');
+        $translation->checkSettings();
+
         $products = $shop->getProducts();
 
 
@@ -81,6 +84,7 @@ class Catalog extends \Application\Common\View
             'currencies' => $configuration->getListOf('currencies'),
             'current'    => [
                 'currency'    => $configuration->getPreferredCurrency(),
+                'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
         return $main->render();
