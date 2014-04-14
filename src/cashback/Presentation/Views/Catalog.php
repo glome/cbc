@@ -33,6 +33,7 @@ class Catalog extends \Application\Common\View
 
         $categories = $shop->getCategories();
         $retailers = $shop->getCategoryRetailers();
+        $selectedRetailers = $shop->getSelectedRetailers();
 
 
 
@@ -64,6 +65,7 @@ class Catalog extends \Application\Common\View
             'current'         => null,
             'products'        => [],
             'retailers'       => [],
+            'selectedRetailesr' => [],
         ];
 
         if ($currentCategory !== null) {
@@ -71,7 +73,10 @@ class Catalog extends \Application\Common\View
             $params['current'] = $shop->getCurrentCategoryId();
             $params['products'] = $products;
             $params['retailers'] = $retailers;
+            $params['selectedRetailers'] = array_keys($selectedRetailers);
         }
+
+
 
         $content->assignAll($params);
 

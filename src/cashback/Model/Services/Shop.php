@@ -269,6 +269,26 @@ class Shop extends \Application\Common\Service
 
     }
 
+    public function getSelectedRetailers()
+    {
+        $retailers = $this->domainObjectFactory->create('RetailerCollection');
+        $session = $this->dataMapperFactory->create('RetailerCollection', 'Session');
+
+        $retailers->setCategoryId($this->currentCategoryId);
+        $session->fetch($retailers);
+
+        return $retailers->getParsedArray();
+    }
+
+
+    public function clearRetailers()
+    {
+        $retailers = $this->domainObjectFactory->create('RetailerCollection');
+        $session = $this->dataMapperFactory->create('RetailerCollection', 'Session');
+        $retailers->setCategoryId($this->currentCategoryId);
+
+        $session->store($retailers);
+    }
 
     private function acquireProduct()
     {

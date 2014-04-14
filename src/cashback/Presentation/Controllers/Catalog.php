@@ -18,8 +18,15 @@ class Catalog extends \Application\Common\Controller
         $shop->useCategory($request->getParameter('id'));
 
         $retailer = $request->getParameter('param');
+
         if ($retailer) {
             $shop->toggleRetailer($retailer);
+            exit;
+        }
+
+        $clear = $request->getParameter('clear');
+        if (isset($clear)) {
+            $shop->clearRetailers();
             exit;
         }
     }
