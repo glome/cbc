@@ -190,6 +190,7 @@ header{
     width: 100%;
     overflow: hidden;
 }
+.select-box.open ul,
 .select-box.active ul {
     max-height: 1000px;
     border: 2px solid #ABC5C2;
@@ -233,6 +234,8 @@ select {
     font-size: 12px;
     z-index: 6;
 }
+.select-box.open,
+.select-checkbox.open,
 .select-box.active,
 .select-checkbox.active {
     background-color: #ffffff;
@@ -259,6 +262,7 @@ select {
     max-height: 0;
     overflow: hidden;
 }
+.select-checkbox.open ul,
 .select-checkbox.active ul {
     border: 2px solid #ABC5C2;
     width: 100%;
@@ -331,13 +335,20 @@ select {
     float: left;
     width: 66px;
     margin: 0 10px;
-    padding: 10px 24px;
+    padding: 11px 24px 12px;
     color: #ffffff;
     background-color: #FE7063;
     font-family: "noto sans", sans-serif;
     text-decoration: none;
     text-align: center;
 }
+.redeem-btn.active {
+    padding: 11px 24px 43px;
+    background-color: #595D5E;
+    background-image: url("/assets/img/close-white.png");
+    background-repeat: no-repeat;
+    background-position: center 36px;
+} 
 .redeem-btn.disabled {
     padding: 8px 24px 9px;
     background-color: #7a7d7e;
@@ -657,6 +668,7 @@ footer {
     -moz-transition:    padding 0.5s;
     transition:         padding 0.5s;
 }
+.cat-menu.open ul,
 .cat-menu.opened ul {
     max-height: 1000px;
     overflow: visible;
@@ -794,6 +806,7 @@ footer {
     -moz-transition:    max-height 0.5s;
     transition:         max-height 0.5s;
 }
+.search-select.open ul,
 .search-select.opened ul {
     max-height: 1000px;
 }
@@ -1483,6 +1496,7 @@ footer {
     -moz-transition:    max-height 0.5s;
     transition:         max-height 0.5s;
 }
+.profile .cat-dropdown .cat-select-box.open .accordion-dropdown,
 .profile .cat-dropdown .cat-select-box.opened .accordion-dropdown {
     max-height: 1000px;
 }
@@ -1900,7 +1914,8 @@ footer {
     left: -1px;
     top: 31px;
 }
-.options-bar .select-box.active ul {
+.options-bar .select-box.active ul,
+.options-bar .select-box.open ul {
     top: 30px;
     z-index: 1;
 }
@@ -2500,6 +2515,83 @@ footer {
     color: #FE7063;
 }
 
+/* REDEEM INLAY */
+.redeem-inlay {
+    float: left;
+    width: 100%;
+    max-height: 0;
+    background-color: #595D5E;
+    text-align: center;
+    -webkit-transition: max-height 0.5s;
+    -moz-transition:    max-height 0.5s;
+    transition:         max-height 0.5s;
+}
+.redeem-inlay.open {
+    max-height: 700px;
+}
+.redeem-title {
+    float: left;
+    width: 100%;
+    margin: 30px 0;
+    font-family: "noto sans", sans-serif;
+    font-size: 24px;
+    color: #FFFFFF;
+    
+}
+.redeem-title strong {
+    font-weight: 700;
+}
+.redeem-inlay .txt {
+    float: left;
+    width: 100%;
+    margin-bottom: 25px;
+    color: #ABC5C2;
+    font-family: "noto sans", sans-serif;
+    font-size: 16px;
+}
+.redeem-inlay .code {
+    display: inline-block;
+    margin-bottom: 50px;
+}
+.redeem-inlay .code span {
+    float: left;
+    margin-left: 10px;
+    padding: 12px 15px;
+    font-family: "noto sans", sans-serif;
+    font-size: 13px;
+    color: #7A7D7E;
+    background-color: #ffffff;
+}
+.redeem-inlay .code span:first-child {
+    margin-left: 0;
+}
+.redeem-inlay .qr {
+    float: left;
+    width: 106px;
+    height: auto;
+}
+
+.redeem-inlay .links-center {
+    display: inline-block;
+    margin-bottom: 40px;
+}
+.redeem-inlay .divider {
+    float: left;
+    margin: 40px;
+    color: #ABC5C2;
+    font-size: 21px;
+}
+
+.redeem-inlay .btn {
+    float: left;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid #ffffff;
+    margin-top: 38px;
+    padding: 8px 30px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
 
 /*
 **
@@ -3090,6 +3182,7 @@ footer {
         padding: 10px 10%;
         border-bottom: 2px solid #ffffff;
     }
+    .cat-menu.open ul,
     .cat-menu.opened ul {
         padding: 0;
     }
@@ -3826,7 +3919,29 @@ footer {
         top: 39px !important;
         padding: 0 !important;
     }
-
+    
+    /* Redeem inlay */
+    .redeem-title {
+        font-size: 22px;
+    }
+    .redeem-inlay .txt {
+        width: 76%;
+        margin: 0 12% 20px; 
+    }
+    .redeem-inlay .code {
+        margin-bottom: 30px;
+    }
+    .redeem-btn.active {
+        padding: 17px 15px 37px;
+    }
+    .redeem-inlay .qr,
+    .redeem-inlay .divider {
+        display: none;
+    }
+    .redeem-inlay .btn {
+        margin-top: 5px;
+        padding: 20px 80px;
+    }
 
 
 

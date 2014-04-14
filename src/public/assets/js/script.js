@@ -122,12 +122,15 @@ $(document).ready(function() {
     });
 
     $(".select-box ul li").on("click", function() {
+
         if ($(window).width() > 730) {
             $(this).parent().children().removeClass("selected");
             $(this).addClass("selected");
             var txt = $(this).text();
             $(this).parent().prev(".selected").text(txt);
-            $.get('/options?param=' + txt);
+            $.get('/options?param=' + txt).done(function () {
+                window.location = window.location.href;
+            });
         } else {
             $(this).parent().children().removeClass("selected");
             $(this).addClass("selected");
@@ -147,6 +150,10 @@ $(document).ready(function() {
         e.preventDefault();
         if ($(".header-profile").hasClass("active")) {
             $(".header-profile").removeClass("active");
+        }
+        if ($(".redeem-btn-enabled").hasClass("active")) {
+            $(".redeem-btn-enabled").removeClass("active");
+            $(".redeem-inlay.open").removeClass("open");
         }
 
         if ($(this).parent().hasClass("mob-opened")) {
@@ -191,7 +198,10 @@ $(document).ready(function() {
     $(".header-profile-btn").on("click", function(e) {
         if ($(window).width() < 769) {
             e.preventDefault();
-
+            if ($(".redeem-btn-enabled").hasClass("active")) {
+                $(".redeem-btn-enabled").removeClass("active");
+                $(".redeem-inlay.open").removeClass("open");
+            }
 
             e.preventDefault();
             if ($(this).parent().hasClass("active")) {
@@ -243,6 +253,7 @@ $(document).ready(function() {
 
     });
 
+
     $(".select-checkbox ul li").on("click", function(e) {
 
         if ($(this).hasClass("selected")) {
@@ -268,6 +279,7 @@ $(document).ready(function() {
 
     $('.cat-menu .title').on("click", function(e) {
         e.preventDefault();
+
         if ($(window).width() > 730) {
             if ($(this).parent().hasClass("opened")) {
                 $(this).parent().removeClass("opened");
@@ -670,6 +682,24 @@ $(document).ready(function() {
 
     });
 
+
+    /* Redeem inlay */
+    $(".redeem-btn-enabled").on("click", function(e) {
+        e.preventDefault();
+        if ($(".location-filter").hasClass("mob-opened")) {
+            $(".location-filter").removeClass("mob-opened");
+        }
+        if ($(".header-profile").hasClass("active")) {
+            $(".header-profile").removeClass("active");
+        }
+        if ($(this).hasClass("active")) {
+            $(this).removeClass("active");
+            $(".redeem-inlay.open").removeClass("open");
+        } else {
+            $(this).addClass("active");
+            $(".redeem-inlay").addClass("open");
+        }
+    });
 
 
     /* Masonry grid */
