@@ -19,7 +19,7 @@ class RetailerCollection extends \Application\Common\Collection
     {
         $locations = $this->locations;
         if (count($locations)) {
-            return implode(', ', $locations);
+            return implode(',', $locations);
         }
         return 'any';
     }

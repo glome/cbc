@@ -110,10 +110,15 @@ class Shop extends \Application\Common\Service
         $session->fetch($settings);
 
 
+        $locations = $settings->getLocations();
+        $locations = array_keys($locations);
+
+
         $retailers = $this->getSelectedRetailers();
 
         $products = $this->domainObjectFactory->create('ProductCollection');
         $products->setCategory($this->currentCategoryId);
+        $products->setLocations($locations);
 
 
         $session = $this->dataMapperFactory->create('ProductCollection', 'Session');

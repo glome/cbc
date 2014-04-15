@@ -16,7 +16,7 @@
             "product-visit":   "/products/{id}/getit.json",
             "product-buy":     "/products/{id}/click/{user}.json",
 
-            "products":        "/products.json?cat_id={id}&per_page=20&page={page}&currency={currency}&order={order}&sort_by=update",
+            "products":        "/products.json?cat_id={id}&per_page=20&page={page}&currency={currency}&order={order}&sort_by=update&country={countries}",
             "products-search": "/products/search.json?keywords={query}&per_page=20&page={page}",
             "products-with-advertisers":
                                "/products.json?cat_id={id}&per_page=20&page={page}&currency={currency}&order={order}&sort_by=update&advertiser_id={adv}",

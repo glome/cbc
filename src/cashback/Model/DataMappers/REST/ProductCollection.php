@@ -64,7 +64,10 @@ class ProductCollection extends \Application\Common\RestMapper
                 '{currency}' => $collection->getCurrency(),
                 '{order}'    => $collection->getOrder() ? 'desc':'asc',
                 '{adv}'      => $collection->getAdvertisers(),
+                '{countries}'=> $collection->getLocationQuery(),
             ]);
+
+            var_dump($url);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
 

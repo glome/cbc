@@ -20,7 +20,23 @@ class ProductCollection extends \Application\Common\Collection
     private $advertisers = [];
 
 
+    private $locations = [];
 
+
+
+    public function setLocations($locations)
+    {
+        $this->locations = $locations;
+    }
+
+    public function getLocationQuery()
+    {
+        $locations = $this->locations;
+        if (count($locations)) {
+            return implode(',', $locations);
+        }
+        return 'any';
+    }
 
     public function setAdvertisers($advertisers)
     {
