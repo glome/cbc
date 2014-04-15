@@ -6,7 +6,7 @@
             <div class="profile-tabs">
                 <ul>
                     <li <?=$tab === 'wishlist'? 'class="active"':''?>>
-                        <a href="/profile/wishlist"><?=$this->translate('profile.wishlist_title')?>
+                        <a href="profile-wishlist"><?=$this->translate('profile.wishlist_title')?>
                             <div class="caret">
                                 <div class="caret-border"></div>
                                 <div class="caret-body"></div>
@@ -14,15 +14,15 @@
                         </a>
                     </li>
                     <li <?=$tab === 'history'? 'class="active"':''?>>
-                        <a href="/profile/history"><?=$this->translate('profile.history_title')?>
+                        <a href="profile-cashback-history"><?=$this->translate('profile.history_title')?>
                             <div class="caret">
                                 <div class="caret-border"></div>
                                 <div class="caret-body"></div>
                             </div><!-- .caret -->
                         </a>
                     </li>
-                    <li>
-                        <a href="/profile/pairing">Pair with Glome Wallet
+                    <li <?=$tab === 'pairing'? 'class="active"':''?>>
+                        <a href="profile-pairing">Pair with Glome Wallet
                             <div class="caret">
                                 <div class="caret-border"></div>
                                 <div class="caret-body"></div>
@@ -134,7 +134,7 @@
                 <?php endif;?>
                 <?php endif; ?>
             </div><!-- .profile-cashback-history -->
-            <div class="profile-redeem tab <?=$tab === 'redeem'? 'active':''?>">
+            <div class="profile-pairing tab <?=$tab === 'pairing'? 'active':''?>">
                 <div class="redeem-inlay">
                     <div class="wrap">
                         <div class="redeem-title">Pair with Your Glome Wallet to personalise Your Cashback catalog!</div>
@@ -152,7 +152,7 @@
                         </ul>
                     </div><!-- .wrap -->
                 </div><!-- .redeem-inlay -->
-            </div><!-- .profile-redeem -->
+            </div><!-- .profile-pairing -->
         </div><!-- .profile-tab-content -->
 
         <?php echo $deals; ?>

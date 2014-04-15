@@ -499,7 +499,7 @@ footer {
     float: left;
     margin-top: 30px;
     margin-bottom: 15px;
-    
+
 }
 .footer-teaser-txt span {
     display: inline-block;
@@ -2480,7 +2480,7 @@ footer {
     margin: 0;
     font-weight: normal;
     line-height: 1.5;
-    text-indent: 0;    
+    text-indent: 0;
 
 }
 .ui-menu .ui-menu-item {
@@ -2638,7 +2638,8 @@ footer {
 .redeem-options.redeem-inlay .code {
     width: 220px;
 }
-.profile-redeem {
+
+.profile-pairing {
     float: left;
     width: 100%;
 }
@@ -2679,7 +2680,7 @@ footer {
     border: 1px solid #595D5E;
     outline: none;
     -webkit-appearance: none;
-    
+
 }
 .contact-form .form-item textarea {
     float: left;
@@ -2800,7 +2801,7 @@ footer {
 }
 .conditions .content .subtitle {
    color: #595D5E;
-    margin: 15px 0; 
+    margin: 15px 0;
     font-family: "roboto",sans-serif;
     font-size: 17px;
     font-weight: 300;

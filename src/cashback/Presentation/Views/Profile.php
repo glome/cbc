@@ -100,7 +100,7 @@ class Profile extends \Application\Common\View
 
     public function pairing()
     {
-        $this->currentTab = 'redeem';
+        $this->currentTab = 'pairing';
         return $this->wishlist();
     }
 
