@@ -168,6 +168,7 @@ class Shop extends \Application\Common\Service
     {
         $products = $this->domainObjectFactory->create('ProductCollection');
         $products->setQuery($this->currentQuery);
+        $products->forAutocomplete(true);
         $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
         $api->fetch($products);
 

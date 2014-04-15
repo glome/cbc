@@ -22,6 +22,8 @@ class ProductCollection extends \Application\Common\Collection
 
     private $locations = [];
 
+    private $isAutocomplete = false;
+
 
 
     public function setLocations($locations)
@@ -160,6 +162,14 @@ class ProductCollection extends \Application\Common\Collection
     }
 
 
+    public function forAutocomplete($param = null)
+    {
+        if ($param === null) {
+            return $this->isAutocomplete;
+        }
+
+        $this->isAutocomplete = $param;
+    }
 
     public function getParsedArray()
     {

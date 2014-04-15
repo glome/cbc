@@ -78,7 +78,9 @@ class ProductCollection extends \Application\Common\RestMapper
 
         if ($collection->hasQuery()) {
 
-            $url = $this->applyValuesToURL($this->resources['products-search'], ['{query}' => $collection->getQuery(), '{page}' => $collection->getPage()  ]);
+            $url = $collection->forAutocomplete() ? $this->resources['search-suggestions'] : $this->resources['search'];
+
+            $url = $this->applyValuesToURL($url, ['{query}' => $collection->getQuery(), '{page}' => $collection->getPage()  ]);
 
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();

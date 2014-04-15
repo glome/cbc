@@ -13,7 +13,8 @@
         "php": ">=5.4.0",
         "guzzle/guzzle": "v3.8.1",
         "fracture/routing": "dev-master",
-        "fracture/http": "dev-master"
+        "fracture/http": "dev-master",
+        "swiftmailer/swiftmailer": "v5.1.0"
     },
 
     "autoload": {
