@@ -4154,10 +4154,12 @@ footer {
     .redeem-btn.active {
         padding: 17px 15px 37px;
     }
+/**
     .redeem-inlay .qr,
     .redeem-inlay .divider {
         display: none;
     }
+**/
     .redeem-inlay .btn {
         margin-top: 5px;
         padding: 20px 80px;
@@ -4165,9 +4167,6 @@ footer {
     .mob-hide {
         display: none;
     }
-
-
-
 }
 
 /* FlexSlider Necessary Styles
