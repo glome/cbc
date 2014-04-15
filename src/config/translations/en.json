@@ -51,7 +51,10 @@
 
 
 
-    "redeem.title":                 "Redeem you money using one of these two options:"
-
+    "redeem.title":                 "Redeem you money using one of these two options:",
+    "redeem.subtitle_1":            "1) Pair with Your <strong>Glome Wallet</strong> using this Pairing or QR code!",
+    "redeem.subtitle_2":            "2) Redeem Your money using \"Checkout Finland\"!",
+    "redeem.site_link":             "GO TO SITE",
+    "redeem.option_divider":        "or"
 
 }

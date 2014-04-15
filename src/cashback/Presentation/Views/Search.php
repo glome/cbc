@@ -70,7 +70,7 @@ class Search extends \Application\Common\View
     {
         header('Content-Type: application/json');
         $shop = $this->serviceFactory->create('Shop');
-        return json_encode(['suggestions' => $shop->getProductSuggestions()]);
+        return json_encode($shop->getProductSuggestions());
     }
 
 }

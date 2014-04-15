@@ -12,48 +12,72 @@ $(document).ready(function() {
 
 
 
-    var $container = $('#grid');
+    var init = function () {
+            var $container = $('#grid');
+
+            $container.imagesLoaded(function(){
+                $container.masonry({
+                    itemSelector: '.product'
+                });
+            });
 
 
 
-    $container.infinitescroll({
-        navSelector: '#page-nav', // selector for the paged navigation
-        nextSelector: '#page-nav a', // selector for the NEXT link (to page 2)
-        itemSelector: '.product', // selector for all items you'll retrieve
-        loading: {
-            finishedMsg: 'No more pages to load.',
-            img: 'http://i.imgur.com/6RMhx.gif'
-        }
-    },
-    // trigger Masonry as a callback
-    function(newElements) {
-        // hide new items while they are loading
-        var $newElems = $(newElements).css({opacity: 0});
-        // ensure that images load before adding to masonry layout
-        $newElems.css({opacity: 0});
-        $newElems.animate({opacity: 1});
-        setTimeout(function() {
-            $container.masonry('appended', $newElems);
-        }, 200);
+            $container.infinitescroll({
+                    navSelector: '#page-nav', // selector for the paged navigation
+                    nextSelector: '#page-nav a', // selector for the NEXT link (to page 2)
+                    itemSelector: '.product', // selector for all items you'll retrieve
+                    loading: {
+                        finishedMsg: '',
+                        img: '/assets/img/lol.gif',
+                        msgText: ''
+                    },
+                    state: {
+                        currPage: 1
+                    }
+                },
+                function(newElements) {
+                    var $newElems = $(newElements).css({opacity: 0});
+                    $newElems.imagesLoaded(function(){
+                        $newElems.animate({opacity: 1});
+                        $container.masonry('appended', $newElems);
+                        normalizeProducts();
+                    });
+                }
+            );
 
-    }
-    );
-    $container.masonry({
-        itemSelector: '.product'
-    });
-    $(".product").each(function() {
-        if ($(this).isOnScreen() === true && $(this).hasClass("animated") === false) {
-            $(this).addClass("animated");
-        }
-    });
+        },
+        updateProducts = (function (init) {
+            return function () {
+                var $container = $('#grid');
+                $container.masonry('destroy');
+                $container.empty();
+                $.get( window.location.href + '?xhr', function( data ) {
+                    $container.html(data);
+                    init();
+                    normalizeProducts();
+                });
+            };
+        }(init)),
+        normalizeProducts = function () {
+            $(".product").each(function() {
+                if ($(this).isOnScreen() === true) {
+                    $(this).addClass("animated");
+                }
+            });
+        };
+
+
+    init();
+
+    normalizeProducts();
     $(window).on("scroll", function() {
         $(".product").each(function() {
-            if ($(this).isOnScreen() === true && $(this).hasClass("animated") === false) {
+            if ($(this).isOnScreen() === true) {
                 $(this).addClass("animated");
             }
         });
     });
-
 
     /* Close open elements on click outside the element */
     $(".select-box").hover(function() {
@@ -244,11 +268,7 @@ $(document).ready(function() {
     /* selectbox with checkbox */
     $(".select-checkbox").on("click", function() {
         if ($(window).width() > 730) {
-            if ($(this).hasClass("active")) {
-                $(this).removeClass("active");
-            } else {
-                $(this).addClass("active");
-            }
+            $(this).toggleClass("active");
         }
 
     });
@@ -280,23 +300,19 @@ $(document).ready(function() {
     /* Shop by category select */
 
     $('.cat-menu .title').on("click", function(e) {
+        var target = $(this).parent();
         e.preventDefault();
 
         if ($(window).width() > 730) {
-            if ($(this).parent().hasClass("opened")) {
-                $(this).parent().removeClass("opened");
+            if (target.hasClass("opened")) {
+                target.removeClass("opened");
                 $(".cat-menu ul li").removeClass("mob-opened");
             } else {
-                $(this).parent().addClass("opened");
+                target.addClass("opened");
             }
         }
         if ($(window).width() < 731) {
-            if ($(this).parent().hasClass("mob-opened")) {
-                $(this).parent().removeClass("mob-opened");
-            } else {
-                $(this).parent().addClass("mob-opened");
-            }
-
+            target.toggleClass("mob-opened");
         }
     });
 
@@ -346,21 +362,13 @@ $(document).ready(function() {
     /* SEARCH */
     if ($(window).width() < 731) {
         $(".search-btn").on("click", function() {
-            if ($(this).parent().hasClass("mob-opened")) {
-                $(this).parent().removeClass("mob-opened");
-            } else {
-                $(this).parent().addClass("mob-opened");
-            }
+            $(this).parent().toggleClass("mob-opened");
         });
     }
 
     $(".search-select .selected").on("click", function(e) {
         e.preventDefault();
-        if ($(this).parent().hasClass("opened")) {
-            $(this).parent().removeClass("opened");
-        } else {
-            $(this).parent().addClass("opened");
-        }
+        $(this).parent().toggleClass("opened");
     });
 
     /* Add to wishlist */
@@ -415,11 +423,7 @@ $(document).ready(function() {
     /* MOBILE Cashback history - order */
     $(".cashback-history .order .order-title").on("click", function(e) {
         e.preventDefault();
-        if ($(this).parent().hasClass("opened")) {
-            $(this).parent().removeClass("opened")
-        } else {
-            $(this).parent().addClass("opened");
-        }
+        $(this).parent().toggleClass("opened");
     });
 
     $(".search-select ul li a").on("click", function(e) {
@@ -442,15 +446,33 @@ $(document).ready(function() {
      });
      */
     $(".filter-brand .filter-content-wrap ul li a, .filter-retailer .filter-content-wrap ul li a").on("click", function(e) {
+        var $this = $(this);
+        $.get(this.href, updateProducts);
         e.preventDefault();
 
-        if ($(this).parent().hasClass("selected")) {
-            $(this).parent().removeClass("selected");
-            $.get(this.href);
+        if ($this.parent().hasClass("selected")) {
+            $this.parent().removeClass("selected");
+            if ($this.parent().siblings('.selected').length === 0) {
+                $this.parents('ul').children().first().addClass("selected");
+            }
         } else {
-            $(this).parent().addClass("selected");
-            $.get(this.href);
+            if ($this.hasClass('action-reset')) {
+                $this.parents('ul').children().removeClass("selected");
+            } else {
+                $this.parents('ul').children().first().removeClass("selected");
+            }
+            $this.parent().addClass("selected");
         }
+    });
+
+
+    $('#action-reset').on('click', function(e) {
+        var targets = $('#retailer-list li');
+        e.preventDefault();
+        $.get(this.href);
+        targets.removeClass('selected');
+        targets.first().addClass('selected');
+        updateProducts();
     });
 
     if ($(window).width() > 730) {
@@ -644,11 +666,7 @@ $(document).ready(function() {
 
     $(".options-bar .order .label").on("click", function() {
         if ($(window).width() < 731) {
-            if ($(this).parent().hasClass("mob-opened")) {
-                $(this).parent().removeClass("mob-opened");
-            } else {
-                $(this).parent().addClass("mob-opened");
-            }
+            $(this).parent().toggleClass("mob-opened");
         }
     });
 
@@ -664,28 +682,16 @@ $(document).ready(function() {
     /* SEARCH AUTOCOMPLETE */
 
     $("#search-input").autocomplete({
-        source: function(request, response) {
-            $.getJSON('http://glome.mt.aurumit.com/search/autocomplete?q=test', function(data) {
-                var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
-                response($.grep(data.suggestions, function(item) {
-                    return matcher.test(item);
-                }));
-            });
-        },
-        minLength: 1,
+        source: '/search/autocomplete',
+        minLength: 3,
         appendTo: ".search-form"
     });
 
 
 
     /* Aurum IT paraksts */
-
-    $(".aurumit").on("mouseenter", function() {
-
-        setTimeout(function() {
-            $("html, body").animate({scrollTop: $(document).height()}, 5000);
-        }, 500);
-
+    $(".aurumit").on("mouseenter",function(){
+        $("html, body").animate({ scrollTop: $(document).height() + 30 }, 500);
     });
 
 
@@ -717,9 +723,6 @@ $(document).ready(function() {
      });
      */
 
-    $('#grid').masonry({
-        itemSelector: '.product'
-    });
 
 
 

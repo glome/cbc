@@ -2558,7 +2558,7 @@ footer {
     font-size: 16px;
 }
 .redeem-inlay .code {
-    padding: 20px 20% 0;
+    padding: 20px 0 0;
     float: left;
     margin-bottom: 50px;
 }
@@ -2602,8 +2602,8 @@ footer {
     text-transform: uppercase;
 }
 
-.redeem-options.redeem-inlay {
-    width: 400px;
+.redeem-options.redeem-inlay .code{
+    width: 220px;
 }
 
 /*

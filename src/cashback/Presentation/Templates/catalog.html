@@ -17,10 +17,10 @@
                             </div><!-- .filter-content-wrap -->
                         </div><!-- .filter-cat -->
                         <div class="filter-retailer">
-                            <span class="filter-title">Retailer <a href="?clear" class="clear">clear</a></span>
+                            <span class="filter-title">Retailer <a id="action-reset" href="?clear" class="clear">clear</a></span>
                             <div class="filter-content-wrap">
-                                <ul>
-                                    <li class="<?=count($selectedRetailers)?'':'selected'?> all"><a href="?clear"><span class="checkbox"><span class="tick"></span></span><div>All</div></a></li>
+                                <ul id="retailer-list">
+                                    <li class="<?=count($selectedRetailers)?'':'selected'?> all"><a class="action-reset" href="?clear"><span class="checkbox"><span class="tick"></span></span><div>All</div></a></li>
                                 <?php foreach ($retailers as $id => $retailer): ?>
                                     <li <?=in_array($id, $selectedRetailers)?'class="selected"':''?>><a href="?param=<?=$id?>"><span class="checkbox"><span class="tick"></span></span><div><?=$retailer['name']?></div></a></li>
                                 <?php endforeach; ?>

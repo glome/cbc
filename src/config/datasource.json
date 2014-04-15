@@ -18,6 +18,8 @@
 
             "products":        "/products.json?cat_id={id}&per_page=20&page={page}&currency={currency}&order={order}&sort_by=update",
             "products-search": "/products/search.json?keywords={query}&per_page=20&page={page}",
+            "products-with-advertisers":
+                               "/products.json?cat_id={id}&per_page=20&page={page}&currency={currency}&order={order}&sort_by=update&advertiser_id={adv}",
 
             "incentives":      "/incentives.json?per_page=200&filter=valid",
 

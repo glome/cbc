@@ -22,6 +22,13 @@ class Catalog extends \Application\Common\View
         $products = $shop->getProducts();
 
 
+        if ($shop->hasReload()) {
+            $content    = $builder->create('product-list');
+            $content->assign('products', $products);
+            return $content->render();
+        }
+
+
         if ($shop->getPage() !== null ) {
             $main       = $builder->create('clean');
             $content    = $builder->create('product-list');

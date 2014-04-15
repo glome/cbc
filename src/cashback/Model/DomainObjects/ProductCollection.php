@@ -17,12 +17,30 @@ class ProductCollection extends \Application\Common\Collection
 
     private $limit = null;
 
+    private $advertisers = [];
+
+
+
+
+    public function setAdvertisers($advertisers)
+    {
+        $this->advertisers = $advertisers;
+    }
+
+    public function getAdvertisers()
+    {
+        if (count($this->advertisers)) {
+            return $this->advertisers[0];
+        }
+
+        return '';
+    }
+
 
     public function setLimit($limit)
     {
         $this->limit = $limit;
     }
-
 
     public function getLimit()
     {

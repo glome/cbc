@@ -14,7 +14,18 @@ class Shop extends \Application\Common\Service
     private $currentPage = null;
     private $currentQuery = null;
     private $visit = null;
+    private $isReload = false;
 
+
+    public function setReload()
+    {
+        $this->isReload = true;
+    }
+
+    public function hasReload()
+    {
+        return $this->isReload;
+    }
 
     public function setPage($page)
     {
@@ -99,6 +110,8 @@ class Shop extends \Application\Common\Service
         $session->fetch($settings);
 
 
+        $retailers = $this->getSelectedRetailers();
+
         $products = $this->domainObjectFactory->create('ProductCollection');
         $products->setCategory($this->currentCategoryId);
 
@@ -111,6 +124,8 @@ class Shop extends \Application\Common\Service
         $products->setLanguage($settings->getLanguage());
         $products->setCurrency($settings->getCurrency());
         $products->setOrder($settings->getOrder());
+        $products->setAdvertisers(array_keys($retailers));
+
 
         $api->fetch($products);
 
@@ -124,8 +139,11 @@ class Shop extends \Application\Common\Service
         $products->setUserId($this->currentUser->getId());
         $db->fetch($products);
 
-        $db = $this->dataMapperFactory->create('RecommendationCollection', 'SQL');
-        $db->fetch($products);
+        if ($products->hasItems()) {
+            $db = $this->dataMapperFactory->create('RecommendationCollection', 'SQL');
+            $db->fetch($products);
+        }
+
 
         return $products->getParsedArray();
     }
@@ -149,8 +167,8 @@ class Shop extends \Application\Common\Service
         $api->fetch($products);
 
         $list = [];
-        foreach($products as $product) {
-            $list[] = $product->getTitle();
+        foreach($products as $id => $product) {
+            $list[] = ['id' => $id, 'value' =>  $product->getTitle() ,'label' =>  $product->getTitle()];
         }
 
         return $list;

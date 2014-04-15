@@ -30,6 +30,6 @@ class Search extends \Application\Common\Controller
     public function getAutocomplete($request)
     {
         $shop = $this->serviceFactory->create('Shop');
-        $shop->prepareSearch($request->getParameter('q'));
+        $shop->prepareSearch($request->getParameter('term'));
     }
 }
