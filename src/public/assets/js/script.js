@@ -733,8 +733,8 @@ $(document).ready(function() {
             $.post(
                '/', $(this).serialize(),
                 function(data){
-                  $("#message-form").addClass('hidden');
-                  $("#message-notice").removeClass('hidden');
+                  $("div.message-form").addClass('hidden');
+                  $("div.message-notice").removeClass('hidden');
                 }
               );
             return false;
