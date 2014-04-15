@@ -98,7 +98,7 @@ class Profile extends \Application\Common\View
     }
 
 
-    public function redeem()
+    public function pairing()
     {
         $this->currentTab = 'redeem';
         return $this->wishlist();
