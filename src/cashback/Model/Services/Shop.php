@@ -280,6 +280,17 @@ class Shop extends \Application\Common\Service
         $retailers->setCategoryId($id);
 
 
+        $settings = $this->domainObjectFactory->create('Settings');
+
+        $session = $this->dataMapperFactory->create('Settings', 'Session');
+        $session->fetch($settings);
+
+
+        $locations = $settings->getLocations();
+        $locations = array_keys($locations);
+
+        $retailers->setLocations($locations);
+
         $api = $this->dataMapperFactory->create('RetailerCollection', 'REST');
         $api->fetch($retailers);
 

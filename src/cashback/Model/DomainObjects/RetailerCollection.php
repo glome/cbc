@@ -6,7 +6,23 @@ class RetailerCollection extends \Application\Common\Collection
 {
 
     private $categoryId = null;
+    private $locations = [];
 
+
+
+    public function setLocations($locations)
+    {
+        $this->locations = $locations;
+    }
+
+    public function getLocationQuery()
+    {
+        $locations = $this->locations;
+        if (count($locations)) {
+            return implode(', ', $locations);
+        }
+        return 'any';
+    }
 
     protected function buildItem()
     {

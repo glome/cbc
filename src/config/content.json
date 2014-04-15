@@ -37,20 +37,12 @@
             "code": "FI"
         },
         {
-            "title": "Sweden",
-            "code": "SE"
+            "title": "United Kingdom",
+            "code": "UK"
         },
         {
-            "title": "Denmark",
-            "code": "DK"
-        },
-        {
-            "title": "Norway",
-            "code": "NO"
-        },
-        {
-            "title": "Latvia",
-            "code": "LV"
+            "title": "Germany",
+            "code": "DE"
         }
     ]
 }

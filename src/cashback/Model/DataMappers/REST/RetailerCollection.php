@@ -48,7 +48,8 @@ class RetailerCollection extends \Application\Common\RestMapper
 
         if ($id !== null)
         {
-            $url = $this->applyValuesToURL($this->resources['categories-retailers'], ['{id}' => $id ]);
+            $locations = $collection->getLocationQuery();
+            $url = $this->applyValuesToURL($this->resources['categories-retailers'], ['{id}' => $id, '{countries}' => $locations ]);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             foreach ($data as $entry) {
