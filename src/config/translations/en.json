@@ -9,8 +9,8 @@
 
     "banners.first_title":         "Crazy about shopping?",
     "banners.first_subtitle":      "Buy online and get payed for your passion!",
-    "banners.second_title":        "EARN 2,5 EUR",
-    "banners.second_subtitle":     "by installing Glome Wallet",
+    "banners.second_title":        "TAKE CONTROL",
+    "banners.second_subtitle":     "<a href=\"http://glome.me\">by installing Glome Wallet</a>",
     "banners.third_title":         "Crazy about shopping?",
     "banners.third_subtitle":      "Buy online and get payed for your passion!",
 
@@ -63,7 +63,7 @@
     "profile.category_prompt":     "Choose Category",
 
 
-    "redeem.title":                 "Pair with Your Glome Wallet to personalise Your Cashback catalog!",
+    "redeem.title":                 "Pair with Your Glome Wallet to personalise Your Cashback Catalog!",
     "redeem.subtitle_1":            "1) Pair with Your <strong>Glome Wallet</strong> using this Pairing or QR code!",
     "redeem.subtitle_2":            "2) Redeem Your money using \"Checkout Finland\"!",
     "redeem.site_link":             "GO TO SITE",
