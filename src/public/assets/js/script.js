@@ -478,7 +478,9 @@ $(document).ready(function() {
     });
 
     if ($(window).width() > 730) {
-        $(".filter-content-wrap").jScrollPane();
+        $(".filter-content-wrap").jScrollPane({
+            horizontalDragMaxWidth: 0
+        });
     }
 
 

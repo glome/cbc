@@ -67,7 +67,6 @@ class ProductCollection extends \Application\Common\RestMapper
                 '{countries}'=> $collection->getLocationQuery(),
             ]);
 
-            var_dump($url);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
 

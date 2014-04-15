@@ -2465,13 +2465,35 @@ footer {
 .ui-menu .ui-menu-item a {
     color: #ACADB0;
     font-size: 11px;
-    padding: 4px 0.5em;
+    margin: 0;
+    height: 20px;
+    padding: 4px;
+    border: none;
+    float: left;
+    margin: 0;
+     font-weight: normal;
+    line-height: 1.5;
+    text-indent: 0;    
+    
+}
+.ui-menu .ui-menu-item {
+    float: left;
+    width: 100%;
 }
 .ui-menu .ui-menu-item a.ui-state-focus,
 .ui-menu .ui-menu-item a:hover {
+    display: block !important;
     background: none !important;
-    border: none;
+    border: none !important;
     color: #FE7063;
+    padding: 4px !important;
+    font-size: 11px !important;
+    font-weight: normal !important;
+    line-height: 1.5 !important;
+    width: auto !important;
+    height: 20px;
+    text-indent: 0 !important;
+    margin: 0;
 }
 
 /* FULL Categories LIST */
@@ -4058,6 +4080,7 @@ html[xmlns] .slides {display: block;}
 
 .jspHorizontalBar
 {
+    display: none;
     position: absolute;
     bottom: 0;
     left: 0;
