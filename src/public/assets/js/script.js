@@ -12,62 +12,62 @@ $(document).ready(function() {
 
 
 
-    var init = function () {
-            var $container = $('#grid');
+    var init = function() {
+        var $container = $('#grid');
 
-            $container.imagesLoaded(function(){
-                $container.masonry({
-                    itemSelector: '.product'
-                });
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector: '.product'
             });
+        });
 
 
 
-            $container.infinitescroll({
-                    navSelector: '#page-nav', // selector for the paged navigation
-                    nextSelector: '#page-nav a', // selector for the NEXT link (to page 2)
-                    itemSelector: '.product', // selector for all items you'll retrieve
-                    loading: {
-                        finishedMsg: '',
-                        img: '/assets/img/lol.gif',
-                        msgText: ''
-                    },
-                    state: {
-                        currPage: 1
-                    }
-                },
-                function(newElements) {
-                    var $newElems = $(newElements).css({opacity: 0});
-                    $newElems.imagesLoaded(function(){
-                        $newElems.animate({opacity: 1});
-                        $container.masonry('appended', $newElems);
+        $container.infinitescroll({
+            navSelector: '#page-nav', // selector for the paged navigation
+            nextSelector: '#page-nav a', // selector for the NEXT link (to page 2)
+            itemSelector: '.product', // selector for all items you'll retrieve
+            loading: {
+                finishedMsg: '',
+                img: '/assets/img/lol.gif',
+                msgText: ''
+            },
+            state: {
+                currPage: 1
+            }
+        },
+        function(newElements) {
+            var $newElems = $(newElements).css({opacity: 0});
+            $newElems.imagesLoaded(function() {
+                $newElems.animate({opacity: 1});
+                $container.masonry('appended', $newElems);
+                normalizeProducts();
+            });
+        }
+        );
+
+    },
+            updateProducts = (function(init) {
+                return function() {
+                    var $container = $('#grid');
+                    $container.masonry('destroy');
+                    $container.empty();
+                    $container.addClass('loading')
+                    $.get(window.location.href + '?xhr', function(data) {
+                        $container.removeClass('loading');
+                        $container.html(data);
+                        init();
                         normalizeProducts();
                     });
-                }
-            );
-
-        },
-        updateProducts = (function (init) {
-            return function () {
-                var $container = $('#grid');
-                $container.masonry('destroy');
-                $container.empty();
-                $container.addClass('loading')
-                $.get( window.location.href + '?xhr', function( data ) {
-                    $container.removeClass('loading');
-                    $container.html(data);
-                    init();
-                    normalizeProducts();
+                };
+            }(init)),
+            normalizeProducts = function() {
+                $(".product").each(function() {
+                    if ($(this).isOnScreen() === true) {
+                        $(this).addClass("animated");
+                    }
                 });
             };
-        }(init)),
-        normalizeProducts = function () {
-            $(".product").each(function() {
-                if ($(this).isOnScreen() === true) {
-                    $(this).addClass("animated");
-                }
-            });
-        };
 
 
     init();
@@ -154,7 +154,7 @@ $(document).ready(function() {
             $(this).addClass("selected");
             var txt = $(this).text();
             $(this).parent().prev(".selected").text(txt);
-            $.get('/options?param=' + txt).done(function () {
+            $.get('/options?param=' + txt).done(function() {
                 window.location = window.location.href;
             });
         } else {
@@ -404,9 +404,9 @@ $(document).ready(function() {
 
     $('.delete-from-wishlist').on('click', function(e) {
         var parent = this.parentNode,
-            counter = $('#wish-counter'),
-            indicator = $('#wish-indicator'),
-            total = parseInt(indicator.text()) || 0;
+                counter = $('#wish-counter'),
+                indicator = $('#wish-indicator'),
+                total = parseInt(indicator.text()) || 0;
         e.preventDefault();
         $.get(this.href);
         $(parent).fadeOut(200, function() {
@@ -440,7 +440,7 @@ $(document).ready(function() {
     /*
      $(".filter-cat .filter-content-wrap ul li a").on("click", function(e) {
      e.preventDefault();
-
+     
      if (!$(this).parent().hasClass("selected")) {
      $(".filter-cat .filter-content-wrap ul li").removeClass("selected");
      $(this).parent().addClass("selected");
@@ -609,13 +609,13 @@ $(document).ready(function() {
      if(top2 < scrolled) {
      $(".filter-sidebar").removeClass("absolute");
      }
-
-
+     
+     
      }
-
+     
      console.log(scrolled);
      });
-
+     
      */
     $(window).on("scroll", function() {
         var scrolled = $(window).scrollTop();
@@ -694,27 +694,8 @@ $(document).ready(function() {
 
 
     /* Aurum IT paraksts */
-    $(".aurumit").on("mouseenter",function(){
-        $("html, body").animate({ scrollTop: $(document).height() + 30 }, 500);
-    });
-
-
-    /* Redeem inlay */
-    $(".redeem-btn-enabled").on("click", function(e) {
-        e.preventDefault();
-        if ($(".location-filter").hasClass("mob-opened")) {
-            $(".location-filter").removeClass("mob-opened");
-        }
-        if ($(".header-profile").hasClass("active")) {
-            $(".header-profile").removeClass("active");
-        }
-        if ($(this).hasClass("active")) {
-            $(this).removeClass("active");
-            $(".redeem-inlay.open").removeClass("open");
-        } else {
-            $(this).addClass("active");
-            $(".redeem-inlay").addClass("open");
-        }
+    $(".aurumit").on("mouseenter", function() {
+        $("html, body").animate({scrollTop: $(document).height() + 30}, 500);
     });
 
 
@@ -726,6 +707,33 @@ $(document).ready(function() {
      viewportFactor: 0.01
      });
      */
+
+    /* Form validation */
+
+    $(".contact-form").on("submit", function() {
+        var msg = $("#comments").val();
+        var html = "<div class='error'>* You forgot to fill out!</div>";
+        if (msg.length === 0) {
+            if (msg.length === 0) {
+                $("#comments").addClass("error-input");
+
+                if ($("#comments").next(".error").length > 0) {
+                    $("#comments").next(".error").remove();
+                }
+                $("#comments").after(html);
+            } else {
+                $("#comments").removeClass("error-input");
+                if ($("#comments").next(".error").length > 0) {
+                    $("#comments").next(".error").remove();
+                }
+            }
+
+            return false;
+        } else {
+            return true;
+        }
+
+    });
 
 
 

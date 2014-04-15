@@ -4,6 +4,8 @@
 //Initializing composer0based autoloader
 require __DIR__ . '/../../vendor/autoload.php';
 
+define('__PROJECT__', __DIR__ . '/../..');
+
 $uri = isset($_SERVER['REQUEST_URI'])
            ? $_SERVER['REQUEST_URI']
            : '/';

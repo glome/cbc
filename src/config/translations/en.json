@@ -54,15 +54,14 @@
     "profile.title":               "My Profile",
     "profile.wishlist_title":      "Wish list",
     "profile.history_title":       "Cashback history",
-
+    "profile.pairing_title":       "Pair with Glome Wallet",
     "profile.empty_wishlist":      "Currently You don't have any items in Your wish list. Keep searching!",
     "profile.empty_history":       "Your Cashback history is still empty. Don't You think it's time for shopping?",
     "profile.category_title":      "KEEP SHOPPING",
     "profile.category_prompt":     "Choose Category",
 
 
-
-    "redeem.title":                 "Redeem you money using one of these two options:",
+    "redeem.title":                 "Pair with Your Glome Wallet to personalise Your Cashback catalog!",
     "redeem.subtitle_1":            "1) Pair with Your <strong>Glome Wallet</strong> using this Pairing or QR code!",
     "redeem.subtitle_2":            "2) Redeem Your money using \"Checkout Finland\"!",
     "redeem.site_link":             "GO TO SITE",

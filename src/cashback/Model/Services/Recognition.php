@@ -26,9 +26,28 @@ class Recognition extends \Application\Common\Service
         $this->current = $user;
     }
 
-
     public function getCurrentUser()
     {
         return $this->current;
     }
+
+
+    public function getPairingCode()
+    {
+
+        if ($this->current === null) {
+            return;
+        }
+
+        $user = $this->current;
+        $session = $this->dataMapperFactory->create('User', 'Session');
+        $api = $this->dataMapperFactory->create('Sync', 'REST');
+        if ($api->fetch($user)) {
+            $session->store($user);
+        }
+
+        return $user->getPairingCode();
+    }
+
+
 }

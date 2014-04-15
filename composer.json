@@ -14,7 +14,8 @@
         "guzzle/guzzle": "v3.8.1",
         "fracture/routing": "dev-master",
         "fracture/http": "dev-master",
-        "swiftmailer/swiftmailer": "v5.1.0"
+        "swiftmailer/swiftmailer": "v5.1.0",
+        "endroid/qrcode": "1.*@dev"
     },
 
     "autoload": {

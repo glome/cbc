@@ -21,6 +21,14 @@
                             </div><!-- .caret -->
                         </a>
                     </li>
+                    <li>
+                        <a href="profile-redeem">Pair with Glome Wallet
+                            <div class="caret">
+                                <div class="caret-border"></div>
+                                <div class="caret-body"></div>
+                            </div><!-- .caret -->
+                        </a>
+                    </li>
                 </ul>
             </div><!-- .profile tabs -->
             <div class="cat-dropdown">
@@ -126,6 +134,25 @@
                 <?php endif;?>
                 <?php endif; ?>
             </div><!-- .profile-cashback-history -->
+            <div class="profile-redeem tab <?=$tab === 'redeem'? 'active':''?>">
+                <div class="redeem-inlay">
+                    <div class="wrap">
+                        <div class="redeem-title">Pair with Your Glome Wallet to personalise Your Cashback catalog!</div>
+                        <div class="txt">Copy this Pairing code to Your Glome Wallet <span class="mob-hide">or scan following QR code:</span></div>
+                        <ul class="redeem-options">
+                            <li class="code">
+                                <span><?=$code[0]?></span>
+                                <span><?=$code[1]?></span>
+                                <span><?=$code[2]?></span>
+                            </li>
+                            <li class="divider"><?=$this->translate('redeem.option_divider')?></li>
+                            <li class="qr">
+                                <img src="/assets/img/qr-code_19.png" />
+                            </li><!-- .qr -->
+                        </ul>
+                    </div><!-- .wrap -->
+                </div><!-- .redeem-inlay -->
+            </div><!-- .profile-redeem -->
         </div><!-- .profile-tab-content -->
 
         <?php echo $deals; ?>

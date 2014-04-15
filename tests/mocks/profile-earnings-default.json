@@ -1,0 +1,62 @@
+{
+    "fresh": {
+        "total": {
+            "USD":163,
+            "EUR":119
+        },
+        "USD": {
+            "redeem_min":137,
+            "total":130,
+            "details": [
+                {
+                    "amount":50,
+                    "date":"2014-01-29T16:00:00.000Z",
+                    "advertiser":"Stuff.co"
+                },
+                {
+                    "amount":45,
+                    "date":"2014-01-29T16:01:00.000Z",
+                    "advertiser":"Stuff.co"
+                },
+                {
+                    "amount":35,
+                    "date":"2013-10-31T10:25:48.000Z",
+                    "advertiser":"Stuff.co"
+                }
+            ]
+        },
+        "EUR": {
+            "redeem_min":100,
+            "total":24,
+            "details": [
+                {
+                    "amount":1,
+                    "date":"2014-01-29T16:00:00.000Z",
+                    "advertiser":"TulejaVoita.com"
+                },
+                {
+                    "amount":3,
+                    "date":"2014-01-29T16:00:00.000Z",
+                    "advertiser":"TulejaVoita.com"
+                },
+                {
+                    "amount":20,
+                    "date":"2013-11-02T10:25:49.000Z",
+                    "advertiser":"TulejaVoita.com"
+                }
+            ]
+        }
+    },
+    "pending": {
+        "total": {}
+    },
+    "failed": {
+        "total": {}
+    },
+    "paid": {
+        "total": {}
+    },
+    "transferred": {
+        "total":{}
+    }
+}

@@ -48,4 +48,10 @@ class Profile extends \Application\Common\Controller
         $itinerary->removeWish($request->getParameter('id'));
     }
 
+    public function getRedeem($request)
+    {
+        $this->getIndex($request);
+
+    }
+
 }

@@ -14,7 +14,7 @@ class Profile extends \Application\Common\View
 
     public function wishlist()
     {
-
+        $recognition = $this->serviceFactory->create('Recognition');
         $itinerary = $this->serviceFactory->create('Itinerary');
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
@@ -41,23 +41,26 @@ class Profile extends \Application\Common\View
         $deals->assign('products', $shop->getRecommendations(4));
 
 
+        $code = $recognition->getPairingCode();
+
         $profile->assignAll([
-            'wishes'   => $itinerary->getWishlistLength(),
-            'earnings' => $itinerary->getEarnings('EUR'),
-            'currencies' => $configuration->getListOf('currencies'),
-            'current'    => [
-                'currency'    => $configuration->getPreferredCurrency(),
+            'wishes'        => $itinerary->getWishlistLength(),
+            'earnings'      => $itinerary->getEarnings('EUR'),
+            'currencies'    => $configuration->getListOf('currencies'),
+            'current'       => [
+                'currency'  => $configuration->getPreferredCurrency(),
             ],
-            'total'    => $itinerary->getTotalEarnings(),
-            'opened'   => true,
+            'total'         => $itinerary->getTotalEarnings(),
+            'opened'        => true,
         ]);
 
         $content->assignAll([
-            'deals'    => $deals,
-            'products' => $itinerary->getWishlist(),
-            'history'  => $itinerary->getHistory('EUR'),
+            'deals'      => $deals,
+            'products'   => $itinerary->getWishlist(),
+            'history'    => $itinerary->getHistory('EUR'),
             'currency'   => $configuration->getPreferredCurrency(),
-            'tab'      => $this->currentTab,
+            'tab'        => $this->currentTab,
+            'code'       => str_split($code, 4),
         ]);
 
 
@@ -92,6 +95,13 @@ class Profile extends \Application\Common\View
     public function spurn()
     {
 
+    }
+
+
+    public function redeem()
+    {
+        $this->currentTab = 'redeem';
+        return $this->wishlist();
     }
 
 }

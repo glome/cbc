@@ -57,4 +57,18 @@
         }
 
 
+        private $pairingCode;
+
+        public function setPairingCode($code)
+        {
+            $this->pairingCode = $code;
+        }
+
+
+        public function getPairingCode()
+        {
+            return $this->pairingCode;
+        }
+
+
     }

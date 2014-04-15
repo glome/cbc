@@ -437,15 +437,18 @@ select {
 
 }
 .profile-menu ul li {
-    float: left;
-    width: 68%;
-    padding: 5px 10% 5px 22%;
-    color: #595D5E;
-    font-family: "noto sans", sans-serif;
-    font-size: 10px;
-    text-align: left;
+    background-position: 12px center;
     background-repeat: no-repeat;
-    background-position: 12px 0px;
+    background-size: 14px auto;
+    color: #595D5E;
+    float: left;
+    font-family: "noto sans",sans-serif;
+    font-size: 10px;
+    height: 14px;
+    line-height: 1;
+    padding: 5px 10% 5px 22%;
+    text-align: left;
+    width: 68%;
 }
 .profile-menu ul li a {
     color: #595D5E;
@@ -462,6 +465,9 @@ select {
 }
 .profile-menu .history {
     background-image: url(/assets/img/time-icon.png);
+}
+.profile-menu .glome-wallet {
+    background-image: url(/assets/img/Glome_home_Glome_Wallet_icon.svg);
 }
 
 /* Redeem inlay */
@@ -492,7 +498,8 @@ footer {
 .footer-teaser-txt {
     float: left;
     margin-top: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
+    
 }
 .footer-teaser-txt span {
     display: inline-block;
@@ -689,7 +696,7 @@ footer {
     background-image: none;
 }
 .cat-menu ul li.all-cat:hover {
-   background-image: none;
+    background-image: none;
 }
 .cat-menu ul li.all-cat a {
     float: left;
@@ -2433,12 +2440,12 @@ footer {
 /* Empty wish list */
 
 .msg-box-fullpage {
-   float: left;
-   width: 99.8%;
-   margin-top: 30px;
-   border: 1px solid #ABC5C2;
-   background-color: #FFFFFF;
-   text-align: center;
+    float: left;
+    width: 99.8%;
+    margin-top: 30px;
+    border: 1px solid #ABC5C2;
+    background-color: #FFFFFF;
+    text-align: center;
 }
 .msg-box-fullpage div {
     display: inline-block;
@@ -2471,10 +2478,10 @@ footer {
     border: none;
     float: left;
     margin: 0;
-     font-weight: normal;
+    font-weight: normal;
     line-height: 1.5;
     text-indent: 0;    
-    
+
 }
 .ui-menu .ui-menu-item {
     float: left;
@@ -2550,20 +2557,18 @@ footer {
 .redeem-inlay {
     float: left;
     width: 100%;
-    max-height: 0;
-    background-color: #595D5E;
     text-align: center;
-    -webkit-transition: max-height 0.5s;
-    -moz-transition:    max-height 0.5s;
-    transition:         max-height 0.5s;
 }
 .redeem-inlay.open {
     max-height: 700px;
 }
 
 .redeem-options{
+    display: inline-block;
+    float: none;
     padding-bottom: 20px;
     overflow: hidden;
+    width: auto;
 }
 
 .redeem-title {
@@ -2572,8 +2577,7 @@ footer {
     margin: 30px 0;
     font-family: "noto sans", sans-serif;
     font-size: 24px;
-    color: #FFFFFF;
-
+    color: #595D5E;
 }
 .redeem-title strong {
     font-weight: 700;
@@ -2585,11 +2589,12 @@ footer {
     color: #ABC5C2;
     font-family: "noto sans", sans-serif;
     font-size: 16px;
+    line-height: 1.3;
 }
 .redeem-inlay .code {
-    padding: 20px 0 0;
+    padding: 30px 0 0;
     float: left;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 .redeem-inlay .code span {
     float: left;
@@ -2597,8 +2602,9 @@ footer {
     padding: 12px 15px;
     font-family: "noto sans", sans-serif;
     font-size: 13px;
-    color: #7A7D7E;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #7A7D7E;
+    color: #ffffff;
 }
 .redeem-inlay .code span:first-child {
     margin-left: 0;
@@ -2608,7 +2614,6 @@ footer {
     width: 106px;
     height: auto;
 }
-
 .redeem-inlay .links-center {
     display: inline-block;
     margin-bottom: 40px;
@@ -2622,18 +2627,186 @@ footer {
 
 .redeem-inlay .btn {
     float: left;
-    color: #ffffff;
+    color: #595D5E;
     text-decoration: none;
-    border: 1px solid #ffffff;
+    border: 1px solid #595D5E;
     margin-top: 8px;
     padding: 8px 30px;
     font-size: 14px;
     text-transform: uppercase;
 }
-
-.redeem-options.redeem-inlay .code{
+.redeem-options.redeem-inlay .code {
     width: 220px;
 }
+.profile-redeem {
+    float: left;
+    width: 100%;
+}
+
+/* CONTACT */
+.tab-3 {
+    text-align: center;
+}
+ .contact-form {
+    display: inline-block;
+    width: 372px;
+}
+.about .tab-content .tab .feedback .title,
+.about .tab-content .tab .contact-form .title{
+    font-size: 14px;
+}
+.contact-form .form-item {
+    float: left;
+    width: 100%;
+}
+.contact-form .form-item label{
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+    color: #7A7D7E;
+    font-family: "roboto",sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: left;
+}
+.contact-form .form-item {
+    margin-bottom: 15px;
+}
+.contact-form .form-item input[type="text"] {
+    float: left;
+    width: 350px;
+    padding: 10px;
+    border: 1px solid #595D5E;
+    outline: none;
+    -webkit-appearance: none;
+    
+}
+.contact-form .form-item textarea {
+    float: left;
+    width: 350px;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #595D5E;
+    outline: none;
+    -webkit-appearance: none;
+}
+.contact-form .form-item input[type="submit"]  {
+    float: right;
+    padding: 10px 40px;
+    border: 1px solid #62797F;
+    color: #ffffff;
+    outline: none;
+    -webkit-appearance: none;
+    background: #62797F;
+}
+.contact-form .form-item input[type="submit"]:hover {
+    border: 1px solid #ABC5C2;
+    background-color: #ABC5C2;
+}
+.contact-social-media {
+    margin-top: 20px;
+    float: left;
+    width: 100%;
+    color: #595D5E;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.contact-social-media span {
+    display: inline-block;
+    width: 100%;
+}
+.contact-social-media a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+.contact-social-media .fb {
+    background-image: url(/assets/img/fb.png);
+    margin-right: 15px;
+}
+.contact-social-media .fb:hover {
+    background-image: url(/assets/img/fb-hover.png);
+}
+.contact-social-media .tw {
+    background-image: url(/assets/img/tw.png);
+}
+.contact-social-media .tw:hover {
+    background-image: url(/assets/img/tw-hover.png);
+}
+
+/* terms and conditions */
+.terms {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.terms p {
+    margin-left: 77px;
+}
+
+.terms a {
+    margin-right: 10px;
+    color: #595D5E;
+    font-size: 12px;
+}
+.contact-form .form-item .error-input {
+    border: 1px solid #FE7063;
+}
+.error {
+    float: left;
+    text-align: left;
+    color:#FE7063;
+    margin-top: 5px;
+    font-size: 10px;
+}
+
+/* Conditions and terms of use */
+.conditions {
+    float: left;
+    width: 100%;
+    background-color: #FCFBFA;
+    -webkit-box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.3) inset;
+    -moz-box-shadow:    0 -2px 2px rgba(0, 0, 0, 0.3) inset;
+    box-shadow:         0 -2px 2px rgba(0, 0, 0, 0.3) inset;
+}
+.conditions .title {
+    color: #595D5E;
+    float: left;
+    width: 100%;
+    font-size: 27px;
+    font-weight: 700;
+    margin: 30px 0 30px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.conditions .content {
+    float: left;
+    width: 80%;
+    padding: 0 10% 30px;
+}
+.conditions .content p {
+    color: #7A7D7E;
+    font-family: "roboto",sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+    margin-bottom: 15px;
+}
+.conditions .content .subtitle {
+   color: #595D5E;
+    margin: 15px 0; 
+    font-family: "roboto",sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 22px;
+}
+
 
 /*
 **
@@ -2985,6 +3158,9 @@ footer {
     }
     .profile-menu .history {
         background-image: url(/assets/img/time-icon-white.png);
+    }
+    .profile-menu .glome-wallet {
+        background-image: url(/assets/img/Glome_home_Glome_Wallet_white_icon_Glome_Wallet_white_icon.svg);
     }
     .header-profile.active .profile-menu {
         position: relative;
@@ -3953,7 +4129,7 @@ footer {
     .full-cat-list .cat-content ul:first-child {
         margin-top: 20px;
     }
-      /* autocomplete */
+    /* autocomplete */
     .ui-autocomplete {
         width: 99% !important;
         border: 2px solid #FE7063 !important;
@@ -3983,6 +4159,9 @@ footer {
     .redeem-inlay .btn {
         margin-top: 5px;
         padding: 20px 80px;
+    }
+    .mob-hide {
+        display: none;
     }
 
 
@@ -4170,72 +4349,72 @@ html[xmlns] .slides {display: block;}
 /* AURUM IT paraksts */
 
 .aurumit {
-	position: relative;
-	bottom: 0;
-	width: 100%;
-	float: left;
-	background-color: #ACADB0;
-	color: #ffffff;
-	z-index: 0;
-	font-family: pt sans;
-	font-size: 12px;
-	text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    float: left;
+    background-color: #ACADB0;
+    color: #ffffff;
+    z-index: 0;
+    font-family: pt sans;
+    font-size: 12px;
+    text-align: center;
 }
 .aurumit:hover .aurumit-contact {
-	height: 30px;
-	margin-top: 15px;
+    height: 30px;
+    margin-top: 15px;
 }
 .aurumit .center {
-	position: relative;
-	margin: auto;
+    position: relative;
+    margin: auto;
 }
 .aurumit .aurumit_btn {
-	position: absolute;
-	top: -44px;
-	right: 0;
-	padding: 10px 10px 2px 10px;
-	background-color: #ACADB0;
+    position: absolute;
+    top: -44px;
+    right: 0;
+    padding: 10px 10px 2px 10px;
+    background-color: #ACADB0;
 
 }
 .aurumit .aurumit_btn span {
-	float: left;
+    float: left;
 }
 .aurumit .aurumit_btn span:nth-child(2) {
-	margin-top: 10px;
-	margin-left: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 .aurumit a {
-	color: #ffffff;
+    color: #ffffff;
 }
 .aurumit span {
-	float: left;
+    float: left;
 
-	color: #ffffff;
+    color: #ffffff;
 }
 .aurumit-contact {
-	float: right;
-	margin-top: 0px;
-	margin-right: 10px;
-	height: 0;
-	overflow:hidden;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
+    float: right;
+    margin-top: 0px;
+    margin-right: 10px;
+    height: 0;
+    overflow:hidden;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
     transition: all 0.5s;
 }
 .aurumit-contact span {
-	margin-left: 12px;
-	padding-left: 12px;
-	color: #ffffff;
-	border-left: 1px solid #ffffff;
+    margin-left: 12px;
+    padding-left: 12px;
+    color: #ffffff;
+    border-left: 1px solid #ffffff;
 }
 .aurumit-contact span:first-child {
-	border-left: none;
+    border-left: none;
 }
 .aurumit-empty{
-	position: relative;
-	width: 100%;
-	height: 60px;
-	z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    z-index: 1;
 }
 
 .hidden {
