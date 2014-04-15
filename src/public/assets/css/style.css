@@ -1820,6 +1820,7 @@ footer {
     text-transform: uppercase;
 }
 .cat-banner {
+    display: none;
     float: left;
     width: 100%;
 }
