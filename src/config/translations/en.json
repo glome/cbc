@@ -66,6 +66,17 @@
     "redeem.subtitle_1":            "1) Pair with Your <strong>Glome Wallet</strong> using this Pairing or QR code!",
     "redeem.subtitle_2":            "2) Redeem Your money using \"Checkout Finland\"!",
     "redeem.site_link":             "GO TO SITE",
-    "redeem.option_divider":        "or"
+    "redeem.option_divider":        "or",
+
+
+    "about.image_1":                 "/assets/img/find-300x156.jpg",
+    "about.title_1":                 "FIND WHAT YOU ARE LOOKING FOR!",
+    "about.description_1":           "Browse our catalog to see how much money we can help you to save.",
+    "about.image_2":                 "/assets/img/buy-300x225.jpg",
+    "about.title_2":                 "BUY PRODUCTS TO EARN MONEY!",
+    "about.description_2":           "Use our deals to buy your favorite products and get paid for it.",
+    "about.image_3":                 "/assets/img/26162741_s-300x200.jpg",
+    "about.title_3":                 "MORE YOU SHOP MORE YOU EARN!",
+    "about.description_3":           "Come back to us for more shopping and redeeming Your money."
 
 }
