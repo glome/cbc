@@ -52,7 +52,9 @@ $(document).ready(function() {
                 var $container = $('#grid');
                 $container.masonry('destroy');
                 $container.empty();
+                $container.addClass('loading')
                 $.get( window.location.href + '?xhr', function( data ) {
+                    $container.removeClass('loading');
                     $container.html(data);
                     init();
                     normalizeProducts();

@@ -48,7 +48,7 @@
                     */ ?>
                     <div class="more-products">
                         <div class="page-title">
-                            <h1>Search results</h1>
+                            <h1><?=$this->translate('navigation.search_title')?></h1>
                         </div>
 
                         <ul class="products masonry-grid" id="grid">
@@ -59,10 +59,10 @@
                                     <a href="/product/<?=$id?>" class="product-link-wrap">
                                         <div class="labels">
                                         <?php if($product['is-new']): ?>
-                                            <span class="new-lbl">NEW</span>
+                                            <span class="new-lbl"><?=$this->translate('product.badge_new')?></span>
                                         <?php endif; ?>
                                         <?php if($product['is-popular']): ?>
-                                            <span class="popular-lbl">POPULAR</span>
+                                            <span class="popular-lbl"><?=$this->translate('product.badge_popular')?></span>
                                         <?php endif; ?>
                                         </div>
 
@@ -74,7 +74,7 @@
                                             <span class="title"><?=$product['title']?></span>
                                             <span class="product-price"><?=$product['currencySymbol']?><?=$product['price']?></span>
                                             <div class="price">
-                                                <span>CASHBACK:</span>
+                                                <span><?=$this->translate('product.cashback')?>:</span>
                                                 <span>
                                                     <?=$product['currencySymbol'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
                                                     <?=$product['one-bonus'] ? '' : '&'?>
@@ -82,9 +82,9 @@
                                                 </span>
                                             </div>
                                             <?php if ($product['incentive']): ?>
-                                            <span class="voucher">VOUCHER: -<?=$product['incentive']['percentage']?>%</span>
+                                            <span class="voucher"><?=$this->translate('product.voucher')?>: -<?=$product['incentive']['percentage']?>%</span>
                                             <?php endif;?>
-                                            <span class="buy_btn">VIEW</span>
+                                            <span class="buy_btn"><?=$this->translate('product.button_view')?></span>
                                         </div><!-- .product-info -->
                                     </a>
                                 </div><!-- .product-content-->

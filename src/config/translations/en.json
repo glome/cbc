@@ -20,9 +20,18 @@
     "product.voucher":             "VOUCHER",
     "product.button_view":         "VIEW",
     "product.cashback":            "CASHBACK",
+    "product.retailer":            "RETAILER",
+    "product.description":         "DESCRIPTION OF THE PRODUCT",
+    "product.share_title":         "SHARE LINK",
+    "product.recommendation_title":"MORE ITEMS TO CONSIDER",
+    "product.discount_code":       "DISCOUNT-CODE",
+    "product.buy_button":          "BUY NOW",
+    "product.wishlist_title":      "Add to Wish list",
 
 
     "navigation.order_title":      "ORDER BY",
+    "navigation.search_title":     "Search results",
+    "navigation.clear":            "clear",
     "navigation.order_newest":     "Newest added",
     "navigation.order_oldest":     "Oldest added",
     "navigation.top_deals":        "Top cashback deals",
@@ -34,6 +43,8 @@
     "navigation.to_history":       "Cashback history",
     "navigation.to_redeem":        "REDEEM",
     "navigation.redeem_condition": "(minimum 5 EUR)",
+    "navigation.retailer_title":   "Retailer ",
+    "navigation.back_to_category": "Back to products list",
 
 
     "info.about_title":            "About us",

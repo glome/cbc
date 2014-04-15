@@ -17,7 +17,7 @@
                             </div><!-- .filter-content-wrap -->
                         </div><!-- .filter-cat -->
                         <div class="filter-retailer">
-                            <span class="filter-title">Retailer <a id="action-reset" href="?clear" class="clear">clear</a></span>
+                            <span class="filter-title"><?=$this->translate('navigation.retailer_title')?> <a id="action-reset" href="?clear" class="clear"><?=$this->translate('navigation.clear')?></a></span>
                             <div class="filter-content-wrap">
                                 <ul id="retailer-list">
                                     <li class="<?=count($selectedRetailers)?'':'selected'?> all"><a class="action-reset" href="?clear"><span class="checkbox"><span class="tick"></span></span><div>All</div></a></li>
@@ -146,6 +146,7 @@
                             </li><!-- .product -->
                             <?php endforeach; ?>
                         </ul><!-- .products -->
+                        <!-- <div class="loading"></div> -->
                         <nav id="page-nav">
                            <a href="/catalog/<?=$current?>?page=2"></a>
                         </nav>

@@ -2,7 +2,7 @@
             <div class="product-single">
                 <div class="wrap">
                     <div class="back-to-grid">
-                        <a href="/catalog/<?=$product['category']?>" class="back-to-grid-btn">Back to products list</a>
+                        <a href="/catalog/<?=$product['category']?>" class="back-to-grid-btn"><?=$this->translate('navigation.back_to_category')?></a>
                     </div><!-- .back-to grid -->
                     <div class="product-full">
                         <div class="left">
@@ -38,7 +38,7 @@
                                 </div><!-- .cashback -->
                                 <?php if ($product['incentive']): ?>
                                 <div class="voucher">
-                                    <span class="lbl">VOUCHER</span>
+                                    <span class="lbl"><?=$this->translate('product.voucher')?></span>
                                     <div class="voucher-amount">
                                         <span>-<?=$product['incentive']['percentage']?>%</span>
                                     </div><!-- .voucher-amount -->
@@ -46,29 +46,29 @@
                                 <?php endif;?>
                                 <div class="buy-now">
                                     <span class="amount"><?=$product['currencySymbol']?><?=$product['price']?></span>
-                                    <a href="/redirect/<?=$product['id']?>" class="buy-now-btn">BUY NOW</a>
+                                    <a href="/redirect/<?=$product['id']?>" class="buy-now-btn"><?=$this->translate('product.buy_button')?></a>
                                 </div><!-- .buy-now-->
                             </div><!-- .price-info -->
                             <div class="discount-wrap">
-                                <a href="/profile/wish/<?=$product['id']?>" class="add-to-wishlist <?=$product['is-favorite']? 'active':''?>">Add to Wish list</a>
+                                <a href="/profile/wish/<?=$product['id']?>" class="add-to-wishlist <?=$product['is-favorite']? 'active':''?>"><?=$this->translate('product.wishlist_title')?></a>
                                 <?php if ($product['incentive']): ?>
-                                <div class="discount-code">DISCOUNT-CODE: <span><?=$product['incentive']['code']?></span></div><!-- .discount-code -->
+                                <div class="discount-code"><?=$this->translate('navigation.back_to_category')?>: <span><?=$product['incentive']['code']?></span></div><!-- .discount-code -->
                                 <?php endif; ?>
 
                             </div><!-- .price-info-->
-                            <div class="retailer">RETAILER: <span><?=$product['advertiser']?></span></div><!-- .retailer -->
+                            <div class="retailer"><?=$this->translate('product.retailer')?>: <span><?=$product['advertiser']?></span></div><!-- .retailer -->
                             <div class="product-desc">
-                                <p><span>DESCRIPTION OF THE PRODUCT</span> - <?=$product['description']?> </p>
+                                <p><span><?=$this->translate('product.description')?></span> - <?=$product['description']?> </p>
                             </div><!-- .product-desc-->
                             <div class="social-media">
                                 <a href="" class="fb" onclick="shareFB(); return false;"></a>
                                 <a href="https://twitter.com/share?url=<?=$tw_url?>&amp;text=<?=$tw_text?>" class="tw" target="_blank"></a>
-                                <span>SHARE LINK</span>
+                                <span><?=$this->translate('product.share_title')?></span>
                             </div><!-- .share-link -->
                         </div><!-- .right -->
                     </div><!-- .product-full -->
                     <div class="more-products">
-                        <span class="title">MORE ITEMS TO CONSIDER</span>
+                        <span class="title"><?=$this->translate('product.recommendation_title')?></span>
                         <ul class="products masonry-grid" id="grid">
                         <?php foreach ($products as $id => $product): ?>
                            <li class="product">
