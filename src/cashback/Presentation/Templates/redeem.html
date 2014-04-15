@@ -29,9 +29,14 @@
                 <div class="content-box">
                     <a href="" class="logo">
                         <span class="logo-text">Cashback catalog</span>
-                        <span class="logo-text">BROWSE, SHOP AND <br>GET PAID</span>
+                        <span class="logo-text">BROWSE, SHOP AND GET PAID</span>
                     </a>
-                    <span class="title">Redirection to Glome Wallet.</span>
+
+                    <?php if($link): ?>
+                    <span class="title">Redirection to www.checkout.fi</span>
+                    <?php else: ?>
+                    <span class="title">Sorry, you currently do not have enough funds to redeem. The minimum amount is 5 EUR.</span>
+                    <?php endif; ?>
                     <div class="notice-msg">
                         <span class="bold">Money transactions are handled by our 3rd payment provider. You will be redirect to their page shortly.</span>
                     </div>

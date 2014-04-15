@@ -82,7 +82,7 @@
                                     <div class="price">
                                         <span><?=$this->translate('product.cashback')?>:</span>
                                         <span>
-                                            <?=$product['currencySymbol'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
+                                            <?=$product['bonusMoney'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
                                             <?=$product['one-bonus'] ? '' : '&'?>
                                             <?=$product['bonusPercent'] === null ? '' : ($product['bonusPercent'] . '%')?>
                                         </span>
