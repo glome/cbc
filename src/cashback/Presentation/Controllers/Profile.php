@@ -54,4 +54,10 @@ class Profile extends \Application\Common\Controller
 
     }
 
+
+    public function getQR($request)
+    {
+
+    }
+
 }

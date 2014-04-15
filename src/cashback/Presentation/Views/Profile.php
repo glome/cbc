@@ -104,4 +104,20 @@ class Profile extends \Application\Common\View
         return $this->wishlist();
     }
 
+
+    public function qr()
+    {
+        $recognition = $this->serviceFactory->create('Recognition');
+        $code = $recognition->getPairingCode();
+
+        header('Content-type: image/png');
+
+        $qrCode = new \Endroid\QrCode\QrCode();
+        $qrCode->setText($code);
+        $qrCode->setSize(100);
+        $qrCode->setPadding(10);
+        $qrCode->render();
+    }
+
+
 }
