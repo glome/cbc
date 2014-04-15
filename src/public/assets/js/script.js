@@ -440,7 +440,7 @@ $(document).ready(function() {
     /*
      $(".filter-cat .filter-content-wrap ul li a").on("click", function(e) {
      e.preventDefault();
-     
+
      if (!$(this).parent().hasClass("selected")) {
      $(".filter-cat .filter-content-wrap ul li").removeClass("selected");
      $(this).parent().addClass("selected");
@@ -609,13 +609,13 @@ $(document).ready(function() {
      if(top2 < scrolled) {
      $(".filter-sidebar").removeClass("absolute");
      }
-     
-     
+
+
      }
-     
+
      console.log(scrolled);
      });
-     
+
      */
     $(window).on("scroll", function() {
         var scrolled = $(window).scrollTop();
@@ -730,7 +730,14 @@ $(document).ready(function() {
 
             return false;
         } else {
-            return true;
+            $.post(
+               '/', $(this).serialize(),
+                function(data){
+                  $("#message-form").addClass('hidden');
+                  $("#message-notice").removeClass('hidden');
+                }
+              );
+            return false;
         }
 
     });

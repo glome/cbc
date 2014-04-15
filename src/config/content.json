@@ -44,5 +44,11 @@
             "title": "Germany",
             "code": "DE"
         }
-    ]
+    ],
+
+    "contacts": {
+        "subject": "Comment from CBC",
+        "address": "contact@glome.me"
+    }
+
 }

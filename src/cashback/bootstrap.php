@@ -4,6 +4,9 @@
 //Initializing composer0based autoloader
 require __DIR__ . '/../../vendor/autoload.php';
 
+//swiftmailer autoloader
+require __DIR__ . '/../../vendor/swiftmailer/swiftmailer/lib/swift_required.php';
+
 define('__PROJECT__', __DIR__ . '/../..');
 
 $uri = isset($_SERVER['REQUEST_URI'])

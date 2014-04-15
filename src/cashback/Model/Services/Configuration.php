@@ -9,12 +9,14 @@ class Configuration extends \Application\Common\Service
     private $data = [];
     private $codes = [];
     private $titles = [];
+    private $contacts = null;
 
 
     public function import($config) {
         $this->importParameters('languages', $config['languages']);
         $this->importParameters('currencies', $config['currencies']);
         $this->importParameters('locations', $config['locations']);
+        $this->contacts = $config['contacts'];
     }
 
 
@@ -38,6 +40,12 @@ class Configuration extends \Application\Common\Service
         }
     }
 
+
+
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
 
     public function getListOf($key)
     {
