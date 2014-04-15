@@ -62,7 +62,7 @@ class Docs extends \Application\Common\View
 
     public function termsOfUse()
     {
-        $this->index();
+        return $this->index();
     }
 
     public function privacyPolicy()

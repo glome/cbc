@@ -26,7 +26,7 @@ $serviceFactory->setNamespace('\\Application\\Services');
 
 
 
-$action = $request->getParameter('action');
+$action = str_replace('-', '', $request->getParameter('action'));
 $command = $request->getMethod() . $action;
 $resource = ucfirst($request->getParameter('resource'));
 
