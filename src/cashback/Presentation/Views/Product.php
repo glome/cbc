@@ -34,7 +34,7 @@ class Product extends \Application\Common\View
 
 
         $tw_url = 'http' . (isset($_SERVER['HTTPS'])? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/product/' . $product['id'];
-        $tw_text = urlencode('Best purchase on Glome Cashback.');
+        $tw_text = urlencode('Best purchase on Cashback Catalog.');
 
 
         $navigation->assign('categories', array_slice($categories, 0 , 10));
