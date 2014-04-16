@@ -28,17 +28,17 @@
             <div class="center">
                 <div class="content-box">
                     <a href="" class="logo">
-                        <span class="logo-text">Cashback Catalog</span>
-                        <span class="logo-text">new era in online shopping</span>
+                        <span class="logo-text"><?=$this->translate('global.title')?></span>
+                        <span class="logo-text"><?=$this->translate('global.subtitle')?></span>
                     </a>
 
                     <?php if($link): ?>
-                    <span class="title">Redirection to www.checkout.fi</span>
+                    <span class="title"><?=$this->translate('redeem.title')?></span>
                     <?php else: ?>
-                    <span class="title">Sorry, you currently do not have enough funds to redeem. The minimum amount is 5 EUR.</span>
+                    <span class="title"><?=$this->translate('redeem.failure')?></span>
                     <?php endif; ?>
                     <div class="notice-msg">
-                        <span class="bold">Money transactions are handled by our 3rd payment provider. You will be redirected to their page shortly.</span>
+                        <span class="bold"><?=$this->translate('redeem.success')?></span>
                     </div>
                 </div>
             </div>

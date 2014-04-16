@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li <?=$tab === 'pairing'? 'class="active"':''?>>
-                        <a href="profile-pairing">Pair with Glome Wallet
+                        <a href="profile-pairing"><?=$this->translate('profile.pairing_title')?>
                             <div class="caret">
                                 <div class="caret-border"></div>
                                 <div class="caret-body"></div>
@@ -110,12 +110,12 @@
                 <?php if (isset($history['details']) && count($history['details'])): ?>
                 <ul class="cashback-history">
                     <li class="table-heading">
-                        <span class="retailer">Retailer</span>
+                        <span class="retailer"><?=$this->translate('navigation.retailer_title')?></span>
                         <div class="order">
-                            <span class="order-title">Order</span>
-                            <span class="date"><a href="">Date</a></span>
-                            <span class="cashback"><a href="">Cashback</a></span>
-                            <span class="status"><a href="">Status</a></span>
+                            <span class="order-title"><?=$this->translate('navigation.order_title')?></span>
+                            <span class="date"><a href=""><?=$this->translate('navigation.date_title')?></a></span>
+                            <span class="cashback"><a href=""><?=$this->translate('navigation.cashback_title')?></a></span>
+                            <span class="status"><a href=""><?=$this->translate('navigation.status_title')?></a></span>
                         </div><!-- .order -->
                     </li><!-- .table-heading -->
                     <?php foreach ($history['details'] as $key => $value): ?>
@@ -137,8 +137,8 @@
             <div class="profile-pairing tab <?=$tab === 'pairing'? 'active':''?>">
                 <div class="redeem-inlay">
                     <div class="wrap">
-                        <div class="redeem-title">Pair with Your Glome Wallet to personalise Your Cashback Catalog!</div>
-                        <div class="txt">Copy this Pairing code to Your Glome Wallet <span class="mob-hide">or scan following QR code:</span></div>
+                        <div class="redeem-title"><?=$this->translate('redeem.title')?></div>
+                        <div class="txt"><?=$this->translate('redeem.subtitle')?></div>
                         <ul class="redeem-options">
                             <li class="code">
                                 <span><?=$code[0]?></span>
