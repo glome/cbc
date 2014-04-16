@@ -44,9 +44,9 @@
     "navigation.back_to_category": "Back to products list",
 
 
-    "info.about_title":            "About us",
-    "info.faq_title":              "FAQ",
-    "info.contact_title":          "Contact",
+    "info.about_title":            "1. How does it work?",
+    "info.faq_title":              "2. FAQ",
+    "info.contact_title":          "3. Contact",
     "info.other_contacts":         "You can contact us by using the form above or via Twitter and Facebook.",
 
 

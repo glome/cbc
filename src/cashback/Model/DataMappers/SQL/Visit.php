@@ -21,7 +21,6 @@
                 $statement->execute();
             } catch (\PDOException $e) {
                 $instance->setError($e->getCode(), $e->getMessage());
-                var_dump($e);
             }
         }
 
