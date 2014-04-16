@@ -1,5 +1,5 @@
 {
-    "header.download_prompt":      "Take Control, download %s",
+    "header.download_prompt":      "Take Control, download %s in a few hours from",
     "header.currency":             "Currency",
     "header.language":             "Language",
     "header.location":             "Shops from",
@@ -7,11 +7,11 @@
     "header.earnings_title":       "You have earned",
 
     "banners.first_title":         "Crazy about shopping?",
-    "banners.first_subtitle":      "Buy online and get payed for your passion!",
+    "banners.first_subtitle":      "Buy online and get paid for your passion!",
     "banners.second_title":        "TAKE CONTROL",
     "banners.second_subtitle":     "<a href=\"http://glome.me\" target=\"_blank\">by installing Glome Wallet</a>",
     "banners.third_title":         "Crazy about shopping?",
-    "banners.third_subtitle":      "Buy online and get payed for your passion!",
+    "banners.third_subtitle":      "Buy online and get paid for your passion!",
 
     "product.badge_new":           "NEW",
     "product.badge_popular":       "POPULAR",
