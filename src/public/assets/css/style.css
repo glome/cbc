@@ -1768,6 +1768,8 @@ footer {
     display: block;
     float: right;
     width: 160px;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 .filter-cat,
 .filter-retailer {
@@ -3732,7 +3734,9 @@ footer {
 
     }
     .profile .profile-tabs ul li {
-        margin-right: 20px;
+        width: 100%;
+        margin: 0 0 15px 0;
+        
     }
     .profile .cat-dropdown {
         display: none;
