@@ -83,8 +83,6 @@ p {
 }
 
 /* banner 1 */
-
-
 .banner.first {
     background-image: url("/assets/img/banners/Shopping.jpg");
 }
@@ -97,9 +95,7 @@ p {
 
 }
 
-
 /* banner 2 */
-
 .banner.second{
     background-image: url("/assets/img/banners/Glome_galva.jpg");
 }
@@ -110,10 +106,11 @@ p {
 .second .txt-bottom .txt-small {
     color: #595d5e;
 }
+.second .txt-bottom .txt-small a {
+    color: white;
+}
 
 /* banner 3 */
-
-
 .banner.third{
     background-image: url("/assets/img/banners/Ger_ready_for_spring_for_banner.jpg");
 }
@@ -144,7 +141,7 @@ p {
     .txt-bottom .txt-small {
         font-size: 18px;
     }
-    
+
 }
 @media (max-width: 730px) {
     .banner {
@@ -162,11 +159,11 @@ p {
     .banner .left {
         width: 60%;
     }
-    
+
 }
 @media (max-width: 500px) {
     .banner {
-        background-size: auto 100%; 
+        background-size: auto 100%;
         background-position: center;
     }
 }

@@ -1,13 +1,9 @@
 {
     "currencies": [
         {
-            "symbol": "$",
-            "code": "USD",
-            "default": true
-        },
-        {
             "symbol": "€",
-            "code": "EUR"
+            "code": "EUR",
+            "default": true
         },
         {
             "symbol": "£",
@@ -24,10 +20,6 @@
         {
             "code": "FI",
             "title": "Suomi"
-        },
-        {
-            "code": "DE",
-            "title": "Deutsch"
         }
     ],
 

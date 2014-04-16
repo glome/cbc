@@ -1,19 +1,17 @@
 {
-    "header.download_prompt":      "Download %s to get your cashback",
+    "header.download_prompt":      "Take Control, download %s",
     "header.currency":             "Currency",
     "header.language":             "Language",
-    "header.location":             "Location",
-    "header.location_prompt":      "Choose location",
+    "header.location":             "Shops from",
+    "header.location_prompt":      "Choose countries",
     "header.earnings_title":       "You have earned",
 
-
     "banners.first_title":         "Crazy about shopping?",
-    "banners.first_subtitle":      "Buy online and get payed for your passion!",
-    "banners.second_title":        "EARN 2,5 EUR",
-    "banners.second_subtitle":     "by installing Glome Wallet",
+    "banners.first_subtitle":      "Buy online and get paid for your passion!",
+    "banners.second_title":        "TAKE CONTROL",
+    "banners.second_subtitle":     "<a href=\"https://play.google.com/store/apps/details?id=me.glome.android.wallet\" target=\"_blank\">by installing Glome Wallet</a>",
     "banners.third_title":         "Crazy about shopping?",
-    "banners.third_subtitle":      "Buy online and get payed for your passion!",
-
+    "banners.third_subtitle":      "Buy online and get paid for your passion!",
 
     "product.badge_new":           "NEW",
     "product.badge_popular":       "POPULAR",
@@ -27,7 +25,6 @@
     "product.discount_code":       "DISCOUNT-CODE",
     "product.buy_button":          "BUY NOW",
     "product.wishlist_title":      "Add to Wish list",
-
 
     "navigation.order_title":      "ORDER BY",
     "navigation.search_title":     "Search results",
@@ -63,7 +60,7 @@
     "profile.category_prompt":     "Choose Category",
 
 
-    "redeem.title":                 "Pair with Your Glome Wallet to personalise Your Cashback catalog!",
+    "redeem.title":                 "Pair with Your Glome Wallet to personalise Your Cashback Catalog!",
     "redeem.subtitle_1":            "1) Pair with Your <strong>Glome Wallet</strong> using this Pairing or QR code!",
     "redeem.subtitle_2":            "2) Redeem Your money using \"Checkout Finland\"!",
     "redeem.site_link":             "GO TO SITE",
@@ -79,5 +76,4 @@
     "about.image_3":                 "/assets/img/26162741_s-300x200.jpg",
     "about.title_3":                 "MORE YOU SHOP MORE YOU EARN!",
     "about.description_3":           "Come back to us for more shopping and redeeming Your money."
-
 }
