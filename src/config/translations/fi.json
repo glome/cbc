@@ -1,0 +1,77 @@
+{
+    "header.download_prompt":      "Hyödy enemmän, lataa %s",
+    "header.currency":             "Valuutta",
+    "header.language":             "Kieli",
+    "header.location":             "Sijainti",
+    "header.location_prompt":      "Valitse sijainti",
+    "header.earnings_title":       "Olet tienannut",
+
+    "banners.first_title":         "Hulluna shoppailuun?",
+    "banners.first_subtitle":      "Bonusta verkko-ostoksistasi!",
+    "banners.second_title":        "Ota webi haltuun!",
+    "banners.second_subtitle":     "asenna Glome Wallet Android puhelimeesi!",
+    "banners.third_title":         "Crazy about shopping?",
+    "banners.third_subtitle":      "Osta verkosta, nauti bonuksista!",
+
+    "product.badge_new":           "UUSI",
+    "product.badge_popular":       "SUOSITTU",
+    "product.voucher":             "KUPONKI",
+    "product.button_view":         "AVAA",
+    "product.cashback":            "BONUS",
+    "product.retailer":            "MYYJÄ",
+    "product.description":         "TUOTTEEN KUVAUS",
+    "product.share_title":         "JAA",
+    "product.recommendation_title":"VOISIT KIINNOSTUA MYÖS NÄISTÄ",
+    "product.discount_code":       "ALENNUSKOODI",
+    "product.buy_button":          "OSTA",
+    "product.wishlist_title":      "Lisää muistilistaan",
+
+    "navigation.order_title":      "JÄRJESTÄ",
+    "navigation.search_title":     "Hakutulokset",
+    "navigation.clear":            "tyhjennä",
+    "navigation.order_newest":     "Uusimmat",
+    "navigation.order_oldest":     "Vanhimmat",
+    "navigation.top_deals":        "Parhaat tarjoukset",
+    "navigation.categories":       "kategoriat",
+    "navigation.search_all":       "KAIKKI",
+    "navigation.search_current":   "VALITTU",
+    "navigation.search_prompt":    "Mitä olet etsimässä?",
+    "navigation.to_wishlist":      "Muistilistani",
+    "navigation.to_history":       "Bonushistoria",
+    "navigation.to_redeem":        "MAKSATUS",
+    "navigation.redeem_condition": "(minimi 5 EUR)",
+    "navigation.retailer_title":   "Myyjä ",
+    "navigation.back_to_category": "Palaa tuotelistaan",
+
+
+    "info.about_title":            "Tietoa meistä",
+    "info.faq_title":              "UKK",
+    "info.contact_title":          "Yhteydet",
+
+    "profile.title":               "Profiilini",
+    "profile.wishlist_title":      "Muistilista",
+    "profile.history_title":       "Bonushistoria",
+
+    "profile.empty_wishlist":      "Muistilistasi on tällä hetkellä tyhjä. Eikun shoppailemaan!",
+    "profile.empty_history":       "Bonushistoriasi on vielä tyhjä. Eiköhän olisi aika mennä shoppailemaan?",
+    "profile.category_title":      "JATKA SHOPPAILUA",
+    "profile.category_prompt":     "Valitse kategoria",
+
+    "redeem.title":                 "Redeem you money using one of these two options:",
+    "redeem.subtitle_1":            "1) Pair with Your <strong>Glome Wallet</strong> using this Pairing or QR code!",
+    "redeem.subtitle_2":            "2) Redeem Your money using \"Checkout Finland\"!",
+    "redeem.site_link":             "GO TO SITE",
+    "redeem.option_divider":        "or",
+
+    "about.image_1":                 "/assets/img/find-300x156.jpg",
+    "about.title_1":                "TERVETULOA SHOPPAILEMAAN!",
+    "about.description_1":          "Selaa katalogiamme ja katso kuinka paljon voisit säästää.",
+
+    "about.image_2":                 "/assets/img/buy-300x225.jpg",
+    "about.title_2":                "BONUSTA JOKAISESTA OSTOSTA!",
+    "about.description_2":          "Hyödynnä tarjouksiamme ja saat jokaisesta ostosta bonusta.",
+
+    "about.image_3":                 "/assets/img/26162741_s-300x200.jpg",
+    "about.title_3":                "HULLUNA HYÖTYIHIN?",
+    "about.description_3":          "Tervetuloa shoppaamaan fiksusti ja hyötymään bonuksista."
+}
