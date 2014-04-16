@@ -7,6 +7,8 @@
 
         public function fetch($collection)
         {
+            return false;
+
             if (isset($_SESSION['glome.categories'])) {
                 $collection->import($_SESSION['glome.categories']);
                 return true;
