@@ -711,30 +711,31 @@ $(document).ready(function() {
     /* Form validation */
 
     $(".contact-form").on("submit", function() {
-        var msg = $("#comments").val();
+        var form = $(this);
+        var msg = $("textarea.comments", form).val();
         var html = "<div class='error'>* You forgot to fill out!</div>";
         if (msg.length === 0) {
             if (msg.length === 0) {
-                $("#comments").addClass("error-input");
+                $("textarea.comments", form).addClass("error-input");
 
-                if ($("#comments").next(".error").length > 0) {
-                    $("#comments").next(".error").remove();
+                if ($("textarea.comments", form).next(".error").length > 0) {
+                    $("textarea.comments", form).next(".error").remove();
                 }
-                $("#comments").after(html);
+                $("textarea.comments", form).after(html);
             } else {
-                $("#comments").removeClass("error-input");
-                if ($("#comments").next(".error").length > 0) {
-                    $("#comments").next(".error").remove();
+                $("textarea.comments", form).removeClass("error-input");
+                if ($("textarea.comments", form).next(".error").length > 0) {
+                    $("textarea.comments", form).next(".error").remove();
                 }
             }
 
             return false;
         } else {
             $.post(
-               '/', $(this).serialize(),
+               '/', form.serialize(),
                 function(data){
-                  $("#message-form").addClass('hidden');
-                  $("#message-notice").removeClass('hidden');
+                  form.addClass('hidden');
+                  form.prev().removeClass('hidden');
                 }
               );
             return false;

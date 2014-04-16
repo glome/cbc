@@ -4,7 +4,7 @@
 <!--[if IE 9]> <html class="no-js ie9 ie" lang="en"> <![endif]-->
 <!--[if gt IE 9]><!--><html class='no-js' lang='en'><!--<![endif]-->
     <head>
-        <title>Glome Cashback Catalog</title>
+        <title>Cashback Catalog - powered by Glome</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <link href='http://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
@@ -16,6 +16,7 @@
         <!--[if lt IE 9]>
             <script src="/assets/js/libs/html5shiv.js"></script>
         <![endif]-->
+        <script src="/assets/js/piwik.js"></script>
     </head>
     <body>
         <div id="fb-root"></div>
@@ -25,8 +26,8 @@
             <div class="wrap">
                 <div class="center">
                     <div class="center-content">
-                        <span><?=$this->translate('header.download_prompt', '<a href="">Glome Wallet</a>')?></span>
-                        <a href="" class="google-play"></a>
+                        <span><?=$this->translate('header.download_prompt', 'Glome Wallet')?></span>
+                        <a target="blank" href="https://play.google.com/store/apps/details?id=me.glome.android.wallet" class="google-play"></a>
                     </div>
                     <a href="" class="close-download-bar"></a>
                 </div><!-- .center-->
@@ -38,27 +39,30 @@
             <div class="wrap">
                 <div class="logo-wrap">
                     <a href="/" class="logo">
-                        <span class="logo-text">Cashback catalog</span>
-                        <span class="logo-text">BROWSE, SHOP AND GET PAID</span>
+                        <span class="logo-text">Cashback Catalog</span>
+                        <span class="logo-text">new era in online shopping</span>
                     </a>
                 </div><!-- .logo-wrap-->
                 <div class="header-options">
                     <div class="location-filter">
                         <a class="mob-filter-btn"></a>
                         <div class="row">
-                            <div class="lbl col-1" id="col-1"><?=$this->translate('header.currency')?></div>
+                            <div class="lbl col-1" id="col-1">&nbsp;</div>
                             <div class="lbl col-2" id="col-2"><?=$this->translate('header.language')?></div>
                             <div class="lbl col-3" id="col-3"><?=$this->translate('header.location')?></div>
                         </div><!-- .row -->
                         <div class="row">
                             <div class="form-item col-1">
-                                <div class="select-box dropdown">
+                                <div class="">
+                                  &nbsp;
+<!--
                                     <span class="selected"><?=$current['currency']['code']?></span>
                                     <ul>
                                         <?php foreach($currencies as $currency ): ?>
                                         <li class="option <?=$currency['code'] === $current['currency']['code']? 'selected':''?>"><?=$currency['code']?></li>
                                         <?php endforeach; ?>
                                     </ul>
+-->
                                 </div><!-- .select-box -->
                             </div><!-- .form-item -->
                             <div class="form-item col-2">
