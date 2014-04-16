@@ -5,6 +5,33 @@
     class ProductCollection extends \Application\Common\SQLMapper
     {
 
+
+        public function delete($collection)
+        {
+            $todo = $collection->getRemovable();
+            $keys = [];
+
+            foreach ($todo['pool'] as $product) {
+                $keys[$product->getId()] = 1;
+            }
+
+            $keys = implode(', ', array_keys($keys));
+
+            try {
+                $this->pdo->beginTransaction();
+                $this->pdo->exec("DELETE FROM VisitorRedirects WHERE productId IN ($keys)");
+                $this->pdo->exec("DELETE FROM Wishes WHERE productId IN ($keys)");
+                $this->pdo->exec("DELETE FROM VisitorViews WHERE productId IN ($keys)");
+                $this->pdo->commit();
+            } catch (\PDOException $e) {
+                $this->pdo->rollBack();
+            }
+
+            $collection->cleanup();
+        }
+
+
+
         public function fetch($collection)
         {
 
@@ -17,7 +44,7 @@
                 }
                 $keys = implode(', ', array_keys($list));
 
-                $sql = "SELECT productID AS id FROM Wishes LEFT JOIN Visitors USING (visitorID) WHERE userId =:user AND productID IN ($keys)";
+                $sql = "SELECT productId AS id FROM Wishes LEFT JOIN Visitors USING (visitorId) WHERE userId =:user AND productId IN ($keys)";
 
                 try {
                     $statement = $this->pdo->prepare($sql);

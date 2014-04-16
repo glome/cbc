@@ -10,11 +10,11 @@ abstract class Collection implements \Iterator, \ArrayAccess
 
 
     protected $pool = [];
-
-    protected $forRemoval = [];
-
+    protected $forRemoval = [
+                  'pool' => [],
+                  'keys' => [],
+              ];
     private $position = 0;
-
     private $amount = 0;
 
     public function addItem($parameters)
@@ -35,16 +35,35 @@ abstract class Collection implements \Iterator, \ArrayAccess
     public function removeItem($id)
     {
         if (isset($this->pool[$id])) {
-            $this->forRemoval[] = $this->pool[$id];
+            $this->forRemoval['pool'][] = $this->pool[$id];
+            $this->forRemoval['keys'][] = $id;
+        }
+    }
+
+
+    public function cleanup()
+    {
+        foreach ($this->forRemoval['keys'] as $id) {
             unset($this->pool[$id]);
-            $temp = [];
-            foreach ($this->pool as $element) {
-                $temp[] = $element;
-            }
-            $this->pool = $temp;
-            $this->amount -= 1;
         }
 
+        $temp = [];
+        foreach ($this->pool as $element) {
+            $temp[] = $element;
+        }
+        $this->pool = $temp;
+
+        $this->amount = count($this->pool);
+        $this->forRemoval = [
+            'pool' => [],
+            'keys' => [],
+        ];
+    }
+
+
+    public function getRemovable()
+    {
+        return $this->forRemoval;
     }
 
     public function getAmount()

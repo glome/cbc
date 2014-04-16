@@ -7,7 +7,7 @@
 
         public function fetch($collection)
         {
-            return false;
+            return false; // disables caching
 
             if (isset($_SESSION['glome.categories'])) {
                 $collection->import($_SESSION['glome.categories']);
