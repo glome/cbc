@@ -22,12 +22,12 @@
                                             <div class="price">
                                                 <span><?=$this->translate('product.cashback')?>:</span>
                                                 <span>
-                                                    <?=$product['currencySymbol'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
+                                                    <?=$product['bonusMoney'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
                                                     <?=$product['one-bonus'] ? '' : '&'?>
                                                     <?=$product['bonusPercent'] === null ? '' : ($product['bonusPercent'] . '%')?>
                                                 </span>
                                             </div>
-                                            <span class="voucher"><?=$this->translate('product.voucher')?>: -10%</span>
+                                            <?php /* <span class="voucher"><?=$this->translate('product.voucher')?>: -10%</span> */ ?>
                                             <span class="buy_btn"><?=$this->translate('product.button_view')?></span>
                                         </div><!-- .product-info -->
                                     </a>

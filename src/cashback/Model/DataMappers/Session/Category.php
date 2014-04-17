@@ -7,6 +7,8 @@
 
         public function fetch($instance)
         {
+            return false;
+
             if (isset($_SESSION['glome.categories'])) {
                 $categories = $_SESSION['glome.categories'];
 

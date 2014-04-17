@@ -154,6 +154,15 @@ class Shop extends \Application\Common\Service
     }
 
 
+    public function clearQuery()
+    {
+        $products = $this->domainObjectFactory->create('ProductCollection');
+        $products->setQuery('');
+        $session = $this->dataMapperFactory->create('ProductCollection', 'Session');
+        $session->store($products);
+    }
+
+
     public function prepareSearch($query)
     {
         $this->currentQuery = $query;
@@ -260,12 +269,14 @@ class Shop extends \Application\Common\Service
 
         $visit = $this->acquireVisit($product);
 
+
         $session = $this->dataMapperFactory->create('Visit', 'Session');
         if (!$session->fetch($visit)) {
 
-            $visit->setVisitorId($this->currentUser->getVisitorId());
             $db = $this->dataMapperFactory->create('Visitor', 'SQL');
             $db->store($this->currentUser);
+
+            $visit->setVisitorId($this->currentUser->getVisitorId());
 
             $db = $this->dataMapperFactory->create('Visit', 'SQL');
             $db->store($visit);
@@ -388,6 +399,8 @@ class Shop extends \Application\Common\Service
 
         $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
         $api->fetch($products);
+
+        $db->delete($products);
 
         return $products->getParsedArray();
     }

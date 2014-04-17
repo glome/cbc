@@ -19,6 +19,9 @@ class ProductCollection extends \Application\Common\RestMapper
         $this->resources = $configuration['rest']['resources'];
     }
 
+
+
+
     public function fetch($collection)
     {
         $cookiePlugin = new CookiePlugin($this->cookieJar);

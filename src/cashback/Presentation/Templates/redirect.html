@@ -4,7 +4,7 @@
 <!--[if IE 9]> <html class="no-js ie9 ie" lang="en"> <![endif]-->
 <!--[if gt IE 9]><!--><html class='no-js' lang='en'><!--<![endif]-->
     <head>
-        <title>Index</title>
+        <title>Cashback Catalog - powered by Glome</title>
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <link href='http://fonts.googleapis.com/css?family=Noto+Sans&subset=latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
@@ -26,14 +26,15 @@
             <div class="center">
                 <div class="content-box">
                     <a href="" class="logo">
-                        <span class="logo-text">Cashback Catalog</span>
-                        <span class="logo-text">new era in online shopping</span>
+                        <span class="logo-text"><?=$this->translate('global.title')?></span>
+                        <span class="logo-text"><?=$this->translate('global.subtitle')?></span>
                     </a>
-                    <span class="title">Just a second, we are opening <?=$product['advertiser']?> site</span>
+                    <span class="title"><?=$this->translate('redirect.notice', $product['advertiser'])?></span>
                     <div class="notice-msg">
-                        <span class="bold">Do not forget to use voucher code to get discount for Title of the product</span>
+                        <span class="bold"><?=$this->translate('redirect.reminder', $product['title'])?></span>
                         <?php if ($product['incentive']): ?>
-                        <span>Voucher code: <?=$product['incentive']['code']?></span>
+                        <span class="bold"><?=$this->translate('redirect.reminder_with_voucher', $product['title'])?></span>
+                        <span><?=$this->translate('redirect.voucher.title')?>: <?=$product['incentive']['code']?></span>
                         <?php endif; ?>
                     </div>
                 </div>

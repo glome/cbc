@@ -19,7 +19,7 @@
         public function store($instance)
         {
             $value = $instance->getQuery();
-            if ($value !== null) {
+            if ($value !== '') {
                 $_SESSION['glome.query'] = $value;
             }
         }

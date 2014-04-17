@@ -158,17 +158,17 @@
                                     <div class="title">Thank you! Your message has been sent!</div>
                                 </div><!-- .feedback -->
                                 <div id="message-notice" class="message-notice msg-box-fullpage hidden ">
-                                  <div>We have received your message, thank you!</div>
+                                  <div><?=$this->translate('form.message_sent')?></div>
                                 </div>
                                 <form id="message-form" method="post" class="contact-form">
-                                    <div class="title">Feel free to leave a message!</div>
+                                    <div class="title"><?=$this->translate('form.title')?></div>
                                     <div class="form-item">
-                                        <label for="email">E-mail (optional):</label>
+                                        <label for="email"><?=$this->translate('form.title')?>:</label>
                                         <input type="text" id="email" name="email" />
 
                                     </div>
                                     <div class="form-item">
-                                        <label for="comments">Comment:</label>
+                                        <label for="comments"><?=$this->translate('form.comment_title')?>:</label>
                                         <textarea name="comments" class="comments" id="comments"></textarea>
                                     </div>
                                     <div class="form-item">

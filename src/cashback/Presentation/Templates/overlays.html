@@ -18,13 +18,13 @@
             <div class="center">
                 <div class="content-box">
                     <a href="" class="close-overlay"></a>
-                    <span class="title"><span class="product-name"><?=$product['title']?></span> was opened in a new window </span>
-                    <span class="retailer">Retailer: <span><?=$product['advertiser']?></span></span>
+                    <span class="title"><?=$this->translate('overlay.title', $product['title'])?></span>
+                    <span class="retailer"><?=$this->translate('navigation.retailer_title')?>: <span><?=$product['advertiser']?></span></span>
                     <div class="notice-msg">
-                        <span class="bold">Your visit has been recorded</span>
-                        <span>The cashback from any purchase (s) will soon show in your Glome Wallet</span>
+                        <span class="bold"><?=$this->translate('overlay.notice')?></span>
+                        <span><?=$this->translate('overlay.reminder')?></span>
                     </div>
-                    <a href="" class="continue-shopping">Continue browsing and shopping in Cashback Catalog</a>
+                    <a href="" class="continue-shopping"><?=$this->translate('overlay.link')?></a>
                 </div>
             </div>
         </div>
