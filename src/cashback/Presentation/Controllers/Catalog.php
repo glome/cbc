@@ -20,6 +20,8 @@ class Catalog extends \Application\Common\Controller
         $retailer = $request->getParameter('param');
         $isXHR = $request->getParameter('xhr');
 
+        $shop->clearQuery();
+
         if (isset($isXHR)) {
             $shop->setReload();
         }

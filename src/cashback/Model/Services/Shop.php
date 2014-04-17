@@ -154,6 +154,15 @@ class Shop extends \Application\Common\Service
     }
 
 
+    public function clearQuery()
+    {
+        $products = $this->domainObjectFactory->create('ProductCollection');
+        $products->setQuery('');
+        $session = $this->dataMapperFactory->create('ProductCollection', 'Session');
+        $session->store($products);
+    }
+
+
     public function prepareSearch($query)
     {
         $this->currentQuery = $query;
