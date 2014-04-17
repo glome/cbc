@@ -4171,6 +4171,12 @@ footer {
     .mob-hide {
         display: none;
     }
+    .redeem-inlay .qr,
+    .redeem-inlay .divider {
+        display: none;
+    }
+    
+    
 }
 
 /* FlexSlider Necessary Styles

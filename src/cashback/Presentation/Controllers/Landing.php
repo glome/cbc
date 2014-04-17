@@ -13,6 +13,10 @@ class Landing extends \Application\Common\Controller
         $user = $recognition->getCurrentUser();
         $itinerary->forUser($user);
         $shop->forUser($user);
+
+
+        $configuration = $this->serviceFactory->create('Configuration');
+        $configuration->setSearchState(0);
     }
 
 

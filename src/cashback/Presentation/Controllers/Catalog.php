@@ -20,6 +20,9 @@ class Catalog extends \Application\Common\Controller
         $retailer = $request->getParameter('param');
         $isXHR = $request->getParameter('xhr');
 
+        $configuration = $this->serviceFactory->create('Configuration');
+        $configuration->setSearchState(1);
+
         $shop->clearQuery();
 
         if (isset($isXHR)) {

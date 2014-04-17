@@ -14,10 +14,16 @@ class Search extends \Application\Common\View
         $shop = $this->serviceFactory->create('Shop');
         $categories = $shop->getCategories();
         $query = $shop->getSearchedTerm();
+
+        $forCategory = $configuration->getSearchState();
+
         $products = $shop->getProducts();
 
         $translation = $this->serviceFactory->create('Translation');
         $translation->checkSettings();
+
+
+
 
         $builder = $this->templateBuilder;
 

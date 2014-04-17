@@ -10,8 +10,19 @@
         private $language = 'EN';
         private $currency = 'EUR';
         private $order = false;
+        private $searchType = null;
 
         private $locations = [];
+
+        public function setSearchType($id)
+        {
+            $this->searchType = $id === null ? null : (int)$id;
+        }
+
+        public function getSearchType()
+        {
+            return $this->searchType;
+        }
 
         public function setParam($name, $value)
         {

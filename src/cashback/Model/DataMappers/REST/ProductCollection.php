@@ -54,8 +54,36 @@ class ProductCollection extends \Application\Common\RestMapper
             }
         }
 
+        if ($collection->hasCategory() && $collection->hasQuery()) {
 
-        if ($collection->hasCategory()) {
+            error_log(' BOTH ');
+
+            $resKey = 'products';
+            if ($collection->getAdvertisers() !== '') {
+                $resKey = 'products-with-advertisers';
+            }
+            $url = $this->applyValuesToURL($this->resources[$resKey], [
+                '{id}'       => $collection->getCategory(),
+                '{page}'     => $collection->getPage(),
+                '{currency}' => $collection->getCurrency(),
+                '{order}'    => $collection->getOrder() ? 'desc':'asc',
+                '{adv}'      => $collection->getAdvertisers(),
+                '{countries}'=> $collection->getLocationQuery(),
+            ]);
+
+            $response = $client->get($this->host . $url)->send();
+            $data = $response->json();
+
+            foreach ($data as $id => $entry) {
+                $collection->addItem($entry);
+            }
+        }
+
+
+        if ($collection->hasCategory() && !$collection->hasQuery()) {
+
+
+            error_log(' CATEGORY ');
 
             $resKey = 'products';
             if ($collection->getAdvertisers() !== '') {
@@ -80,6 +108,10 @@ class ProductCollection extends \Application\Common\RestMapper
 
 
         if ($collection->hasQuery()) {
+
+            error_log(' QUERY ');
+
+
 
             $url = $collection->forAutocomplete() ? $this->resources['search-suggestions'] : $this->resources['search'];
 

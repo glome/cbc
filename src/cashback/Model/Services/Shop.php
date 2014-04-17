@@ -101,7 +101,7 @@ class Shop extends \Application\Common\Service
     }
 
 
-    public function getProducts()
+    public function getProducts($forCategory = null)
     {
 
         $settings = $this->domainObjectFactory->create('Settings');
