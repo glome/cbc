@@ -173,6 +173,8 @@ $(document).ready(function() {
 
     /* Moboile open filter */
     $(".mob-filter-btn").on("click", function(e) {
+        var target = $(this).parent(),
+            rows;
         e.preventDefault();
         if ($(".header-profile").hasClass("active")) {
             $(".header-profile").removeClass("active");
@@ -182,26 +184,28 @@ $(document).ready(function() {
             $(".redeem-inlay.open").removeClass("open");
         }
 
-        if ($(this).parent().hasClass("mob-opened")) {
-            $(this).parent().children(".row").children(".mob-opened").removeClass("mob-opened");
-            $(this).parent().removeClass("mob-opened");
-            $(this).parent().children(".row").children(".lbl.col-1").removeClass("mob-opened");
+        rows = target.children(".row");
+        if (target.hasClass("mob-opened")) {
+            rows.children(".mob-opened").removeClass("mob-opened");
+            target.removeClass("mob-opened");
+            rows.children(".lbl.col-1").removeClass("mob-opened");
         } else {
-            $(this).parent().addClass("mob-opened");
-            $(this).parent().children(".row").children(".form-item.col-1").addClass("mob-opened");
-            $(this).parent().children(".row").children(".lbl.col-1").addClass("mob-opened");
+            target.addClass("mob-opened");
+            rows.children(".form-item.col-1").addClass("mob-opened");
+            rows.children(".lbl.col-1").addClass("mob-opened");
         }
     });
 
     $(".location-filter .row .lbl").on("click", function(e) {
+        var selected = $(this).attr("id");
+            target = $(this).parent();
         e.preventDefault();
 
-        $(this).parent().children().removeClass("mob-opened");
-        $(this).parent().next(".row").children().removeClass("mob-opened");
-        var selected = $(this).attr("id");
+        target.children().removeClass("mob-opened");
+        target.next(".row").children().removeClass("mob-opened");
 
         $(this).addClass("mob-opened");
-        $(this).parent().next(".row").children("." + selected).addClass("mob-opened");
+        target.next(".row").children("." + selected).addClass("mob-opened");
 
 
     });
@@ -431,6 +435,7 @@ $(document).ready(function() {
     $(".search-select ul li a").on("click", function(e) {
         e.preventDefault();
         var txt = $(this).text();
+        $.get('/options/search/' . txt);
         $(this).parent().parent().children().removeClass("selected");
         $(this).parent().addClass("selected");
         $(".search-select span.selected").text(txt);
