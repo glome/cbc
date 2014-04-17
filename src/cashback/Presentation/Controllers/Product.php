@@ -16,5 +16,8 @@ class Product extends \Application\Common\Controller
         $itinerary->forUser($user);
         $shop->setCurrentProduct($request->getParameter('id'));
 
+        $configuration = $this->serviceFactory->create('Configuration');
+        $configuration->setSearchState(0);
+
     }
 }

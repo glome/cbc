@@ -21,4 +21,12 @@ class Options extends \Application\Common\Controller
         }
     }
 
+    public function getSearch($request)
+    {
+        $id = $request->getParameter('id');
+        $configuration = $this->serviceFactory->create('Configuration');
+        $configuration->setSearchState($id);
+    }
+
+
 }

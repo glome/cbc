@@ -198,4 +198,27 @@ class Configuration extends \Application\Common\Service
     }
 
 
+    public function setSearchState($id)
+    {
+        $settings = $this->domainObjectFactory->create('Settings');
+        $cookies = $this->dataMapperFactory->create('Settings', 'Session');
+        $cookies->fetch($settings);
+        $settings->setSearchType($id);
+        $cookies->store($settings);
+    }
+
+    public function getSearchState()
+    {
+        $settings = $this->domainObjectFactory->create('Settings');
+        $cookies = $this->dataMapperFactory->create('Settings', 'Session');
+        $cookies->fetch($settings);
+        return $settings->getSearchType();
+    }
+
+    public function flushSearchState()
+    {
+        $this->setSearchState(null);
+    }
+
+
 }

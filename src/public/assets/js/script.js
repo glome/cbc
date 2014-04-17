@@ -366,11 +366,11 @@ $(document).ready(function() {
     });
 
     /* SEARCH */
-    if ($(window).width() < 731) {
-        $(".search-btn").on("click", function() {
+    $(".search-btn").on("click", function() {
+        if ($(window).width() < 731) {
             $(this).parent().toggleClass("mob-opened");
-        });
-    }
+        }
+    });
 
     $(".search-select .selected").on("click", function(e) {
         e.preventDefault();
@@ -433,9 +433,10 @@ $(document).ready(function() {
     });
 
     $(".search-select ul li a").on("click", function(e) {
+        var txt = $(this).text(),
+            counter = 0;
         e.preventDefault();
-        var txt = $(this).text();
-        $.get('/options/search/' . txt);
+        $.get('/options/search/' + $(this.parentNode).index());
         $(this).parent().parent().children().removeClass("selected");
         $(this).parent().addClass("selected");
         $(".search-select span.selected").text(txt);
