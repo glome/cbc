@@ -46,6 +46,12 @@
             "url": "http://stage.cashbackcatalog.com/cms/en/faq",
             "xpath": "//*[@id='content']/*/*[@class='entry-content']"
           }
+        },
+        "fi": {
+          "faq": {
+            "url": "http://stage.cashbackcatalog.com/cms/fi/ota-yhteytta",
+            "xpath": "//*[@id='content']/*/*[@class='entry-content']"
+          }
         }
     }
 

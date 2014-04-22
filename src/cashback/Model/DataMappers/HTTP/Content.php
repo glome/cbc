@@ -10,13 +10,19 @@
             $doc = new \DOMDocument();
             libxml_use_internal_errors(true);
 
-            if (isset($this->config['en'][$instance->getName()])) {
-                $path = $this->config['en'][$instance->getName()]['url'];
-                $doc->loadHTMLFile($path);
+            $language = strtolower($instance->getLanguage());
+
+            if (isset($this->config[$language][$instance->getName()])) {
+                $path = $this->config[$language][$instance->getName()]['url'];
+                $worked = @$doc->loadHTMLFile($path);
                 libxml_clear_errors();
 
+                if (!$worked) {
+                    return;
+                }
+
                 $xpath = new \DOMXPath($doc);
-                $content = $xpath->query( $this->config['en'][$instance->getName()]['xpath'])->item(0);
+                $content = $xpath->query( $this->config[$language][$instance->getName()]['xpath'])->item(0);
 
                 $output = new \DOMDocument();
                 $output->appendChild($output->importNode($content, true));

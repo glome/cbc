@@ -7,6 +7,8 @@ class Content
 
     private $name;
     private $output;
+    private $language;
+
 
     public function setName($name)
     {
@@ -27,6 +29,17 @@ class Content
     {
         return $this->output;
     }
+
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
+
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
 
 
 }
