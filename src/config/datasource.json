@@ -38,5 +38,17 @@
         "dsn": "mysql:host=localhost;dbname=cashback;charset=utf8",
         "username": "demo",
         "password": "demo"
+    },
+
+    "cms": {
+        "en": {
+          "faq": {
+            "url": "http://stage.cashbackcatalog.com/cms/en/faq",
+            "id": "content"
+          }
+        },
+        "de": {},
+        "fi": {}
     }
+
 }
