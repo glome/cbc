@@ -44,11 +44,9 @@
         "en": {
           "faq": {
             "url": "http://stage.cashbackcatalog.com/cms/en/faq",
-            "id": "content"
+            "xpath": "//*[@id='content']/*/*[@class='entry-content']"
           }
-        },
-        "de": {},
-        "fi": {}
+        }
     }
 
 }
