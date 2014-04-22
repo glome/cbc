@@ -52,7 +52,10 @@ class Catalog extends \Application\Common\View
         $profile    = $builder->create('profile-brief');
 
         $footer->assign('categories', $categories);
-        $navigation->assign('categories', array_slice($categories, 0 , 10));
+        $navigation->assignAll([
+            'categories' => array_slice($categories, 0 , 10),
+            'searchType' => $configuration->getSearchState(),
+        ]);
 
 
         $profile->assignAll([

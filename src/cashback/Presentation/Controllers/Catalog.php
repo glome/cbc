@@ -22,6 +22,7 @@ class Catalog extends \Application\Common\Controller
 
         $configuration = $this->serviceFactory->create('Configuration');
         $configuration->setSearchState(1);
+        $configuration->setCurrentCategory($request->getParameter('id'));
 
         $shop->clearQuery();
 

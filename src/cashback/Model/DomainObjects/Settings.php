@@ -11,8 +11,20 @@
         private $currency = 'EUR';
         private $order = false;
         private $searchType = null;
-
+        private $lastCategory = null;
         private $locations = [];
+
+
+        public function setLastCategory($lastCategory)
+        {
+            $this->lastCategory = $lastCategory;
+        }
+
+        public function getLastCategory()
+        {
+            return $this->lastCategory;
+        }
+
 
         public function setSearchType($id)
         {

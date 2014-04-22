@@ -52,23 +52,20 @@ class ProductCollection extends \Application\Common\RestMapper
                 }
                 $this->applyParameter($product,$data);
             }
-        }
-
-        if ($collection->hasCategory() && $collection->hasQuery()) {
+        } elseif ($collection->hasCategory() && $collection->hasQuery()) {
 
             error_log(' BOTH ');
 
             $resKey = 'products';
             if ($collection->getAdvertisers() !== '') {
-                $resKey = 'products-with-advertisers';
+                $resKey = 'search-category';
             }
             $url = $this->applyValuesToURL($this->resources[$resKey], [
                 '{id}'       => $collection->getCategory(),
                 '{page}'     => $collection->getPage(),
                 '{currency}' => $collection->getCurrency(),
-                '{order}'    => $collection->getOrder() ? 'desc':'asc',
-                '{adv}'      => $collection->getAdvertisers(),
                 '{countries}'=> $collection->getLocationQuery(),
+                '{query}'    => $collection->getQuery(),
             ]);
 
             $response = $client->get($this->host . $url)->send();
@@ -77,10 +74,7 @@ class ProductCollection extends \Application\Common\RestMapper
             foreach ($data as $id => $entry) {
                 $collection->addItem($entry);
             }
-        }
-
-
-        if ($collection->hasCategory() && !$collection->hasQuery()) {
+        } elseif ($collection->hasCategory() && !$collection->hasQuery()) {
 
 
             error_log(' CATEGORY ');
@@ -104,10 +98,7 @@ class ProductCollection extends \Application\Common\RestMapper
             foreach ($data as $id => $entry) {
                 $collection->addItem($entry);
             }
-        }
-
-
-        if ($collection->hasQuery()) {
+        } elseif ($collection->hasQuery()) {
 
             error_log(' QUERY ');
 
