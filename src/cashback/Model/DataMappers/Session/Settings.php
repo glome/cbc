@@ -24,6 +24,13 @@
                 $instance->setOrder($_SESSION['config.order']);
             }
 
+            if (isset($_SESSION['config.search-type'])) {
+                $instance->setSearchType($_SESSION['config.search-type']);
+            }
+
+            if (isset($_SESSION['config.last-category'])) {
+                $instance->setLastCategory($_SESSION['config.last-category']);
+            }
 
             return true;
         }
@@ -35,6 +42,8 @@
             $_SESSION['config.currency'] = $instance->getCurrency();
             $_SESSION['config.locations'] = $instance->getLocations();
             $_SESSION['config.order'] = $instance->getOrder();
+            $_SESSION['config.search-type'] = $instance->getSearchType();
+            $_SESSION['config.last-category'] = $instance->getLastCategory();
         }
 
     }

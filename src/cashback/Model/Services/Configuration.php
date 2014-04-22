@@ -167,8 +167,8 @@ class Configuration extends \Application\Common\Service
     {
         $settings = $this->domainObjectFactory->create('Settings');
 
-        $cookies = $this->dataMapperFactory->create('Settings', 'Session');
-        $cookies->fetch($settings);
+        $session = $this->dataMapperFactory->create('Settings', 'Session');
+        $session->fetch($settings);
 
 
         foreach ($this->data['currencies'] as $key => $value) {
@@ -185,8 +185,8 @@ class Configuration extends \Application\Common\Service
     {
         $settings = $this->domainObjectFactory->create('Settings');
 
-        $cookies = $this->dataMapperFactory->create('Settings', 'Session');
-        $cookies->fetch($settings);
+        $session = $this->dataMapperFactory->create('Settings', 'Session');
+        $session->fetch($settings);
 
         foreach ($this->data['languages'] as $key => $value) {
             if ($value['code'] === $settings->getLanguage()) {
@@ -201,17 +201,17 @@ class Configuration extends \Application\Common\Service
     public function setSearchState($id)
     {
         $settings = $this->domainObjectFactory->create('Settings');
-        $cookies = $this->dataMapperFactory->create('Settings', 'Session');
-        $cookies->fetch($settings);
+        $session = $this->dataMapperFactory->create('Settings', 'Session');
+        $session->fetch($settings);
         $settings->setSearchType($id);
-        $cookies->store($settings);
+        $session->store($settings);
     }
 
     public function getSearchState()
     {
         $settings = $this->domainObjectFactory->create('Settings');
-        $cookies = $this->dataMapperFactory->create('Settings', 'Session');
-        $cookies->fetch($settings);
+        $session = $this->dataMapperFactory->create('Settings', 'Session');
+        $session->fetch($settings);
         return $settings->getSearchType();
     }
 
@@ -219,6 +219,17 @@ class Configuration extends \Application\Common\Service
     {
         $this->setSearchState(null);
     }
+
+
+    public function setCurrentCategory($id)
+    {
+        $settings = $this->domainObjectFactory->create('Settings');
+        $session = $this->dataMapperFactory->create('Settings', 'Session');
+        $session->fetch($settings);
+        $settings->setLastCategory($id);
+        $session->store($settings);
+    }
+
 
 
 }

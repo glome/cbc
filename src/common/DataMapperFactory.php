@@ -42,6 +42,9 @@ class DataMapperFactory
             if ($instance instanceof SQLMapper) {
                 $instance->setConnection($this->getPDOInstance($this->datasources['sql']));
             }
+            if ($instance instanceof HTTPMapper) {
+                $instance->setConfig($this->datasources['cms']);
+            }
 
             $this->cache[$class] = $instance;
         }

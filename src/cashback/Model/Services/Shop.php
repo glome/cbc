@@ -120,6 +120,10 @@ class Shop extends \Application\Common\Service
         $products->setCategory($this->currentCategoryId);
         $products->setLocations($locations);
 
+        if ($settings->getSearchType() === 1) {
+            $products->setCategory($settings->getLastCategory());
+        }
+
 
         $session = $this->dataMapperFactory->create('ProductCollection', 'Session');
         $session->fetch($products);

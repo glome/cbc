@@ -19,8 +19,10 @@
             "products":                   "/products.json?cat_id={id}&per_page=20&page={page}&currency={currency}&order={order}&sort_by=update&country={countries}",
             "products-with-advertisers":  "/products.json?cat_id={id}&per_page=20&page={page}&currency={currency}&order={order}&sort_by=update&advertiser_id={adv}",
 
+
             "search":                     "/products/search.json?keywords={query}&per_page=20&page={page}",
             "search-suggestions":         "/products/search.json?keywords={query}&per_page=20",
+            "search-category":            "/products/search.json?keywords={query}&per_page=20&page={page}&cat_id={id}",
             "incentives":                 "/incentives.json?per_page=200&filter=valid",
 
             "user":                       "/users.json",
@@ -36,5 +38,21 @@
         "dsn": "mysql:host=localhost;dbname=cashback;charset=utf8",
         "username": "demo",
         "password": "demo"
+    },
+
+    "cms": {
+        "en": {
+          "faq": {
+            "url": "http://stage.cashbackcatalog.com/cms/en/faq",
+            "xpath": "//*[@id='content']/*/*[@class='entry-content']"
+          }
+        },
+        "fi": {
+          "faq": {
+            "url": "http://stage.cashbackcatalog.com/cms/fi/ota-yhteytta",
+            "xpath": "//*[@id='content']/*/*[@class='entry-content']"
+          }
+        }
     }
+
 }

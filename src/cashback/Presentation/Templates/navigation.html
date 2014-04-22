@@ -25,15 +25,30 @@
                     </div><!-- .cat-menu -->
                     <div class="search">
                         <div class="search-select dropdown">
-                            <span class="selected"><?=$this->translate('navigation.search_all')?></span>
+                            <span class="selected"><?=isset($searchType)
+                                                        ? $searchType === 1
+                                                            ? $this->translate('navigation.search_current')
+                                                            : $this->translate('navigation.search_all')
+                                                        : $this->translate('navigation.search_all')?></span>
                             <ul>
-                                <li class="selected"><a href=""><?=$this->translate('navigation.search_all')?></a></li>
-                                <li><a href=""><?=$this->translate('navigation.search_current')?></a></li>
+                                <li <?=isset($searchType)
+                                            ? $searchType === 1
+                                                ? ''
+                                                : 'class="selected"'
+                                            : 'class="selected"'?>><a href=""><?=$this->translate('navigation.search_all')?></a></li>
+                                <li <?=isset($searchType)
+                                            ? $searchType === 1
+                                                ? 'class="selected"'
+                                                : ''
+                                            : ''?>><a href=""><?=$this->translate('navigation.search_current')?></a></li>
                             </ul>
                         </div>
                         <div class="search-btn"></div>
                         <form method="post" class="search-form" action="/search">
-                            <input type="text" name="search-field" placeholder="<?=$this->translate('navigation.search_prompt')?>" id="search-input" value="<?php echo isset($query)?$query : ''?>"/>
+                            <input type="text" name="search-field" placeholder="<?=$this->translate('navigation.search_prompt')?>"
+                                   id="search-input" value="<?=isset($query)
+                                                                   ? $query
+                                                                   : ''?>"/>
                             <input type="submit" value=" " name="search-submit" id="search-submit"/>
                         </form>
                     </div><!-- .search -->
