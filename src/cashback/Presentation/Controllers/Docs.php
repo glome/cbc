@@ -26,6 +26,4 @@ class Docs extends \Application\Common\Controller
     {
         $this->getIndex($request);
     }
-
-
 }

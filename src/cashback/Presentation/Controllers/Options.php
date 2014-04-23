@@ -27,6 +27,4 @@ class Options extends \Application\Common\Controller
         $configuration = $this->serviceFactory->create('Configuration');
         $configuration->setSearchState($id);
     }
-
-
 }

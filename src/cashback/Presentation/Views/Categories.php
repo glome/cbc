@@ -66,7 +66,7 @@ class Categories extends \Application\Common\View
         ]);
 
         $navigation->assignAll([
-            'categories' => array_slice($categories, 0 , 10),
+            'categories' => array_slice($categories, 0, 10),
             'query'      => $query,
         ]);
 
@@ -105,11 +105,10 @@ class Categories extends \Application\Common\View
     {
         $groups = [];
         $a = ceil($total/3);
-        $groups[0] = array_slice($list, 0 , $a);
+        $groups[0] = array_slice($list, 0, $a);
         $b = ceil(($total - $a)/2);
-        $groups[1] = array_slice($list, $a , $b);
+        $groups[1] = array_slice($list, $a, $b);
         $groups[2] = array_slice($list, $a + $b);
         return $groups;
     }
-
 }

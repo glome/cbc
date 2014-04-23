@@ -59,5 +59,4 @@ class Profile extends \Application\Common\Controller
     {
 
     }
-
 }

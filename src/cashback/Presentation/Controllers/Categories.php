@@ -18,6 +18,4 @@ class Categories extends \Application\Common\Controller
         $configuration->setSearchState(0);
 
     }
-
-
 }

@@ -35,5 +35,4 @@ class Redirect extends \Application\Common\View
 
         return $main->render();
     }
-
 }
