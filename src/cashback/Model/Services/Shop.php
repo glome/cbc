@@ -186,7 +186,7 @@ class Shop extends \Application\Common\Service
         $api->fetch($products);
 
         $list = [];
-        foreach($products as $id => $product) {
+        foreach ($products as $id => $product) {
             $list[] = ['id' => $id, 'value' =>  $product->getTitle() ,'label' =>  $product->getTitle()];
         }
 
@@ -219,7 +219,7 @@ class Shop extends \Application\Common\Service
 
     public function getCurrentProduct($mustRegister = true)
     {
-        if ($this->currentProduct === null ) {
+        if ($this->currentProduct === null) {
             $this->currentProduct = $this->acquireProduct();
         }
 
@@ -230,8 +230,7 @@ class Shop extends \Application\Common\Service
         $wish->setUserId($this->currentUser->getId());
         $wish->setProductId($product->getId());
 
-        if ($db->fetch($wish))
-        {
+        if ($db->fetch($wish)) {
             $product->markAsFavorite();
         }
 
@@ -355,7 +354,7 @@ class Shop extends \Application\Common\Service
 
     public function registerBuy()
     {
-        if ($this->currentProduct === null ) {
+        if ($this->currentProduct === null) {
             $this->currentProduct = $this->acquireProduct();
         }
 
@@ -422,5 +421,4 @@ class Shop extends \Application\Common\Service
         $session->store($retailers);
 
     }
-
 }

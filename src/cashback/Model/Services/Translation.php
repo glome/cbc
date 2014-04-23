@@ -34,7 +34,7 @@ class Translation extends \Application\Common\Service
 
     public function fetchTranslations()
     {
-        if ($this->cache === null ) {
+        if ($this->cache === null) {
             $filename = "{$this->dir}/{$this->lang}.json";
             if (file_exists($filename)) {
                 $this->cache = json_decode(file_get_contents($filename), true);
@@ -44,6 +44,4 @@ class Translation extends \Application\Common\Service
         }
         return $this->cache;
     }
-
-
 }

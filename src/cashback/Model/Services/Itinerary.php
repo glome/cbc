@@ -125,7 +125,7 @@ class Itinerary extends \Application\Common\Service
         if (!$finances->hasError()) {
             $total = $finances->getTotal($currency);
         }
-        return number_format($total/100, 2 , '.', '');
+        return number_format($total/100, 2, '.', '');
     }
 
     public function getHistory($currency)
@@ -164,5 +164,4 @@ class Itinerary extends \Application\Common\Service
     {
 
     }
-
 }
