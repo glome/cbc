@@ -75,6 +75,4 @@ class Incentive
             'percentage' => $this->variablePercentage,
         ];
     }
-
-
 }

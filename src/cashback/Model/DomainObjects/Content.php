@@ -39,7 +39,4 @@ class Content
     {
         return $this->language;
     }
-
-
-
 }
