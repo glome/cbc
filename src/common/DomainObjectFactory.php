@@ -8,13 +8,13 @@ class DomainObjectFactory
     private $namespace = '';
 
 
-    public function setNamespace( $namespace )
+    public function setNamespace($namespace)
     {
         $this->namespace = $namespace;
     }
 
 
-    public function create( $class, $namespace = null )
+    public function create($class, $namespace = null)
     {
         if ($namespace !== null) {
             $class = $namespace . '\\' . $class;
@@ -24,6 +24,4 @@ class DomainObjectFactory
         $instance = new $class;
         return $instance;
     }
-
-
 }

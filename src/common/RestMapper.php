@@ -1,23 +1,21 @@
 <?php
 
-    namespace Application\Common;
+namespace Application\Common;
 
-    class RestMapper
+class RestMapper
+{
+
+    protected $cookieJar;
+
+
+    public function setCookieJar($cookieJar)
     {
-
-        protected $cookieJar;
-
-
-        public function setCookieJar($cookieJar)
-        {
-            $this->cookieJar = $cookieJar;
-        }
-
-
-        protected function applyValuesToURL($url, $parameters)
-        {
-            return strtr($url, $parameters);
-        }
-
-
+        $this->cookieJar = $cookieJar;
     }
+
+
+    protected function applyValuesToURL($url, $parameters)
+    {
+        return strtr($url, $parameters);
+    }
+}

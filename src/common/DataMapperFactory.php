@@ -14,7 +14,7 @@ class DataMapperFactory
         $this->datasources = $datasources;
     }
 
-    public function setNamespace( $namespace )
+    public function setNamespace($namespace)
     {
         $this->namespace = $namespace;
     }
@@ -25,7 +25,7 @@ class DataMapperFactory
     }
 
     // this really should have been a DI container instead ..
-    public function create( $class, $namespace = null )
+    public function create($class, $namespace = null)
     {
         if ($namespace !== null) {
             $class = $namespace . '\\' . $class;
@@ -60,6 +60,4 @@ class DataMapperFactory
         $instance->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         return $instance;
     }
-
-
 }

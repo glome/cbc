@@ -42,7 +42,7 @@ class Template
 
     private function appendArray($name, $value)
     {
-        if ( !array_key_exists($name, $this->parameters)) {
+        if (!array_key_exists($name, $this->parameters)) {
             $this->parameters[$name] = [];
         }
 
@@ -52,7 +52,7 @@ class Template
 
     private function appendInteger($name, $value)
     {
-        if ( !array_key_exists($name, $this->parameters)) {
+        if (!array_key_exists($name, $this->parameters)) {
             $this->parameters[$name] = 0;
         }
 
@@ -62,7 +62,7 @@ class Template
 
     private function appendString($name, $value)
     {
-        if ( !array_key_exists($name, $this->parameters)) {
+        if (!array_key_exists($name, $this->parameters)) {
             $this->parameters[$name] = '';
         }
 
@@ -98,5 +98,4 @@ class Template
 
         return $param;
     }
-
 }
