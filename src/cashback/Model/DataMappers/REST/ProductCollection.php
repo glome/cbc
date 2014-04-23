@@ -7,7 +7,6 @@ use Guzzle\Plugin\Cookie\CookiePlugin;
 use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 use Guzzle\Common\Event;
 
-
 class ProductCollection extends \Application\Common\RestMapper
 {
 
@@ -31,7 +30,7 @@ class ProductCollection extends \Application\Common\RestMapper
 
         $client->getEventDispatcher()->addListener(
             'request.error',
-            function(Event $event) use ($collection) {
+            function (Event $event) use ($collection) {
                 $event->stopPropagation();
             }
         );
@@ -39,8 +38,7 @@ class ProductCollection extends \Application\Common\RestMapper
 
 
 
-        if ($collection->hasItems())
-        {
+        if ($collection->hasItems()) {
             foreach ($collection as $id => $product) {
 
                 $url = $this->applyValuesToURL($this->resources['product'], ['{id}' => $product->getId() ]);
@@ -50,7 +48,7 @@ class ProductCollection extends \Application\Common\RestMapper
                     $collection->removeItem($id);
                     continue;
                 }
-                $this->applyParameter($product,$data);
+                $this->applyParameter($product, $data);
             }
         } elseif ($collection->hasCategory() && $collection->hasQuery()) {
 
@@ -106,11 +104,17 @@ class ProductCollection extends \Application\Common\RestMapper
 
             $url = $collection->forAutocomplete() ? $this->resources['search-suggestions'] : $this->resources['search'];
 
-            $url = $this->applyValuesToURL($url, ['{query}' => $collection->getQuery(), '{page}' => $collection->getPage()  ]);
+            $url = $this->applyValuesToURL(
+                $url,
+                [
+                    '{query}' => $collection->getQuery(),
+                    '{page}' => $collection->getPage(),
+                ]
+            );
 
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
-            if (isset($data['status']) && $data['status'] === 1){
+            if (isset($data['status']) && $data['status'] === 1) {
                 return;
             }
             foreach ($data as $entry) {

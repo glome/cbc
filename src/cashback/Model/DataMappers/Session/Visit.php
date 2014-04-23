@@ -1,23 +1,22 @@
 <?php
 
-    namespace Application\DataMappers\Session;
+namespace Application\DataMappers\Session;
 
-    class Visit extends \Application\Common\SessionMapper
+class Visit extends \Application\Common\SessionMapper
+{
+
+    public function fetch($instance)
     {
-
-        public function fetch($instance)
-        {
-            if (!isset($_SESSION['glome.visits'])) {
-                return false;
-            }
-
-            return array_key_exists($instance->getProductId(), $_SESSION['glome.visits']);
+        if (!isset($_SESSION['glome.visits'])) {
+            return false;
         }
 
-
-        public function store($instance)
-        {
-            $_SESSION['glome.visits'][$instance->getProductId()] = 1;
-        }
-
+        return array_key_exists($instance->getProductId(), $_SESSION['glome.visits']);
     }
+
+
+    public function store($instance)
+    {
+        $_SESSION['glome.visits'][$instance->getProductId()] = 1;
+    }
+}

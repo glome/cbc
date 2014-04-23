@@ -1,31 +1,30 @@
 <?php
 
-    namespace Application\DataMappers\Session;
+namespace Application\DataMappers\Session;
 
-    class CategoryCollection extends \Application\Common\SessionMapper
+class CategoryCollection extends \Application\Common\SessionMapper
+{
+
+    public function fetch($collection)
     {
+        return false; // disables caching
 
-        public function fetch($collection)
-        {
-            return false; // disables caching
-
-            if (isset($_SESSION['glome.categories'])) {
-                $collection->import($_SESSION['glome.categories']);
-                return true;
-            }
-            return false;
+        if (isset($_SESSION['glome.categories'])) {
+            $collection->import($_SESSION['glome.categories']);
+            return true;
         }
-
-
-        public function store($collection)
-        {
-            $_SESSION['glome.categories'] = $collection->export();
-        }
-
-
-        public function delete($collection)
-        {
-            unset($_SESSION['glome.query']);
-        }
-
+        return false;
     }
+
+
+    public function store($collection)
+    {
+        $_SESSION['glome.categories'] = $collection->export();
+    }
+
+
+    public function delete($collection)
+    {
+        unset($_SESSION['glome.query']);
+    }
+}

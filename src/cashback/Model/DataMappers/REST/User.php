@@ -31,7 +31,9 @@ class User extends \Application\Common\RestMapper
         $client->addSubscriber($cookiePlugin);
 
         if ($instance->getId() === null) {
-            $request = $client->post($this->host . $this->resources['user'], [],
+            $request = $client->post(
+                $this->host . $this->resources['user'],
+                [],
                 [
                     'application[apikey]' => $this->apikey,
                     'application[uid]' => $this->uid
@@ -43,7 +45,9 @@ class User extends \Application\Common\RestMapper
         }
 
 
-        $request = $client->post($this->host . $this->resources['user-login'], [],
+        $request = $client->post(
+            $this->host . $this->resources['user-login'],
+            [],
             [
                 'user[glomeid]' => $instance->getId(),
             ]
@@ -55,16 +59,11 @@ class User extends \Application\Common\RestMapper
         $instance->setToken(array_pop($temp));
 
 
-        foreach ($this->cookieJar->getMatchingCookies($request) as $cookie)
-        {
+        foreach ($this->cookieJar->getMatchingCookies($request) as $cookie) {
             if ($cookie->getName() === '_session_id') {
                 $instance->setSession($cookie->getValue());
                 return;
             }
         }
-
-
     }
-
-
 }
