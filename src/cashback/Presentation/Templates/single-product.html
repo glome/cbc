@@ -52,7 +52,7 @@
                             <div class="discount-wrap">
                                 <a href="/profile/wish/<?=$product['id']?>" class="add-to-wishlist <?=$product['is-favorite']? 'active':''?>"><?=$this->translate('product.wishlist_title')?></a>
                                 <?php if ($product['incentive']): ?>
-                                <div class="discount-code"><?=$this->translate('navigation.back_to_category')?>: <span><?=$product['incentive']['code']?></span></div><!-- .discount-code -->
+                                <div class="discount-code"><?=$this->translate('redirect.voucher_title')?>: <span><?=$product['incentive']['code']?></span></div><!-- .discount-code -->
                                 <?php endif; ?>
 
                             </div><!-- .price-info-->
