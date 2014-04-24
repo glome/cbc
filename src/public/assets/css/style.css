@@ -2115,6 +2115,9 @@ footer {
     margin:14px 0;
     font-weight: 700;
 }
+.product-full .price-info .cashback .cb-amount .percent {
+    margin: 3px 0;
+}
 .product-full .price-info .voucher .voucher-amount span {
     float: left;
     width: 100%;
@@ -2186,6 +2189,13 @@ footer {
 .product-full .retailer span {
     color: #7A7D7E;
     font-size: 14px;
+}
+.product-full .retailer .promise {
+    margin: 8px 0;
+}
+.product-full .retailer .promise .percent {
+    display: inline-block;
+    margin: 0 0.2em;
 }
 .product-full .product-desc {
     float: left;
@@ -2260,7 +2270,9 @@ footer {
     font-weight: 300;
     font-size: 13px;
 }
-
+.more-products .product-info .price .percent {
+    display: inline-block;
+}
 /* Overlay */
 
 .overlay {
@@ -3737,7 +3749,7 @@ footer {
     .profile .profile-tabs ul li {
         width: 100%;
         margin: 0 0 15px 0;
-        
+
     }
     .profile .cat-dropdown {
         display: none;
@@ -4175,8 +4187,8 @@ footer {
     .redeem-inlay .divider {
         display: none;
     }
-    
-    
+
+
 }
 
 /* FlexSlider Necessary Styles
