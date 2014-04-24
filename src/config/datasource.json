@@ -9,15 +9,15 @@
         "resources":{
             "category":                   "/categories/{id}.json",
 
-            "categories":                 "/categories.json?display=tree&filter=allowed",
+            "categories":                 "/categories.json?display=tree&filter=allowed&personal=true",
             "categories-retailers":       "/advertisers.json?cat_id={id}&per_page=200&country={countries}",
 
             "product":                    "/products/{id}.json",
             "product-visit":              "/products/{id}/getit.json",
             "product-buy":                "/products/{id}/click/{user}.json",
 
-            "products":                   "/products.json?cat_id={id}&per_page=20&page={page}&currency={currency}&order={order}&sort_by=update&country={countries}",
-            "products-with-advertisers":  "/products.json?cat_id={id}&per_page=20&page={page}&currency={currency}&order={order}&sort_by=update&advertiser_id={adv}",
+            "products":                   "/products.json?cat_id={id}&per_page=20&page={page}&order={order}&sort_by=update&country={countries}",
+            "products-with-advertisers":  "/products.json?cat_id={id}&per_page=20&page={page}&order={order}&sort_by=update&advertiser_id={adv}",
 
 
             "search":                     "/products/search.json?keywords={query}&per_page=20&page={page}",
@@ -31,7 +31,6 @@
             "user-earnings":              "/users/{id}/earnings.json?application[apikey]={apikey}&application[uid]={uid}",
             "user-pairing":               "/users/{id}/sync.json"
         }
-
     },
 
     "sql": {
