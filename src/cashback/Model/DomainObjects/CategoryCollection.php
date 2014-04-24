@@ -87,10 +87,10 @@ class CategoryCollection extends \Application\Common\Collection
         if ($data === null) {
             return;
         }
-        foreach ($data as  $params) {
-            $collection = $this->addItem($params);;
+
+        foreach ($data as $params) {
+            $collection = $this->addItem($params);
             $collection->import($params['subcategories']);
         }
     }
-
 }

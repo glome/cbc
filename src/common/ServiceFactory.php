@@ -13,7 +13,7 @@ class ServiceFactory
 
     private $dataMapperFactory;
 
-    public function __construct( $domainObjectFactory, $dataMapperFactory )
+    public function __construct($domainObjectFactory, $dataMapperFactory)
     {
         $this->domainObjectFactory = $domainObjectFactory;
         $this->dataMapperFactory = $dataMapperFactory;
@@ -28,13 +28,11 @@ class ServiceFactory
     {
         $class = $this->namespace . '\\' . $name;
 
-        if ( array_key_exists( $class, $this->cache ) === false )
-        {
+        if (array_key_exists($class, $this->cache) === false) {
             $instance = new $class( $this->domainObjectFactory, $this->dataMapperFactory );
             $this->cache[ $class ] = $instance;
         }
 
         return $this->cache[ $class ];
     }
-
 }

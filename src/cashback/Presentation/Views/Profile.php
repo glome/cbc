@@ -36,7 +36,7 @@ class Profile extends \Application\Common\View
         $deals   = $builder->create('deals');
 
 
-        $content->assign('categories', array_slice($categories, 0 , 10));
+        $content->assign('categories', array_slice($categories, 0, 10));
         $footer->assign('categories', $categories);
         $deals->assign('products', $shop->getRecommendations(4));
 
@@ -118,6 +118,4 @@ class Profile extends \Application\Common\View
         $qrCode->setPadding(10);
         $qrCode->render();
     }
-
-
 }

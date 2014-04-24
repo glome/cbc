@@ -73,5 +73,4 @@ class RetailerCollection extends \Application\Common\Collection
 
         return $list;
     }
-
 }

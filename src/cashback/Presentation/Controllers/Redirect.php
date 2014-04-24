@@ -26,5 +26,4 @@ class Redirect extends \Application\Common\Controller
 
         $itinerary->forUser($user);
     }
-
 }

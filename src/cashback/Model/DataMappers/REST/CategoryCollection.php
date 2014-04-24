@@ -18,7 +18,8 @@ class CategoryCollection extends \Application\Common\RestMapper
     }
 
 
-    public function fetch($collection) {
+    public function fetch($collection)
+    {
 
         $time = microtime(true);
 
@@ -29,7 +30,7 @@ class CategoryCollection extends \Application\Common\RestMapper
 
         $client->getEventDispatcher()->addListener(
             'request.error',
-            function(Event $event) use ($collection) {
+            function (Event $event) use ($collection) {
                 $event->stopPropagation();
             }
         );
@@ -48,7 +49,8 @@ class CategoryCollection extends \Application\Common\RestMapper
     }
 
 
-    public function addSubcategories($categories, $data){
+    public function addSubcategories($categories, $data)
+    {
         $current = $categories->addItem($data);
         if (!isset($data['children'])) {
             return;
@@ -57,5 +59,4 @@ class CategoryCollection extends \Application\Common\RestMapper
             $current->addItem($item);
         }
     }
-
 }

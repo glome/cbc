@@ -71,7 +71,8 @@ abstract class Collection implements \Iterator, \ArrayAccess
         return $this->amount;
     }
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->position = 0;
     }
 
@@ -82,44 +83,52 @@ abstract class Collection implements \Iterator, \ArrayAccess
 
     // implementing Iterator
 
-    function rewind() {
+    public function rewind()
+    {
         $this->position = 0;
     }
 
-    function current() {
+    public function current()
+    {
         return $this->pool[$this->position];
     }
 
-    function key() {
+    public function key()
+    {
         return $this->position;
     }
 
-    function next() {
+    public function next()
+    {
         ++$this->position;
     }
 
-    function valid() {
+    public function valid()
+    {
         return isset($this->pool[$this->position]);
     }
 
 
     // implementing ArrayAccess
 
-    public function offsetSet($offset, $value) {
+    public function offsetSet($offset, $value)
+    {
         if (is_null($offset)) {
             $this->pool[] = $value;
         } else {
             $this->pool[$offset] = $value;
         }
     }
-    public function offsetExists($offset) {
+    public function offsetExists($offset)
+    {
         return isset($this->pool[$offset]);
     }
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset)
+    {
         unset($this->pool[$offset]);
     }
-    public function offsetGet($offset) {
+    public function offsetGet($offset)
+    {
         return isset($this->pool[$offset]) ? $this->pool[$offset] : null;
     }
-
 }

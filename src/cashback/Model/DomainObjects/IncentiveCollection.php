@@ -23,6 +23,4 @@ class IncentiveCollection extends \Application\Common\Collection
 
         return false;
     }
-
-
 }

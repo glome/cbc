@@ -63,5 +63,4 @@ class Wish
             // add handling later
         }
     }
-
 }

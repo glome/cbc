@@ -33,11 +33,12 @@ class Product extends \Application\Common\View
         $profile    = $builder->create('profile-brief');
 
 
-        $tw_url = 'http' . (isset($_SERVER['HTTPS'])? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/product/' . $product['id'];
+        $tw_url = 'http' . (isset($_SERVER['HTTPS'])? 's' : '');
+        $tw_url .= '://' . $_SERVER['HTTP_HOST'] . '/product/' . $product['id'];
         $tw_text = urlencode('Best purchase on Cashback Catalog.');
 
 
-        $navigation->assign('categories', array_slice($categories, 0 , 10));
+        $navigation->assign('categories', array_slice($categories, 0, 10));
         $overlays->assign('product', $product);
         $element->assignAll([
             'product' => $product,

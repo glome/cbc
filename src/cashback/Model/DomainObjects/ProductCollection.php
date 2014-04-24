@@ -109,8 +109,7 @@ class ProductCollection extends \Application\Common\Collection
     public function getPage()
     {
         $page = (int)$this->page;
-        if ($page === 0)
-        {
+        if ($page === 0) {
             $page = 1;
         }
         return $page;
@@ -201,8 +200,4 @@ class ProductCollection extends \Application\Common\Collection
             $product->applyIncentive($cache[$id]);
         }
     }
-
-
-
-
 }

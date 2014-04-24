@@ -45,6 +45,4 @@ class Landing extends \Application\Common\Controller
 
         exit;
     }
-
-
 }

@@ -7,7 +7,6 @@ use Guzzle\Plugin\Cookie\CookiePlugin;
 use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 use Guzzle\Common\Event;
 
-
 class IncentiveCollection extends \Application\Common\RestMapper
 {
 
@@ -28,7 +27,7 @@ class IncentiveCollection extends \Application\Common\RestMapper
 
         $client->getEventDispatcher()->addListener(
             'request.error',
-            function(Event $event) use ($collection) {
+            function (Event $event) use ($collection) {
                 $event->stopPropagation();
             }
         );

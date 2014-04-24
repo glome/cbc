@@ -27,7 +27,7 @@ class Category extends \Application\Common\RestMapper
         $client->addSubscriber($cookiePlugin);
         $client->getEventDispatcher()->addListener(
             'request.error',
-            function(Event $event) use ($instance) {
+            function (Event $event) use ($instance) {
                 $event->stopPropagation();
             }
         );
@@ -35,15 +35,14 @@ class Category extends \Application\Common\RestMapper
 
 
         $id = $instance->getId();
-        if ($id !== null)
-        {
-            $url = $this->applyValuesToURL($this->resources['category'],  ['{id}' => $id]);
+        if ($id !== null) {
+            $url = $this->applyValuesToURL($this->resources['category'], ['{id}' => $id]);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             if (isset($data['error'])) {
                 return false;
             }
-            $this->applyParameter($instance,$data);
+            $this->applyParameter($instance, $data);
             return true;
         }
 
@@ -61,9 +60,4 @@ class Category extends \Application\Common\RestMapper
             }
         }
     }
-
-
-
-
-
 }

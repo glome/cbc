@@ -23,5 +23,4 @@ class TemplateBuilder
         $instance->useTranslations($this->translations->fetchTranslations());
         return $instance;
     }
-
 }

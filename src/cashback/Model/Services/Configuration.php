@@ -12,7 +12,8 @@ class Configuration extends \Application\Common\Service
     private $contacts = null;
 
 
-    public function import($config) {
+    public function import($config)
+    {
         $this->importParameters('languages', $config['languages']);
         $this->importParameters('currencies', $config['currencies']);
         $this->importParameters('locations', $config['locations']);
@@ -20,7 +21,8 @@ class Configuration extends \Application\Common\Service
     }
 
 
-    private function importParameters($key, $parameters) {
+    private function importParameters($key, $parameters)
+    {
         $this->data[$key] = [];
         foreach ($parameters as $item) {
             if (isset($item['code'])) {
@@ -101,7 +103,8 @@ class Configuration extends \Application\Common\Service
     }
 
 
-    public function applyParam($param) {
+    public function applyParam($param)
+    {
 
         $session = $this->dataMapperFactory->create('Settings', 'Session');
         $settings = $this->domainObjectFactory->create('Settings');
@@ -229,7 +232,4 @@ class Configuration extends \Application\Common\Service
         $settings->setLastCategory($id);
         $session->store($settings);
     }
-
-
-
 }

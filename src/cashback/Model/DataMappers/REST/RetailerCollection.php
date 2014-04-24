@@ -16,9 +16,6 @@ class RetailerCollection extends \Application\Common\RestMapper
     private $uid;
 
 
-
-
-
     public function __construct($configuration)
     {
         $this->host = $configuration['rest']['host'];
@@ -37,7 +34,7 @@ class RetailerCollection extends \Application\Common\RestMapper
 
         $client->getEventDispatcher()->addListener(
             'request.error',
-            function(Event $event) use ($collection) {
+            function (Event $event) use ($collection) {
                 $event->stopPropagation();
             }
         );
@@ -46,10 +43,12 @@ class RetailerCollection extends \Application\Common\RestMapper
 
         $id = $collection->getCategoryId();
 
-        if ($id !== null)
-        {
+        if ($id !== null) {
             $locations = $collection->getLocationQuery();
-            $url = $this->applyValuesToURL($this->resources['categories-retailers'], ['{id}' => $id, '{countries}' => $locations ]);
+            $url = $this->applyValuesToURL(
+                $this->resources['categories-retailers'],
+                ['{id}' => $id, '{countries}' => $locations ]
+            );
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             foreach ($data as $entry) {
@@ -68,5 +67,4 @@ class RetailerCollection extends \Application\Common\RestMapper
             }
         }
     }
-
 }

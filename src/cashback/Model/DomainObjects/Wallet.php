@@ -20,7 +20,8 @@ class Wallet
     }
 
 
-    public function setResponse($response) {
+    public function setResponse($response)
+    {
         $this->response = $response;
     }
 
@@ -29,6 +30,4 @@ class Wallet
     {
         return $this->response;
     }
-
-
 }

@@ -34,7 +34,7 @@ class Sync extends \Application\Common\RestMapper
 
         $client->getEventDispatcher()->addListener(
             'request.error',
-            function(Event $event) use ($instance) {
+            function (Event $event) use ($instance) {
                 $event->stopPropagation();
             }
         );
@@ -42,10 +42,12 @@ class Sync extends \Application\Common\RestMapper
         if ($instance->getId() !== null) {
             $id = $instance->getId();
             $url = $this->applyValuesToURL($this->resources['user-pairing'], ['{id}' => $id ]);
-            $request = $client->post($this->host . $url, [],
+            $request = $client->post(
+                $this->host . $url,
+                [],
                 [
                     'application[apikey]' => $this->apikey,
-                    'application[uid]' => $this->uid
+                    'application[uid]' => $this->uid,
                 ]
             );
             $response = $request->send();
@@ -57,10 +59,5 @@ class Sync extends \Application\Common\RestMapper
             $instance->setPairingCode($data['code']);
             return true;
         }
-
-
-
     }
-
-
 }

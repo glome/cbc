@@ -33,23 +33,18 @@ class Wallet extends \Application\Common\RestMapper
 
         $client->getEventDispatcher()->addListener(
             'request.error',
-            function(Event $event) use ($instance) {
+            function (Event $event) use ($instance) {
                 $event->stopPropagation();
             }
         );
 
 
         $id = $instance->getUserId();
-        if ($id !== null)
-        {
+        if ($id !== null) {
             $url = $this->applyValuesToURL($this->resources['user-redeem'], ['{id}' => $id ]);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             $instance->setResponse($data);
         }
-
-
     }
-
-
 }

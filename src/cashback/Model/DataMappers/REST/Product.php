@@ -7,7 +7,6 @@ use Guzzle\Plugin\Cookie\CookiePlugin;
 use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
 use Guzzle\Common\Event;
 
-
 class Product extends \Application\Common\RestMapper
 {
 
@@ -29,7 +28,7 @@ class Product extends \Application\Common\RestMapper
 
         $client->getEventDispatcher()->addListener(
             'request.error',
-            function(Event $event) use ($instance) {
+            function (Event $event) use ($instance) {
                 $event->stopPropagation();
             }
         );
@@ -37,8 +36,7 @@ class Product extends \Application\Common\RestMapper
 
 
         $id = $instance->getId();
-        if ($id !== null)
-        {
+        if ($id !== null) {
             $url = $this->applyValuesToURL($this->resources['product'], ['{id}' => $id ]);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
@@ -47,7 +45,7 @@ class Product extends \Application\Common\RestMapper
                 return false;
             }
 
-            $this->applyParameter($instance,$data);
+            $this->applyParameter($instance, $data);
             $topCategory = $data['categories'][0];
             $instance->setCategoryId($topCategory['id']);
             return true;
@@ -66,5 +64,4 @@ class Product extends \Application\Common\RestMapper
             }
         }
     }
-
 }

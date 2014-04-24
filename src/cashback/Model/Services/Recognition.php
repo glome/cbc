@@ -48,6 +48,4 @@ class Recognition extends \Application\Common\Service
 
         return $user->getPairingCode();
     }
-
-
 }

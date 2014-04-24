@@ -11,5 +11,4 @@ class SQLMapper
     {
         $this->pdo = $pdo;
     }
-
 }

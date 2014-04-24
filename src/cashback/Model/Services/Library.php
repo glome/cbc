@@ -23,5 +23,4 @@ class Library extends \Application\Common\Service
         return $content->getOutput();
 
     }
-
 }

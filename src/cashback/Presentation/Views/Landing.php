@@ -27,7 +27,7 @@ class Landing extends \Application\Common\View
         $profile    = $builder->create('profile-brief');
         $deals      = $builder->create('deals');
 
-        $navigation->assign('categories', array_slice($categories, 0 , 10));
+        $navigation->assign('categories', array_slice($categories, 0, 10));
         $footer->assign('categories', $categories);
         $deals->assign('products', $shop->getRecommendations(4));
 

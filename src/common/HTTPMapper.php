@@ -11,5 +11,4 @@ class HTTPMapper
     {
         $this->config = $config;
     }
-
 }

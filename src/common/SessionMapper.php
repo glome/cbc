@@ -1,9 +1,9 @@
 <?php
 
-    namespace Application\Common;
+namespace Application\Common;
 
-    class SessionMapper
-    {
+class SessionMapper
+{
 
 
-    }
+}

@@ -8,14 +8,14 @@ class Service
 
     protected $errors = [];
 
-    public function __construct( $domainObjectFactory, $dataMapperFactory )
+    public function __construct($domainObjectFactory, $dataMapperFactory)
     {
         $this->domainObjectFactory = $domainObjectFactory;
         $this->dataMapperFactory = $dataMapperFactory;
     }
 
 
-    protected function addError( $message )
+    protected function addError($message)
     {
         $this->errors[] = $message;
     }
@@ -25,4 +25,3 @@ class Service
         return $this->errors;
     }
 }
-

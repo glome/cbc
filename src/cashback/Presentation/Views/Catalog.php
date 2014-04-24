@@ -29,7 +29,7 @@ class Catalog extends \Application\Common\View
         }
 
 
-        if ($shop->getPage() !== null ) {
+        if ($shop->getPage() !== null) {
             $main       = $builder->create('clean');
             $content    = $builder->create('product-list');
             $main->assign('content', $content);
@@ -53,7 +53,7 @@ class Catalog extends \Application\Common\View
 
         $footer->assign('categories', $categories);
         $navigation->assignAll([
-            'categories' => array_slice($categories, 0 , 10),
+            'categories' => array_slice($categories, 0, 10),
             'searchType' => $configuration->getSearchState(),
         ]);
 

@@ -53,7 +53,7 @@ class Search extends \Application\Common\View
         ]);
 
         $navigation->assignAll([
-            'categories' => array_slice($categories, 0 , 10),
+            'categories' => array_slice($categories, 0, 10),
             'query'      => $query,
         ]);
 
@@ -78,5 +78,4 @@ class Search extends \Application\Common\View
         $shop = $this->serviceFactory->create('Shop');
         return json_encode($shop->getProductSuggestions());
     }
-
 }

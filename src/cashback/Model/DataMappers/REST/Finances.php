@@ -33,7 +33,7 @@ class Finances extends \Application\Common\RestMapper
 
         $client->getEventDispatcher()->addListener(
             'request.error',
-            function(Event $event) use ($instance) {
+            function (Event $event) use ($instance) {
                 $event->stopPropagation();
             }
         );
@@ -41,22 +41,19 @@ class Finances extends \Application\Common\RestMapper
 
 
         $id = $instance->getUserId();
-        if ($id !== null)
-        {
-            $url = $this->applyValuesToURL($this->resources['user-earnings'], ['{id}' => $id, '{apikey}' => $this->apikey, '{uid}' => $this->uid]);
+        if ($id !== null) {
+            $url = $this->applyValuesToURL(
+                $this->resources['user-earnings'],
+                ['{id}' => $id, '{apikey}' => $this->apikey, '{uid}' => $this->uid]
+            );
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
            // / print_r($data);
             $instance->setEarnings($data);
-            if (isset($data['error']))
-            {
+            if (isset($data['error'])) {
                 $instance->setError($data['error']);
             }
 
         }
-
-
     }
-
-
 }
