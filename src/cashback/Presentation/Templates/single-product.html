@@ -1,4 +1,9 @@
-
+            <?=
+              $bonus = '';
+              ((real)$product['bonusMoney'] > 0) ? $bonus = ($product['currencySymbol'] . ' ' . $product['bonusMoney']) : '';
+              ($bonus != '' and ((real)$product['bonusPercent'] > 0)) ? $bonus .= ' & ' : '';
+              ((real)$product['bonusPercent'] > 0) ? $bonus .= '<div class="percent">' . ($product['bonusPercent'] . '%') . '</div>' : '';
+            ?>
             <div class="product-single">
                 <div class="wrap">
                     <div class="back-to-grid">
@@ -28,12 +33,7 @@
                                 <div class="cashback">
                                     <span class="lbl"><?=$this->translate('product.cashback')?></span>
                                     <div class="cb-amount <?php echo $product['one-bonus'] === true ? 'has-one' : ''; ?>">
-                                        <?php if ($product['bonusMoney'] !== null): ?>
-                                        <span><?=$product['currencySymbol']?> <?=$product['bonusMoney']?> </span>
-                                        <?php endif; ?>
-                                        <?php if ($product['bonusPercent'] !== null): ?>
-                                        <span><?=$product['bonusMoney'] !== null ? '&' : ''?> <?=$product['bonusPercent']?> %</span>
-                                        <?php endif; ?>
+                                      <?= $bonus ?>
                                     </div><!-- .cb-amount -->
                                 </div><!-- .cashback -->
                                 <?php if ($product['incentive']): ?>
@@ -54,9 +54,12 @@
                                 <?php if ($product['incentive']): ?>
                                 <div class="discount-code"><?=$this->translate('redirect.voucher_title')?>: <span><?=$product['incentive']['code']?></span></div><!-- .discount-code -->
                                 <?php endif; ?>
-
                             </div><!-- .price-info-->
-                            <div class="retailer"><?=$this->translate('product.retailer')?>: <span><?=$product['advertiser']?></span></div><!-- .retailer -->
+                            <div class="retailer">
+                              <?=$this->translate('product.retailer')?>:
+                              <span><a href="/redirect/<?=$product['id']?>"><?=$product['advertiser']?></a></span>
+                              <div class="promise"><?=$this->translate('retailer.cashback.promise', $bonus)?></div>
+                            </div><!-- .retailer -->
                             <div class="product-desc">
                                 <p><span><?=$this->translate('product.description')?></span> - <?=$product['description']?> </p>
                             </div><!-- .product-desc-->
@@ -64,7 +67,6 @@
                                 <a href="http://www.facebook.com/share.php?u=<?=$tw_url?>" class="fb" target="_blank"></a>
                                 <a href="https://twitter.com/share?url=<?=$tw_url?>&amp;text=<?=$tw_text?>" class="tw" target="_blank"></a>
                                 <span><?=$this->translate('product.share_title')?></span>
-
                             </div><!-- .share-link -->
                         </div><!-- .right -->
                     </div><!-- .product-full -->
@@ -94,11 +96,7 @@
                                             <span class="title"><?=$product['title']?></span>
                                             <div class="price">
                                                 <span><?=$this->translate('product.cashback')?>:</span>
-                                                <span>
-                                                    <?=$product['bonusMoney'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
-                                                    <?=$product['one-bonus'] ? '' : '&'?>
-                                                    <?=$product['bonusPercent'] === null ? '' : ($product['bonusPercent'] . '%')?>
-                                                </span>
+                                                <span><?= $bonus ?></span>
                                             </div>
                                             <?php if ($product['incentive']): ?>
                                             <span class="voucher"><?=$this->translate('product.voucher')?>: -<?=$product['incentive']['percentage']?>%</span>
