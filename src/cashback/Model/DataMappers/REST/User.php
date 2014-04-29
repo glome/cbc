@@ -5,6 +5,7 @@ namespace Application\DataMappers\REST;
 use Guzzle\Http\Client;
 use Guzzle\Plugin\Cookie\CookiePlugin;
 use Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
+use Guzzle\Common\Event;
 
 class User extends \Application\Common\RestMapper
 {
@@ -29,6 +30,13 @@ class User extends \Application\Common\RestMapper
 
         $client = new Client;
         $client->addSubscriber($cookiePlugin);
+
+        $client->getEventDispatcher()->addListener(
+            'request.error',
+            function (Event $event) use ($instance) {
+                $event->stopPropagation();
+            }
+        );
 
         if ($instance->getId() === null) {
             $request = $client->post(

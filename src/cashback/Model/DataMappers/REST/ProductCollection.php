@@ -52,7 +52,6 @@ class ProductCollection extends \Application\Common\RestMapper
             }
         } elseif ($collection->hasCategory() && $collection->hasQuery()) {
 
-            error_log(' BOTH ');
 
             $resKey = 'products';
             if ($collection->getAdvertisers() !== '') {
@@ -75,8 +74,6 @@ class ProductCollection extends \Application\Common\RestMapper
         } elseif ($collection->hasCategory() && !$collection->hasQuery()) {
 
 
-            error_log(' CATEGORY ');
-
             $resKey = 'products';
             if ($collection->getAdvertisers() !== '') {
                 $resKey = 'products-with-advertisers';
@@ -98,8 +95,6 @@ class ProductCollection extends \Application\Common\RestMapper
             }
         } elseif ($collection->hasQuery()) {
 
-            error_log(' QUERY ');
-
 
 
             $url = $collection->forAutocomplete() ? $this->resources['search-suggestions'] : $this->resources['search'];
@@ -114,7 +109,8 @@ class ProductCollection extends \Application\Common\RestMapper
 
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
-            if (isset($data['status']) && $data['status'] === 1) {
+
+            if (isset($data['error'])) {
                 return;
             }
             foreach ($data as $entry) {

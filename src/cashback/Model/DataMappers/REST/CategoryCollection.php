@@ -40,6 +40,8 @@ class CategoryCollection extends \Application\Common\RestMapper
         $data = $response->json();
 
 
+        //var_dump($data);
+
         foreach ($data as $item) {
             $this->addSubcategories($collection, $item);
         }
