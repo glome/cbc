@@ -405,6 +405,13 @@ class Shop extends \Application\Common\Service
 
         $db->delete($products);
 
+
+        $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
+        $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');
+        $api->fetch($incentives);
+
+        $products->applyIncentives($incentives);
+
         return $products->getParsedArray();
     }
 
