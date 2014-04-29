@@ -851,6 +851,10 @@ footer {
     position: relative;
     float: left;
 }
+.search-form.no-dropdown {
+    padding-left: 10px;
+}
+
 .search-form input[type="text"] {
     float: left;
     width: 380px;

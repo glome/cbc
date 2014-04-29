@@ -24,6 +24,7 @@
                         </ul>
                     </div><!-- .cat-menu -->
                     <div class="search">
+                        <?php if (!isset($noDropDown) || $noDropDown === false): ?>
                         <div class="search-select dropdown">
                             <span class="selected"><?=isset($searchType)
                                                         ? $searchType === 1
@@ -43,8 +44,11 @@
                                             : ''?>><a href=""><?=$this->translate('navigation.search_current')?></a></li>
                             </ul>
                         </div>
+                        <?php endif; ?>
                         <div class="search-btn"></div>
-                        <form method="post" class="search-form" action="/search">
+                        <form method="post"
+                              class="search-form <?=(isset($noDropDown) && $noDropDown === true) ? 'no-dropdown':''?>"
+                              action="/search">
                             <input type="text" name="search-field" placeholder="<?=$this->translate('navigation.search_prompt')?>"
                                    id="search-input" value="<?=isset($query)
                                                                    ? $query

@@ -55,6 +55,7 @@ class Search extends \Application\Common\View
         $navigation->assignAll([
             'categories' => array_slice($categories, 0, 10),
             'query'      => $query,
+            'noDropDown'  => true,
         ]);
 
         $main->assignAll([
