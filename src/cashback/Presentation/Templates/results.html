@@ -1,56 +1,12 @@
 
             <div class="products-page">
                 <div class="wrap">
-                    <?php /*
-                    <div class="filter-sidebar">
-                        <div class="filter-cat">
-                            <span class="filter-title">LIVING</span>
-                            <div class="filter-content-wrap">
-                                <ul>
-                                    <li class="selected"><a href="">Fashion & Jewelery</a></li>
-                                    <li><a href="">Department stores</a></li>
-                                    <li><a href="">Health & Beauty</a></li>
-                                    <li><a href="">Food & Beverages</a></li>
-                                    <li><a href="">Hobby & Leisure</a></li>
-                                    <li><a href="">Gifts & Gadgets</a></li>
-                                </ul>
-                            </div><!-- .filter-content-wrap -->
-                        </div><!-- .filter-cat -->
-                        <div class="filter-retailer">
-                            <span class="filter-title">Retailer <a href="" class="clear">clear</a></span>
-                            <div class="filter-content-wrap">
-                                <ul>
-                                    <li class="selected all"><a href=""><span class="checkbox"><span class="tick"></span></span>All</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Retailer title</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Traidtracker</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Retailer title in two rows</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Retailer title</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Traidtracker</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Retailer title in two rows</a></li>
-                                </ul>
-                            </div><!-- .filter-content-wrap -->
-                        </div><!-- .filter-retailer -->
-                        <div class="filter-brand">
-                            <span class="filter-title">BRAND <a href="" class="clear">clear</a></span>
-                            <div class="filter-content-wrap">
-                                <ul>
-                                    <li class="selected all"><a href=""><span class="checkbox"><span class="tick"></span></span>All</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Brand title</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Brand title</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Retailer title in two rows</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Retailer title</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Traidtracker</a></li>
-                                    <li><a href=""><span class="checkbox"><span class="tick"></span></span>Retailer title in two rows</a></li>
-                                </ul>
-                            </div><!-- .filter-content-wrap -->
-                        </div><!-- .filter-retailer -->
-                    </div><!-- .filter-sidebar -->
-                    */ ?>
                     <div class="more-products">
                         <div class="page-title">
                             <h1><?=$this->translate('navigation.search_title')?></h1>
                         </div>
 
+                        <?php if (count($products)): ?>
                         <ul class="products masonry-grid" id="grid">
                             <?php foreach ($products as $id => $product): ?>
                             <li class="product">
@@ -97,6 +53,14 @@
                         <nav id="page-nav">
                            <a href="/search?page=2"></a>
                         </nav>
+
+                        <?php else: ?>
+
+                        <div class="msg-box-fullpage ">
+                            <div><?=$this->translate('message.no_results')?></div>
+                        </div>
+
+                        <?php endif; ?>
 
                     </div><!-- .products-main -->
                 </div><!-- .products-page-->

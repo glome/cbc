@@ -101,5 +101,7 @@
     "redeem.failure":                  "Sorry, you currently do not have enough funds to redeem. The minimum amount is 5 EUR.",
     "redeem.success":                  "Money transactions are handled by our 3rd payment provider. You will be redirected to their page shortly.",
 
-    "retailer.cashback.promise":       "All purchases done via this link will get you %s cashback. Welcome!"
+    "retailer.cashback.promise":       "All purchases done via this link will get you %s cashback. Welcome!",
+
+    "message.no_results":              "No matching results!"
 }
