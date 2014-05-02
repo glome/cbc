@@ -1,0 +1,17 @@
+<?php
+    echo $navigation;
+
+    if (count($retailers)) {
+      foreach ($retailers as $id => $retailer):
+?>
+      <div>
+        <a href="<?=$retailer['url']?>"><?=$retailer['name']?></a>
+      </div>
+<?php
+      endforeach;
+    } else {
+?>
+      <div class="msg-box-fullpage ">
+          <div><?=$this->translate('message.no_results')?></div>
+      </div>
+<?php } ?>

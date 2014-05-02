@@ -261,7 +261,27 @@ class Shop extends \Application\Common\Service
         $api->store($visit);
     }
 
+    public function getRetailers()
+    {
+        $settings = $this->domainObjectFactory->create('Settings');
 
+        $session = $this->dataMapperFactory->create('Settings', 'Session');
+        $session->fetch($settings);
+
+        $retailers = $this->domainObjectFactory->create('RetailerCollection');
+
+        $locations = $settings->getLocations();
+        $locations = array_keys($locations);
+        $retailers->setLocations($locations);
+        $retailers->setCategoryId($this->currentCategoryId);
+
+        $retailers->setPage($this->currentPage);
+
+        $api = $this->dataMapperFactory->create('RetailerCollection', 'REST');
+        $api->fetch($retailers);
+
+        return $retailers->getParsedArray();
+    }
 
     public function getCategoryRetailers()
     {
