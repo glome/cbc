@@ -43,7 +43,7 @@ class ProductCollection extends \Application\Common\Collection
     public function getAdvertisers()
     {
         if (count($this->advertisers)) {
-            return $this->advertisers[0];
+            return implode(',', $this->advertisers);
         }
         return '';
     }
