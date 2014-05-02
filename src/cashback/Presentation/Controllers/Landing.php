@@ -2,7 +2,6 @@
 
 namespace Application\Controllers;
 
-
 class Landing extends \Application\Common\Controller
 {
     public function getIndex($request)
@@ -14,11 +13,9 @@ class Landing extends \Application\Common\Controller
         $itinerary->forUser($user);
         $shop->forUser($user);
 
-
         $configuration = $this->serviceFactory->create('Configuration');
         $configuration->setSearchState(0);
     }
-
 
     public function postIndex($request)
     {
@@ -41,7 +38,6 @@ class Landing extends \Application\Common\Controller
         $numSent = $mailer->send($message);
 
         echo json_encode(['message' => 'ok']);
-
 
         exit;
     }

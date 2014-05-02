@@ -2,10 +2,8 @@
 
 namespace Application\Services;
 
-
 class Translation extends \Application\Common\Service
 {
-
     private $lang = 'en';
     private $dir = null;
     private $cache = null;
@@ -14,7 +12,6 @@ class Translation extends \Application\Common\Service
     {
         $this->lang = strtolower($lang);
     }
-
 
     public function setTranslationRoot($dir)
     {
@@ -30,7 +27,6 @@ class Translation extends \Application\Common\Service
 
         $this->useLanguage($settings->getLanguage());
     }
-
 
     public function fetchTranslations()
     {

@@ -4,10 +4,8 @@ namespace Application\Views;
 
 class Catalog extends \Application\Common\View
 {
-
     public function index()
     {
-
         $builder = $this->templateBuilder;
 
         $itinerary = $this->serviceFactory->create('Itinerary');
@@ -102,6 +100,7 @@ class Catalog extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
+
         return $main->render();
     }
 }

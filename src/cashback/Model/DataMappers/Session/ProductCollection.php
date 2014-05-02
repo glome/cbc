@@ -4,7 +4,6 @@ namespace Application\DataMappers\Session;
 
 class ProductCollection extends \Application\Common\SessionMapper
 {
-
     public function fetch($instance)
     {
         if (!isset($_SESSION['glome.query'])) {
@@ -15,7 +14,6 @@ class ProductCollection extends \Application\Common\SessionMapper
         return true;
     }
 
-
     public function store($instance)
     {
         $value = $instance->getQuery();
@@ -23,7 +21,6 @@ class ProductCollection extends \Application\Common\SessionMapper
             $_SESSION['glome.query'] = $value;
         }
     }
-
 
     public function delete($instance)
     {

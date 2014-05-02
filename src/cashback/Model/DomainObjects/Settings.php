@@ -4,8 +4,6 @@ namespace Application\DomainObjects;
 
 class Settings
 {
-
-
     private $persistent = [];
     private $language = 'EN';
     private $currency = 'EUR';
@@ -13,7 +11,6 @@ class Settings
     private $searchType = null;
     private $lastCategory = null;
     private $locations = [];
-
 
     public function setLastCategory($lastCategory)
     {
@@ -24,7 +21,6 @@ class Settings
     {
         return $this->lastCategory;
     }
-
 
     public function setSearchType($id)
     {
@@ -55,7 +51,6 @@ class Settings
         return $this->persistent[$name];
     }
 
-
     public function setLanguage($language)
     {
         $this->language = $language;
@@ -66,18 +61,15 @@ class Settings
         return $this->language;
     }
 
-
     public function setCurrency($currency)
     {
         $this->currency = $currency;
     }
 
-
     public function getCurrency()
     {
         return $this->currency;
     }
-
 
     public function setOrder($order)
     {
@@ -89,24 +81,20 @@ class Settings
         return $this->order;
     }
 
-
     public function getLocations()
     {
         return $this->locations;
     }
-
 
     public function addLocation($location)
     {
         $this->locations[$location] = 1;
     }
 
-
     public function removeLocation($location)
     {
         unset($this->locations[$location]);
     }
-
 
     public function setLocations($list)
     {

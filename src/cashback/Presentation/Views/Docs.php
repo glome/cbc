@@ -4,7 +4,6 @@ namespace Application\Views;
 
 class Docs extends \Application\Common\View
 {
-
     public function index()
     {
         $itinerary = $this->serviceFactory->create('Itinerary');
@@ -31,7 +30,6 @@ class Docs extends \Application\Common\View
         $footer->assign('categories', $categories);
         $deals->assign('products', $shop->getRecommendations(4));
 
-
         $profile->assignAll([
             'wishes'     => $itinerary->getWishlistLength(),
             'earnings'   => $itinerary->getEarnings('EUR'),
@@ -57,6 +55,7 @@ class Docs extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
+
         return $main->render();
     }
 
@@ -117,7 +116,7 @@ class Docs extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
-        return $main->render();
 
+        return $main->render();
     }
 }

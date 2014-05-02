@@ -18,7 +18,6 @@ class Category extends \Application\Common\RestMapper
         $this->resources = $configuration['rest']['resources'];
     }
 
-
     public function fetch($instance)
     {
         $cookiePlugin = new CookiePlugin($this->cookieJar);
@@ -31,8 +30,6 @@ class Category extends \Application\Common\RestMapper
                 $event->stopPropagation();
             }
         );
-
-
 
         $id = $instance->getId();
         if ($id !== null) {
@@ -47,9 +44,7 @@ class Category extends \Application\Common\RestMapper
         }
 
         return false;
-
     }
-
 
     private function applyParameter($instance, $parameters)
     {

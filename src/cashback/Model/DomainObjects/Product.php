@@ -4,7 +4,6 @@ namespace Application\DomainObjects;
 
 class Product
 {
-
     private $id;
     private $title;
     private $image;
@@ -26,7 +25,6 @@ class Product
     private $programId;
     private $incentivesData;
     private $incentive;
-
 
     public function setScore($score)
     {
@@ -63,7 +61,6 @@ class Product
         $this->title = $title;
     }
 
-
     public function getTitle()
     {
         return $this->title;
@@ -84,7 +81,6 @@ class Product
         return $this->image;
     }
 
-
     public function setCurrency($currency)
     {
         $map = [
@@ -103,7 +99,6 @@ class Product
         return $this->currency;
     }
 
-
     public function setPage($page)
     {
         $this->page = $page;
@@ -114,8 +109,6 @@ class Product
         return $this->page;
     }
 
-
-
     public function setDescription($description)
     {
         $this->description = $description;
@@ -125,8 +118,6 @@ class Product
     {
         return $this->description;
     }
-
-
 
     public function setCreatedAt($date)
     {
@@ -144,7 +135,6 @@ class Product
         return $now <= $old;
     }
 
-
     public function setProgramId($id)
     {
         $this->programId = $id;
@@ -155,13 +145,10 @@ class Product
         return $this->programId;
     }
 
-
-
     public function setLastPrice($price)
     {
         $this->price = $price;
     }
-
 
     public function setBonusMoney($bonusMoney)
     {
@@ -175,8 +162,6 @@ class Product
         return $this->bonusMoney;
     }
 
-
-
     public function setBonusPercent($bonusPercent)
     {
         $this->bonusPercent = $bonusPercent;
@@ -186,8 +171,6 @@ class Product
     {
         return $this->bonusPercent;
     }
-
-
 
     public function setPersonalAction($link)
     {
@@ -199,7 +182,6 @@ class Product
         return $this->link;
     }
 
-
     public function setCategoryId($id)
     {
         $this->categoryId = $id;
@@ -210,12 +192,10 @@ class Product
         return $this->categoryId;
     }
 
-
     public function setAdvertiser($list)
     {
         $this->advertiserId = array_shift($list);
     }
-
 
     public function associateRetailer($list)
     {
@@ -224,7 +204,6 @@ class Product
         }
     }
 
-
     public function setIncentives($list)
     {
         if (count($list)){
@@ -232,12 +211,10 @@ class Product
         }
     }
 
-
     public function applyIncentive($incentive)
     {
         $this->incentive = $incentive;
     }
-
 
     public function getIncentiveId()
     {
@@ -249,11 +226,8 @@ class Product
 
     public function getParsedArray()
     {
-
         $onebonus = ($this->bonusMoney === null && $this->bonusPercent !== null) ||
                     ($this->bonusMoney !== null && $this->bonusPercent === null);
-
-
 
         return [
             'one-bonus' => $onebonus,

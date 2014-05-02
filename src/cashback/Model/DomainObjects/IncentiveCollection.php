@@ -4,13 +4,10 @@ namespace Application\DomainObjects;
 
 class IncentiveCollection extends \Application\Common\Collection
 {
-
-
     protected function buildItem()
     {
         return new Incentive;
     }
-
 
     public function locateIncentive($id)
     {

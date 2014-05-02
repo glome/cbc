@@ -1,7 +1,6 @@
 
             <?php echo $navigation; ?>
 
-
             <div class="products-page">
                 <div class="wrap">
                     <div class="filter-sidebar">
@@ -20,9 +19,9 @@
                             <span class="filter-title"><?=$this->translate('navigation.retailer_title')?> <a id="action-reset" href="?clear" class="clear"><?=$this->translate('navigation.clear')?></a></span>
                             <div class="filter-content-wrap">
                                 <ul id="retailer-list">
-                                    <li class="<?=count($selectedRetailers)?'':'selected'?> all"><a class="action-reset" href="?clear"><span class="checkbox"><span class="tick"></span></span><div>All</div></a></li>
+                                    <li class="<?=count($selectedRetailers) ? '' : 'selected' ?> all"><a class="action-reset" href="?clear"><span class="checkbox"><span class="tick"></span></span><div>All</div></a></li>
                                 <?php foreach ($retailers as $id => $retailer): ?>
-                                    <li <?=in_array($id, $selectedRetailers)?'class="selected"':''?>><a href="?param=<?=$id?>"><span class="checkbox"><span class="tick"></span></span><div><?=$retailer['name']?></div></a></li>
+                                    <li <?=in_array($id, $selectedRetailers) ? 'class="selected"' : '' ?>><a href="?param=<?= $id ?>"><span class="checkbox"><span class="tick"></span></span><div><?=$retailer['name']?></div></a></li>
                                 <?php endforeach; ?>
                                 </ul>
                             </div><!-- .filter-content-wrap -->

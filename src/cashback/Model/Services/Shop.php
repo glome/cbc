@@ -2,10 +2,8 @@
 
 namespace Application\Services;
 
-
 class Shop extends \Application\Common\Service
 {
-
     private $currentCategoryId = null;
     private $currentProductId = null;
     private $categoryTree = null;
@@ -15,7 +13,6 @@ class Shop extends \Application\Common\Service
     private $currentQuery = null;
     private $visit = null;
     private $isReload = false;
-
 
     public function setReload()
     {
@@ -31,7 +28,6 @@ class Shop extends \Application\Common\Service
     {
         $this->currentPage = $page;
     }
-
 
     public function getPage()
     {
@@ -66,7 +62,6 @@ class Shop extends \Application\Common\Service
         return $this->categoryTree;
     }
 
-
     private function collectCategoryTree()
     {
         $categories = $this->domainObjectFactory->create('CategoryCollection');
@@ -80,7 +75,6 @@ class Shop extends \Application\Common\Service
 
         return $categories->getParsedArray();
     }
-
 
     public function getParentCategoryId($id = null)
     {
@@ -100,19 +94,15 @@ class Shop extends \Application\Common\Service
         return $category->getParentId();
     }
 
-
     public function getProducts($forCategory = null)
     {
-
         $settings = $this->domainObjectFactory->create('Settings');
 
         $session = $this->dataMapperFactory->create('Settings', 'Session');
         $session->fetch($settings);
 
-
         $locations = $settings->getLocations();
         $locations = array_keys($locations);
-
 
         $retailers = $this->getSelectedRetailers();
 
@@ -124,7 +114,6 @@ class Shop extends \Application\Common\Service
             $products->setCategory($settings->getLastCategory());
         }
 
-
         $session = $this->dataMapperFactory->create('ProductCollection', 'Session');
         $session->fetch($products);
 
@@ -133,8 +122,8 @@ class Shop extends \Application\Common\Service
         $products->setLanguage($settings->getLanguage());
         $products->setCurrency($settings->getCurrency());
         $products->setOrder($settings->getOrder());
-        $products->setAdvertisers(array_keys($retailers));
 
+        $products->setAdvertisers(array_keys($retailers));
 
         $api->fetch($products);
 
@@ -153,10 +142,8 @@ class Shop extends \Application\Common\Service
             $db->fetch($products);
         }
 
-
         return $products->getParsedArray();
     }
-
 
     public function clearQuery()
     {
@@ -166,7 +153,6 @@ class Shop extends \Application\Common\Service
         $session->store($products);
     }
 
-
     public function prepareSearch($query)
     {
         $this->currentQuery = $query;
@@ -175,7 +161,6 @@ class Shop extends \Application\Common\Service
         $session = $this->dataMapperFactory->create('ProductCollection', 'Session');
         $session->store($products);
     }
-
 
     public function getProductSuggestions()
     {
@@ -191,10 +176,7 @@ class Shop extends \Application\Common\Service
         }
 
         return $list;
-
     }
-
-
 
     public function getSearchedTerm()
     {
@@ -202,15 +184,12 @@ class Shop extends \Application\Common\Service
         $session = $this->dataMapperFactory->create('ProductCollection', 'Session');
         $session->fetch($products);
 
-
         $db = $this->dataMapperFactory->create('RecommendationCollection', 'SQL');
         $db->fetch($products);
 
         $term = $products->getQuery();
         return $term !== null ? $term : '';
     }
-
-
 
     public function setCurrentProduct($productId)
     {
@@ -238,7 +217,6 @@ class Shop extends \Application\Common\Service
             $this->registerVisitFor($product);
         }
 
-
         $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
         $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');
         $api->fetch($incentives);
@@ -247,15 +225,12 @@ class Shop extends \Application\Common\Service
 
         $product->applyIncentive($incentive);
 
-
         $this->currentCategoryId = $product->getCategoryId();
         $retailers = $this->getCategoryRetailers();
         $product->associateRetailer($retailers);
 
-
         return $product->getParsedArray();
     }
-
 
     private function acquireVisit($product)
     {
@@ -266,16 +241,12 @@ class Shop extends \Application\Common\Service
         return $visit;
     }
 
-
     private function registerVisitFor($product)
     {
-
         $visit = $this->acquireVisit($product);
-
 
         $session = $this->dataMapperFactory->create('Visit', 'Session');
         if (!$session->fetch($visit)) {
-
             $db = $this->dataMapperFactory->create('Visitor', 'SQL');
             $db->store($this->currentUser);
 
@@ -288,7 +259,6 @@ class Shop extends \Application\Common\Service
         }
         $api = $this->dataMapperFactory->create('Visit', 'REST');
         $api->store($visit);
-
     }
 
 
@@ -299,12 +269,10 @@ class Shop extends \Application\Common\Service
         $retailers = $this->domainObjectFactory->create('RetailerCollection');
         $retailers->setCategoryId($id);
 
-
         $settings = $this->domainObjectFactory->create('Settings');
 
         $session = $this->dataMapperFactory->create('Settings', 'Session');
         $session->fetch($settings);
-
 
         $locations = $settings->getLocations();
         $locations = array_keys($locations);
@@ -315,7 +283,6 @@ class Shop extends \Application\Common\Service
         $api->fetch($retailers);
 
         return $retailers->getParsedArray();
-
     }
 
     public function getSelectedRetailers()
@@ -328,7 +295,6 @@ class Shop extends \Application\Common\Service
 
         return $retailers->getParsedArray();
     }
-
 
     public function clearRetailers()
     {
@@ -351,7 +317,6 @@ class Shop extends \Application\Common\Service
         return $product;
     }
 
-
     public function registerBuy()
     {
         if ($this->currentProduct === null) {
@@ -363,21 +328,17 @@ class Shop extends \Application\Common\Service
         $db = $this->dataMapperFactory->create('Visitor', 'SQL');
         $db->store($this->currentUser);
 
-
         $visit = $this->acquireVisit($product);
         $visit->setVisitorId($this->currentUser->getVisitorId());
 
-
         $db = $this->dataMapperFactory->create('Redirect', 'SQL');
         $db->store($visit);
-
 
         $api = $this->dataMapperFactory->create('Visit', 'REST');
         $api->fetch($visit);
 
         $this->visit = $visit;
     }
-
 
     public function getVisitDetails()
     {
@@ -396,7 +357,6 @@ class Shop extends \Application\Common\Service
         $db = $this->dataMapperFactory->create('RecommendationCollection', 'SQL');
         $db->fetch($products);
 
-
         $db = $this->dataMapperFactory->create('ProductCollection', 'SQL');
         $db->fetch($products);
 
@@ -404,7 +364,6 @@ class Shop extends \Application\Common\Service
         $api->fetch($products);
 
         $db->delete($products);
-
 
         $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
         $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');
@@ -424,8 +383,6 @@ class Shop extends \Application\Common\Service
         $session->fetch($retailers);
 
         $retailers->toggleItem(['id' => $id]);
-
         $session->store($retailers);
-
     }
 }

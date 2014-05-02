@@ -4,15 +4,12 @@ namespace Application\Common;
 
 class DomainObjectFactory
 {
-
     private $namespace = '';
-
 
     public function setNamespace($namespace)
     {
         $this->namespace = $namespace;
     }
-
 
     public function create($class, $namespace = null)
     {

@@ -2,7 +2,6 @@
 
 namespace Application\Controllers;
 
-
 class Docs extends \Application\Common\Controller
 {
     public function getIndex($request)
@@ -15,7 +14,6 @@ class Docs extends \Application\Common\Controller
 
         $itinerary->forUser($user);
     }
-
 
     public function getTermsOfUse($request)
     {

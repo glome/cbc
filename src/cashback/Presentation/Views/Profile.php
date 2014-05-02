@@ -4,7 +4,6 @@ namespace Application\Views;
 
 class Profile extends \Application\Common\View
 {
-
     private $currentTab = 'wishlist';
 
     public function index()
@@ -25,8 +24,6 @@ class Profile extends \Application\Common\View
         $translation = $this->serviceFactory->create('Translation');
         $translation->checkSettings();
 
-
-
         $builder = $this->templateBuilder;
 
         $main    = $builder->create('main');
@@ -35,11 +32,9 @@ class Profile extends \Application\Common\View
         $profile = $builder->create('profile-brief');
         $deals   = $builder->create('deals');
 
-
         $content->assign('categories', array_slice($categories, 0, 10));
         $footer->assign('categories', $categories);
         $deals->assign('products', $shop->getRecommendations(4));
-
 
         $code = $recognition->getPairingCode();
 
@@ -63,8 +58,6 @@ class Profile extends \Application\Common\View
             'code'       => str_split($code, 4),
         ]);
 
-
-
         $main->assignAll([
             'content'  => $content,
             'user'     => $profile,
@@ -76,16 +69,15 @@ class Profile extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
+
         return $main->render();
     }
-
 
     public function history()
     {
         $this->currentTab = 'history';
         return $this->wishlist();
     }
-
 
     public function wish()
     {
@@ -97,13 +89,11 @@ class Profile extends \Application\Common\View
 
     }
 
-
     public function pairing()
     {
         $this->currentTab = 'pairing';
         return $this->wishlist();
     }
-
 
     public function qr()
     {

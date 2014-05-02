@@ -4,8 +4,6 @@ namespace Application\DataMappers\SQL;
 
 class ProductCollection extends \Application\Common\SQLMapper
 {
-
-
     public function delete($collection)
     {
         $todo = $collection->getRemovable();
@@ -30,14 +28,9 @@ class ProductCollection extends \Application\Common\SQLMapper
         $collection->cleanup();
     }
 
-
-
     public function fetch($collection)
     {
-
-
         if ($collection->hasItems()) {
-
             $list = [];
             foreach ($collection as $product) {
                 $list[(int)$product->getId()] = $product;
@@ -61,9 +54,7 @@ class ProductCollection extends \Application\Common\SQLMapper
             } catch (\PDOException $e) {
                 // I hopw this wont be needed at any point
             }
-
         } else {
-
             $sql = "SELECT productID AS id FROM Wishes LEFT JOIN Visitors USING (visitorID) WHERE userId =:user";
 
             try {
@@ -75,12 +66,9 @@ class ProductCollection extends \Application\Common\SQLMapper
                         $collection->addItem($entry);
                     }
                 }
-
             } catch (\PDOException $e) {
                 // I hopw this wont be needed at any point
             }
-
         }
-
     }
 }

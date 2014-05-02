@@ -1,5 +1,4 @@
 {
-
     "main": {
         "notation": ":resource[/:action][/:id][/:name]",
         "conditions": {
@@ -22,5 +21,4 @@
             "action"    :   "index"
         }
     }
-
 }

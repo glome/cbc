@@ -9,7 +9,6 @@ use Guzzle\Common\Event;
 
 class Product extends \Application\Common\RestMapper
 {
-
     public function __construct($configuration)
     {
         $this->host = $configuration['rest']['host'];
@@ -17,7 +16,6 @@ class Product extends \Application\Common\RestMapper
         $this->uid = $configuration['rest']['params']['application[uid]'];
         $this->resources = $configuration['rest']['resources'];
     }
-
 
     public function fetch($instance)
     {
@@ -32,8 +30,6 @@ class Product extends \Application\Common\RestMapper
                 $event->stopPropagation();
             }
         );
-
-
 
         $id = $instance->getId();
         if ($id !== null) {
@@ -51,9 +47,7 @@ class Product extends \Application\Common\RestMapper
             return true;
         }
         return false;
-
     }
-
 
     private function applyParameter($instance, $parameters)
     {

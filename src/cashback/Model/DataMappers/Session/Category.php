@@ -4,7 +4,6 @@ namespace Application\DataMappers\Session;
 
 class Category extends \Application\Common\SessionMapper
 {
-
     public function fetch($instance)
     {
         return false;
@@ -26,12 +25,10 @@ class Category extends \Application\Common\SessionMapper
         return false;
     }
 
-
     public function store($instance)
     {
         $_SESSION['glome.categories'] = $instance->export();
     }
-
 
     public function delete($instance)
     {

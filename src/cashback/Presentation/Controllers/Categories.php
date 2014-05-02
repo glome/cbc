@@ -2,7 +2,6 @@
 
 namespace Application\Controllers;
 
-
 class Categories extends \Application\Common\Controller
 {
     public function getIndex($request)
@@ -16,6 +15,5 @@ class Categories extends \Application\Common\Controller
 
         $configuration = $this->serviceFactory->create('Configuration');
         $configuration->setSearchState(0);
-
     }
 }

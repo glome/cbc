@@ -10,11 +10,9 @@ use Guzzle\Common\Event;
 
 class RetailerCollection extends \Application\Common\RestMapper
 {
-
     private $host;
     private $apikey;
     private $uid;
-
 
     public function __construct($configuration)
     {
@@ -23,7 +21,6 @@ class RetailerCollection extends \Application\Common\RestMapper
         $this->uid = $configuration['rest']['params']['application[uid]'];
         $this->resources = $configuration['rest']['resources'];
     }
-
 
     public function fetch($collection)
     {
@@ -56,7 +53,6 @@ class RetailerCollection extends \Application\Common\RestMapper
             }
         }
     }
-
 
     private function applyParameter($instance, $parameters)
     {

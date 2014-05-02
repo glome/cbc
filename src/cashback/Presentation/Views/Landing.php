@@ -4,7 +4,6 @@ namespace Application\Views;
 
 class Landing extends \Application\Common\View
 {
-
     public function index()
     {
         $itinerary = $this->serviceFactory->create('Itinerary');
@@ -16,7 +15,6 @@ class Landing extends \Application\Common\View
 
         $translation = $this->serviceFactory->create('Translation');
         $translation->checkSettings();
-
 
         $builder = $this->templateBuilder;
 
@@ -33,7 +31,6 @@ class Landing extends \Application\Common\View
         ]);
         $footer->assign('categories', $categories);
         $deals->assign('products', $shop->getRecommendations(4));
-
 
         $profile->assignAll([
             'wishes'     => $itinerary->getWishlistLength(),
@@ -63,6 +60,7 @@ class Landing extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
+
         return $main->render();
     }
 }

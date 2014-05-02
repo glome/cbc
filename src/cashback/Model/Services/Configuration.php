@@ -5,12 +5,10 @@ namespace Application\Services;
 
 class Configuration extends \Application\Common\Service
 {
-
     private $data = [];
     private $codes = [];
     private $titles = [];
     private $contacts = null;
-
 
     public function import($config)
     {
@@ -19,7 +17,6 @@ class Configuration extends \Application\Common\Service
         $this->importParameters('locations', $config['locations']);
         $this->contacts = $config['contacts'];
     }
-
 
     private function importParameters($key, $parameters)
     {
@@ -42,8 +39,6 @@ class Configuration extends \Application\Common\Service
         }
     }
 
-
-
     public function getContacts()
     {
         return $this->contacts;
@@ -56,8 +51,6 @@ class Configuration extends \Application\Common\Service
         }
         return false;
     }
-
-
 
     public function disableDownlaodBar()
     {
@@ -87,8 +80,6 @@ class Configuration extends \Application\Common\Service
             }
         }
 
-
-
         return [
             'has-download-bar'   => $settings->getParam('no-download') != true,
             'selected-locations' => $locations,
@@ -99,13 +90,10 @@ class Configuration extends \Application\Common\Service
             'languages'          => $this->data['languages'],
             'locations'          => $this->data['locations'],
         ];
-
     }
-
 
     public function applyParam($param)
     {
-
         $session = $this->dataMapperFactory->create('Settings', 'Session');
         $settings = $this->domainObjectFactory->create('Settings');
 
@@ -120,12 +108,10 @@ class Configuration extends \Application\Common\Service
             $settings->setLanguage($code);
         }
 
-
         if (in_array($param, $this->titles['locations'])) {
             $code = $this->findByTitle($param, 'locations');
             $settings->addLocation($code);
         }
-
 
         if (in_array($param, ['Newest added', 'Oldest added'])) {
             $settings->setOrder($param === 'Oldest added');
@@ -134,8 +120,6 @@ class Configuration extends \Application\Common\Service
         $session->store($settings);
     }
 
-
-
     public function delParam($param)
     {
         $session = $this->dataMapperFactory->create('Settings', 'Session');
@@ -143,15 +127,12 @@ class Configuration extends \Application\Common\Service
 
         $session->fetch($settings);
 
-
-
         if (in_array($param, $this->titles['locations'])) {
             $code = $this->findByTitle($param, 'locations');
             $settings->removeLocation($code);
         }
 
         $session->store($settings);
-
     }
 
     private function findByTitle($title, $key)
@@ -173,7 +154,6 @@ class Configuration extends \Application\Common\Service
         $session = $this->dataMapperFactory->create('Settings', 'Session');
         $session->fetch($settings);
 
-
         foreach ($this->data['currencies'] as $key => $value) {
             if ($value['code'] === $settings->getCurrency()) {
                 return $value;
@@ -182,7 +162,6 @@ class Configuration extends \Application\Common\Service
 
         return $this->data['currencies'][0];
     }
-
 
     public function getPreferredLanguage()
     {
@@ -199,7 +178,6 @@ class Configuration extends \Application\Common\Service
 
         return $this->data['languages'][0];
     }
-
 
     public function setSearchState($id)
     {
@@ -222,7 +200,6 @@ class Configuration extends \Application\Common\Service
     {
         $this->setSearchState(null);
     }
-
 
     public function setCurrentCategory($id)
     {

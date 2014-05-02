@@ -4,7 +4,6 @@ namespace Application\DomainObjects;
 
 class Finances
 {
-
     private $userId;
     private $error = null;
     private $earnings = [];
@@ -14,12 +13,10 @@ class Finances
         $this->userId = $id;
     }
 
-
     public function getUserId()
     {
         return $this->userId;
     }
-
 
     public function setError($message)
     {
@@ -36,7 +33,6 @@ class Finances
         return $this->error;
     }
 
-
     public function getBacklog($currency)
     {
         if (isset($this->earnings['fresh'][$currency])) {
@@ -52,7 +48,6 @@ class Finances
         return [];
     }
 
-
     public function getTotal($currency = null)
     {
         if (isset($this->earnings['fresh']['total'][$currency])) {
@@ -60,7 +55,6 @@ class Finances
         }
         return 0;
     }
-
 
     public function setEarnings($earnings)
     {

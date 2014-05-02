@@ -2,7 +2,6 @@
 
 namespace Application\Controllers;
 
-
 class Profile extends \Application\Common\Controller
 {
     public function getIndex($request)
@@ -21,12 +20,10 @@ class Profile extends \Application\Common\Controller
         $this->getIndex($request);
     }
 
-
     public function getHistory($request)
     {
         $this->getIndex($request);
     }
-
 
     public function getWish($request)
     {
@@ -53,7 +50,6 @@ class Profile extends \Application\Common\Controller
         $this->getIndex($request);
 
     }
-
 
     public function getQR($request)
     {

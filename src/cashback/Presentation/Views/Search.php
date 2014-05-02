@@ -4,7 +4,6 @@ namespace Application\Views;
 
 class Search extends \Application\Common\View
 {
-
     public function index()
     {
         $itinerary = $this->serviceFactory->create('Itinerary');
@@ -22,9 +21,6 @@ class Search extends \Application\Common\View
         $translation = $this->serviceFactory->create('Translation');
         $translation->checkSettings();
 
-
-
-
         $builder = $this->templateBuilder;
 
         $main       = $builder->create('main');
@@ -33,7 +29,6 @@ class Search extends \Application\Common\View
         $results    = $builder->create('results');
         $footer     = $builder->create('footer');
         $profile = $builder->create('profile-brief');
-
 
         $results->assign('products', $products);
         $footer->assign('categories', $categories);
@@ -69,14 +64,15 @@ class Search extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
+
         return $main->render();
     }
-
 
     public function autocomplete()
     {
         header('Content-Type: application/json');
         $shop = $this->serviceFactory->create('Shop');
+
         return json_encode($shop->getProductSuggestions());
     }
 }

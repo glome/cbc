@@ -4,7 +4,6 @@ namespace Application\DomainObjects;
 
 class Retailer
 {
-
     private $id = null;
     private $name = null;
 
@@ -18,12 +17,10 @@ class Retailer
         return $this->id;
     }
 
-
     public function setName($name)
     {
         $this->name = $name;
     }
-
 
     public function getName()
     {

@@ -4,7 +4,6 @@ namespace Application\Views;
 
 class Redirect extends \Application\Common\View
 {
-
     public function index()
     {
         $shop = $this->serviceFactory->create('Shop');

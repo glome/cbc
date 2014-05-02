@@ -4,7 +4,6 @@ namespace Application\Views;
 
 class Categories extends \Application\Common\View
 {
-
     public function index()
     {
         $itinerary = $this->serviceFactory->create('Itinerary');
@@ -14,12 +13,10 @@ class Categories extends \Application\Common\View
         $translation = $this->serviceFactory->create('Translation');
         $translation->checkSettings();
 
-
         $shop = $this->serviceFactory->create('Shop');
         $categories = $shop->getCategories();
         $query = $shop->getSearchedTerm();
         $products = $shop->getProducts();
-
 
         $builder = $this->templateBuilder;
 
@@ -29,7 +26,6 @@ class Categories extends \Application\Common\View
         $listing    = $builder->create('categories');
         $footer     = $builder->create('footer');
         $profile = $builder->create('profile-brief');
-
 
         $groups = [];
 
@@ -42,11 +38,6 @@ class Categories extends \Application\Common\View
 
             }
         }
-
-
-
-
-
 
         $listing->assign('categories', $categories);
         $footer->assign('categories', $categories);
@@ -83,7 +74,6 @@ class Categories extends \Application\Common\View
         ]);
         return $main->render();
     }
-
 
     protected function arrangeShort($list)
     {

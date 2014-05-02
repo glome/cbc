@@ -4,7 +4,6 @@ namespace Application\Common;
 
 class DataMapperFactory
 {
-
     private $namespace = '';
     private $datasources = [];
     private $cache = [];
@@ -32,7 +31,6 @@ class DataMapperFactory
         }
         $class = $this->namespace . '\\' . $class;
 
-
         if (!array_key_exists($class, $this->cache)) {
             $instance = new $class($this->datasources);
 
@@ -51,7 +49,6 @@ class DataMapperFactory
 
         return $this->cache[$class];
     }
-
 
     private function getPDOInstance($config)
     {

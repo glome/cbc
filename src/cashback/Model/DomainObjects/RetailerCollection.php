@@ -4,7 +4,6 @@ namespace Application\DomainObjects;
 
 class RetailerCollection extends \Application\Common\Collection
 {
-
     private $categoryId = null;
     private $locations = [];
 
@@ -29,18 +28,15 @@ class RetailerCollection extends \Application\Common\Collection
         return new Retailer;
     }
 
-
     public function setCategoryId($id)
     {
         $this->categoryId = $id;
     }
 
-
     public function getCategoryId()
     {
         return $this->categoryId;
     }
-
 
     public function getParsedArray()
     {

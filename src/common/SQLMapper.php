@@ -4,7 +4,6 @@ namespace Application\Common;
 
 class SQLMapper
 {
-
     protected $pdo;
 
     public function setConnection($pdo)
