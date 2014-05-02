@@ -441,13 +441,15 @@ $(document).ready(function() {
      */
     $(".filter-brand .filter-content-wrap ul li a, .filter-retailer .filter-content-wrap ul li a").on("click", function(e) {
         var $this = $(this);
-        $.get(this.href, updateProducts);
-        e.preventDefault();
+        var href = this.href;
 
         if ($this.parent().hasClass("selected")) {
             $this.parent().removeClass("selected");
             if ($this.parent().siblings('.selected').length === 0) {
                 $this.parents('ul').children().first().addClass("selected");
+                if (href.indexOf('clear') == -1) {
+                    href += '&clear';
+                }
             }
         } else {
             if ($this.hasClass('action-reset')) {
@@ -457,8 +459,11 @@ $(document).ready(function() {
             }
             $this.parent().addClass("selected");
         }
-    });
 
+        $.get(href, updateProducts);
+
+        e.preventDefault();
+    });
 
     $('#action-reset').on('click', function(e) {
         var targets = $('#retailer-list li');
