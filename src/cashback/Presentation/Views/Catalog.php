@@ -19,42 +19,73 @@ class Catalog extends \Application\Common\View
 
         $products = $shop->getProducts();
 
-
-        if ($shop->hasReload()) {
-            $content    = $builder->create('product-list');
-            $content->assign('products', $products);
-            return $content->render();
-        }
-
-
-        if ($shop->getPage() !== null) {
-            $main       = $builder->create('clean');
-            $content    = $builder->create('product-list');
-            $main->assign('content', $content);
-            $content->assign('products', $products);
-            return $main->render();
-        }
-
-
         $categories = $shop->getCategories();
         $retailers = $shop->getCategoryRetailers();
         $selectedRetailers = $shop->getSelectedRetailers();
+        $currentCategory = $shop->getParentCategoryId();
 
-
-
-
-        $main       = $builder->create('main');
-        $content    = $builder->create('catalog');
         $navigation = $builder->create('navigation');
         $footer     = $builder->create('footer');
         $profile    = $builder->create('profile-brief');
 
         $footer->assign('categories', $categories);
         $navigation->assignAll([
+            'resource'   => 'catalog',
+            'allcat_resource' => 'categories',
             'categories' => array_slice($categories, 0, 10),
             'searchType' => $configuration->getSearchState(),
         ]);
 
+        $params = [
+            'navigation'      => $navigation,
+            'category'        => null,
+            'current'         => null,
+            'products'        => [],
+            'retailers'       => [],
+            'selectedRetailers' => array_keys($selectedRetailers)
+        ];
+
+        if ($currentCategory !== null) {
+            $params['category'] = $categories[$currentCategory];
+            $params['current'] = $shop->getCurrentCategoryId();
+            $params['products'] = $products;
+            $params['retailers'] = $retailers;
+        }
+
+        if ($shop->hasReload()) {
+            if ($currentCategory == null || count($products) == 0) {
+                $content = $builder->create('no_results');
+           } else {
+                $content = $builder->create('product-list');
+                $content->assign('products', $products);
+            }
+            $content->assignAll($params);
+
+            return $content->render();
+        }
+
+        if ($shop->getPage() !== null) {
+            $main = $builder->create('clean');
+            if ($currentCategory == null || count($products) == 0) {
+                $content = $builder->create('no_results');
+            } else {
+                $content = $builder->create('product-list');
+                $content->assign('products', $products);
+            }
+
+            $content->assignAll($params);
+            $main->assign('content', $content);
+
+            return $main->render();
+        }
+
+        $main = $builder->create('main');
+
+        if ($currentCategory == null || count($products) == 0) {
+            $content = $builder->create('no_results');
+        } else {
+            $content = $builder->create('catalog');
+        }
 
         $profile->assignAll([
             'wishes'   => $itinerary->getWishlistLength(),
@@ -65,29 +96,7 @@ class Catalog extends \Application\Common\View
             ],
         ]);
 
-        $currentCategory = $shop->getParentCategoryId();
-
-        $params = [
-            'navigation'      => $navigation,
-            'category'        => null,
-            'current'         => null,
-            'products'        => [],
-            'retailers'       => [],
-            'selectedRetailesr' => [],
-        ];
-
-        if ($currentCategory !== null) {
-            $params['category'] = $categories[$currentCategory];
-            $params['current'] = $shop->getCurrentCategoryId();
-            $params['products'] = $products;
-            $params['retailers'] = $retailers;
-            $params['selectedRetailers'] = array_keys($selectedRetailers);
-        }
-
-
-
         $content->assignAll($params);
-
 
         $main->assignAll([
             'content'    => $content,
