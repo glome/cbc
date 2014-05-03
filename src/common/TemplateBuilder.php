@@ -4,7 +4,6 @@ namespace Application\Common;
 
 class TemplateBuilder
 {
-
     private $path;
 
     private $translations;
@@ -14,7 +13,6 @@ class TemplateBuilder
         $this->path = $path;
         $this->translations = $translations;
     }
-
 
     public function create($name)
     {

@@ -9,7 +9,6 @@ use Guzzle\Common\Event;
 
 class IncentiveCollection extends \Application\Common\RestMapper
 {
-
     public function __construct($configuration)
     {
         $this->host = $configuration['rest']['host'];
@@ -32,9 +31,6 @@ class IncentiveCollection extends \Application\Common\RestMapper
             }
         );
 
-
-
-
         $url = $this->applyValuesToURL($this->resources['incentives'], []);
         $response = $client->get($this->host . $url)->send();
         $data = $response->json();
@@ -46,8 +42,6 @@ class IncentiveCollection extends \Application\Common\RestMapper
             $collection->addItem($entry);
         }
     }
-
-
 
     private function applyParameter($instance, $parameters)
     {

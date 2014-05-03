@@ -4,7 +4,6 @@ namespace Application\DataMappers\Session;
 
 class Settings extends \Application\Common\SessionMapper
 {
-
     public function fetch($instance)
     {
         if (isset($_SESSION['config.language'])) {
@@ -18,7 +17,6 @@ class Settings extends \Application\Common\SessionMapper
         if (isset($_SESSION['config.locations'])) {
             $instance->setLocations($_SESSION['config.locations']);
         }
-
 
         if (isset($_SESSION['config.order'])) {
             $instance->setOrder($_SESSION['config.order']);
@@ -34,7 +32,6 @@ class Settings extends \Application\Common\SessionMapper
 
         return true;
     }
-
 
     public function store($instance)
     {

@@ -4,7 +4,6 @@ namespace Application\DataMappers\Session;
 
 class CategoryCollection extends \Application\Common\SessionMapper
 {
-
     public function fetch($collection)
     {
         return false; // disables caching
@@ -16,12 +15,10 @@ class CategoryCollection extends \Application\Common\SessionMapper
         return false;
     }
 
-
     public function store($collection)
     {
         $_SESSION['glome.categories'] = $collection->export();
     }
-
 
     public function delete($collection)
     {

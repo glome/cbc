@@ -10,7 +10,6 @@ use Guzzle\Common\Event;
 
 class Finances extends \Application\Common\RestMapper
 {
-
     private $host;
     private $apikey;
     private $uid;
@@ -22,7 +21,6 @@ class Finances extends \Application\Common\RestMapper
         $this->uid = $configuration['rest']['params']['application[uid]'];
         $this->resources = $configuration['rest']['resources'];
     }
-
 
     public function fetch($instance)
     {
@@ -38,8 +36,6 @@ class Finances extends \Application\Common\RestMapper
             }
         );
 
-
-
         $id = $instance->getUserId();
         if ($id !== null) {
             $url = $this->applyValuesToURL(
@@ -53,7 +49,6 @@ class Finances extends \Application\Common\RestMapper
             if (isset($data['error'])) {
                 $instance->setError($data['error']);
             }
-
         }
     }
 }

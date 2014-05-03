@@ -1,6 +1,5 @@
 <?php
 
-
 //Initializing composer0based autoloader
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -31,5 +30,3 @@ $router->import($configuration);
 $router->route($request);
 
 require 'launcher.php';
-
-

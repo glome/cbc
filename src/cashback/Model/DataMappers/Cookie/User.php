@@ -15,7 +15,6 @@ class User
 
     }
 
-
     public function store($instance)
     {
         $id = $instance->getId();

@@ -4,7 +4,6 @@ namespace Application\DomainObjects;
 
 class Wallet
 {
-
     private $userId;
     private $response = [];
 
@@ -13,18 +12,15 @@ class Wallet
         $this->userId = $id;
     }
 
-
     public function getUserId()
     {
         return $this->userId;
     }
 
-
     public function setResponse($response)
     {
         $this->response = $response;
     }
-
 
     public function getParsedArray()
     {

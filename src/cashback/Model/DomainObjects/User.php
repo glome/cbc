@@ -4,7 +4,6 @@ namespace Application\DomainObjects;
 
 class User
 {
-
     private $id = null;
 
     public function setId($id)
@@ -29,9 +28,7 @@ class User
         $this->session = $session;
     }
 
-
     private $token = null;
-
 
     public function getToken()
     {
@@ -42,7 +39,6 @@ class User
     {
         $this->token = $token;
     }
-
 
     private $visitorId = null;
 
@@ -56,14 +52,12 @@ class User
         return $this->visitorId;
     }
 
-
     private $pairingCode;
 
     public function setPairingCode($code)
     {
         $this->pairingCode = $code;
     }
-
 
     public function getPairingCode()
     {

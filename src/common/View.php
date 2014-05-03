@@ -4,7 +4,6 @@ namespace Application\Common;
 
 class View
 {
-
     protected $serviceFactory;
 
     protected $templateBuilder;

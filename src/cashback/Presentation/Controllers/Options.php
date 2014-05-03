@@ -2,7 +2,6 @@
 
 namespace Application\Controllers;
 
-
 class Options extends \Application\Common\Controller
 {
     public function getIndex($request)

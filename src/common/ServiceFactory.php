@@ -4,7 +4,6 @@ namespace Application\Common;
 
 class ServiceFactory
 {
-
     private $namespace;
 
     private $cache = [];

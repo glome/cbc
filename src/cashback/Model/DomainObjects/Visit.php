@@ -4,13 +4,11 @@ namespace Application\DomainObjects;
 
 class Visit
 {
-
     private $visitorId;
     private $categoryId;
     private $productId;
     private $link;
     private $userId;
-
 
     public function setUserId($id)
     {
@@ -21,7 +19,6 @@ class Visit
     {
         return $this->userId;
     }
-
 
     public function setVisitorId($visitorId)
     {
@@ -52,7 +49,6 @@ class Visit
     {
         return $this->productId;
     }
-
 
     public function setTrackingLink($link)
     {

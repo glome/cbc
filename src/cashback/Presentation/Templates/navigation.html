@@ -1,4 +1,7 @@
-
+<?php
+  isset($resource) ? 1 : $resource = 'catalog';
+  isset($allcat_resource) ? 1 : $allcat_resource = 'categories';
+?>
             <div class="search-bar">
                 <div class="wrap">
                     <div class="cat-menu dropdown">
@@ -12,7 +15,7 @@
                                 <div class="cat-sub-menu">
                                     <ul>
                                     <?php foreach ($category['subcategories'] as $id => $subcategory): ?>
-                                        <li><a href="/catalog/<?=$id?>"><?=$subcategory['name']?></a></li>
+                                        <li><a href="/<?= $resource ?>/<?=$id?>"><?=$subcategory['name']?></a></li>
                                     <?php endforeach; ?>
                                     </ul>
                                 </div>
@@ -20,7 +23,7 @@
                             </li>
 
                             <?php endforeach; ?>
-                            <li class="all-cat"><a href="/categories">All Categories</a></li>
+                            <li class="all-cat"><a href="/<?= $allcat_resource ?>">All Categories</a></li>
                         </ul>
                     </div><!-- .cat-menu -->
                     <div class="search">
