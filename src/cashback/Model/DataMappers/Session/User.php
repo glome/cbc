@@ -4,7 +4,6 @@ namespace Application\DataMappers\Session;
 
 class User extends \Application\Common\SessionMapper
 {
-
     public function fetch($instance)
     {
         if (!isset($_SESSION['glome.session']) || !isset($_SESSION['glome.token'])) {
@@ -18,7 +17,6 @@ class User extends \Application\Common\SessionMapper
         }
         return true;
     }
-
 
     public function store($instance)
     {

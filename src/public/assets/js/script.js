@@ -9,9 +9,6 @@ var mouse_on_header_profile = false;
 
 $(document).ready(function() {
 
-
-
-
     var init = function() {
         var $container = $('#grid');
 
@@ -20,8 +17,6 @@ $(document).ready(function() {
                 itemSelector: '.product'
             });
         });
-
-
 
         $container.infinitescroll({
             navSelector: '#page-nav', // selector for the paged navigation
@@ -45,33 +40,33 @@ $(document).ready(function() {
             });
         }
         );
-
     },
-            updateProducts = (function(init) {
-                return function() {
-                    var $container = $('#grid');
-                    $container.masonry('destroy');
-                    $container.empty();
-                    $container.addClass('loading')
-                    $.get(window.location.href + '?xhr', function(data) {
-                        $container.removeClass('loading');
-                        $container.html(data);
-                        init();
-                        normalizeProducts();
-                    });
-                };
-            }(init)),
-            normalizeProducts = function() {
-                $(".product").each(function() {
-                    if ($(this).isOnScreen() === true) {
-                        $(this).addClass("animated");
-                    }
-                });
-            };
 
+    updateProducts = (function(init) {
+        return function() {
+            var $container = $('#grid');
+            $container.masonry('destroy');
+            $container.empty();
+            $container.addClass('loading');
+
+            $.get(window.location.href + '?xhr', function(data) {
+                $container.removeClass('loading');
+                $container.html(data);
+                init();
+                normalizeProducts();
+            });
+        };
+    }(init)),
+
+    normalizeProducts = function() {
+        $(".product").each(function() {
+            if ($(this).isOnScreen() === true) {
+                $(this).addClass("animated");
+            }
+        });
+    };
 
     init();
-
 
     $('#remote-content').load('/article');
 
@@ -138,7 +133,6 @@ $(document).ready(function() {
     });
 
     /* select box function */
-
     $(".select-box").on("click", function() {
         if ($(window).width() > 730) {
             if ($(this).hasClass("active")) {
@@ -166,9 +160,7 @@ $(document).ready(function() {
         }
     });
 
-
     /* Mobile filter get width*/
-
     getWidth();
     $(window).on("resize", function() {
         getWidth();
@@ -214,7 +206,6 @@ $(document).ready(function() {
     });
 
     /* Download bar */
-
     var time = setTimeout(function() {
         $(".download-bar").addClass("show");
     }, 3000);
@@ -226,8 +217,6 @@ $(document).ready(function() {
     });
 
     /* Header profile button */
-
-
     $(".header-profile-btn").on("click", function(e) {
         if ($(window).width() < 769) {
             e.preventDefault();
@@ -247,7 +236,6 @@ $(document).ready(function() {
             }
         }
     });
-
 
     /* INDEX page - about tabs */
     $(".tab-menu li a").on("click", function(e) {
@@ -282,7 +270,6 @@ $(document).ready(function() {
 
     });
 
-
     $(".select-checkbox ul li").on("click", function(e) {
 
         var txt = $(this).text();
@@ -307,7 +294,6 @@ $(document).ready(function() {
     });
 
     /* Shop by category select */
-
     $('.cat-menu .title').on("click", function(e) {
         var target = $(this).parent();
         e.preventDefault();
@@ -358,7 +344,6 @@ $(document).ready(function() {
     });
 
     /* Flexslider */
-
     $(".slider").flexslider({
         directionNav: false,
         controlNav: true
@@ -405,8 +390,6 @@ $(document).ready(function() {
 
         counter.text(total);
         indicator.text(total);
-
-
     });
 
     $('.delete-from-wishlist').on('click', function(e) {
@@ -458,13 +441,15 @@ $(document).ready(function() {
      */
     $(".filter-brand .filter-content-wrap ul li a, .filter-retailer .filter-content-wrap ul li a").on("click", function(e) {
         var $this = $(this);
-        $.get(this.href, updateProducts);
-        e.preventDefault();
+        var href = this.href;
 
         if ($this.parent().hasClass("selected")) {
             $this.parent().removeClass("selected");
             if ($this.parent().siblings('.selected').length === 0) {
                 $this.parents('ul').children().first().addClass("selected");
+                if (href.indexOf('clear') == -1) {
+                    href += '&clear';
+                }
             }
         } else {
             if ($this.hasClass('action-reset')) {
@@ -474,8 +459,11 @@ $(document).ready(function() {
             }
             $this.parent().addClass("selected");
         }
-    });
 
+        $.get(href, updateProducts);
+
+        e.preventDefault();
+    });
 
     $('#action-reset').on('click', function(e) {
         var targets = $('#retailer-list li');
@@ -492,10 +480,7 @@ $(document).ready(function() {
         });
     }
 
-
-
     /* FOOTER MENU */
-
     $(".footer-menu ul .col .title").on("click", function(e) {
         e.preventDefault();
 
@@ -648,7 +633,6 @@ $(document).ready(function() {
     });
 
     /* Overlay */
-
     $(".buy-now-btn").on("click", function(e) {
         e.preventDefault();
         var link = $(this).attr("href");
@@ -676,7 +660,6 @@ $(document).ready(function() {
     });
 
     /* options bar */
-
     $(".options-bar .order .label").on("click", function() {
         if ($(window).width() < 731) {
             $(this).parent().toggleClass("mob-opened");
@@ -693,20 +676,16 @@ $(document).ready(function() {
     });
 
     /* SEARCH AUTOCOMPLETE */
-
     $("#search-input").autocomplete({
         source: '/search/autocomplete',
         minLength: 3,
         appendTo: ".search-form"
     });
 
-
-
     /* Aurum IT paraksts */
     $(".aurumit").on("mouseenter", function() {
         $("html, body").animate({scrollTop: $(document).height() + 30}, 500);
     });
-
 
     /* Masonry grid */
     /*
@@ -718,7 +697,6 @@ $(document).ready(function() {
      */
 
     /* Form validation */
-
     $(".contact-form").on("submit", function() {
         var form = $(this);
         var msg = $("textarea.comments", form).val();
@@ -751,12 +729,6 @@ $(document).ready(function() {
         }
 
     });
-
-
-
-
-
-
 });
 
 /* SELECT BOX */
@@ -783,7 +755,6 @@ $(document).ready(function() {
 }());
 
 /* MOBILE get full width*/
-
 function getWidth() {
     if ($(window).width() < 730) {
         var content_width = $(".wrap").width();

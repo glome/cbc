@@ -4,10 +4,7 @@ namespace Application\Common;
 
 abstract class Collection implements \Iterator, \ArrayAccess
 {
-
-
     abstract protected function buildItem();
-
 
     protected $pool = [];
     protected $forRemoval = [
@@ -40,7 +37,6 @@ abstract class Collection implements \Iterator, \ArrayAccess
         }
     }
 
-
     public function cleanup()
     {
         foreach ($this->forRemoval['keys'] as $id) {
@@ -59,7 +55,6 @@ abstract class Collection implements \Iterator, \ArrayAccess
             'keys' => [],
         ];
     }
-
 
     public function getRemovable()
     {
@@ -82,7 +77,6 @@ abstract class Collection implements \Iterator, \ArrayAccess
     }
 
     // implementing Iterator
-
     public function rewind()
     {
         $this->position = 0;
@@ -108,9 +102,7 @@ abstract class Collection implements \Iterator, \ArrayAccess
         return isset($this->pool[$this->position]);
     }
 
-
     // implementing ArrayAccess
-
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -119,14 +111,17 @@ abstract class Collection implements \Iterator, \ArrayAccess
             $this->pool[$offset] = $value;
         }
     }
+
     public function offsetExists($offset)
     {
         return isset($this->pool[$offset]);
     }
+
     public function offsetUnset($offset)
     {
         unset($this->pool[$offset]);
     }
+
     public function offsetGet($offset)
     {
         return isset($this->pool[$offset]) ? $this->pool[$offset] : null;

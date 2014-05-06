@@ -4,11 +4,23 @@ namespace Application\DomainObjects;
 
 class RetailerCollection extends \Application\Common\Collection
 {
-
     private $categoryId = null;
+    private $page = null;
     private $locations = [];
 
+    public function setPage($page)
+    {
+        $this->page = $page;
+    }
 
+    public function getPage()
+    {
+        $page = (int)$this->page;
+        if ($page === 0) {
+            $page = 1;
+        }
+        return $page;
+    }
 
     public function setLocations($locations)
     {
@@ -29,18 +41,15 @@ class RetailerCollection extends \Application\Common\Collection
         return new Retailer;
     }
 
-
     public function setCategoryId($id)
     {
         $this->categoryId = $id;
     }
 
-
     public function getCategoryId()
     {
         return $this->categoryId;
     }
-
 
     public function getParsedArray()
     {
@@ -53,14 +62,20 @@ class RetailerCollection extends \Application\Common\Collection
 
     public function toggleItem($params)
     {
+        $removed = false;
+
         foreach ($this as $key => $item) {
             if ($item->getId() === $params['id']) {
                 $this->removeItem($key);
-                return;
+                $removed = true;
             }
         }
 
-        $this->addItem($params);
+        if ($removed) {
+            $this->cleanup();
+        } else {
+            $this->addItem($params);
+        }
         return;
     }
 

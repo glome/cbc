@@ -14,7 +14,6 @@ class Service
         $this->dataMapperFactory = $dataMapperFactory;
     }
 
-
     protected function addError($message)
     {
         $this->errors[] = $message;

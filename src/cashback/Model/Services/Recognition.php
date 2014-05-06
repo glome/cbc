@@ -2,12 +2,9 @@
 
 namespace Application\Services;
 
-
 class Recognition extends \Application\Common\Service
 {
-
     private $current = null;
-
 
     public function authenticate()
     {
@@ -31,10 +28,8 @@ class Recognition extends \Application\Common\Service
         return $this->current;
     }
 
-
     public function getPairingCode()
     {
-
         if ($this->current === null) {
             return;
         }

@@ -4,7 +4,6 @@ namespace Application\DataMappers\Session;
 
 class RetailerCollection extends \Application\Common\SessionMapper
 {
-
     public function fetch($collection)
     {
         $session = isset($_SESSION['retailers']) ? $_SESSION['retailers'] : [];
@@ -19,7 +18,6 @@ class RetailerCollection extends \Application\Common\SessionMapper
         return true;
     }
 
-
     public function store($collection)
     {
         $category = $collection->getCategoryId();
@@ -31,7 +29,6 @@ class RetailerCollection extends \Application\Common\SessionMapper
 
         $_SESSION['retailers'][$category] = $list;
     }
-
 
     public function delete($collection)
     {

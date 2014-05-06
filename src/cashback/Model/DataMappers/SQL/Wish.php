@@ -4,7 +4,6 @@ namespace Application\DataMappers\SQL;
 
 class Wish extends \Application\Common\SQLMapper
 {
-
     public function fetch($instance)
     {
         $sql = 'SELECT 1 FROM Wishes LEFT JOIN Visitors USING (visitorId)
@@ -24,9 +23,7 @@ class Wish extends \Application\Common\SQLMapper
         }
 
         return false;
-
     }
-
 
     public function store($instance)
     {
@@ -43,7 +40,6 @@ class Wish extends \Application\Common\SQLMapper
             $instance->setError($e->getCode(), $e->getMessage());
         }
     }
-
 
     public function delete($instance)
     {

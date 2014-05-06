@@ -2,7 +2,6 @@
 
 namespace Application\Controllers;
 
-
 class Redirect extends \Application\Common\Controller
 {
     public function getIndex($request)
@@ -15,8 +14,6 @@ class Redirect extends \Application\Common\Controller
         $shop->forUser($user);
         $shop->registerBuy();
     }
-
-
 
     public function getRedeem($request)
     {

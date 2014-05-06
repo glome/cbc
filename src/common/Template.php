@@ -4,7 +4,6 @@ namespace Application\Common;
 
 class Template
 {
-
     private $parameters = [];
 
     protected $translations = [];
@@ -16,12 +15,10 @@ class Template
         $this->filepath = $filepath;
     }
 
-
     public function assign($name, $value)
     {
         $this->parameters[$name] = $value;
     }
-
 
     public function assignAll($list)
     {
@@ -30,14 +27,12 @@ class Template
         }
     }
 
-
     public function append($name, $value)
     {
         $type = gettype($value);
         if (in_array($type, ['array', 'integer', 'string'])) {
             $this->{'append' . $type}($name, $value);
         }
-
     }
 
     private function appendArray($name, $value)
@@ -49,7 +44,6 @@ class Template
         $this->parameters[$name] += $value;
     }
 
-
     private function appendInteger($name, $value)
     {
         if (!array_key_exists($name, $this->parameters)) {
@@ -58,7 +52,6 @@ class Template
 
         $this->parameters[$name] += $value;
     }
-
 
     private function appendString($name, $value)
     {
@@ -81,7 +74,6 @@ class Template
         require $this->filepath;
         return ob_get_clean();
     }
-
 
     public function useTranslations($translations)
     {

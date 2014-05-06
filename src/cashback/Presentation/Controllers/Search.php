@@ -2,7 +2,6 @@
 
 namespace Application\Controllers;
 
-
 class Search extends \Application\Common\Controller
 {
     public function getIndex($request)
@@ -16,10 +15,8 @@ class Search extends \Application\Common\Controller
         $shop->forUser($user);
     }
 
-
     public function postIndex($request)
     {
-
         $shop = $this->serviceFactory->create('Shop');
         $shop->prepareSearch($request->getParameter('search-field'));
 

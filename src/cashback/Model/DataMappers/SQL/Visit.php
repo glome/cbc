@@ -4,12 +4,10 @@ namespace Application\DataMappers\SQL;
 
 class Visit extends \Application\Common\SQLMapper
 {
-
     public function fetch($instance)
     {
 
     }
-
 
     public function store($instance)
     {
@@ -25,7 +23,6 @@ class Visit extends \Application\Common\SQLMapper
             $instance->setError($e->getCode(), $e->getMessage());
         }
     }
-
 
     public function delete($instance)
     {

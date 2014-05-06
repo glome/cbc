@@ -4,7 +4,6 @@ namespace Application\DomainObjects;
 
 class CategoryCollection extends \Application\Common\Collection
 {
-
     protected function buildItem()
     {
         return new \Application\DomainObjects\CategoryCollection;
@@ -30,12 +29,10 @@ class CategoryCollection extends \Application\Common\Collection
         $this->id = $id;
     }
 
-
     public function getId()
     {
         return $this->id;
     }
-
 
     public function setLinkedTo($id)
     {
@@ -46,7 +43,6 @@ class CategoryCollection extends \Application\Common\Collection
     {
         return $this->parentId;
     }
-
 
     public function getParsedArray()
     {
@@ -64,7 +60,6 @@ class CategoryCollection extends \Application\Common\Collection
         return $data;
     }
 
-
     public function export()
     {
         $data = [];
@@ -80,7 +75,6 @@ class CategoryCollection extends \Application\Common\Collection
         }
         return $data;
     }
-
 
     public function import($data)
     {

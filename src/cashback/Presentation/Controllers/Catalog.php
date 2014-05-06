@@ -2,7 +2,6 @@
 
 namespace Application\Controllers;
 
-
 class Catalog extends \Application\Common\Controller
 {
     public function getIndex($request)
@@ -17,27 +16,26 @@ class Catalog extends \Application\Common\Controller
         $shop->setPage($request->getParameter('page'));
         $shop->useCategory($request->getParameter('id'));
 
-        $retailer = $request->getParameter('param');
-        $isXHR = $request->getParameter('xhr');
-
         $configuration = $this->serviceFactory->create('Configuration');
         $configuration->setSearchState(1);
         $configuration->setCurrentCategory($request->getParameter('id'));
 
         $shop->clearQuery();
 
+        $isXHR = $request->getParameter('xhr');
         if (isset($isXHR)) {
             $shop->setReload();
-        }
-
-        if ($retailer) {
-            $shop->toggleRetailer($retailer);
-            exit;
         }
 
         $clear = $request->getParameter('clear');
         if (isset($clear)) {
             $shop->clearRetailers();
+            exit;
+        }
+
+        $retailer = $request->getParameter('param');
+        if (isset($retailer)) {
+            $shop->toggleRetailer($retailer);
             exit;
         }
     }

@@ -4,10 +4,8 @@ namespace Application\DataMappers\SQL;
 
 class RecommendationCollection extends \Application\Common\SQLMapper
 {
-
     public function fetch($collection)
     {
-
         $count = 0;
         $list = [];
 
@@ -53,8 +51,6 @@ class RecommendationCollection extends \Application\Common\SQLMapper
             $list[$item['id']] = isset($list[$item['id']]) ? $list[$item['id']] + $total : $total ;
         }
 
-
-
         if ($collection->hasItems()) {
             foreach ($collection as $product) {
                 $id = $product->getId();
@@ -62,7 +58,6 @@ class RecommendationCollection extends \Application\Common\SQLMapper
                     $product->markAsPopular();
                 }
             }
-
         } else {
             arsort($list);
 
@@ -76,15 +71,12 @@ class RecommendationCollection extends \Application\Common\SQLMapper
                 }
             }
         }
-
     }
-
 
     public function store($instance)
     {
 
     }
-
 
     public function delete($instance)
     {

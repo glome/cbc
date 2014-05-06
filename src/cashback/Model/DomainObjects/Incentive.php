@@ -4,7 +4,6 @@ namespace Application\DomainObjects;
 
 class Incentive
 {
-
     private $id;
     private $fixedPercentage;
     private $variablePercentage;
@@ -17,12 +16,10 @@ class Incentive
         $this->id = $id;
     }
 
-
     public function getId()
     {
         return $this->id;
     }
-
 
     public function setFixedPercentage($fixedPercentage)
     {
@@ -41,12 +38,10 @@ class Incentive
         $this->code = $code;
     }
 
-
     public function setExpiresAt($time)
     {
         $this->timeString = $time;
     }
-
 
     public function setProgramId($id)
     {
@@ -58,12 +53,10 @@ class Incentive
         return $this->programId;
     }
 
-
     public function getVoucher()
     {
         return $this->code;
     }
-
 
     public function getParsedArray()
     {

@@ -4,7 +4,6 @@ namespace Application\Views;
 
 class Product extends \Application\Common\View
 {
-
     public function index()
     {
         $itinerary = $this->serviceFactory->create('Itinerary');
@@ -21,7 +20,6 @@ class Product extends \Application\Common\View
         $categories = $shop->getCategories();
         $product = $shop->getCurrentProduct();
 
-
         $builder = $this->templateBuilder;
 
         $main       = $builder->create('main');
@@ -32,11 +30,9 @@ class Product extends \Application\Common\View
         $footer     = $builder->create('footer');
         $profile    = $builder->create('profile-brief');
 
-
         $tw_url = 'http' . (isset($_SERVER['HTTPS'])? 's' : '');
         $tw_url .= '://' . $_SERVER['HTTP_HOST'] . '/product/' . $product['id'];
         $tw_text = urlencode('Best purchase on Cashback Catalog.');
-
 
         $navigation->assign('categories', array_slice($categories, 0, 10));
         $overlays->assign('product', $product);
@@ -79,6 +75,7 @@ class Product extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
+
         return $main->render();
     }
 }

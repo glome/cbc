@@ -2,11 +2,8 @@
 
 namespace Application\Services;
 
-
 class Itinerary extends \Application\Common\Service
 {
-
-
     private $currentUser;
     private $finances = null;
 
@@ -14,7 +11,6 @@ class Itinerary extends \Application\Common\Service
     {
         $this->currentUser = $user;
     }
-
 
     private function acquireProduct($id)
     {
@@ -26,7 +22,6 @@ class Itinerary extends \Application\Common\Service
 
         return $product;
     }
-
 
     public function addWish($productId)
     {
@@ -59,8 +54,6 @@ class Itinerary extends \Application\Common\Service
         $mapper->delete($wish);
     }
 
-
-
     public function getWishlist()
     {
 
@@ -68,12 +61,9 @@ class Itinerary extends \Application\Common\Service
         $db = $this->dataMapperFactory->create('ProductCollection', 'SQL');
         $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
 
-
-
         $wishlist->setUserId($this->currentUser->getId());
         $db->fetch($wishlist);
         $api->fetch($wishlist);
-
 
         $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
         $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');
@@ -84,7 +74,6 @@ class Itinerary extends \Application\Common\Service
 
         return $wishlist->getParsedArray();
     }
-
 
     public function getWishlistLength()
     {
@@ -98,7 +87,6 @@ class Itinerary extends \Application\Common\Service
 
         return $wishlist->getAmount();
     }
-
 
     private function acquireFinanceDetails()
     {
@@ -119,7 +107,6 @@ class Itinerary extends \Application\Common\Service
             $finances = $this->acquireFinanceDetails();
             $this->finances = $finances;
         }
-
 
         $total = 0;
         if (!$finances->hasError()) {
@@ -155,13 +142,9 @@ class Itinerary extends \Application\Common\Service
         $api->fetch($wallet);
 
         return $wallet->getParsedArray();
-
     }
-
-
 
     public function getTotalEarnings()
     {
-
     }
 }

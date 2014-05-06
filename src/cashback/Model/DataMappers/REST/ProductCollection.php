@@ -9,7 +9,6 @@ use Guzzle\Common\Event;
 
 class ProductCollection extends \Application\Common\RestMapper
 {
-
     public function __construct($configuration)
     {
         $this->host = $configuration['rest']['host'];
@@ -17,9 +16,6 @@ class ProductCollection extends \Application\Common\RestMapper
         $this->uid = $configuration['rest']['params']['application[uid]'];
         $this->resources = $configuration['rest']['resources'];
     }
-
-
-
 
     public function fetch($collection)
     {
@@ -35,12 +31,8 @@ class ProductCollection extends \Application\Common\RestMapper
             }
         );
 
-
-
-
         if ($collection->hasItems()) {
             foreach ($collection as $id => $product) {
-
                 $url = $this->applyValuesToURL($this->resources['product'], ['{id}' => $product->getId() ]);
                 $response = $client->get($this->host . $url)->send();
                 $data = $response->json();
@@ -51,8 +43,6 @@ class ProductCollection extends \Application\Common\RestMapper
                 $this->applyParameter($product, $data);
             }
         } elseif ($collection->hasCategory() && $collection->hasQuery()) {
-
-
             $resKey = 'products';
             if ($collection->getAdvertisers() !== '') {
                 $resKey = 'search-category';
@@ -71,9 +61,7 @@ class ProductCollection extends \Application\Common\RestMapper
             foreach ($data as $id => $entry) {
                 $collection->addItem($entry);
             }
-        } elseif ($collection->hasCategory() && !$collection->hasQuery()) {
-
-
+        } elseif ($collection->hasCategory() && ! $collection->hasQuery()) {
             $resKey = 'products';
             if ($collection->getAdvertisers() !== '') {
                 $resKey = 'products-with-advertisers';
@@ -94,9 +82,6 @@ class ProductCollection extends \Application\Common\RestMapper
                 $collection->addItem($entry);
             }
         } elseif ($collection->hasQuery()) {
-
-
-
             $url = $collection->forAutocomplete() ? $this->resources['search-suggestions'] : $this->resources['search'];
 
             $url = $this->applyValuesToURL(
@@ -118,8 +103,6 @@ class ProductCollection extends \Application\Common\RestMapper
             }
         }
     }
-
-
 
     private function applyParameter($instance, $parameters)
     {

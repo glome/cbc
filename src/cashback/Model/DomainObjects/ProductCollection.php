@@ -4,12 +4,10 @@ namespace Application\DomainObjects;
 
 class ProductCollection extends \Application\Common\Collection
 {
-
     private $categoryId = null;
     private $query = null;
     private $userId = null;
     private $page = null;
-
 
     private $langauge = null;
     private $currency = null;
@@ -19,12 +17,9 @@ class ProductCollection extends \Application\Common\Collection
 
     private $advertisers = [];
 
-
     private $locations = [];
 
     private $isAutocomplete = false;
-
-
 
     public function setLocations($locations)
     {
@@ -48,12 +43,10 @@ class ProductCollection extends \Application\Common\Collection
     public function getAdvertisers()
     {
         if (count($this->advertisers)) {
-            return $this->advertisers[0];
+            return implode(',', $this->advertisers);
         }
-
         return '';
     }
-
 
     public function setLimit($limit)
     {
@@ -64,8 +57,6 @@ class ProductCollection extends \Application\Common\Collection
     {
         return $this->limit;
     }
-
-
 
     public function setLanguage($language)
     {
@@ -92,19 +83,15 @@ class ProductCollection extends \Application\Common\Collection
         return $this->order;
     }
 
-
-
     public function setUserID($id)
     {
         $this->userId = $id;
     }
 
-
     public function setPage($page)
     {
         $this->page = $page;
     }
-
 
     public function getPage()
     {
@@ -119,7 +106,6 @@ class ProductCollection extends \Application\Common\Collection
     {
         return $this->userId;
     }
-
 
     protected function buildItem()
     {
@@ -154,12 +140,10 @@ class ProductCollection extends \Application\Common\Collection
         return $this->query !== null;
     }
 
-
     public function getQuery()
     {
         return $this->query;
     }
-
 
     public function forAutocomplete($param = null)
     {
@@ -181,7 +165,6 @@ class ProductCollection extends \Application\Common\Collection
 
         return $data;
     }
-
 
     public function applyIncentives($incentives)
     {

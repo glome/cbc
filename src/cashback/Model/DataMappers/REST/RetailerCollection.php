@@ -10,11 +10,9 @@ use Guzzle\Common\Event;
 
 class RetailerCollection extends \Application\Common\RestMapper
 {
-
     private $host;
     private $apikey;
     private $uid;
-
 
     public function __construct($configuration)
     {
@@ -23,7 +21,6 @@ class RetailerCollection extends \Application\Common\RestMapper
         $this->uid = $configuration['rest']['params']['application[uid]'];
         $this->resources = $configuration['rest']['resources'];
     }
-
 
     public function fetch($collection)
     {
@@ -39,24 +36,25 @@ class RetailerCollection extends \Application\Common\RestMapper
             }
         );
 
+        $struct = [
+          '{page}' => $collection->getPage(),
+          '{countries}' => $collection->getLocationQuery(),
+        ];
 
+        $cat_id = $collection->getCategoryId();
 
-        $id = $collection->getCategoryId();
+        if ($cat_id !== null) {
+            $struct += [ '{cat_id}' => $cat_id ];
+        }
 
-        if ($id !== null) {
-            $locations = $collection->getLocationQuery();
-            $url = $this->applyValuesToURL(
-                $this->resources['categories-retailers'],
-                ['{id}' => $id, '{countries}' => $locations ]
-            );
-            $response = $client->get($this->host . $url)->send();
-            $data = $response->json();
-            foreach ($data as $entry) {
-                $collection->addItem($entry);
-            }
+        $url = $this->applyValuesToURL($this->resources['retailers'], $struct);
+        $response = $client->get($this->host . $url)->send();
+        $data = $response->json();
+
+        foreach ($data as $entry) {
+            $collection->addItem($entry);
         }
     }
-
 
     private function applyParameter($instance, $parameters)
     {

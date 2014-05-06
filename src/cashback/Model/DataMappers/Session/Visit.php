@@ -4,7 +4,6 @@ namespace Application\DataMappers\Session;
 
 class Visit extends \Application\Common\SessionMapper
 {
-
     public function fetch($instance)
     {
         if (!isset($_SESSION['glome.visits'])) {
@@ -13,7 +12,6 @@ class Visit extends \Application\Common\SessionMapper
 
         return array_key_exists($instance->getProductId(), $_SESSION['glome.visits']);
     }
-
 
     public function store($instance)
     {

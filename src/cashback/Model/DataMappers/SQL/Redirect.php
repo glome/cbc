@@ -4,12 +4,10 @@ namespace Application\DataMappers\SQL;
 
 class Redirect extends \Application\Common\SQLMapper
 {
-
     public function fetch($instance)
     {
 
     }
-
 
     public function store($instance)
     {
@@ -26,7 +24,6 @@ class Redirect extends \Application\Common\SQLMapper
             $instance->setError($e->getCode(), $e->getMessage());
         }
     }
-
 
     public function delete($instance)
     {

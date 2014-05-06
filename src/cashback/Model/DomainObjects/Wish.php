@@ -4,7 +4,6 @@ namespace Application\DomainObjects;
 
 class Wish
 {
-
     private $visitorId;
     private $productId;
     private $categoryId;
@@ -16,18 +15,15 @@ class Wish
         $this->userId = $id;
     }
 
-
     public function getUserId()
     {
         return $this->userId;
     }
 
-
     public function setVisitorId($id)
     {
         $this->visitorId = $id;
     }
-
 
     public function getVisitorId()
     {
@@ -39,18 +35,15 @@ class Wish
         $this->productId = $id;
     }
 
-
     public function getProductId()
     {
         return $this->productId;
     }
 
-
     public function setCategoryId($id)
     {
         $this->categoryId = $id;
     }
-
 
     public function getCategoryId()
     {

@@ -15,13 +15,11 @@ class Settings
         }
     }
 
-
     public function store($instance)
     {
         $params = $instance->getParams();
         foreach ($params as $key => $value) {
             setcookie("config.$key", $value, time() + 157680000 /*5 years*/, '/', '', false, true);
         }
-
     }
 }
