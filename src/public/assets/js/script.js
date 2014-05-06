@@ -29,7 +29,7 @@ $(document).ready(function() {
             itemSelector: '.product', // selector for all items you'll retrieve
             loading: {
                 finishedMsg: '',
-                img: '/assets/img/lol.gif',
+                img: '/assets/img/Mucina.gif',
                 msgText: ''
             },
             state: {
