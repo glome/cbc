@@ -944,6 +944,7 @@ footer {
 .products {
     float: left;
     width: 710px;
+    padding-bottom: 100px;
 }
 
 
@@ -2825,6 +2826,32 @@ footer {
     font-size: 17px;
     font-weight: 300;
     line-height: 22px;
+}
+
+/* INFINITE scroll loader */
+
+#infscr-loading {
+    display: block !important;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    z-index: 999999;   
+}
+#infscr-loading img {
+    display: inline-block;
+    width: 40px;
+}
+#infscr-loading div {
+    width: 90%;
+    padding: 15px 5%;
+    text-align: center;
+    color: #595D5E;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 17px;
 }
 
 
