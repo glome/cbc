@@ -103,5 +103,9 @@
 
     "retailer.cashback.promise":       "All purchases done via this link will get you %s cashback. Welcome!",
 
-    "message.no_results":              "No matching results!"
+    "message.no_results":              "No matching results!",
+
+    "snippet.no_more_products":        "That's it. There are no more products for now",
+    "snippet.to_top":                  "BACK UP",
+    "snippet.form_error":              "You forgot to fill out!"
 }

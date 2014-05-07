@@ -18,21 +18,22 @@ $(document).ready(function() {
             });
         });
 
+
         $container.infinitescroll({
             navSelector: '#page-nav', // selector for the paged navigation
             nextSelector: '#page-nav a', // selector for the NEXT link (to page 2)
             itemSelector: '.product', // selector for all items you'll retrieve
             loading: {
-                finishedMsg: "That's it. There are no more products for now",
+                finishedMsg: translations.no_more_products,
                 img: '/assets/img/Mucina.gif',
                 msgText: '',
-               
+
             },
             state: {
                 currPage: 1,
-                 finishedMsg: "That's it. There are no more products for now"
+                 finishedMsg: translations.no_more_products
             }
-            
+
         },
         function(newElements) {
             var $newElems = $(newElements).css({opacity: 0});
@@ -242,7 +243,7 @@ $(document).ready(function() {
 
     /* INDEX page - about tabs */
     $(".tab-menu li a").on("click", function(e) {
-     
+
 
         var target = $(this).attr("href");
         $(".tab-menu li").removeClass("active");
@@ -252,14 +253,14 @@ $(document).ready(function() {
 
 
     });
-    
+
     if(window.location.hash !== "") {
         var a = window.location.hash;
         $(".tab-menu li").removeClass("active");
         $(".tab-content .tab").removeClass("active");
         $(".tab-menu li a[href='" + a + "']").parent().addClass("active");
-        $(a).addClass("active"); 
-        
+        $(a).addClass("active");
+
     }
 
 
@@ -626,7 +627,7 @@ $(document).ready(function() {
      */
     $(window).on("scroll", function() {
         var scrolled = $(window).scrollTop();
-        var html = "<a href='' class='nav-up'>BACK UP</a>";
+        var html = "<a href='' class='nav-up'>" + translations.to_top + "</a>";
         if (scrolled > 1000) {
             if ($(".nav-up").length < 1) {
                 $("body").append(html);
@@ -713,7 +714,7 @@ $(document).ready(function() {
     $("body").on("submit",".contact-form", function() {
         var form = $(this);
         var msg = $("textarea.comments", form).val();
-        var html = "<div class='error'>* You forgot to fill out!</div>";
+        var html = "<div class='error'>* " + translations.form_error + "</div>";
         if (msg.length === 0) {
             if (msg.length === 0) {
                 $("textarea.comments", form).addClass("error-input");
