@@ -14,8 +14,8 @@
             "product-visit":              "/products/{id}/getit.json",
             "product-buy":                "/products/{id}/click/{user}.json",
 
-            "products":                   "/products.json?cat_id={id}&per_page=20&page={page}&order={order}&sort_by=update&country={countries}",
-            "products-with-advertisers":  "/products.json?cat_id={id}&per_page=20&page={page}&order={order}&sort_by=update&advertiser_id={adv}",
+            "products":                   "/products.json?cat_id={id}&per_page=20&page={page}&order={order}&sort_by=update&country={countries}&random=true",
+            "products-with-advertisers":  "/products.json?cat_id={id}&per_page=20&page={page}&order={order}&sort_by=update&advertiser_id={adv}&random=true",
 
             "retailer":                   "/advertisers.json?{id}.json&content=product",
             "retailers":                  "/advertisers.json?country={countries}&cat_id={cat_id}&per_page=20&page={page}&content=product",
