@@ -55,7 +55,7 @@ class Catalog extends \Application\Common\View
         if ($shop->hasReload()) {
             if ($currentCategory == null || count($products) == 0) {
                 $content = $builder->create('no_results');
-           } else {
+            } else {
                 $content = $builder->create('product-list');
                 $content->assign('products', $products);
             }
@@ -109,6 +109,7 @@ class Catalog extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
         ]);
+
 
         return $main->render();
     }
