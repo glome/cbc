@@ -1285,7 +1285,7 @@ footer {
     transition:         opacity 1s;
 }
 .about .tab-content .tab.active {
-    max-height: 3000px;
+    max-height: 10000px;
     opacity: 1;
 }
 .about .tab-content .tab .title {

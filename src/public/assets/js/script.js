@@ -380,7 +380,7 @@ $(document).ready(function() {
     });
 
     /* Add to wishlist */
-    $(".add-to-wishlist-btn, .add-to-wishlist").on("click", function(e) {
+    $("body").on("click", ".add-to-wishlist-btn, .add-to-wishlist", function(e) {
         var counter = $('#wish-counter'),
                 indicator = $('#wish-indicator'),
                 total = parseInt(counter.text()) || 0;
