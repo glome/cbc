@@ -8,7 +8,7 @@
 
         "resources":{
             "category":                   "/categories/{id}.json",
-            "categories":                 "/categories.json?display=tree&filter=allowed&personal=true&group=ecommerce",
+            "categories":                 "/categories.json?display=tree&filter=allowed&personal=true&group=ecommerce&counter=true",
 
             "product":                    "/products/{id}.json",
             "product-visit":              "/products/{id}/getit.json",
