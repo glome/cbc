@@ -9,7 +9,6 @@ use Guzzle\Common\Event;
 
 class User extends \Application\Common\RestMapper
 {
-
     private $host;
     private $apikey;
     private $uid;
@@ -22,7 +21,6 @@ class User extends \Application\Common\RestMapper
         $this->resources = $configuration['rest']['resources'];
 
     }
-
 
     public function fetch($instance)
     {
@@ -52,7 +50,6 @@ class User extends \Application\Common\RestMapper
             $instance->setId($data['glomeid']);
         }
 
-
         $request = $client->post(
             $this->host . $this->resources['user-login'],
             [],
@@ -65,7 +62,6 @@ class User extends \Application\Common\RestMapper
 
         $temp = $response->getHeader('X-Csrf-Token')->toArray();
         $instance->setToken(array_pop($temp));
-
 
         foreach ($this->cookieJar->getMatchingCookies($request) as $cookie) {
             if ($cookie->getName() === '_session_id') {

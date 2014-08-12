@@ -137,8 +137,9 @@
             <div class="profile-pairing tab <?=$tab === 'pairing'? 'active':''?>">
                 <div class="redeem-inlay">
                     <div class="wrap">
-                        <div class="redeem-title"><?=$this->translate('pairing.title')?></div>
-                        <div class="txt"><?=$this->translate('pairing.subtitle')?></div>
+                        <!-- wallet pairing -->
+                        <div class="redeem-title"><?=$this->translate('pairing.wallet.title')?></div>
+                        <div class="txt"><?=$this->translate('pairing.wallet.subtitle')?></div>
                         <ul class="redeem-options">
                             <li class="code">
                                 <span><?=$code[0]?></span>
@@ -150,6 +151,18 @@
                                 <img src="/profile/qr?param=<?=implode('', $code)?>" />
                             </li><!-- .qr -->
                         </ul>
+                        <!-- cbc pairing -->
+                        <div class="redeem-title"><?=$this->translate('pairing.sync.title')?></div>
+                        <div class="txt"><?=$this->translate('pairing.sync.subtitle')?></div>
+                        <div>
+                          <form method="post" class="pairing-form" action="/profile/pairing">
+                              <input type="text" name="code_1" id="code_1"/>
+                              <input type="text" name="code_2" id="code_2"/>
+                              <input type="text" name="code_3" id="code_3"/>
+                              <input type="hidden" name="kind" value="b" id="kind"/>
+                              <input type="submit" value="<?=$this->translate('pairing.sync.submit')?>" name="pairing-submit" id="pairing-submit"/>
+                          </form>
+                        </div>
                     </div><!-- .wrap -->
                 </div><!-- .redeem-inlay -->
             </div><!-- .profile-pairing -->

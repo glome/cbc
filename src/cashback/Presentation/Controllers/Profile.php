@@ -48,7 +48,13 @@ class Profile extends \Application\Common\Controller
     public function getPairing($request)
     {
         $this->getIndex($request);
+    }
 
+    public function postPairing($request)
+    {
+        $recognition = $this->serviceFactory->create('Recognition');
+        $recognition->postPairingCode($request->getParameter('code_1'), $request->getParameter('code_2'), $request->getParameter('code_3'));
+        exit;
     }
 
     public function getQR($request)
