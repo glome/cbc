@@ -56,7 +56,6 @@ class Itinerary extends \Application\Common\Service
 
     public function getWishlist()
     {
-
         $wishlist = $this->domainObjectFactory->create('ProductCollection');
         $db = $this->dataMapperFactory->create('ProductCollection', 'SQL');
         $api = $this->dataMapperFactory->create('ProductCollection', 'REST');
@@ -65,7 +64,7 @@ class Itinerary extends \Application\Common\Service
         $db->fetch($wishlist);
         $api->fetch($wishlist);
 
-        $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
+        $incentives = $this->domainObjectFactory->create('IncentiveCollection');
         $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');
         $api->fetch($incentives);
 
@@ -132,7 +131,6 @@ class Itinerary extends \Application\Common\Service
 
         return $backlog;
     }
-
 
     public function getRedeemMessage()
     {

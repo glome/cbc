@@ -133,7 +133,6 @@ class Shop extends \Application\Common\Service
 
         $products->applyIncentives($incentives);
 
-
         if ($products->hasItems()) {
             $db = $this->dataMapperFactory->create('ProductCollection', 'SQL');
             $products->setUserId($this->currentUser->getId());

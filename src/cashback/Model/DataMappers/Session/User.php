@@ -12,9 +12,7 @@ class User extends \Application\Common\SessionMapper
 
         $instance->setSession($_SESSION['glome.session']);
         $instance->setToken($_SESSION['glome.token']);
-        if (isset($_SESSION['glome.pairing-code'])) {
-            $instance->setPairingCode($_SESSION['glome.pairing-code']);
-        }
+
         return true;
     }
 
@@ -24,7 +22,6 @@ class User extends \Application\Common\SessionMapper
         if ($value !== null) {
             $_SESSION['glome.session'] = $value;
             $_SESSION['glome.token'] = $instance->getToken();
-            $_SESSION['glome.pairing-code'] = $instance->getPairingCode();
         }
     }
 }

@@ -18,7 +18,6 @@ class Visit extends \Application\Common\RestMapper
         $this->resources = $configuration['rest']['resources'];
     }
 
-
     public function store($instance)
     {
         $cookiePlugin = new CookiePlugin($this->cookieJar);
@@ -32,7 +31,6 @@ class Visit extends \Application\Common\RestMapper
                 $event->stopPropagation();
             }
         );
-
 
         $id = $instance->getProductId();
         if ($id !== null) {

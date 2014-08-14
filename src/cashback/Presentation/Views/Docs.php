@@ -90,7 +90,6 @@ class Docs extends \Application\Common\View
         $footer->assign('categories', $categories);
         $deals->assign('products', $shop->getRecommendations(4));
 
-
         $profile->assignAll([
             'wishes'     => $itinerary->getWishlistLength(),
             'earnings'   => $itinerary->getEarnings('EUR'),

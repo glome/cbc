@@ -30,7 +30,6 @@ class Incentive
     public function setVariablePercentage($variablePercentage)
     {
         $this->variablePercentage = $variablePercentage;
-
     }
 
     public function setCode($code)
