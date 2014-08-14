@@ -20,7 +20,6 @@ class Sync extends \Application\Common\RestMapper
         $this->apikey = $configuration['rest']['params']['application[apikey]'];
         $this->uid = $configuration['rest']['params']['application[uid]'];
         $this->resources = $configuration['rest']['resources'];
-
     }
 
     public function fetch($instance)
@@ -37,8 +36,8 @@ class Sync extends \Application\Common\RestMapper
             }
         );
 
-        if ($instance->getId() !== null) {
-            $id = $instance->getId();
+        $id = $instance->getUserId();
+        if ($id !== null) {
             $url = $this->applyValuesToURL($this->resources['user-pairing'], ['{id}' => $id ]);
             $request = $client->post(
                 $this->host . $url,
@@ -49,12 +48,15 @@ class Sync extends \Application\Common\RestMapper
                 ]
             );
             $response = $request->send();
+
             $data = $response->json();
+
             if (isset($data['error'])) {
                 return false;
             }
 
             $instance->setPairingCode($data['code']);
+            $_SESSION['glome.code'] = $data['code'];
             return true;
         }
     }
@@ -83,16 +85,81 @@ class Sync extends \Application\Common\RestMapper
                 'pairing[code_1]' => $instance->getCode1(),
                 'pairing[code_2]' => $instance->getCode2(),
                 'pairing[code_3]' => $instance->getCode3(),
-                'pairing[kind]'   => 'b',
-                #'application[apikey]' => $this->apikey,
-                #'application[uid]' => $this->uid
+                'pairing[kind]'   => 'b'
             ]
         )->send();
 
         $data = $response->json();
 
-        if (isset($data['error'])) {
+        if (isset($data['error']))
+        {
+            $instance->setErrorCode($data['code']);
+            $instance->setErrorMessage($data['error']);
+            return false;
+        }
 
+        return true;
+    }
+
+    public function fetchBrothers($instance)
+    {
+        $cookiePlugin = new CookiePlugin($this->cookieJar);
+
+        $client = new Client;
+        $client->addSubscriber($cookiePlugin);
+
+        $client->getEventDispatcher()->addListener(
+            'request.error',
+            function (Event $event) use ($instance) {
+                $event->stopPropagation();
+            }
+        );
+
+        $id = $instance->getUserId();
+        if ($id !== null) {
+            $url = $this->applyValuesToURL($this->resources['user-brothers'], ['{id}' => $id ]);
+            $response = $client->get($this->host . $url)->send();
+
+            $data = $response->json();
+
+            if (isset($data['error'])) {
+                return false;
+            }
+
+            $instance->setBrothers($data);
+            return true;
+        }
+    }
+
+    public function togglePairing($instance)
+    {
+        $cookiePlugin = new CookiePlugin($this->cookieJar);
+
+        $client = new Client;
+        $client->addSubscriber($cookiePlugin);
+
+        $client->getEventDispatcher()->addListener(
+            'request.error',
+            function (Event $event) use ($instance) {
+                $event->stopPropagation();
+            }
+        );
+
+        $id = $instance->getId();
+        $userId = $instance->getUserId();
+        $url = $this->applyValuesToURL($this->resources['user-syncing-toggle'], [
+          '{id}' => $userId,
+          '{syncid}' => $id
+        ]);
+
+        $response = $client->post($this->host . $url, [], [])->send();
+
+        $data = $response->json();
+
+        if (isset($data['error']))
+        {
+            $instance->setErrorCode($data['code']);
+            $instance->setErrorMessage($data['error']);
             return false;
         }
 

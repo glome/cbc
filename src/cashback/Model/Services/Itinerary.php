@@ -132,7 +132,6 @@ class Itinerary extends \Application\Common\Service
         return $backlog;
     }
 
-
     public function getRedeemMessage()
     {
         $wallet = $this->domainObjectFactory->create('Wallet');

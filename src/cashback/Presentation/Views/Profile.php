@@ -5,6 +5,7 @@ namespace Application\Views;
 class Profile extends \Application\Common\View
 {
     private $currentTab = 'wishlist';
+    private $code;
 
     public function index()
     {
@@ -13,7 +14,7 @@ class Profile extends \Application\Common\View
 
     public function wishlist()
     {
-        $recognition = $this->serviceFactory->create('Recognition');
+        $sync = $this->serviceFactory->create('Sync');
         $itinerary = $this->serviceFactory->create('Itinerary');
         $configuration = $this->serviceFactory->create('Configuration');
         $settings = $configuration->getCurrentSettings();
@@ -36,7 +37,16 @@ class Profile extends \Application\Common\View
         $footer->assign('categories', $categories);
         $deals->assign('products', $shop->getRecommendations(4));
 
-        $code = $recognition->getPairingCode();
+        $code = $sync->getPairingCode();
+
+        $error = null;
+        if ($sync->getSync()) {
+            # there was a sync code from an other CBC posted
+            $error['code'] = $sync->getSync()->getErrorCode();
+            $error['message'] = $sync->getSync()->getErrorMessage();
+        }
+
+        $brothers = $sync->getBrothers();
 
         $profile->assignAll([
             'wishes'        => $itinerary->getWishlistLength(),
@@ -56,6 +66,9 @@ class Profile extends \Application\Common\View
             'currency'   => $configuration->getPreferredCurrency(),
             'tab'        => $this->currentTab,
             'code'       => str_split($code, 4),
+            'error'      => $error,
+            'brothers'   => $brothers,
+            'myself'     => $sync->getUser()->getId(),
         ]);
 
         $main->assignAll([
@@ -97,15 +110,16 @@ class Profile extends \Application\Common\View
 
     public function qr()
     {
-        $recognition = $this->serviceFactory->create('Recognition');
-        $code = $recognition->getPairingCode();
+        $code = $_SESSION['glome.code'];
 
-        header('Content-type: image/png');
+        if ($code) {
+            header('Content-type: image/png');
 
-        $qrCode = new \Endroid\QrCode\QrCode();
-        $qrCode->setText($code);
-        $qrCode->setSize(100);
-        $qrCode->setPadding(10);
-        $qrCode->render();
+            $qrCode = new \Endroid\QrCode\QrCode();
+            $qrCode->setText($code);
+            $qrCode->setSize(100);
+            $qrCode->setPadding(10);
+            $qrCode->render();
+        }
     }
 }

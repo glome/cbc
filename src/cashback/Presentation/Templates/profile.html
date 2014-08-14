@@ -152,6 +152,7 @@
                             </li><!-- .qr -->
                         </ul>
                         <!-- cbc pairing -->
+                        <hr/>
                         <div class="redeem-title"><?=$this->translate('pairing.sync.title')?></div>
                         <div class="txt"><?=$this->translate('pairing.sync.subtitle')?></div>
                         <div>
@@ -162,6 +163,42 @@
                               <input type="hidden" name="kind" value="b" id="kind"/>
                               <input type="submit" value="<?=$this->translate('pairing.sync.submit')?>" name="pairing-submit" id="pairing-submit"/>
                           </form>
+
+                          <?php if (isset($error) && $error): ?>
+                          <br/>
+                          <div><?=$error['message']?></div>
+                          <br/>
+                          <?php endif; ?>
+
+                          <?php if (count($brothers)): ?>
+                          <br/>
+                          <div class="redeem-title"><?=$this->translate('pairing.sync.brothers.title')?></div>
+                          <?php foreach ($brothers as $key => $value): ?>
+                          <div>
+                              <?php
+                                $id = $value['user']['id'];
+                                $glomeid = $value['user']['glomeid'];
+                                $app = $value['user']['parentapp_title'];
+
+                                if ($value['user']['glomeid'] == $myself):
+                                  $id = $value['pair']['id'];
+                                  $glomeid = $value['pair']['glomeid'];
+                                  $app = $value['pair']['parentapp_title'];
+                                endif;
+                              ?>
+
+                              <form method="post" class="pairing-form" action="/profile/pairing">
+                              <strong><?=$app?></strong>
+                              <span>(<?=$this->translate('pairing.sync.brother.synced_at') . $value['updated_at']?>)</span>
+                              <input type="hidden" name="unpair" value="true"/>
+                              <input type="hidden" name="sync_id" value="<?=$value['id']?>" id="sync_id"/>
+                              <input type="submit" value="<?=$this->translate('pairing.sync.brother.remove')?>" name="pairing-remove" id="pairing-remove"/>
+                              </form>
+
+                          </div>
+                          <?php endforeach; ?>
+                          <?php endif; ?>
+
                         </div>
                     </div><!-- .wrap -->
                 </div><!-- .redeem-inlay -->

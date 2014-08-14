@@ -74,6 +74,9 @@
     "pairing.sync.title":              "Sync your profile accross devices and browsers",
     "pairing.sync.subtitle":           "Insert pairing code from other Cashback Catalog profile to sync",
     "pairing.sync.submit":             "Sync",
+    "pairing.sync.brothers.title":     "Synced profiles on other devices / browsers",
+    "pairing.sync.brother.synced_at":  "synced at ",
+    "pairing.sync.brother.remove":     "Remove",
 
     "about.image_1":                   "/assets/img/find-300x156.jpg",
     "about.title_1":                   "FIND WHAT YOU ARE LOOKING FOR!",

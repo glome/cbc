@@ -38,7 +38,6 @@ class Wallet extends \Application\Common\RestMapper
             }
         );
 
-
         $id = $instance->getUserId();
         if ($id !== null) {
             $url = $this->applyValuesToURL($this->resources['user-redeem'], ['{id}' => $id ]);
