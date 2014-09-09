@@ -45,6 +45,7 @@ class User extends \Application\Common\RestMapper
                 ]
             );
             $response = $request->send();
+            $data = $response->json();
             $instance->setId($data['glomeid']);
         }
 
@@ -66,7 +67,7 @@ class User extends \Application\Common\RestMapper
         }
         else
         {
-            if (isset($data['error']))
+            if ($instance->getId() && isset($data['error']))
             {
                 $instance->setErrorCode($data['code']);
                 $instance->setErrorMessage($data['error']);
