@@ -6,13 +6,13 @@ class Catalog extends \Application\Common\Controller
 {
     public function getIndex($request)
     {
+        $this->checkLocked();
+
         $itinerary = $this->serviceFactory->create('Itinerary');
-        $recognition = $this->serviceFactory->create('Recognition');
         $shop = $this->serviceFactory->create('Shop');
 
-        $user = $recognition->getCurrentUser();
-        $itinerary->forUser($user);
-        $shop->forUser($user);
+        $itinerary->forUser($this->user);
+        $shop->forUser($this->user);
         $shop->setPage($request->getParameter('page'));
         $shop->useCategory($request->getParameter('id'));
 

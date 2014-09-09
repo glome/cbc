@@ -19,7 +19,6 @@ class User extends \Application\Common\RestMapper
         $this->apikey = $configuration['rest']['params']['application[apikey]'];
         $this->uid = $configuration['rest']['params']['application[uid]'];
         $this->resources = $configuration['rest']['resources'];
-
     }
 
     public function fetch($instance)
@@ -46,7 +45,6 @@ class User extends \Application\Common\RestMapper
                 ]
             );
             $response = $request->send();
-            $data = $response->json();
             $instance->setId($data['glomeid']);
         }
 
@@ -59,9 +57,21 @@ class User extends \Application\Common\RestMapper
         );
 
         $response = $request->send();
+        $data = $response->json();
 
-        $temp = $response->getHeader('X-Csrf-Token')->toArray();
-        $instance->setToken(array_pop($temp));
+        if ($response->hasHeader('X-Csrf-Token'))
+        {
+            $temp = $response->getHeader('X-Csrf-Token')->toArray();
+            $instance->setToken(array_pop($temp));
+        }
+        else
+        {
+            if (isset($data['error']))
+            {
+                $instance->setErrorCode($data['code']);
+                $instance->setErrorMessage($data['error']);
+            }
+        }
 
         foreach ($this->cookieJar->getMatchingCookies($request) as $cookie) {
             if ($cookie->getName() === '_session_id') {

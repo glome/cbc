@@ -37,13 +37,14 @@ class Catalog extends \Application\Common\View
         ]);
 
         $params = [
+            'locked'          => $shop->getUser()->isLocked(),
             'navigation'      => $navigation,
             'category'        => null,
             'current'         => null,
             'products'        => [],
             'retailers'       => [],
-            'selectedRetailers' => array_keys($selectedRetailers)
-        ];
+            'selectedRetailers' => array_keys($selectedRetailers),
+         ];
 
         if ($currentCategory !== null) {
             $params['category'] = $categories[$currentCategory];
@@ -88,6 +89,7 @@ class Catalog extends \Application\Common\View
         }
 
         $profile->assignAll([
+            'locked' => $shop->getUser()->isLocked(),
             'wishes'   => $itinerary->getWishlistLength(),
             'earnings' => $itinerary->getEarnings('EUR'),
             'currencies' => $configuration->getListOf('currencies'),
@@ -108,8 +110,8 @@ class Catalog extends \Application\Common\View
                 'currency'    => $configuration->getPreferredCurrency(),
                 'language'    => $configuration->getPreferredLanguage(),
             ],
+            'locked' => $shop->getUser()->isLocked(),
         ]);
-
 
         return $main->render();
     }

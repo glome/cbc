@@ -1,10 +1,19 @@
-
 <div class="profile">
     <div class="wrap">
         <div class="title"><?=$this->translate('profile.title')?></div><!-- .title -->
         <div class="profile-bar">
             <div class="profile-tabs">
                 <ul>
+                    <?php if ($locked): ?>
+                    <li <?=$tab === 'unlocking'? 'class="active"':''?>>
+                        <a href="profile-unlocking"><?=$this->translate('profile.unlocking_title')?>
+                            <div class="caret">
+                                <div class="caret-border"></div>
+                                <div class="caret-body"></div>
+                            </div><!-- .caret -->
+                        </a>
+                    </li>
+                    <?php else: ?>
                     <li <?=$tab === 'wishlist'? 'class="active"':''?>>
                         <a href="profile-wishlist"><?=$this->translate('profile.wishlist_title')?>
                             <div class="caret">
@@ -29,8 +38,10 @@
                             </div><!-- .caret -->
                         </a>
                     </li>
+                    <?php endif; ?>
                 </ul>
             </div><!-- .profile tabs -->
+            <?php if (! $locked): ?>
             <div class="cat-dropdown">
                 <span class="label"><?=$this->translate('profile.category_title')?>:</span>
                 <div class="cat-select-box">
@@ -53,8 +64,31 @@
                     </ul>
                 </div><!-- .select-box -->
             </div><!-- .cat-dropdown -->
+            <?php endif; ?>
         </div><!-- .profile-bar -->
         <div class="profile-tab-content">
+            <?php if ($locked): ?>
+            <div class="profile-unlocking tab <?=$tab === 'unlocking'? 'active':''?>">
+                <div class="redeem-inlay">
+                    <div class="wrap">
+                        <!-- account unlocking with wallet -->
+                        <div class="redeem-title"><?=$this->translate('unlocking.wallet.title')?></div>
+                        <div class="txt"><?=$this->translate('unlocking.wallet.subtitle')?></div>
+                        <ul class="redeem-options">
+                            <li class="code">
+                                <span><?=$code[0]?></span>
+                                <span><?=$code[1]?></span>
+                                <span><?=$code[2]?></span>
+                            </li>
+                            <li class="divider"><?=$this->translate('pairing.option_divider')?></li>
+                            <li class="qr">
+                                <img src="/profile/qr?param=<?=implode('', $code)?>" />
+                            </li><!-- .qr -->
+                        </ul>
+                    </div><!-- .wrap -->
+                </div><!-- .redeem-inlay -->
+            </div><!-- .profile-unlocking -->
+            <?php else: ?>
             <div class="profile-wishlist tab <?=$tab === 'wishlist'? 'active':''?>">
                 <?php if (count($products)): ?>
                 <div class="products">
@@ -189,7 +223,7 @@
 
                               <form method="post" class="pairing-form" action="/profile/pairing">
                               <strong><?=$app?></strong>
-                              <span>(<?=$this->translate('pairing.sync.brother.synced_at') . $value['updated_at']?>)</span>
+                              <span>(<?= $id ?>; <?=$this->translate('pairing.sync.brother.synced_at') . $value['updated_at']?>)</span>
                               <input type="hidden" name="unpair" value="true"/>
                               <input type="hidden" name="sync_id" value="<?=$value['id']?>" id="sync_id"/>
                               <input type="submit" value="<?=$this->translate('pairing.sync.brother.remove')?>" name="pairing-remove" id="pairing-remove"/>
@@ -198,14 +232,16 @@
                           </div>
                           <?php endforeach; ?>
                           <?php endif; ?>
-
                         </div>
                     </div><!-- .wrap -->
                 </div><!-- .redeem-inlay -->
             </div><!-- .profile-pairing -->
+            <?php endif; ?>
         </div><!-- .profile-tab-content -->
 
+        <?php if (! $locked): ?>
         <?php echo $deals; ?>
+        <?php endif; ?>
 
     </div><!-- .wrap -->
 </div><!-- .profile -->

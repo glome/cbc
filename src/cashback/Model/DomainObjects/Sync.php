@@ -14,6 +14,7 @@ class Sync
     private $errorMessage;
     private $pairingCode;
     private $brothers;
+    private $kind;
 
     public function getId()
     {
@@ -85,6 +86,11 @@ class Sync
         $this->code_3 = $code;
     }
 
+    public function getError()
+    {
+        return ['code' => $this->errorCode, 'message' => $this->errorMessage];
+    }
+
     public function getErrorCode()
     {
         return $this->errorCode;
@@ -113,5 +119,15 @@ class Sync
     public function setBrothers($brothers)
     {
         $this->brothers = $brothers;
+    }
+
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    public function setKind($kind)
+    {
+        $this->kind = $kind;
     }
 }

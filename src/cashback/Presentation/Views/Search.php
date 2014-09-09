@@ -34,6 +34,7 @@ class Search extends \Application\Common\View
         $footer->assign('categories', $categories);
 
         $profile->assignAll([
+            'locked' => $shop->getUser()->isLocked(),
             'wishes'   => $itinerary->getWishlistLength(),
             'earnings' => $itinerary->getEarnings('EUR'),
             'currencies' => $configuration->getListOf('currencies'),
@@ -63,6 +64,7 @@ class Search extends \Application\Common\View
                 'currency'    => $configuration->getPreferredCurrency(),
                 'language'    => $configuration->getPreferredLanguage(),
             ],
+            'locked' => $shop->getUser()->isLocked(),
         ]);
 
         return $main->render();

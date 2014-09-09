@@ -34,6 +34,11 @@ class Shop extends \Application\Common\Service
         return $this->currentPage;
     }
 
+    public function getUser()
+    {
+        return $this->currentUser;
+    }
+
     public function forUser($user)
     {
         $this->currentUser = $user;
@@ -71,6 +76,23 @@ class Shop extends \Application\Common\Service
             $api = $this->dataMapperFactory->create('CategoryCollection', 'REST');
             $api->fetch($categories);
             $session->store($categories);
+        }
+
+        $this->getUser()->setError($categories->getErrorCode(), $categories->getErrorMessage());
+        $err = $this->getUser()->getErrorCode();
+        if ($err) {
+            session_destroy();
+            \Application\Services\Recognition::authenticate(true);
+
+            switch ($err) {
+                case 403:
+                    break;
+                case 2301:
+                    header('Location: /profile/unlocking');
+                    exit;
+                    break;
+            }
+            return;
         }
 
         return $categories->getParsedArray();
@@ -126,6 +148,22 @@ class Shop extends \Application\Common\Service
         $products->setAdvertisers(array_keys($retailers));
 
         $api->fetch($products);
+
+        $err = $this->getUser()->getErrorCode();
+        if ($err) {
+            session_destroy();
+            \Application\Services\Recognition::authenticate(true);
+
+            switch ($err) {
+                case 403:
+                    break;
+                case 2301:
+                    header('Location: /profile/unlocking');
+                    exit;
+                    break;
+            }
+            return;
+        }
 
         $incentives =  $this->domainObjectFactory->create('IncentiveCollection');
         $api = $this->dataMapperFactory->create('IncentiveCollection', 'REST');

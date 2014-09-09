@@ -9,7 +9,6 @@ use Guzzle\Common\Event;
 
 class Category extends \Application\Common\RestMapper
 {
-
     public function __construct($configuration)
     {
         $this->host = $configuration['rest']['host'];

@@ -21,6 +21,31 @@ class ProductCollection extends \Application\Common\Collection
 
     private $isAutocomplete = false;
 
+    public function getError()
+    {
+        return ['code' => $this->errorCode, 'message' => $this->errorMessage];
+    }
+
+    public function getErrorCode()
+    {
+        return $this->errorCode;
+    }
+
+    public function setErrorCode($code)
+    {
+        $this->errorCode = $code;
+    }
+
+    public function getErrorMessage()
+    {
+        return $this->errorMessage;
+    }
+
+    public function setErrorMessage($message)
+    {
+        $this->errorMessage = $message;
+    }
+
     public function setLocations($locations)
     {
         $this->locations = $locations;

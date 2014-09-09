@@ -50,6 +50,7 @@
                     </a>
                 </div><!-- .logo-wrap-->
                 <div class="header-options">
+                    <?php if ($locked === false): ?>
                     <div class="location-filter">
                         <a class="mob-filter-btn"></a>
                         <div class="row">
@@ -97,6 +98,7 @@
                             </div><!-- .form-item -->
                         </div><!-- .row -->
                     </div><!-- .location-filter-->
+                    <?php endif; ?>
 
                     <?php echo $user; ?>
 

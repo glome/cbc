@@ -5,6 +5,7 @@ namespace Application\Common;
 session_start();
 
 $cookieJar = new \Guzzle\Plugin\Cookie\CookieJar\ArrayCookieJar;
+
 if (isset($_SESSION['cache.cookies'])) {
     $cookieJar->unserialize($_SESSION['cache.cookies']);
 }
@@ -17,7 +18,7 @@ $mapperFactory = new DataMapperFactory($datasources);
 $mapperFactory->setNamespace('\\Application\\DataMappers');
 $mapperFactory->setShared([
     'CookieJar' => $cookieJar,
-    ]);
+]);
 $serviceFactory = new ServiceFactory($domainFactory, $mapperFactory);
 $serviceFactory->setNamespace('\\Application\\Services');
 

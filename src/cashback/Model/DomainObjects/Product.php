@@ -25,6 +25,8 @@ class Product
     private $programId;
     private $incentivesData;
     private $incentive;
+    private $errorCode = null;
+    private $errorMessage = null;
 
     public function setScore($score)
     {

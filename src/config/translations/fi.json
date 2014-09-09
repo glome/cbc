@@ -60,6 +60,7 @@
     "profile.wishlist_title":          "Muistilista",
     "profile.history_title":           "Bonushistoria",
     "profile.pairing_title":           "Pair with Glome Wallet",
+    "profile.unlocking_title":         "Unlocking",
     "profile.empty_wishlist":          "Muistilistasi on tällä hetkellä tyhjä. Eikun shoppailemaan!",
     "profile.empty_history":           "Bonushistoriasi on vielä tyhjä. Eiköhän olisi aika mennä shoppailemaan?",
     "profile.category_title":          "JATKA SHOPPAILUA",
@@ -77,6 +78,9 @@
     "pairing.sync.brothers.title":     "Synced profiles on other devices / browsers",
     "pairing.sync.brother.synced_at":  "synced at ",
     "pairing.sync.brother.remove":     "Remove",
+
+    "unlocking.wallet.title":          "Unlock Your Cashback Catalog account with Glome Wallet!",
+    "unlocking.wallet.subtitle":       "Copy this code to Your Glome Wallet <span class=\"mob-hide\">or scan the following QR code:</span>",
 
     "about.image_1":                   "/assets/img/find-300x156.jpg",
     "about.title_1":                   "TERVETULOA SHOPPAILEMAAN!",

@@ -36,6 +36,8 @@ class IncentiveCollection extends \Application\Common\RestMapper
         $data = $response->json();
         foreach ($data as $id => $entry) {
             if (isset($data['error'])) {
+                $collection->setErrorCode($data['code']);
+                $collection->setErrorMessage($data['error']);
                 $collection->removeItem($id);
                 continue;
             }

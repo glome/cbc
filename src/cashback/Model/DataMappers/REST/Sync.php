@@ -37,6 +37,8 @@ class Sync extends \Application\Common\RestMapper
         );
 
         $id = $instance->getUserId();
+        $kind = $instance->getKind();
+
         if ($id !== null) {
             $url = $this->applyValuesToURL($this->resources['user-pairing'], ['{id}' => $id ]);
             $request = $client->post(
@@ -45,6 +47,7 @@ class Sync extends \Application\Common\RestMapper
                 [
                     'application[apikey]' => $this->apikey,
                     'application[uid]' => $this->uid,
+                    'synchronization[kind]' => $kind,
                 ]
             );
             $response = $request->send();
@@ -57,6 +60,7 @@ class Sync extends \Application\Common\RestMapper
 
             $instance->setPairingCode($data['code']);
             $_SESSION['glome.code'] = $data['code'];
+
             return true;
         }
     }

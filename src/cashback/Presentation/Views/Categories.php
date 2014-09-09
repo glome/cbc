@@ -43,15 +43,17 @@ class Categories extends \Application\Common\View
         $footer->assign('categories', $categories);
 
         $profile->assignAll([
-            'wishes'   => $itinerary->getWishlistLength(),
-            'earnings' => $itinerary->getEarnings('EUR'),
+            'wishes'     => $itinerary->getWishlistLength(),
+            'earnings'   => $itinerary->getEarnings('EUR'),
             'currencies' => $configuration->getListOf('currencies'),
             'current'    => [
                 'currency'    => $configuration->getPreferredCurrency(),
             ],
+            'locked'   => $shop->getUser()->isLocked(),
         ]);
 
         $content->assignAll([
+            'locked'   => $shop->getUser()->isLocked(),
             'navigation' => $navigation,
             'categories'    => $listing,
         ]);

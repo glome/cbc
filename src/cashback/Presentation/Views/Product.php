@@ -52,9 +52,11 @@ class Product extends \Application\Common\View
             'current'    => [
                 'currency'    => $configuration->getPreferredCurrency(),
             ],
+            'locked'   => $shop->getUser()->isLocked(),
         ]);
 
         $content->assignAll([
+            'locked'   => $shop->getUser()->isLocked(),
             'details'    => $element,
             'navigation' => $navigation,
         ]);
@@ -74,6 +76,7 @@ class Product extends \Application\Common\View
                 'currency'    => $configuration->getPreferredCurrency(),
                 'language'    => $configuration->getPreferredLanguage(),
             ],
+            'locked'   => $shop->getUser()->isLocked(),
         ]);
 
         return $main->render();

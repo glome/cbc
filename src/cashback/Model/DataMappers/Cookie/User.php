@@ -10,7 +10,6 @@ class User
             return false;
         }
         $instance->setId($_COOKIE['glomeid']);
-        //$instance->setId('cd_65631d_1e12f98457926c4f06cc13f670ef09e5');
         return true;
 
     }
