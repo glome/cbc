@@ -10,7 +10,6 @@ use Guzzle\Common\Event;
 
 class Wallet extends \Application\Common\RestMapper
 {
-
     private $host;
     private $apikey;
     private $uid;
@@ -22,7 +21,6 @@ class Wallet extends \Application\Common\RestMapper
         $this->uid = $configuration['rest']['params']['application[uid]'];
         $this->resources = $configuration['rest']['resources'];
     }
-
 
     public function fetch($instance)
     {

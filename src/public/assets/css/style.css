@@ -2659,7 +2659,8 @@ footer {
     width: 220px;
 }
 
-.profile-pairing {
+.profile-pairing,
+.profile-unlocking {
     float: left;
     width: 100%;
 }
@@ -2837,7 +2838,7 @@ footer {
     width: 100%;
     height: auto;
     text-align: center;
-    z-index: 999999;   
+    z-index: 999999;
 }
 #infscr-loading img {
     display: inline-block;

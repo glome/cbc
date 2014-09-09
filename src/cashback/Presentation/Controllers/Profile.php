@@ -4,18 +4,19 @@ namespace Application\Controllers;
 
 class Profile extends \Application\Common\Controller
 {
-    public function getIndex($request)
+    public function getIndex($request, $check = true)
     {
-        $itinerary = $this->serviceFactory->create('Itinerary');
-        $recognition = $this->serviceFactory->create('Recognition');
-        $sync = $this->serviceFactory->create('Sync');
+        if ($check) {
+            $this->checkLocked();
+        }
+
         $shop = $this->serviceFactory->create('Shop');
+        $itinerary = $this->serviceFactory->create('Itinerary');
+        $sync = $this->serviceFactory->create('Sync');
 
-        $user = $recognition->getCurrentUser();
-
-        $itinerary->forUser($user);
-        $sync->forUser($user);
-        $shop->forUser($user);
+        $shop->forUser($this->user);
+        $itinerary->forUser($this->user);
+        $sync->forUser($this->user);
     }
 
     public function getWishlist($request)
@@ -30,21 +31,20 @@ class Profile extends \Application\Common\Controller
 
     public function getWish($request)
     {
+        $this->checkLocked();
         $itinerary = $this->serviceFactory->create('Itinerary');
-        $recognition = $this->serviceFactory->create('Recognition');
-        $user = $recognition->getCurrentUser();
 
-        $itinerary->forUser($user);
+        $itinerary->forUser($this->user);
         $itinerary->addWish($request->getParameter('id'));
     }
 
     public function getSpurn($request)
     {
-        $itinerary = $this->serviceFactory->create('Itinerary');
-        $recognition = $this->serviceFactory->create('Recognition');
-        $user = $recognition->getCurrentUser();
+        $this->checkLocked();
 
-        $itinerary->forUser($user);
+        $itinerary = $this->serviceFactory->create('Itinerary');
+
+        $itinerary->forUser($this->user);
         $itinerary->removeWish($request->getParameter('id'));
     }
 
@@ -55,11 +55,10 @@ class Profile extends \Application\Common\Controller
 
     public function postPairing($request)
     {
-        $recognition = $this->serviceFactory->create('Recognition');
-        $user = $recognition->getCurrentUser();
+        $this->checkLocked();
 
         $sync = $this->serviceFactory->create('Sync');
-        $sync->forUser($user);
+        $sync->forUser($this->user);
 
         if ($request->getParameter('unpair')) {
           $sync->postUnPair($request->getParameter('sync_id'));
@@ -68,6 +67,16 @@ class Profile extends \Application\Common\Controller
         }
 
         $this->getIndex($request);
+    }
+
+    public function getUnlocking($request)
+    {
+        if ($this->user->isLocked()) {
+            $this->getIndex($request, false);
+        } else {
+          header('Location: /profile/');
+          exit;
+        }
     }
 
     public function getQR($request)

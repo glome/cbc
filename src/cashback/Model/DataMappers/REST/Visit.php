@@ -9,7 +9,6 @@ use Guzzle\Common\Event;
 
 class Visit extends \Application\Common\RestMapper
 {
-
     public function __construct($configuration)
     {
         $this->host = $configuration['rest']['host'];
@@ -56,7 +55,6 @@ class Visit extends \Application\Common\RestMapper
         return false;
     }
 
-
     public function fetch($instance)
     {
         $cookiePlugin = new CookiePlugin($this->cookieJar);
@@ -82,7 +80,6 @@ class Visit extends \Application\Common\RestMapper
             $data = $response->json();
 
             if (isset($data['error'])) {
-
                 return false;
             }
 

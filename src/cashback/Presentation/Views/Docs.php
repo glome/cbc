@@ -40,6 +40,7 @@ class Docs extends \Application\Common\View
         ]);
 
         $content->assignAll([
+            'locked'   => $shop->getUser()->isLocked(),
             'navigation'      => $navigation,
             'results'         => $builder->create('doc-terms'),
         ]);

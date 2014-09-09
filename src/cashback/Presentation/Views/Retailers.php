@@ -53,6 +53,7 @@ class Retailers extends \Application\Common\View
         $currentCategory = $shop->getParentCategoryId();
 
         $params = [
+            'locked'          => $shop->getUser()->isLocked(),
             'navigation'      => $navigation,
             'category'        => null,
             'current'         => null,

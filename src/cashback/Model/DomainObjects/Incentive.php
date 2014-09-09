@@ -24,7 +24,6 @@ class Incentive
     public function setFixedPercentage($fixedPercentage)
     {
         $this->fixedPercentage = $fixedPercentage;
-
     }
 
     public function setVariablePercentage($variablePercentage)

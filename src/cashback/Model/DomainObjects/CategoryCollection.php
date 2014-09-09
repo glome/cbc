@@ -13,6 +13,8 @@ class CategoryCollection extends \Application\Common\Collection
     private $id = null;
     private $subcategories = [];
     private $parentId = null;
+    private $errorCode = null;
+    private $errorMessage = null;
 
     public function setName($name)
     {
@@ -32,6 +34,31 @@ class CategoryCollection extends \Application\Common\Collection
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getError()
+    {
+        return ['code' => $this->errorCode, 'message' => $this->errorMessage];
+    }
+
+    public function getErrorCode()
+    {
+        return $this->errorCode;
+    }
+
+    public function setErrorCode($code)
+    {
+        $this->errorCode = $code;
+    }
+
+    public function getErrorMessage()
+    {
+        return $this->errorMessage;
+    }
+
+    public function setErrorMessage($message)
+    {
+        $this->errorMessage = $message;
     }
 
     public function setLinkedTo($id)

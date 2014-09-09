@@ -35,6 +35,12 @@ class CategoryCollection extends \Application\Common\RestMapper
         $response = $client->get($this->host . $this->resources['categories'])->send();
         $data = $response->json();
 
+        if (isset($data['error']))
+        {
+            $collection->setErrorCode($data['code']);
+            $collection->setErrorMessage($data['error']);
+        }
+
         foreach ($data as $item) {
             $this->addSubcategories($collection, $item);
         }

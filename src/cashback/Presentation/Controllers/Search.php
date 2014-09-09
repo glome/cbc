@@ -6,17 +6,21 @@ class Search extends \Application\Common\Controller
 {
     public function getIndex($request)
     {
+        $this->checkLocked();
+
         $shop = $this->serviceFactory->create('Shop');
         $itinerary = $this->serviceFactory->create('Itinerary');
-        $recognition = $this->serviceFactory->create('Recognition');
-        $user = $recognition->getCurrentUser();
-        $itinerary->forUser($user);
+
+        $shop->forUser($this->user);
+        $itinerary->forUser($this->user);
+
         $shop->setPage($request->getParameter('page'));
-        $shop->forUser($user);
     }
 
     public function postIndex($request)
     {
+        $this->checkLocked();
+
         $shop = $this->serviceFactory->create('Shop');
         $shop->prepareSearch($request->getParameter('search-field'));
 
@@ -26,6 +30,8 @@ class Search extends \Application\Common\Controller
 
     public function getAutocomplete($request)
     {
+        $this->checkLocked();
+
         $shop = $this->serviceFactory->create('Shop');
         $shop->prepareSearch($request->getParameter('term'));
     }

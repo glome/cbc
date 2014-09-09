@@ -22,6 +22,7 @@ class Sync extends \Application\Common\Service
         $sync = $this->domainObjectFactory->create('Sync');
 
         if ($this->currentUser) {
+            $sync->setKind('s');
             $sync->setUserId($this->currentUser->getId());
         }
 
@@ -57,6 +58,7 @@ class Sync extends \Application\Common\Service
     {
         $sync = $this->domainObjectFactory->create('Sync');
         if ($this->currentUser) {
+            $sync->setKind('b');
             $sync->setUserId($this->currentUser->getId());
         }
 
@@ -68,15 +70,29 @@ class Sync extends \Application\Common\Service
 
     public function postUnPair($syncId)
     {
-        echo "unpair: " . $syncId . "\n<br/>";
-
         $sync = $this->domainObjectFactory->create('Sync');
         if ($this->currentUser) {
+            $sync->setKind('s');
             $sync->setUserId($this->currentUser->getId());
         }
         $sync->setId($syncId);
 
         $api = $this->dataMapperFactory->create('Sync', 'REST');
         $api->togglePairing($sync);
+    }
+
+    public function getUnlockCode()
+    {
+        $sync = $this->domainObjectFactory->create('Sync');
+
+        if ($this->currentUser) {
+            $sync->setKind('u');
+            $sync->setUserId($this->currentUser->getId());
+        }
+
+        $api = $this->dataMapperFactory->create('Sync', 'REST');
+        $api->fetch($sync);
+
+        return $sync->getPairingCode();
     }
 }
