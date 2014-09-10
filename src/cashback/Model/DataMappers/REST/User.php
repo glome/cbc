@@ -81,4 +81,43 @@ class User extends \Application\Common\RestMapper
             }
         }
     }
+
+    public function update($instance)
+    {
+        $cookiePlugin = new CookiePlugin($this->cookieJar);
+
+        $client = new Client;
+        $client->addSubscriber($cookiePlugin);
+
+        $client->getEventDispatcher()->addListener(
+            'request.error',
+            function (Event $event) use ($instance) {
+                $event->stopPropagation();
+            }
+        );
+
+        $id = $instance->getId();
+        $url = $this->applyValuesToURL($this->resources['user-profile'], ['{id}' => $id ]);
+
+        $response = $client->put(
+            $this->host . $url,
+            [],
+            [
+                'application[apikey]' => $this->apikey,
+                'application[uid]' => $this->uid,
+                'user[locked_at]' => $instance->getLockedAt()
+            ]
+        )->send();
+
+        $data = $response->json();
+
+        if (isset($data['error']))
+        {
+            $instance->setErrorCode($data['code']);
+            $instance->setErrorMessage($data['error']);
+            return false;
+        }
+
+        return true;
+    }
 }

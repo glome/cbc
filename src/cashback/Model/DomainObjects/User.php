@@ -9,6 +9,7 @@ class User
     private $errorMessage = false;
     private $locked = false;
     private $forbidden = false;
+    private $locked_at = false;
 
     public function setId($id)
     {
@@ -108,6 +109,16 @@ class User
     public function isForbidden()
     {
         return $this->forbidden;
+    }
+
+    public function getLockedAt()
+    {
+        return $this->locked_at;
+    }
+
+    public function setLockedAt($value)
+    {
+        $this->locked_at = value;
     }
 
     public function isLocked()
