@@ -69,6 +69,18 @@ class Profile extends \Application\Common\Controller
         $this->getIndex($request);
     }
 
+    public function getLocking($request)
+    {
+        $this->getIndex($request);
+    }
+
+    public function postLocking($request)
+    {
+        $this->checkLocked();
+        $this->recognition->postLocking();
+        $this->getIndex($request);
+    }
+
     public function getUnlocking($request)
     {
         if ($this->user->isLocked()) {

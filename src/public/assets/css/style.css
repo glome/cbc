@@ -2660,6 +2660,7 @@ footer {
 }
 
 .profile-pairing,
+.profile-locking,
 .profile-unlocking {
     float: left;
     width: 100%;

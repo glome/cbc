@@ -43,6 +43,7 @@
     "navigation.to_history":           "Cashback history",
     "navigation.to_redeem":            "REDEEM",
     "navigation.to_pairing":           "Pairing",
+    "navigation.to_locking":           "Locking",
     "navigation.redeem_condition":     "(minimum 5 EUR)",
     "navigation.retailer_title":       "Retailer",
     "navigation.back_to_category":     "Back to products list",
@@ -61,6 +62,7 @@
     "profile.history_title":           "Cashback history",
     "profile.pairing_title":           "Pairing",
     "profile.unlocking_title":         "Unlocking",
+    "profile.locking_title":           "Locking",
     "profile.empty_wishlist":          "Currently You don't have any items in Your wish list. Keep searching!",
     "profile.empty_history":           "Your Cashback history is still empty. Don't You think it's time for shopping?",
     "profile.category_title":          "KEEP SHOPPING",
@@ -81,6 +83,10 @@
 
     "unlocking.wallet.title":          "Unlock Your Cashback Catalog account with Glome Wallet!",
     "unlocking.wallet.subtitle":       "Copy this code to Your Glome Wallet <span class=\"mob-hide\">or scan the following QR code:</span>",
+
+    "locking.title":                   "Lock Your Cashback Catalog account now and prevent unauthorized access!",
+    "locking.subtitle":                "Click the button and secure your account. You can unlock it anytime with your Glome Wallet.",
+    "locking.submit":                  "Lock Now",
 
     "about.image_1":                   "/assets/img/find-300x156.jpg",
     "about.title_1":                   "FIND WHAT YOU ARE LOOKING FOR!",

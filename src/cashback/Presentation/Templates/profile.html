@@ -38,6 +38,14 @@
                             </div><!-- .caret -->
                         </a>
                     </li>
+                    <li <?=$tab === 'locking'? 'class="active"':''?>>
+                        <a href="profile-locking"><?=$this->translate('profile.locking_title')?>
+                            <div class="caret">
+                                <div class="caret-border"></div>
+                                <div class="caret-body"></div>
+                            </div><!-- .caret -->
+                        </a>
+                    </li>
                     <?php endif; ?>
                 </ul>
             </div><!-- .profile tabs -->
@@ -236,6 +244,25 @@
                     </div><!-- .wrap -->
                 </div><!-- .redeem-inlay -->
             </div><!-- .profile-pairing -->
+            <div class="profile-locking tab <?=$tab === 'locking'? 'active':''?>">
+                <div class="redeem-inlay">
+                    <div class="wrap">
+                        <!-- account locking -->
+                        <div class="redeem-title"><?=$this->translate('locking.title')?></div>
+                        <div class="txt"><?=$this->translate('locking.subtitle')?></div>
+
+                        <form method="post" class="locking-form" action="/profile/locking">
+                            <input type="submit" value="<?=$this->translate('locking.submit')?>" name="locking-submit" id="locking-submit"/>
+                        </form>
+
+                        <?php if (isset($error) && $error): ?>
+                        <br/>
+                        <div><?=$error['message']?></div>
+                        <br/>
+                        <?php endif; ?>
+                    </div><!-- .wrap -->
+                </div><!-- .redeem-inlay -->
+            </div><!-- .profile-locking -->
             <?php endif; ?>
         </div><!-- .profile-tab-content -->
 

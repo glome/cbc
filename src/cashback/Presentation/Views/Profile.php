@@ -126,6 +126,12 @@ class Profile extends \Application\Common\View
         return $this->wishlist();
     }
 
+    public function locking()
+    {
+        $this->currentTab = 'locking';
+        return $this->wishlist();
+    }
+
     public function unlocking()
     {
         $this->currentTab = 'unlocking';

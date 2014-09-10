@@ -27,6 +27,7 @@
 
             "user":                       "/users.json",
             "user-login":                 "/users/login.json",
+            "user-profile":               "/users/{id}.json",
             "user-redeem":                "/users/{id}/payments/redeem.json",
             "user-earnings":              "/users/{id}/earnings.json?application[apikey]={apikey}&application[uid]={uid}",
             "user-pairing":               "/users/{id}/sync.json",

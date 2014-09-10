@@ -43,6 +43,7 @@
     "navigation.to_history":           "Bonushistoria",
     "navigation.to_redeem":            "LUNASTA",
     "navigation.to_pairing":           "Pair with Glome Wallet",
+    "navigation.to_locking":           "Locking",
     "navigation.redeem_condition":     "(minimi 5 EUR)",
     "navigation.retailer_title":       "Myyjä ",
     "navigation.back_to_category":     "Palaa tuotelistaan",
@@ -61,6 +62,7 @@
     "profile.history_title":           "Bonushistoria",
     "profile.pairing_title":           "Pair with Glome Wallet",
     "profile.unlocking_title":         "Unlocking",
+    "profile.locking_title":           "Locking",
     "profile.empty_wishlist":          "Muistilistasi on tällä hetkellä tyhjä. Eikun shoppailemaan!",
     "profile.empty_history":           "Bonushistoriasi on vielä tyhjä. Eiköhän olisi aika mennä shoppailemaan?",
     "profile.category_title":          "JATKA SHOPPAILUA",
@@ -81,6 +83,10 @@
 
     "unlocking.wallet.title":          "Unlock Your Cashback Catalog account with Glome Wallet!",
     "unlocking.wallet.subtitle":       "Copy this code to Your Glome Wallet <span class=\"mob-hide\">or scan the following QR code:</span>",
+
+    "locking.title":                   "Lock Your Cashback Catalog account now and prevent unauthorized access!",
+    "locking.subtitle":                "Click the button and secure your account. You can unlock it anytime with your Glome Wallet.",
+    "locking.submit":                  "Lock Now",
 
     "about.image_1":                   "/assets/img/find-300x156.jpg",
     "about.title_1":                   "TERVETULOA SHOPPAILEMAAN!",

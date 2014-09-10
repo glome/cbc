@@ -6,6 +6,16 @@ class Recognition extends \Application\Common\Service
 {
     private $currentUser = null;
 
+    public function forUser($user)
+    {
+        $this->currentUser = $user;
+    }
+
+    public function getUser()
+    {
+        return $this->currentUser;
+    }
+
     public function authenticate($force = false)
     {
         $user = $this->domainObjectFactory->create('User');
@@ -23,13 +33,16 @@ class Recognition extends \Application\Common\Service
         $this->forUser($user);
     }
 
-    public function forUser($user)
+    public function postLocking()
     {
-        $this->currentUser = $user;
-    }
+        $user = $this->getUser();
 
-    public function getUser()
-    {
-        return $this->currentUser;
+        if ($user) {
+            $api = $this->dataMapperFactory->create('User', 'REST');
+            $user->setLockedAt(null);
+            $api->update($user);
+        }
+        //$cookies->store($this->user);
+        //$this->forUser($this->user);
     }
 }
