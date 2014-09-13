@@ -212,22 +212,29 @@
                           <br/>
                           <?php endif; ?>
 
-                          <?php if (count($brothers)): ?>
+                          <?php
+                              if (count($brothers)):
+                                $processed = [];
+                          ?>
                           <br/>
                           <div class="redeem-title"><?=$this->translate('pairing.sync.brothers.title')?></div>
-                          <?php foreach ($brothers as $key => $value): ?>
+                          <?php
+                              $containers = ['user', 'pair'];
+                              foreach ($brothers as $key => $value):
+                                foreach ($containers as $container):
+                          ?>
                           <div>
-                              <?php
-                                $id = $value['pair']['id'];
-                                $glomeid = $value['pair']['glomeid'];
-                                $app = $value['pair']['parentapp_title'];
+                          <?php
+                                $id = $value[$container]['id'];
+                                $glomeid = $value[$container]['glomeid'];
+                                $app = $value[$container]['parentapp_title'];
 
-                                if ($value['pair']['glomeid'] == $myself):
-                                  $id = $value['user']['id'];
-                                  $glomeid = $value['user']['glomeid'];
-                                  $app = $value['user']['parentapp_title'];
+                                if (in_array($glomeid, $processed) or $myself == $glomeid):
+                                  continue;
                                 endif;
-                              ?>
+
+                                $processed[] = $glomeid;
+                          ?>
 
                               <form method="post" class="pairing-form" action="/profile/pairing">
                               <strong><?=$app?></strong>
@@ -238,8 +245,11 @@
                               </form>
 
                           </div>
-                          <?php endforeach; ?>
-                          <?php endif; ?>
+                          <?php
+                                endforeach;
+                              endforeach;
+                            endif;
+                          ?>
                         </div>
                     </div><!-- .wrap -->
                 </div><!-- .redeem-inlay -->
