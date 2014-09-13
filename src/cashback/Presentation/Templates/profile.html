@@ -218,14 +218,14 @@
                           <?php foreach ($brothers as $key => $value): ?>
                           <div>
                               <?php
-                                $id = $value['user']['id'];
-                                $glomeid = $value['user']['glomeid'];
-                                $app = $value['user']['parentapp_title'];
+                                $id = $value['pair']['id'];
+                                $glomeid = $value['pair']['glomeid'];
+                                $app = $value['pair']['parentapp_title'];
 
-                                if ($value['user']['glomeid'] == $myself):
-                                  $id = $value['pair']['id'];
-                                  $glomeid = $value['pair']['glomeid'];
-                                  $app = $value['pair']['parentapp_title'];
+                                if ($value['pair']['glomeid'] == $myself):
+                                  $id = $value['user']['id'];
+                                  $glomeid = $value['user']['glomeid'];
+                                  $app = $value['user']['parentapp_title'];
                                 endif;
                               ?>
 
