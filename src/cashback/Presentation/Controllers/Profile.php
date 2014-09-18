@@ -50,6 +50,13 @@ class Profile extends \Application\Common\Controller
 
     public function getPairing($request)
     {
+        $code = $request->getParameter('code');
+        if ($code && strlen($code) == 12) {
+            $syncService = $this->serviceFactory->create('Sync');
+            $syncService->forUser($this->user);
+            $code_arr = str_split($code, 4);
+            $syncService->postPairingCode($code_arr[0], $code_arr[1], $code_arr[2]);
+        }
         $this->getIndex($request);
     }
 

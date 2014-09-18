@@ -14,7 +14,7 @@ class Profile extends \Application\Common\View
 
     public function wishlist()
     {
-        $sync = $this->serviceFactory->create('Sync');
+        $syncService = $this->serviceFactory->create('Sync');
 
         $itinerary = $this->serviceFactory->create('Itinerary');
         $configuration = $this->serviceFactory->create('Configuration');
@@ -34,21 +34,21 @@ class Profile extends \Application\Common\View
         $deals = $brothers = $code = $error = $wishlist = $history = null;
 
         $profile = $builder->create('profile-brief');
-        $profile->assign('locked', $sync->getUser()->isLocked());
+        $profile->assign('locked', $syncService->getUser()->isLocked());
 
-        if ($sync->getUser()->getErrorCode()) {
+        if ($syncService->getUser()->getErrorCode()) {
             # some error during login?
-            $error = $sync->getUser()->getError();
-            $code = $sync->getUnlockCode();
+            $error = $syncService->getUser()->getError();
+            $code = $syncService->getUnlockCode();
         } else {
-            $code = $sync->getPairingCode();
-
-            if ($sync->getSync()) {
+            $sync = $syncService->getSync();
+            $code = $syncService->getPairingCode();
+            if ($sync) {
                 # there was a sync code from an other CBC posted
                 $error = $sync->getError();
             }
 
-            $brothers = $sync->getBrothers();
+            $brothers = $syncService->getBrothers();
             $categories = $shop->getCategories();
             $earnings = $itinerary->getTotalEarnings();
             $wishlist = $itinerary->getWishlist();
@@ -75,6 +75,8 @@ class Profile extends \Application\Common\View
         $content->assign('categories', array_slice($categories, 0, 10));
         $footer->assign('categories', $categories);
 
+        $sync_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?code=' . $code;
+
         $content->assignAll([
             'deals'      => $deals,
             'products'   => $wishlist,
@@ -84,8 +86,9 @@ class Profile extends \Application\Common\View
             'code'       => str_split($code, 4),
             'error'      => $error,
             'brothers'   => $brothers,
-            'myself'     => $sync->getUser()->getId(),
-            'locked'     => $sync->getUser()->isLocked(),
+            'myself'     => $syncService->getUser()->getId(),
+            'locked'     => $syncService->getUser()->isLocked(),
+            'sync_url'   => $sync_url,
         ]);
 
         $main->assignAll([
@@ -98,7 +101,7 @@ class Profile extends \Application\Common\View
                 'currency'    => $configuration->getPreferredCurrency(),
                 'language'    => $configuration->getPreferredLanguage(),
             ],
-            'locked'     => $sync->getUser()->isLocked(),
+            'locked'     => $syncService->getUser()->isLocked(),
         ]);
 
         return $main->render();

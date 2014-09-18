@@ -69,6 +69,7 @@ class Shop extends \Application\Common\Service
 
     private function collectCategoryTree()
     {
+        $err = true;
         $categories = $this->domainObjectFactory->create('CategoryCollection');
         $session = $this->dataMapperFactory->create('CategoryCollection', 'Session');
 
@@ -78,14 +79,21 @@ class Shop extends \Application\Common\Service
             $session->store($categories);
         }
 
-        $this->getUser()->setError($categories->getErrorCode(), $categories->getErrorMessage());
-        $err = $this->getUser()->getErrorCode();
+        $user = $this->getUser();
+
+        if ($user) {
+            $this->getUser()->setError($categories->getErrorCode(), $categories->getErrorMessage());
+            $err = $this->getUser()->getErrorCode();
+        }
+
         if ($err) {
             session_destroy();
             \Application\Services\Recognition::authenticate(true);
 
             switch ($err) {
                 case 403:
+                    header('Location: /');
+                    exit;
                     break;
                 case 2301:
                     header('Location: /profile/unlocking');

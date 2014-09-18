@@ -77,9 +77,11 @@
     "pairing.sync.title":              "Sync your profile accross devices and browsers",
     "pairing.sync.subtitle":           "Insert pairing code from other Cashback Catalog profile to sync",
     "pairing.sync.submit":             "Sync",
+    "pairing.sync.current":            "Your current session: ",
     "pairing.sync.brothers.title":     "Synced profiles on other devices / browsers",
     "pairing.sync.brother.synced_at":  "synced at ",
     "pairing.sync.brother.remove":     "Remove",
+    "pairing.sync.link":               "or alternatively You can also open this link on an other device:",
 
     "unlocking.wallet.title":          "Unlock Your Cashback Catalog account with Glome Wallet!",
     "unlocking.wallet.subtitle":       "Copy this code to Your Glome Wallet <span class=\"mob-hide\">or scan the following QR code:</span>",
