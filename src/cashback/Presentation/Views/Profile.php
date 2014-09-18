@@ -75,7 +75,7 @@ class Profile extends \Application\Common\View
         $content->assign('categories', array_slice($categories, 0, 10));
         $footer->assign('categories', $categories);
 
-        $sync_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?code=' . $code;
+        $sync_url = 'http://' . $_SERVER['HTTP_HOST'] . '/profile/pairing?code=' . $code;
 
         $content->assignAll([
             'deals'      => $deals,
