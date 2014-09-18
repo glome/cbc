@@ -193,6 +193,9 @@
                                 <img src="/profile/qr?param=<?=implode('', $code)?>" />
                             </li><!-- .qr -->
                         </ul>
+                        <div class="link"><?=$this->translate('pairing.sync.link')?></div>
+                        <br/>
+                        <?= $sync_url ?>
                         <!-- cbc pairing -->
                         <hr/>
                         <div class="redeem-title"><?=$this->translate('pairing.sync.title')?></div>
@@ -219,6 +222,7 @@
                           <br/>
                           <div class="redeem-title"><?=$this->translate('pairing.sync.brothers.title')?></div>
                           <?php
+                              $current = $done = false;
                               $containers = ['user', 'pair'];
                               foreach ($brothers as $key => $value):
                                 foreach ($containers as $container):
@@ -227,12 +231,21 @@
                                   $app = $value[$container]['parentapp_title'];
 
                                   if (in_array($glomeid, $processed) or $myself == $glomeid):
-                                    continue;
+                                    if ($current and $done):
+                                      continue;
+                                    endif;
+                                    $current = true;
                                   endif;
 
                                   $processed[] = $glomeid;
                           ?>
                                 <form method="post" class="pairing-form" action="/profile/pairing">
+                                    <?php if ($current && ! $done): ?>
+                                    <strong><?= $this->translate('pairing.sync.current') ?></strong>
+                                    <?php
+                                        $done = true;
+                                        endif;
+                                    ?>
                                     <strong><?=$app?></strong>
                                     <span>(<?= $id ?>; <?=$this->translate('pairing.sync.brother.synced_at') . $value['updated_at']?>)</span>
                                     <input type="hidden" name="unpair" value="true"/>
