@@ -243,15 +243,11 @@ $(document).ready(function() {
 
     /* INDEX page - about tabs */
     $(".tab-menu li a").on("click", function(e) {
-
-
         var target = $(this).attr("href");
         $(".tab-menu li").removeClass("active");
         $(".tab-content .tab").removeClass("active");
         $(this).parent().addClass("active");
         $(target).addClass("active");
-
-
     });
 
     if(window.location.hash !== "") {
@@ -260,9 +256,7 @@ $(document).ready(function() {
         $(".tab-content .tab").removeClass("active");
         $(".tab-menu li a[href='" + a + "']").parent().addClass("active");
         $(a).addClass("active");
-
     }
-
 
     /* PROFILE page tabs */
     $(".profile-tabs ul li a").on("click", function(e) {
@@ -275,13 +269,11 @@ $(document).ready(function() {
         $("." + target).addClass("active");
     });
 
-
     /* selectbox with checkbox */
     $(".select-checkbox").on("click", function() {
         if ($(window).width() > 730) {
             $(this).toggleClass("active");
         }
-
     });
 
     $(".select-checkbox ul li").on("click", function(e) {
@@ -643,7 +635,7 @@ $(document).ready(function() {
         $("html,body").animate({
             "scrollTop": 0
         }, 500);
-        console.log("bu");
+//        console.log("bu");
     });
 
     /* Overlay */

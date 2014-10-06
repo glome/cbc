@@ -362,7 +362,6 @@ select {
 }
 .redeem-btn .min {
     font-size: 8px;
-
 }
 .header-profile-btn {
     float: right;
@@ -475,8 +474,6 @@ select {
     float: left;
     width: 100%;
 }
-
-
 
 /*
 ** Footer
@@ -4488,8 +4485,26 @@ html[xmlns] .slides {display: block;}
 {
   margin-top: 0px;
 }
-
 .entry-content p
 {
   line-height: 1.6em;
+}
+/* GNB integration */
+.header-profile .gnb.active {
+    display: block;
+    position: absolute;
+    top: -2px;
+    right: 0;
+    float: left;
+    width: 40px;
+    height: 2px;
+    background-color: lightgreen;
+    z-index: 5;
+}
+.header-profile .gnb.active.unread {
+    background-color: yellow;
+}
+.header-profile:hover .gnb,
+.header-profile:hover .gnb.active {
+  right: 2px;
 }

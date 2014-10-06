@@ -60,18 +60,19 @@ class User extends \Application\Common\RestMapper
         $response = $request->send();
         $data = $response->json();
 
-        if ($response->hasHeader('X-Csrf-Token'))
-        {
+        if ($response->hasHeader('X-Csrf-Token')) {
             $temp = $response->getHeader('X-Csrf-Token')->toArray();
             $instance->setToken(array_pop($temp));
         }
-        else
-        {
-            if ($instance->getId() && isset($data['error']))
-            {
+        else {
+            if ($instance->getId() && isset($data['error'])) {
                 $instance->setErrorCode($data['code']);
                 $instance->setErrorMessage($data['error']);
             }
+        }
+
+        if (! $instance->getMessagingToken() && isset($data['glomeid'])) {
+            $instance->setMessagingToken($data['glomeid']);
         }
 
         foreach ($this->cookieJar->getMatchingCookies($request) as $cookie) {
