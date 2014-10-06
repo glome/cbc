@@ -110,7 +110,8 @@ class Catalog extends \Application\Common\View
                 'currency'    => $configuration->getPreferredCurrency(),
                 'language'    => $configuration->getPreferredLanguage(),
             ],
-            'locked' => $shop->getUser()->isLocked(),
+            'locked'     => $shop->getUser()->isLocked(),
+            'imtoken'    => $shop->getUser()->getMessagingToken()
         ]);
 
         return $main->render();

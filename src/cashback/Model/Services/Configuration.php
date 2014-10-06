@@ -71,7 +71,6 @@ class Configuration extends \Application\Common\Service
         $session = $this->dataMapperFactory->create('Settings', 'Session');
         $session->fetch($settings);
 
-
         $locations = array_keys($settings->getLocations());
         $temp = [];
         foreach ($this->data['locations'] as $value) {

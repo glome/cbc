@@ -9,7 +9,12 @@ class User
     private $errorMessage = false;
     private $locked = false;
     private $forbidden = false;
+    private $session = null;
+    private $token = null;
+    private $visitorId = null;
     private $locked_at = false;
+    // this is for IM purposes
+    private $messagingToken = null;
 
     public function setId($id)
     {
@@ -21,8 +26,6 @@ class User
         return $this->id;
     }
 
-    private $session = null;
-
     public function getSession()
     {
         return $this->session;
@@ -33,8 +36,6 @@ class User
         $this->session = $session;
     }
 
-    private $token = null;
-
     public function getToken()
     {
         return $this->token;
@@ -44,8 +45,6 @@ class User
     {
         $this->token = $token;
     }
-
-    private $visitorId = null;
 
     public function setVisitorId($id)
     {
@@ -75,7 +74,6 @@ class User
 
     public function setErrorCode($code)
     {
-        //echo "set user error: " . $code . "<br/>";
         $this->errorCode = $code;
         # TODO: get error codes from Glome
         switch ($code) {
@@ -124,5 +122,15 @@ class User
     public function isLocked()
     {
         return $this->locked;
+    }
+
+    public function getMessagingToken()
+    {
+        return $this->id;
+    }
+
+    public function setMessagingToken($token)
+    {
+        $this->messagingToken = $token;
     }
 }

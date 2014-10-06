@@ -33,7 +33,7 @@ class Landing extends \Application\Common\View
         $deals->assign('products', $shop->getRecommendations(4));
 
         $profile->assignAll([
-            'locked' => $shop->getUser()->isLocked(),
+            'locked'     => $shop->getUser()->isLocked(),
             'wishes'     => $itinerary->getWishlistLength(),
             'earnings'   => $itinerary->getEarnings('EUR'),
             'currencies' => $configuration->getListOf('currencies'),
@@ -61,6 +61,7 @@ class Landing extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
             'locked'     => $shop->getUser()->isLocked(),
+            'imtoken'      => $shop->getUser()->getMessagingToken()
         ]);
 
         return $main->render();
