@@ -23,15 +23,22 @@ $(document).ready(function() {
     });
 
     // received a broadcast from Glome
-    socket.on('gnb:broadcast', function(msg){
+    socket.on('gnb:broadcast', function(msg) {
       $('.gnb').addClass('unread');
-      $('#messages').append($('<li>').text('broadcast: ' + msg));
     });
 
     // received a direct message from Glome
-    socket.on('gnb:message', function(msg){
+    socket.on('gnb:message', function(msg) {
       $('.gnb').addClass('unread');
-      $('#messages').append($('<li>').text('private: ' + msg));
+    });
+
+    // received a notification from Glome
+    socket.on('gnb:notification', function(msg) {
+      // parse the notification
+      console.log('notification: ' + msg);
+      if (msg == 'unlocked') {
+        document.location.reload(true);
+      }
     });
   }
 });
