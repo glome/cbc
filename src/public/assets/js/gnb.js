@@ -35,9 +35,15 @@ $(document).ready(function() {
     // received a notification from Glome
     socket.on('gnb:notification', function(msg) {
       // parse the notification
-      console.log('notification: ' + msg);
-      if (msg == 'unlocked') {
-        document.location.reload(true);
+      switch (msg) {
+        case "paired":
+        case "locked":
+        case "brother":
+        case "unpaired":
+        case "unlocked":
+        case "unbrother":
+          document.location.reload(true);
+          break;
       }
     });
   }
