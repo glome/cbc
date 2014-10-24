@@ -33,6 +33,9 @@ class Finances extends \Application\Common\RestMapper
             'request.error',
             function (Event $event) use ($instance) {
                 $event->stopPropagation();
+                session_destroy();
+                header('Location: /');
+                exit;
             }
         );
 
