@@ -44,6 +44,9 @@ $(document).ready(function() {
         case "unbrother":
           document.location.reload(true);
           break;
+        case "erased":
+          window.location.href = '/';
+          break;
       }
     });
   }
