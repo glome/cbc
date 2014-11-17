@@ -162,7 +162,7 @@
                     </li><!-- .table-heading -->
                     <?php foreach ($history['details'] as $key => $value): ?>
                     <li>
-                        <span><?=$value['advertiser']?></span>
+                        <span><?=$value['message']?></span>
                         <span><?=$value['date']?></span>
                         <span><?=$value['amount']?></span>
                         <span>NEW</span>
@@ -195,7 +195,7 @@
                         </ul>
                         <div class="link"><?=$this->translate('pairing.sync.link')?></div>
                         <br/>
-                        <?= $sync_url ?>
+                        <input class="sync_url" value="<?= $sync_url ?>" type="text"/>
                         <!-- cbc pairing -->
                         <hr/>
                         <div class="redeem-title"><?=$this->translate('pairing.sync.title')?></div>

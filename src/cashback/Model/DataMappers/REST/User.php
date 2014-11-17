@@ -65,6 +65,12 @@ class User extends \Application\Common\RestMapper
             $instance->setToken(array_pop($temp));
         }
         else {
+            if ($response->getStatusCode() == 404) {
+                setcookie('glomeid', $instance->getId(), time() - 3600000);
+                header('Location: /');
+                exit;
+            }
+
             if ($instance->getId() && isset($data['error'])) {
                 $instance->setErrorCode($data['code']);
                 $instance->setErrorMessage($data['error']);
