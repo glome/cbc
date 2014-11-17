@@ -2663,6 +2663,14 @@ footer {
     width: 100%;
 }
 
+.profile-pairing input.sync_url {
+    border: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+
 /* CONTACT */
 .tab-3 {
     text-align: center;
