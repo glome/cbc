@@ -149,7 +149,7 @@
                 <?php if(isset($history['error'])): ?>
                 <p><?=$history['error']?></p>
                 <?php else: ?>
-                <?php if (isset($history['details']) && count($history['details'])): ?>
+                <?php if (isset($history['total']) && count($history['total'])): ?>
                 <ul class="cashback-history">
                     <li class="table-heading">
                         <span class="retailer"><?=$this->translate('navigation.retailer_title')?></span>
@@ -160,13 +160,15 @@
                             <span class="status"><a href=""><?=$this->translate('navigation.status_title')?></a></span>
                         </div><!-- .order -->
                     </li><!-- .table-heading -->
-                    <?php foreach ($history['details'] as $key => $value): ?>
-                    <li>
-                        <span><?=$value['message']?></span>
-                        <span><?=$value['date']?></span>
-                        <span><?=$value['amount']?></span>
-                        <span>NEW</span>
-                    </li>
+                    <?php foreach ($history['total'] as $currency => $value): ?>
+                      <?php foreach ($history[$currency]['details'] as $key => $transfer): ?>
+                      <li>
+                          <span><?=$transfer['message']?></span>
+                          <span><?=$transfer['date']?></span>
+                          <span><?=$transfer['amount']?>&nbsp;<?=$currency?></span>
+                          <span>NEW</span>
+                      </li>
+                      <?php endforeach; ?>
                     <?php endforeach; ?>
                 </ul><!-- .cashback-history -->
                 <?php else: ?>

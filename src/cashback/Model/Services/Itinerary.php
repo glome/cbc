@@ -114,7 +114,7 @@ class Itinerary extends \Application\Common\Service
         return number_format($total/100, 2, '.', '');
     }
 
-    public function getHistory($currency)
+    public function getHistory()
     {
         $finances = $this->finances;
 
@@ -124,7 +124,7 @@ class Itinerary extends \Application\Common\Service
         }
 
         if (!$finances->hasError()) {
-            $backlog = $finances->getBacklog($currency);
+            $backlog = $finances->getBacklog();
         } else {
             $backlog = ['error' => $finances->getErrorMessage()];
         }
