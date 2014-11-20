@@ -52,7 +52,7 @@ class Profile extends \Application\Common\View
             $categories = $shop->getCategories();
             $earnings = $itinerary->getTotalEarnings();
             $wishlist = $itinerary->getWishlist();
-            $history = $itinerary->getHistory('EUR');
+            $history = $itinerary->getHistory();
 
             $translation->checkSettings();
 

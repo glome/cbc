@@ -33,16 +33,21 @@ class Finances
         return $this->error;
     }
 
-    public function getBacklog($currency)
+    public function getBacklog()
     {
-        if (isset($this->earnings['fresh'][$currency])) {
-            foreach ($this->earnings['fresh'][$currency]['details'] as $key => $value) {
-                $datetime = new \DateTime($this->earnings['fresh'][$currency]['details'][$key]['date']);
-                $amount = number_format($value['amount']/100, 2, '.', '');
-                $this->earnings['fresh'][$currency]['details'][$key]['amount'] = $amount;
-                $this->earnings['fresh'][$currency]['details'][$key]['date'] = $datetime->format('d/m/Y');
+        if (isset($this->earnings['fresh']['total'])) {
+            foreach ($this->earnings['fresh']['total'] as $currency => $value) {
+                if (isset($this->earnings['fresh'][$currency])) {
+                    foreach ($this->earnings['fresh'][$currency]['details'] as $key => $value) {
+                        $datetime = new \DateTime($this->earnings['fresh'][$currency]['details'][$key]['date']);
+                        $amount = number_format($value['amount']/100, 2, '.', '');
+                        $this->earnings['fresh'][$currency]['details'][$key]['amount'] = $amount;
+                        # TODO: date format configurable
+                        $this->earnings['fresh'][$currency]['details'][$key]['date'] = $datetime->format('Y-m-d');
+                    }
+                }
             }
-            return $this->earnings['fresh'][$currency];
+            return $this->earnings['fresh'];
         }
 
         return [];
