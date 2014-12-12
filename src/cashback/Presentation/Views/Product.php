@@ -77,7 +77,7 @@ class Product extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
             'locked'        => $shop->getUser()->isLocked(),
-            'imtoken'       => $shop->getUser()->getMessagingToken()
+            'imtoken'       => $shop->getUser()->getMessagingToken() || $_COOKIE['messaging']
         ]);
 
         return $main->render();

@@ -126,7 +126,7 @@ class User
 
     public function getMessagingToken()
     {
-        return $this->id;
+        return $this->messagingToken;
     }
 
     public function setMessagingToken($token)

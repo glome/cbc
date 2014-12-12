@@ -10,12 +10,14 @@ $(document).ready(function() {
   var uid = 'com.cashbackcatalog';
   var imtoken = $('#imtoken').html();
 
+console.log('imtoken: ' + imtoken);
+
   if (typeof(uid) !== 'undefined' && typeof(imtoken) !== 'undefined')
   {
     var socket = io(window.location.protocol + '//' + window.location.host);
 
     // say hello
-    socket.emit('gnb:connect', uid, imtoken);
+    socket.emit('gnb:connect', uid, imtoken, imtoken);
 
     // chance to do something
     socket.on('gnb:connected', function(msg) {

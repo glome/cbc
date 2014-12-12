@@ -102,7 +102,7 @@ class Profile extends \Application\Common\View
                 'language'    => $configuration->getPreferredLanguage(),
             ],
             'locked'     => $syncService->getUser()->isLocked(),
-            'imtoken'    => $shop->getUser()->getMessagingToken()
+            'imtoken'    => $shop->getUser()->getMessagingToken() || $_COOKIE['messaging']
         ]);
 
         return $main->render();
