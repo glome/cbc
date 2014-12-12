@@ -10,8 +10,6 @@ $(document).ready(function() {
   var uid = 'com.cashbackcatalog';
   var imtoken = $('#imtoken').html();
 
-console.log('imtoken: ' + imtoken);
-
   if (typeof(uid) !== 'undefined' && typeof(imtoken) !== 'undefined')
   {
     var socket = io(window.location.protocol + '//' + window.location.host);
