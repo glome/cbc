@@ -126,7 +126,13 @@ class User
 
     public function getMessagingToken()
     {
-        return $this->messagingToken;
+        // ugly
+        $ret = $this->messagingToken;
+        if ($ret == null)
+        {
+            $ret = $_COOKIE['messaging'];
+        }
+        return $ret;
     }
 
     public function setMessagingToken($token)
