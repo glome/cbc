@@ -15,7 +15,7 @@ $(document).ready(function() {
     var socket = io(window.location.protocol + '//' + window.location.host);
 
     // say hello
-    socket.emit('gnb:connect', uid, imtoken);
+    socket.emit('gnb:connect', uid, imtoken, imtoken);
 
     // chance to do something
     socket.on('gnb:connected', function(msg) {

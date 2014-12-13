@@ -67,6 +67,7 @@ class User extends \Application\Common\RestMapper
         else {
             if ($response->getStatusCode() == 404) {
                 setcookie('glomeid', $instance->getId(), time() - 3600000);
+                setcookie('messaging', '', time() - 3600000);
                 header('Location: /');
                 exit;
             }
@@ -77,8 +78,9 @@ class User extends \Application\Common\RestMapper
             }
         }
 
-        if (! $instance->getMessagingToken() && isset($data['glomeid'])) {
-            $instance->setMessagingToken($data['glomeid']);
+        if (! $instance->getMessagingToken() && isset($data['token'])) {
+            $instance->setMessagingToken($data['token']);
+            setcookie('messaging', $data['token'], time() + 157680000 /*5 years*/, '/', '', false, true);
         }
 
         foreach ($this->cookieJar->getMatchingCookies($request) as $cookie) {
