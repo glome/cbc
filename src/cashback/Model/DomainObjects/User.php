@@ -15,6 +15,7 @@ class User
     private $locked_at = false;
     // this is for IM purposes
     private $messagingToken = null;
+    private $unlockCode = null;
 
     public function setId($id)
     {
@@ -124,6 +125,11 @@ class User
         return $this->locked;
     }
 
+    public function unlock()
+    {
+        $this->locked = false;
+    }
+
     public function getMessagingToken()
     {
         // ugly
@@ -138,5 +144,15 @@ class User
     public function setMessagingToken($token)
     {
         $this->messagingToken = $token;
+    }
+
+    public function getUnlockCode()
+    {
+        return $this->unlockCode;
+    }
+
+    public function setUnlockCode($code)
+    {
+        $this->unlockCode = $code;
     }
 }

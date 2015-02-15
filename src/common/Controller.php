@@ -24,6 +24,7 @@ class Controller
         # TODO: get error codes from Glome
         if (isset($error) && $error == 2301) {
             header('Location: /profile/unlocking');
+            exit;
             return;
         }
     }
