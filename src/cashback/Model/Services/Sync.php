@@ -86,12 +86,17 @@ class Sync extends \Application\Common\Service
         $sync = $this->domainObjectFactory->create('Sync');
 
         if ($this->currentUser) {
+            if ($this->currentUser->getUnlockCode()) {
+                exit;
+            }
             $sync->setKind('u');
             $sync->setUserId($this->currentUser->getId());
         }
 
         $api = $this->dataMapperFactory->create('Sync', 'REST');
         $api->fetch($sync);
+
+        $this->currentUser->setUnlockCode($sync->getPairingCode());
 
         return $sync->getPairingCode();
     }

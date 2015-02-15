@@ -72,7 +72,7 @@ $(document).ready(function() {
 
     init();
 
-    $('#remote-content').load('/article');
+    //$('#remote-content').load('/article');
 
     normalizeProducts();
     $(window).on("scroll", function() {

@@ -17,7 +17,8 @@ abstract class Collection implements \Iterator, \ArrayAccess
     public function addItem($parameters)
     {
         $instance = $this->buildItem();
-        foreach ($parameters as $key => $value) {
+
+        foreach ((array)$parameters as $key => $value) {
             $method = 'set' . str_replace('_', '', $key);
             if (method_exists($instance, $method)) {
                 $instance->{$method}($value);

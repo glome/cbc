@@ -52,7 +52,7 @@ class ProductCollection extends \Application\Common\SQLMapper
                 }
 
             } catch (\PDOException $e) {
-                // I hopw this wont be needed at any point
+                // I hope this wont be needed at any point
             }
         } else {
             $sql = "SELECT productID AS id FROM Wishes LEFT JOIN Visitors USING (visitorID) WHERE userId =:user";
@@ -67,7 +67,7 @@ class ProductCollection extends \Application\Common\SQLMapper
                     }
                 }
             } catch (\PDOException $e) {
-                // I hopw this wont be needed at any point
+                // I hope this wont be needed at any point
             }
         }
     }

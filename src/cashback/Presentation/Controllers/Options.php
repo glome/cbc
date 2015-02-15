@@ -6,6 +6,8 @@ class Options extends \Application\Common\Controller
 {
     public function getIndex($request)
     {
+        $this->checkLocked();
+
         $configuration = $this->serviceFactory->create('Configuration');
         $configuration->applyParam($request->getParameter('param'));
         $configuration->delParam($request->getParameter('del'));
