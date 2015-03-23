@@ -10,16 +10,9 @@ use Guzzle\Common\Event;
 
 class Sync extends \Application\Common\RestMapper
 {
-    private $host;
-    private $apikey;
-    private $uid;
-
     public function __construct($configuration)
     {
-        $this->host = $configuration['rest']['host'];
-        $this->apikey = $configuration['rest']['params']['application[apikey]'];
-        $this->uid = $configuration['rest']['params']['application[uid]'];
-        $this->resources = $configuration['rest']['resources'];
+        parent::init($configuration);
     }
 
     public function fetch($instance)
@@ -40,7 +33,7 @@ class Sync extends \Application\Common\RestMapper
         $kind = $instance->getKind();
 
         if ($id !== null) {
-            $url = $this->applyValuesToURL($this->resources['user-pairing'], ['{id}' => $id ]);
+            $url = $this->applyValuesToURL($this->resources['user-pairing'], ['{id}' => $id], "POST");
             $request = $client->post(
                 $this->host . $url,
                 [],
@@ -80,12 +73,14 @@ class Sync extends \Application\Common\RestMapper
         );
 
         $id = $instance->getUserId();
-        $url = $this->applyValuesToURL($this->resources['user-syncing'], ['{id}' => $id ]);
+        $url = $this->applyValuesToURL($this->resources['user-syncing'], ['{id}' => $id], "POST");
 
         $response = $client->post(
             $this->host . $url,
             [],
             [
+                'application[apikey]' => $this->apikey,
+                'application[uid]' => $this->uid,
                 'pairing[code_1]' => $instance->getCode1(),
                 'pairing[code_2]' => $instance->getCode2(),
                 'pairing[code_3]' => $instance->getCode3(),
@@ -121,7 +116,7 @@ class Sync extends \Application\Common\RestMapper
 
         $id = $instance->getUserId();
         if ($id !== null) {
-            $url = $this->applyValuesToURL($this->resources['user-brothers'], ['{id}' => $id ]);
+            $url = $this->applyValuesToURL($this->resources['user-brothers'], ['{id}' => $id]);
             $response = $client->get($this->host . $url)->send();
 
             $data = $response->json();
@@ -154,9 +149,14 @@ class Sync extends \Application\Common\RestMapper
         $url = $this->applyValuesToURL($this->resources['user-syncing-toggle'], [
           '{id}' => $userId,
           '{syncid}' => $id
-        ]);
+        ], "POST");
 
-        $response = $client->post($this->host . $url, [], [])->send();
+        $response = $client->post($this->host . $url, [],
+          [
+            'application[apikey]' => $this->apikey,
+            'application[uid]' => $this->uid
+          ]
+        )->send();
 
         $data = $response->json();
 

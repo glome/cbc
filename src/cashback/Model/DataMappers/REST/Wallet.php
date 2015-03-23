@@ -10,16 +10,9 @@ use Guzzle\Common\Event;
 
 class Wallet extends \Application\Common\RestMapper
 {
-    private $host;
-    private $apikey;
-    private $uid;
-
     public function __construct($configuration)
     {
-        $this->host = $configuration['rest']['host'];
-        $this->apikey = $configuration['rest']['params']['application[apikey]'];
-        $this->uid = $configuration['rest']['params']['application[uid]'];
-        $this->resources = $configuration['rest']['resources'];
+        parent::init($configuration);
     }
 
     public function fetch($instance)
@@ -38,7 +31,7 @@ class Wallet extends \Application\Common\RestMapper
 
         $id = $instance->getUserId();
         if ($id !== null) {
-            $url = $this->applyValuesToURL($this->resources['user-redeem'], ['{id}' => $id ]);
+            $url = $this->applyValuesToURL($this->resources['user-redeem'], ['{id}' => $id]);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             $instance->setResponse($data);

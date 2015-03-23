@@ -7,12 +7,12 @@
         },
 
         "resources":{
-            "category":                   "/categories/{id}.json",
+            "category":                   "/categories/{id}.json?",
             "categories":                 "/categories.json?display=tree&filter=allowed&personal=true&group=ecommerce&counter=true&has_products=true",
 
-            "product":                    "/products/{id}.json",
+            "product":                    "/products/{id}.json?",
             "product-visit":              "/products/{id}/getit.json",
-            "product-buy":                "/products/{id}/click/{user}.json",
+            "product-buy":                "/products/{id}/click/{user}.json?",
 
             "products":                   "/products.json?cat_id={id}&per_page=20&page={page}&order={order}&sort_by=update&country={countries}&random=true",
             "products-with-advertisers":  "/products.json?cat_id={id}&per_page=20&page={page}&order={order}&sort_by=update&advertiser_id={adv}&random=true",
@@ -28,9 +28,9 @@
             "user":                       "/users.json",
             "user-login":                 "/users/login.json",
             "user-profile":               "/users/{id}.json",
-            "user-redeem":                "/users/{id}/payments/redeem.json",
-            "user-earnings":              "/users/{id}/earnings.json?application[apikey]={apikey}&application[uid]={uid}",
-            "user-pairing":               "/users/{id}/sync.json",
+            "user-redeem":                "/users/{id}/payments/redeem.json?",
+            "user-earnings":              "/users/{id}/earnings.json?",
+            "user-pairing":               "/users/{id}/sync.json?",
             "user-brothers":              "/users/{id}/sync.json?status=brothers",
             "user-syncing":               "/users/{id}/sync/pair.json",
             "user-syncing-toggle":        "/users/{id}/sync/{syncid}/toggle.json"

@@ -10,16 +10,9 @@ use Guzzle\Common\Event;
 
 class Finances extends \Application\Common\RestMapper
 {
-    private $host;
-    private $apikey;
-    private $uid;
-
     public function __construct($configuration)
     {
-        $this->host = $configuration['rest']['host'];
-        $this->apikey = $configuration['rest']['params']['application[apikey]'];
-        $this->uid = $configuration['rest']['params']['application[uid]'];
-        $this->resources = $configuration['rest']['resources'];
+        parent::init($configuration);
     }
 
     public function fetch($instance)
@@ -41,10 +34,7 @@ class Finances extends \Application\Common\RestMapper
 
         $id = $instance->getUserId();
         if ($id !== null) {
-            $url = $this->applyValuesToURL(
-                $this->resources['user-earnings'],
-                ['{id}' => $id, '{apikey}' => $this->apikey, '{uid}' => $this->uid]
-            );
+            $url = $this->applyValuesToURL($this->resources['user-earnings'], ['{id}' => $id]);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
            // / print_r($data);
