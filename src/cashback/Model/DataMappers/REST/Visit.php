@@ -11,10 +11,7 @@ class Visit extends \Application\Common\RestMapper
 {
     public function __construct($configuration)
     {
-        $this->host = $configuration['rest']['host'];
-        $this->apikey = $configuration['rest']['params']['application[apikey]'];
-        $this->uid = $configuration['rest']['params']['application[uid]'];
-        $this->resources = $configuration['rest']['resources'];
+        parent::init($configuration);
     }
 
     public function store($instance)
@@ -34,11 +31,13 @@ class Visit extends \Application\Common\RestMapper
         $id = $instance->getProductId();
         if ($id !== null) {
 
-            $url = $this->applyValuesToURL($this->resources['product-visit'], ['{id}' => $instance->getProductId() ]);
+            $url = $this->applyValuesToURL($this->resources['product-visit'], ['{id}' => $instance->getProductId()], "POST");
             $response = $client->post(
                 $this->host . $url,
                 [],
                 [
+                    'application[apikey]' => $this->apikey,
+                    'application[uid]' => $this->uid,
                     'user[glomeid]' => $instance->getUserId(),
                 ]
             )->send();
@@ -72,9 +71,11 @@ class Visit extends \Application\Common\RestMapper
         $id = $instance->getProductId();
         if ($id !== null) {
             $user = $instance->getUserId();
-            $url = $this->applyValuesToURL(
-                $this->resources['product-buy'],
-                ['{id}' => $instance->getProductId(), '{user}' => $instance->getUserId()]
+            $url = $this->applyValuesToURL($this->resources['product-buy'],
+              [
+                '{id}' => $instance->getProductId(),
+                '{user}' => $instance->getUserId()
+              ]
             );
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();

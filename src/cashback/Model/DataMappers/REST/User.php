@@ -9,16 +9,9 @@ use Guzzle\Common\Event;
 
 class User extends \Application\Common\RestMapper
 {
-    private $host;
-    private $apikey;
-    private $uid;
-
     public function __construct($configuration)
     {
-        $this->host = $configuration['rest']['host'];
-        $this->apikey = $configuration['rest']['params']['application[apikey]'];
-        $this->uid = $configuration['rest']['params']['application[uid]'];
-        $this->resources = $configuration['rest']['resources'];
+        parent::init($configuration);
     }
 
     public function fetch($instance)
@@ -53,7 +46,9 @@ class User extends \Application\Common\RestMapper
             $this->host . $this->resources['user-login'],
             [],
             [
-                'user[glomeid]' => $instance->getId(),
+                'application[apikey]' => $this->apikey,
+                'application[uid]' => $this->uid,
+                'user[glomeid]' => $instance->getId()
             ]
         );
 
@@ -106,7 +101,7 @@ class User extends \Application\Common\RestMapper
         );
 
         $id = $instance->getId();
-        $url = $this->applyValuesToURL($this->resources['user-profile'], ['{id}' => $id ]);
+        $url = $this->applyValuesToURL($this->resources['user-profile'], ['{id}' => $id ], "PUT");
 
         $response = $client->put(
             $this->host . $url,

@@ -10,10 +10,7 @@ class CategoryCollection extends \Application\Common\RestMapper
 {
     public function __construct($configuration)
     {
-        $this->host = $configuration['rest']['host'];
-        $this->apikey = $configuration['rest']['params']['application[apikey]'];
-        $this->uid = $configuration['rest']['params']['application[uid]'];
-        $this->resources = $configuration['rest']['resources'];
+        parent::init($configuration);
     }
 
     public function fetch($collection)
@@ -32,7 +29,8 @@ class CategoryCollection extends \Application\Common\RestMapper
             }
         );
 
-        $response = $client->get($this->host . $this->resources['categories'])->send();
+        $url = $this->applyValuesToURL($this->resources['categories'], []);
+        $response = $client->get($this->host . $url)->send();
         $data = $response->json();
 
         if (isset($data['error']))

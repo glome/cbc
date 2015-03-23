@@ -11,10 +11,7 @@ class ProductCollection extends \Application\Common\RestMapper
 {
     public function __construct($configuration)
     {
-        $this->host = $configuration['rest']['host'];
-        $this->apikey = $configuration['rest']['params']['application[apikey]'];
-        $this->uid = $configuration['rest']['params']['application[uid]'];
-        $this->resources = $configuration['rest']['resources'];
+        parent::init($configuration);
     }
 
     public function fetch($collection)
@@ -33,7 +30,7 @@ class ProductCollection extends \Application\Common\RestMapper
 
         if ($collection->hasItems()) {
             foreach ($collection as $id => $product) {
-                $url = $this->applyValuesToURL($this->resources['product'], ['{id}' => $product->getId() ]);
+                $url = $this->applyValuesToURL($this->resources['product'], ['{id}' => $product->getId()]);
                 $response = $client->get($this->host . $url)->send();
                 $data = $response->json();
                 if (isset($data['error'])) {
