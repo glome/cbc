@@ -115,7 +115,7 @@ class Shop extends \Application\Common\Service
 
           $category = $this->domainObjectFactory->create('CategoryCollection');
           $category->setId($id);
-          $categories->setUser($user);
+          $category->setUser($user);
 
           $api = $this->dataMapperFactory->create('Category', 'REST');
 

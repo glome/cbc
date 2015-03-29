@@ -27,7 +27,11 @@ class Category extends \Application\Common\RestMapper
             }
         );
 
-        $glomeid = $instance->getUserId();
+        $glomeid = null;
+
+        if ($instance->user) {
+          $glomeid = $instance->user->getId();
+        }
         $id = $instance->getId();
 
         if ($glomeid !== null and $id !== null) {
