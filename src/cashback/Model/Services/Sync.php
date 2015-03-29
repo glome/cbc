@@ -24,6 +24,7 @@ class Sync extends \Application\Common\Service
         if ($this->currentUser) {
             $sync->setKind('s');
             $sync->setUserId($this->currentUser->getId());
+            $sync->setSessionId(session_id());
         }
 
         $api = $this->dataMapperFactory->create('Sync', 'REST');
@@ -91,6 +92,7 @@ class Sync extends \Application\Common\Service
             }
             $sync->setKind('u');
             $sync->setUserId($this->currentUser->getId());
+            $sync->setSessionId(session_id());
         }
 
         $api = $this->dataMapperFactory->create('Sync', 'REST');

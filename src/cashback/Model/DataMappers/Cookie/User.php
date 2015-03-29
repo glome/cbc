@@ -10,9 +10,7 @@ class User
             return false;
         }
         $instance->setId($_COOKIE['glomeid']);
-        if (isset($_COOKIE['messaging'])) {
-            $instance->setMessagingToken($_COOKIE['messaging']);
-        }
+        $instance->setMessagingToken(session_id());
         return true;
 
     }

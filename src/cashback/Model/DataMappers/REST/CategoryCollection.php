@@ -29,18 +29,27 @@ class CategoryCollection extends \Application\Common\RestMapper
             }
         );
 
-        $url = $this->applyValuesToURL($this->resources['categories'], []);
-        $response = $client->get($this->host . $url)->send();
-        $data = $response->json();
+        $glomeid = null;
 
-        if (isset($data['error']))
-        {
-            $collection->setErrorCode($data['code']);
-            $collection->setErrorMessage($data['error']);
+        if ($collection->user) {
+          $glomeid = $collection->user->getId();
         }
 
-        foreach ($data as $item) {
-            $this->addSubcategories($collection, $item);
+        if ($glomeid !== null) {
+          $url = $this->applyValuesToURL($this->resources['categories'], ['{glomeid}' => $glomeid]);
+          $response = $client->get($this->host . $url)->send();
+
+          $data = $response->json();
+
+          if (isset($data['error']))
+          {
+              $collection->setErrorCode($data['code']);
+              $collection->setErrorMessage($data['error']);
+          }
+
+          foreach ($data as $item) {
+              $this->addSubcategories($collection, $item);
+          }
         }
 
         $time = microtime(true) - $time;

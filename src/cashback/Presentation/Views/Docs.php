@@ -16,7 +16,6 @@ class Docs extends \Application\Common\View
         $translation = $this->serviceFactory->create('Translation');
         $translation->checkSettings();
 
-
         $builder = $this->templateBuilder;
 
         $main       = $builder->create('main');

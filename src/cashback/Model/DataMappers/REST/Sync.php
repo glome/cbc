@@ -31,6 +31,7 @@ class Sync extends \Application\Common\RestMapper
 
         $id = $instance->getUserId();
         $kind = $instance->getKind();
+        $sessionId = $instance->getSessionId();
 
         if ($id !== null) {
             $url = $this->applyValuesToURL($this->resources['user-pairing'], ['{id}' => $id], "POST");
@@ -41,6 +42,7 @@ class Sync extends \Application\Common\RestMapper
                     'application[apikey]' => $this->apikey,
                     'application[uid]' => $this->uid,
                     'synchronization[kind]' => $kind,
+                    'synchronization[session]' => $sessionId,
                 ]
             );
             $response = $request->send();
