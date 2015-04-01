@@ -125,6 +125,11 @@ class User
         return $this->locked;
     }
 
+    public function lock()
+    {
+        $this->setErrorCode(2301);
+    }
+
     public function unlock()
     {
         $this->locked = false;

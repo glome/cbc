@@ -69,38 +69,35 @@ class Shop extends \Application\Common\Service
 
     private function collectCategoryTree()
     {
-        $err = true;
+        $err = false;
         $categories = $this->domainObjectFactory->create('CategoryCollection');
         $session = $this->dataMapperFactory->create('CategoryCollection', 'Session');
 
         if (!$session->fetch($categories)) {
+            $categories->user = $this->getUser();
             $api = $this->dataMapperFactory->create('CategoryCollection', 'REST');
             $api->fetch($categories);
             $session->store($categories);
         }
 
-        $user = $this->getUser();
-
-        if ($user) {
+        if ($this->getUser()) {
             $this->getUser()->setError($categories->getErrorCode(), $categories->getErrorMessage());
+
             $err = $this->getUser()->getErrorCode();
-        }
+            if ($err) {
+                session_destroy();
+                \Application\Services\Recognition::authenticate(true);
 
-        if ($err) {
-            session_destroy();
-            \Application\Services\Recognition::authenticate(true);
-
-            switch ($err) {
-                case 403:
-                    header('Location: /');
-                    exit;
-                    break;
-                case 2301:
-                    header('Location: /profile/unlocking');
-                    exit;
-                    break;
+                switch ($err) {
+                    case 403:
+                        header('Location: /');
+                        exit;
+                    case 2301:
+                        header('Location: /profile/unlocking');
+                        exit;
+                }
+                return;
             }
-            return;
         }
 
         return $categories->getParsedArray();
@@ -108,20 +105,30 @@ class Shop extends \Application\Common\Service
 
     public function getParentCategoryId($id = null)
     {
-        if ($id === null) {
-            $id = $this->currentCategoryId;
+        $ret = false;
+        $user = $this->getUser();
+
+        if ($user) {
+          if ($id === null) {
+              $id = $this->currentCategoryId;
+          }
+
+          $category = $this->domainObjectFactory->create('CategoryCollection');
+          $category->setId($id);
+          $category->setUser($user);
+
+          $api = $this->dataMapperFactory->create('Category', 'REST');
+
+          $session = $this->dataMapperFactory->create('Category', 'Session');
+
+          if (!$session->fetch($category)) {
+              $api->fetch($category);
+          }
+
+          $ret = $category->getParentId();
         }
 
-        $category = $this->domainObjectFactory->create('CategoryCollection');
-        $category->setId($id);
-        $api = $this->dataMapperFactory->create('Category', 'REST');
-
-        $session = $this->dataMapperFactory->create('Category', 'Session');
-        if (!$session->fetch($category)) {
-            $api->fetch($category);
-        }
-
-        return $category->getParentId();
+        return $ret;
     }
 
     public function getProducts($forCategory = null)

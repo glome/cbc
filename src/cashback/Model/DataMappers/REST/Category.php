@@ -27,9 +27,15 @@ class Category extends \Application\Common\RestMapper
             }
         );
 
+        $glomeid = null;
+
+        if ($instance->user) {
+          $glomeid = $instance->user->getId();
+        }
         $id = $instance->getId();
-        if ($id !== null) {
-            $url = $this->applyValuesToURL($this->resources['category'], ['{id}' => $id]);
+
+        if ($glomeid !== null and $id !== null) {
+            $url = $this->applyValuesToURL($this->resources['category'], ['{glomeid}' => $glomeid, '{id}' => $id]);
             $response = $client->get($this->host . $url)->send();
             $data = $response->json();
             if (isset($data['error'])) {

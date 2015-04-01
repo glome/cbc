@@ -15,6 +15,7 @@ class CategoryCollection extends \Application\Common\Collection
     private $parentId = null;
     private $errorCode = null;
     private $errorMessage = null;
+    public $user;
 
     public function setName($name)
     {
@@ -113,5 +114,13 @@ class CategoryCollection extends \Application\Common\Collection
             $collection = $this->addItem($params);
             $collection->import($params['subcategories']);
         }
+    }
+
+    public function getUser() {
+      return $this->user;
+    }
+
+    public function setUser($user) {
+      $this->user = $user;
     }
 }

@@ -15,6 +15,7 @@ class Sync
     private $pairingCode;
     private $brothers;
     private $kind;
+    private $sessionId;
 
     public function getId()
     {
@@ -130,4 +131,15 @@ class Sync
     {
         $this->kind = $kind;
     }
+
+    public function getSessionId()
+    {
+        return $this->sessionId;
+    }
+
+    public function setSessionId($sessionId)
+    {
+        $this->sessionId = $sessionId;
+    }
+
 }

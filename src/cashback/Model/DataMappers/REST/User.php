@@ -42,48 +42,23 @@ class User extends \Application\Common\RestMapper
             $instance->setId($data['glomeid']);
         }
 
-        $request = $client->post(
-            $this->host . $this->resources['user-login'],
-            [],
-            [
-                'application[apikey]' => $this->apikey,
-                'application[uid]' => $this->uid,
-                'user[glomeid]' => $instance->getId()
-            ]
-        );
-
-        $response = $request->send();
+        $url = $this->applyValuesToURL($this->resources['user-profile'], ['{id}' => $instance->getId()]);
+        $response = $client->get($this->host . $url)->send();
         $data = $response->json();
 
-        if ($response->hasHeader('X-Csrf-Token')) {
-            $temp = $response->getHeader('X-Csrf-Token')->toArray();
-            $instance->setToken(array_pop($temp));
-        }
-        else {
-            if ($response->getStatusCode() == 404) {
-                setcookie('glomeid', $instance->getId(), time() - 3600000);
-                setcookie('messaging', '', time() - 3600000);
-                header('Location: /');
-                exit;
-            }
-
-            if ($instance->getId() && isset($data['error'])) {
-                $instance->setErrorCode($data['code']);
-                $instance->setErrorMessage($data['error']);
-            }
+        if ($response->getStatusCode() == 404) {
+            setcookie('glomeid', $instance->getId(), time() - 3600000);
+            setcookie('messaging', '', time() - 3600000);
+            header('Location: /');
+            exit;
         }
 
-        if (! $instance->getMessagingToken() && isset($data['token'])) {
-            $instance->setMessagingToken($data['token']);
-            setcookie('messaging', $data['token'], time() + 157680000 /*5 years*/, '/', '', false, true);
+        if ($instance->getId() && isset($data['error'])) {
+            $instance->setErrorCode($data['code']);
+            $instance->setErrorMessage($data['error']);
         }
 
-        foreach ($this->cookieJar->getMatchingCookies($request) as $cookie) {
-            if ($cookie->getName() === '_session_id') {
-                $instance->setSession($cookie->getValue());
-                return;
-            }
-        }
+        $instance->setMessagingToken(session_id());
     }
 
     public function update($instance)
