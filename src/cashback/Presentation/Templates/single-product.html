@@ -1,0 +1,113 @@
+            <?=
+              $bonus = '';
+              ((real)$product['bonusMoney'] > 0) ? $bonus = ($product['currencySymbol'] . ' ' . $product['bonusMoney']) : '';
+              ($bonus != '' and ((real)$product['bonusPercent'] > 0)) ? $bonus .= ' & ' : '';
+              ((real)$product['bonusPercent'] > 0) ? $bonus .= '<div class="percent">' . ($product['bonusPercent'] . '%') . '</div>' : '';
+            ?>
+            <div class="product-single">
+                <div class="wrap">
+                    <div class="back-to-grid">
+                        <a href="/catalog/<?=$product['category']?>" class="back-to-grid-btn"><?=$this->translate('navigation.back_to_category')?></a>
+                    </div><!-- .back-to grid -->
+                    <div class="product-full">
+                        <div class="left">
+                            <div class="img-holder">
+                                <img src="<?=$product['image']?>" alt="optional image description" />
+                            <?php if($product['is-new'] || $product['is-popular'] ): ?>
+                                <div class="tags">
+                                <?php if($product['is-new']): ?>
+                                    <span class="new-lbl"><?=$this->translate('product.badge_new')?></span>
+                                <?php endif; ?>
+                                <?php if($product['is-popular']): ?>
+                                    <span class="popular-lbl"><?=$this->translate('product.badge_popular')?></span>
+                                <?php endif; ?>
+                                </div><!-- .tags -->
+                            <?php endif; ?>
+                            </div><!-- .img-holder -->
+                        </div><!-- .left-->
+                        <div class="right">
+                            <div class="product-title">
+                                <h1><?=$product['title']?></h1>
+                            </div><!-- .product-title -->
+                            <div class="price-info">
+                                <div class="cashback">
+                                    <span class="lbl"><?=$this->translate('product.cashback')?></span>
+                                    <div class="cb-amount <?php echo $product['one-bonus'] === true ? 'has-one' : ''; ?>">
+                                      <?= $bonus ?>
+                                    </div><!-- .cb-amount -->
+                                </div><!-- .cashback -->
+                                <?php if ($product['incentive']): ?>
+                                <div class="voucher">
+                                    <span class="lbl"><?=$this->translate('product.voucher')?></span>
+                                    <div class="voucher-amount">
+                                        <span>-<?=$product['incentive']['percentage']?>%</span>
+                                    </div><!-- .voucher-amount -->
+                                </div><!-- .voucher -->
+                                <?php endif;?>
+                                <div class="buy-now">
+                                    <span class="amount"><?=$product['currencySymbol']?><?=$product['price']?></span>
+                                    <a href="/redirect/<?=$product['id']?>" class="buy-now-btn"><?=$this->translate('product.buy_button')?></a>
+                                </div><!-- .buy-now-->
+                            </div><!-- .price-info -->
+                            <div class="discount-wrap">
+                                <a href="/profile/wish/<?=$product['id']?>" class="add-to-wishlist <?=$product['is-favorite']? 'active':''?>"><?=$this->translate('product.wishlist_title')?></a>
+                                <?php if ($product['incentive']): ?>
+                                <div class="discount-code"><?=$this->translate('redirect.voucher_title')?>: <span><?=$product['incentive']['code']?></span></div><!-- .discount-code -->
+                                <?php endif; ?>
+                            </div><!-- .price-info-->
+                            <div class="retailer">
+                              <?=$this->translate('product.retailer')?>:
+                              <span><a href="/redirect/<?=$product['id']?>"><?=$product['advertiser']?></a></span>
+                              <div class="promise"><?=$this->translate('retailer.cashback.promise', $bonus)?></div>
+                            </div><!-- .retailer -->
+                            <div class="product-desc">
+                                <p><span><?=$this->translate('product.description')?></span> - <?=$product['description']?> </p>
+                            </div><!-- .product-desc-->
+                            <div class="social-media">
+                                <a href="http://www.facebook.com/share.php?u=<?=$tw_url?>" class="fb" target="_blank"></a>
+                                <a href="https://twitter.com/share?url=<?=$tw_url?>&amp;text=<?=$tw_text?>" class="tw" target="_blank"></a>
+                                <span><?=$this->translate('product.share_title')?></span>
+                            </div><!-- .share-link -->
+                        </div><!-- .right -->
+                    </div><!-- .product-full -->
+                    <div class="more-products">
+                        <span class="title"><?=$this->translate('product.recommendation_title')?></span>
+                        <ul class="products masonry-grid" id="grid">
+                        <?php foreach ($products as $id => $product): ?>
+                           <li class="product">
+                                <div class="product-content">
+                                    <a href="/profile/wish/<?=$id?>" class="add-to-wishlist-btn <?=$product['is-favorite']? 'active':''?>"></a>
+                                    <a href="/product/<?=$id?>">
+                                    <?php if($product['is-new'] || $product['is-popular'] ): ?>
+                                        <div class="labels">
+                                        <?php if($product['is-new']): ?>
+                                            <span class="new-lbl"><?=$this->translate('product.badge_new')?></span>
+                                        <?php endif; ?>
+                                        <?php if($product['is-popular']): ?>
+                                            <span class="popular-lbl"><?=$this->translate('product.badge_popular')?></span>
+                                        <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                        <div class="rating"></div>
+                                        <div class="img-wrap">
+                                            <img src="<?=$product['image']?>" alt="image description" />
+                                        </div><!-- .img-wrap -->
+                                        <div class="product-info">
+                                            <span class="title"><?=$product['title']?></span>
+                                            <div class="price">
+                                                <span><?=$this->translate('product.cashback')?>:</span>
+                                                <span><?= $bonus ?></span>
+                                            </div>
+                                            <?php if ($product['incentive']): ?>
+                                            <span class="voucher"><?=$this->translate('product.voucher')?>: -<?=$product['incentive']['percentage']?>%</span>
+                                            <?php endif;?>
+                                            <span class="buy_btn"><?=$this->translate('product.button_view')?></span>
+                                        </div><!-- .product-info -->
+                                    </a>
+                                </div><!-- .product-content -->
+                            </li><!-- .product -->
+                        <?php endforeach; ?>
+                        </ul><!-- .products .masonry-grid #grid -->
+                    </div><!-- .more-products-->
+                </div><!-- .wrap -->
+            </div><!-- .product-single-->

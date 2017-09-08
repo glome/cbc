@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 8]> <html class="no-js ie7 ie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 ie" lang="en"> <![endif]-->
+<!--[if IE 9]> <html class="no-js ie9 ie" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--><html class='no-js' lang='en'><!--<![endif]-->
+    <head>
+        <title>Cashback Catalog - powered by Glome</title>
+        <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link href='http://fonts.googleapis.com/css?family=Noto+Sans&subset=latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+        <script src="/assets/js/libs/modernizr.custom.js"></script>
+        <meta http-equiv="refresh" content="3; url=<?=$redirect['link']?>" />
+        <!--[if lt IE 9]>
+            <script src="js/libs/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body class="redirect-bg">
+        <div class="overlay redirect-msg">
+
+            <div class="center">
+                <div class="content-box">
+                    <a href="" class="logo">
+                        <span class="logo-text"><?=$this->translate('global.title')?></span>
+                        <span class="logo-text"><?=$this->translate('global.subtitle')?></span>
+                    </a>
+                    <span class="title"><?=$this->translate('redirect.notice', $product['advertiser'])?></span>
+                    <div class="notice-msg">
+                        <span class="bold"><?=$this->translate('redirect.reminder', $product['title'])?></span>
+                        <?php if ($product['incentive']): ?>
+                        <span class="bold"><?=$this->translate('redirect.reminder_with_voucher', $product['title'])?></span>
+                        <span><?=$this->translate('redirect.voucher_title')?>: <?=$product['incentive']['code']?></span>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCRIPTS -->
+
+        <script type="text/javascript" src="/assets/js/libs/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/masonry.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/jquery.flexslider-min.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/imagesloaded.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/classie.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/AnimOnScroll.js"></script>
+
+        <script type="text/javascript" src="/assets/js/script.js"></script>
+        <script type="text/javascript" src="/assets/js/piwik.js"></script>
+    </body>
+</html>

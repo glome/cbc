@@ -1,0 +1,63 @@
+<?php
+  isset($resource) ? 1 : $resource = 'catalog';
+  isset($allcat_resource) ? 1 : $allcat_resource = 'categories';
+?>
+            <div class="search-bar">
+                <div class="wrap">
+                    <div class="cat-menu dropdown">
+                        <span class="title"><?=$this->translate('navigation.categories')?></span>
+                        <ul>
+
+                            <?php foreach ($categories as $id => $category): ?>
+                            <li>
+                                <span><?=$category['name']?></span>
+                            <?php if (count($category['subcategories'])): ?>
+                                <div class="cat-sub-menu">
+                                    <ul>
+                                    <?php foreach ($category['subcategories'] as $id => $subcategory): ?>
+                                        <li><a href="/<?= $resource ?>/<?=$id?>"><?=$subcategory['name']?></a></li>
+                                    <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+                            </li>
+
+                            <?php endforeach; ?>
+                            <li class="all-cat"><a href="/<?= $allcat_resource ?>">All Categories</a></li>
+                        </ul>
+                    </div><!-- .cat-menu -->
+                    <div class="search">
+                        <?php if (!isset($noDropDown) || $noDropDown === false): ?>
+                        <div class="search-select dropdown">
+                            <span class="selected"><?=isset($searchType)
+                                                        ? $searchType === 1
+                                                            ? $this->translate('navigation.search_current')
+                                                            : $this->translate('navigation.search_all')
+                                                        : $this->translate('navigation.search_all')?></span>
+                            <ul>
+                                <li <?=isset($searchType)
+                                            ? $searchType === 1
+                                                ? ''
+                                                : 'class="selected"'
+                                            : 'class="selected"'?>><a href=""><?=$this->translate('navigation.search_all')?></a></li>
+                                <li <?=isset($searchType)
+                                            ? $searchType === 1
+                                                ? 'class="selected"'
+                                                : ''
+                                            : ''?>><a href=""><?=$this->translate('navigation.search_current')?></a></li>
+                            </ul>
+                        </div>
+                        <?php endif; ?>
+                        <div class="search-btn"></div>
+                        <form method="post"
+                              class="search-form <?=(isset($noDropDown) && $noDropDown === true) ? 'no-dropdown':''?>"
+                              action="/search">
+                            <input type="text" name="search-field" placeholder="<?=$this->translate('navigation.search_prompt')?>"
+                                   id="search-input" value="<?=isset($query)
+                                                                   ? $query
+                                                                   : ''?>"/>
+                            <input type="submit" value=" " name="search-submit" id="search-submit"/>
+                        </form>
+                    </div><!-- .search -->
+                </div><!-- .wrap -->
+            </div><!-- .search-bar -->

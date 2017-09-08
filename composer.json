@@ -1,0 +1,31 @@
+{
+
+    "name": "glome/cbc",
+    "homepage": "http://glome.me/",
+    "description": "Cashback Catalog Beta - powered by Glome",
+    "keywords": [],
+    "license": "MIT",
+
+    "authors": [
+    ],
+
+    "require": {
+        "php": ">=5.4.0",
+        "guzzle/guzzle": "v3.8.1",
+        "fracture/routing": "dev-master",
+        "fracture/http": "dev-master",
+        "swiftmailer/swiftmailer": "v5.1.0",
+        "endroid/qrcode": "1.*@dev"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Application\\": [
+                "src/cashback/",
+                "src/cashback/Model/",
+                "src/cashback/Presentation/"
+            ],
+            "Application\\Common\\": "src/common/"
+        }
+    }
+}

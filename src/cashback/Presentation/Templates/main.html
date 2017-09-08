@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--[if lt IE 8]> <html class="no-js ie7 ie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 ie" lang="en"> <![endif]-->
+<!--[if IE 9]> <html class="no-js ie9 ie" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--><html class='no-js' lang='en'><!--<![endif]-->
+    <head>
+        <title>Cashback Catalog Beta - powered by Glome</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link href='http://fonts.googleapis.com/css?family=Noto+Sans&amp;subset=latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/banner.css" rel="stylesheet" type="text/css">
+        <script src="/assets/js/libs/modernizr.custom.js"></script>
+        <!--[if lt IE 9]>
+            <script src="/assets/js/libs/html5shiv.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            var translations = {
+                "no_more_products": "<?=$this->translate('snippet.no_more_products')?>",
+                "to_top": "<?=$this->translate('snippet.to_top')?>",
+                "form_error": "<?=$this->translate('snippet.form_error')?>"
+            };
+        </script>
+    </head>
+    <body>
+        <div id="fb-root"></div>
+
+        <?php if($settings['has-download-bar']): ?>
+        <div class="download-bar">
+            <div class="wrap">
+                <div class="center">
+                    <div class="center-content">
+                        <span><?=$this->translate('header.download_prompt', 'Glome Wallet')?></span>
+                        <a target="blank" href="https://play.google.com/store/apps/details?id=me.glome.android.wallet" class="google-play"></a>
+                    </div>
+                    <a href="" class="close-download-bar"></a>
+                </div><!-- .center-->
+            </div><!-- .wrap -->
+        </div><!-- .dowload-bar-->
+        <?php endif; ?>
+
+        <header class="page_header">
+            <div class="wrap">
+                <div class="logo-wrap">
+                    <a href="/" class="logo">
+                        <span class="logo-text"><?=$this->translate('global.title')?></span>
+                        <span class="logo-text"><?=$this->translate('global.subtitle')?></span>
+                    </a>
+                </div><!-- .logo-wrap-->
+                <div class="header-options">
+                    <?php if ($locked === false): ?>
+                    <div class="location-filter">
+                        <a class="mob-filter-btn"></a>
+                        <div class="row">
+                            <div class="lbl col-1" id="col-1">&nbsp;</div>
+                            <div class="lbl col-2" id="col-2"><?=$this->translate('header.language')?></div>
+                            <div class="lbl col-3" id="col-3"><?=$this->translate('header.location')?></div>
+                        </div><!-- .row -->
+                        <div class="row">
+                            <div class="form-item col-1">
+                                <div class="">
+                                  &nbsp;
+<!--
+                                    <span class="selected"><?=$current['currency']['code']?></span>
+                                    <ul>
+                                        <?php foreach($currencies as $currency ): ?>
+                                        <li class="option <?=$currency['code'] === $current['currency']['code']? 'selected':''?>"><?=$currency['code']?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+-->
+                                </div><!-- .select-box -->
+                            </div><!-- .form-item -->
+                            <div class="form-item col-2">
+                                <div class="select-box dropdown switch-full">
+                                    <span class="selected"><?=$current['language']['title']?></span>
+                                    <ul>
+                                        <?php  foreach ($settings['languages'] as $language): ?>
+                                            <li class="option <?=$language['code'] === $settings['language']? 'selected':''?>"><?=$language['title']?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div><!-- .select-box -->
+                            </div><!-- .form-item -->
+                            <div class="form-item col-3">
+                                <div class="select-checkbox dropdown">
+                                    <div class="selected-items">
+                                        <span class="checkbox-content"><?=empty($settings['selected-locations'])
+                                                                                ? $this->translate('header.location_prompt')
+                                                                                : implode(', ', $settings['location-list'])?></span>
+                                    </div>
+                                    <ul>
+                                    <?php foreach ($settings['locations'] as $location): ?>
+                                        <li class="option <?=in_array($location['code'], $settings['selected-locations'])?'selected':''?>"><?=$location['title']?></li>
+                                    <?php endforeach; ?>
+                                    </ul>
+                                </div><!-- .select -->
+                            </div><!-- .form-item -->
+                        </div><!-- .row -->
+                    </div><!-- .location-filter-->
+                    <?php endif; ?>
+
+                    <?php echo $user; ?>
+
+                </div><!-- .header-options-->
+            </div><!-- .wrap -->
+        </header>
+
+        <div class="main">
+            <?php echo $content; ?>
+        </div><!-- .main -->
+
+        <?php echo $footer; ?>
+
+        <?php echo isset($overlays) ? $overlays: '';?>
+
+        <!-- SCRIPTS -->
+        <script type="text/javascript" src="/assets/js/libs/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/masonry.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/jquery.flexslider.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/jquery.infinitescroll.min.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/imagesloaded.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/classie.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/AnimOnScroll.js"></script>
+        <script type="text/javascript" src="/assets/js/libs/jquery-ui-1.10.4.custom.min.js"></script>
+
+        <script type="text/javascript" src="/assets/js/script.js"></script>
+
+        <!-- GNB integration -->
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="/assets/js/gnb.js"></script>
+        <!-- -->
+        <?php if (isset($isProductPage)): ?>
+        <script type="text/javascript">
+            window.twttr = (function(d, s, id) {
+
+                var t, js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+
+                return window.twttr || (t = {_e: [], ready: function(f) {
+                        t._e.push(f)
+                    }});
+
+            }(document, "script", "twitter-wjs"));
+        </script>
+
+        <div id="result"></div>
+
+        <?php /*
+
+        <script type="text/javascript">
+
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId: '686339584740764',
+                    status: true,
+                    xfbml: true
+                });
+            };
+
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+            var shareFB = function() {
+                FB.ui({
+                    method: 'feed',
+                    link: '<?=$fb_link?>',
+                    caption: '<?=$fb_title?>',
+                    picture: '<?=$fb_image?>'
+                }, function(response) {
+                });
+            };
+        </script>
+
+        */ ?>
+        <?php endif; ?>
+
+        <?php if($imtoken): ?>
+          <span id="imtoken" class="hidden"><?= $imtoken ?></span>
+        <?php endif; ?>
+
+        <script type="text/javascript" src="/assets/js/piwik.js"></script>
+    </body>
+</html>
+

@@ -1,0 +1,169 @@
+
+.banner-wrap {
+   width: 960px;
+   max-width: 100%;
+}
+
+
+.banner {
+    position: relative;
+    width: 95%;
+    padding: 0 2.5%;
+    max-width: 100%;
+    height: 300px;
+    color: #ffffff;
+    background-color: #000;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.banner .left {
+    float: left;
+    width: 50%;
+    margin: 30px 0;
+}
+.banner .right {
+    float: left;
+    width: 47.78%;
+    margin: 30px 0 30px 2.22%;
+}
+.img-left {
+    float: left;
+    width: 47.62%;
+    margin-right: 4.76%;
+}
+.img-right {
+    float: left;
+    width: 47.62%;
+}
+.img-left img,
+.img-right img {
+    max-width: 100%;
+}
+.txt-top {
+    width: 100%;
+}
+.txt-small,
+.txt-large {
+    float: left;
+    width: 100%;
+}
+p {
+    margin: 0;
+}
+.txt-top .txt-small {
+    font-family: "Noto sans";
+    font-size: 23px;
+    text-transform: uppercase;
+    letter-spacing: 9px;
+}
+.txt-top .txt-large {
+    font-family: "Noto sans";
+    font-size: 61px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.txt-bottom {
+    float: left;
+    width: 100%;
+    margin-top: 120px;
+}
+
+.txt-bottom .txt-large {
+    font-family: "Noto sans";
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.txt-bottom .txt-small {
+    font-family: "Noto sans";
+    font-size: 28px;
+    line-height: 1.1;
+}
+
+/* banner 1 */
+.banner.first {
+    background-image: url("/assets/img/banners/Shopping.jpg");
+}
+
+.first .txt-bottom .txt-large {
+    color: #fff;
+}
+.first .txt-bottom .txt-small {
+    color: #fff;
+
+}
+
+/* banner 2 */
+.banner.second{
+    background-image: url("/assets/img/banners/Glome_galva.jpg");
+}
+
+.second .txt-bottom .txt-large {
+    color: #323232;
+}
+.second .txt-bottom .txt-small {
+    color: #595d5e;
+}
+.second .txt-bottom .txt-small a {
+    color: white;
+}
+
+/* banner 3 */
+.banner.third{
+    background-image: url("/assets/img/banners/Ger_ready_for_spring_for_banner.jpg");
+}
+
+.third .txt-bottom .txt-large {
+    color: #fd7162;
+}
+.third .txt-bottom .txt-small {
+    color: #595d5e;
+}
+
+
+@media (max-width: 768px) {
+    .banner-wrap {
+        width: 100%;
+    }
+    .banner {
+        max-width: 95%;
+        background-size: 100% auto;
+        height: auto;
+    }
+    .txt-bottom {
+        margin-top: 80px;
+    }
+    .txt-bottom .txt-large {
+        font-size: 20px;
+    }
+    .txt-bottom .txt-small {
+        font-size: 18px;
+    }
+
+}
+@media (max-width: 730px) {
+    .banner {
+        min-height: 150px;
+    }
+    .txt-bottom {
+        margin-top: 30px;
+    }
+     .txt-bottom .txt-large {
+        font-size: 14px;
+    }
+    .txt-bottom .txt-small {
+        font-size: 12px;
+    }
+    .banner .left {
+        width: 60%;
+    }
+
+}
+@media (max-width: 500px) {
+    .banner {
+        background-size: auto 100%;
+        background-position: center;
+    }
+}

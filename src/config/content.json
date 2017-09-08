@@ -1,0 +1,46 @@
+{
+    "currencies": [
+        {
+            "symbol": "€",
+            "code": "EUR",
+            "default": true
+        },
+        {
+            "symbol": "£",
+            "code": "GBP"
+        }
+    ],
+
+    "languages": [
+        {
+            "title": "English",
+            "code": "EN",
+            "default": true
+        },
+        {
+            "code": "FI",
+            "title": "Suomi"
+        }
+    ],
+
+    "locations": [
+        {
+            "title": "Finland",
+            "code": "FI"
+        },
+        {
+            "title": "United Kingdom",
+            "code": "UK"
+        },
+        {
+            "title": "Germany",
+            "code": "DE"
+        }
+    ],
+
+    "contacts": {
+        "subject": "Comment from CBC",
+        "address": "contact@glome.me"
+    }
+
+}

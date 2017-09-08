@@ -1,0 +1,293 @@
+<div class="profile">
+    <div class="wrap">
+        <div class="title"><?=$this->translate('profile.title')?></div><!-- .title -->
+        <div class="profile-bar">
+            <div class="profile-tabs">
+                <ul>
+                    <?php if ($locked): ?>
+                    <li <?=$tab === 'unlocking'? 'class="active"':''?>>
+                        <a href="profile-unlocking"><?=$this->translate('profile.unlocking_title')?>
+                            <div class="caret">
+                                <div class="caret-border"></div>
+                                <div class="caret-body"></div>
+                            </div><!-- .caret -->
+                        </a>
+                    </li>
+                    <?php else: ?>
+                    <li <?=$tab === 'wishlist'? 'class="active"':''?>>
+                        <a href="profile-wishlist"><?=$this->translate('profile.wishlist_title')?>
+                            <div class="caret">
+                                <div class="caret-border"></div>
+                                <div class="caret-body"></div>
+                            </div><!-- .caret -->
+                        </a>
+                    </li>
+                    <li <?=$tab === 'history'? 'class="active"':''?>>
+                        <a href="profile-cashback-history"><?=$this->translate('profile.history_title')?>
+                            <div class="caret">
+                                <div class="caret-border"></div>
+                                <div class="caret-body"></div>
+                            </div><!-- .caret -->
+                        </a>
+                    </li>
+                    <li <?=$tab === 'pairing'? 'class="active"':''?>>
+                        <a href="profile-pairing"><?=$this->translate('profile.pairing_title')?>
+                            <div class="caret">
+                                <div class="caret-border"></div>
+                                <div class="caret-body"></div>
+                            </div><!-- .caret -->
+                        </a>
+                    </li>
+                    <li <?=$tab === 'locking'? 'class="active"':''?>>
+                        <a href="profile-locking"><?=$this->translate('profile.locking_title')?>
+                            <div class="caret">
+                                <div class="caret-border"></div>
+                                <div class="caret-body"></div>
+                            </div><!-- .caret -->
+                        </a>
+                    </li>
+                    <?php endif; ?>
+                </ul>
+            </div><!-- .profile tabs -->
+            <?php if (! $locked): ?>
+            <div class="cat-dropdown">
+                <span class="label"><?=$this->translate('profile.category_title')?>:</span>
+                <div class="cat-select-box">
+                    <div class="selected-item"><?=$this->translate('profile.category_prompt')?></div><!-- .selected-item -->
+                    <ul class="accordion-dropdown">
+
+                        <?php foreach ($categories as $id => $category): ?>
+                        <li>
+                            <span class="item"><?=$category['name']?></span>
+                            <?php if (count($category['subcategories'])): ?>
+                            <ul class="accordion-submenu">
+                                <?php foreach ($category['subcategories'] as $id => $subcategory): ?>
+                                <li><a href="/catalog/<?=$id?>"><?=$subcategory['name']?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php endif; ?>
+                        </li>
+                        <?php endforeach; ?>
+
+                    </ul>
+                </div><!-- .select-box -->
+            </div><!-- .cat-dropdown -->
+            <?php endif; ?>
+        </div><!-- .profile-bar -->
+        <div class="profile-tab-content">
+            <?php if ($locked): ?>
+            <div class="profile-unlocking tab <?=$tab === 'unlocking'? 'active':''?>">
+                <div class="redeem-inlay">
+                    <div class="wrap">
+                        <!-- account unlocking with wallet -->
+                        <div class="redeem-title"><?=$this->translate('unlocking.wallet.title')?></div>
+                        <div class="txt"><?=$this->translate('unlocking.wallet.subtitle')?></div>
+                        <ul class="redeem-options">
+                            <li class="code">
+                                <span><?=$code[0]?></span>
+                                <span><?=$code[1]?></span>
+                                <span><?=$code[2]?></span>
+                            </li>
+                            <li class="divider"><?=$this->translate('pairing.option_divider')?></li>
+                            <li class="qr">
+                                <img src="/profile/qr?param=<?=implode('', $code)?>" />
+                            </li><!-- .qr -->
+                        </ul>
+                    </div><!-- .wrap -->
+                </div><!-- .redeem-inlay -->
+            </div><!-- .profile-unlocking -->
+            <?php else: ?>
+            <div class="profile-wishlist tab <?=$tab === 'wishlist'? 'active':''?>">
+                <?php if (count($products)): ?>
+                <div class="products">
+                    <div class="row">
+                        <?php foreach ($products as $id => $product): ?>
+                        <div class="product">
+                            <a href="/profile/spurn/<?=$id?>" class="delete-from-wishlist"></a>
+                            <a href="/product/<?=$id?>">
+                                <div class="labels">
+                                    <?php if($product['is-new']): ?>
+                                    <span class="new-lbl"><?=$this->translate('product.badge_new')?></span>
+                                    <?php endif; ?>
+                                    <?php if($product['is-popular']): ?>
+                                    <span class="popular-lbl"><?=$this->translate('product.badge_popular')?></span>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="rating"></div>
+                                <div class="img-wrap">
+                                    <img src="<?=$product['image']?>" alt="image description" />
+                                </div><!-- .img-wrap -->
+                                <div class="product-info">
+                                    <span class="title"><?=$product['title']?></span>
+                                    <span class="product-price"><?=$product['currencySymbol']?><?=$product['price']?></span>
+                                    <div class="price">
+                                        <span><?=$this->translate('product.cashback')?>:</span>
+                                        <span>
+                                            <?=$product['bonusMoney'] === null ? '' : ($product['currencySymbol'] . $product['bonusMoney'])?>
+                                            <?=$product['one-bonus'] ? '' : '&'?>
+                                            <?=$product['bonusPercent'] === null ? '' : ($product['bonusPercent'] . '%')?>
+                                        </span>
+                                    </div>
+                                    <?php if ($product['incentive']): ?>
+                                    <span class="voucher"><?=$this->translate('product.voucher')?>: -<?=$product['incentive']['percentage']?>%</span>
+                                    <?php endif;?>
+                                    <span class="buy_btn"><?=$this->translate('product.button_view')?></span>
+                                </div><!-- .product-info -->
+                            </a>
+                        </div><!-- .product -->
+                        <?php endforeach; ?>
+
+                    </div><!-- .row -->
+                </div><!-- .products-->
+                <?php endif; ?>
+                <div id="wish-notice" class="msg-box-fullpage <?=count($products)?'hidden':''?>">
+                    <div><?=$this->translate('profile.empty_wishlist')?></div>
+                </div>
+            </div><!-- .profile-wishlist -->
+            <div class="profile-cashback-history tab  <?=$tab === 'history'? 'active':''?>">
+                <?php if(isset($history['error'])): ?>
+                <p><?=$history['error']?></p>
+                <?php else: ?>
+                <?php if (isset($history['total']) && count($history['total'])): ?>
+                <ul class="cashback-history">
+                    <li class="table-heading">
+                        <span class="retailer"><?=$this->translate('navigation.retailer_title')?></span>
+                        <div class="order">
+                            <span class="order-title"><?=$this->translate('navigation.order_title')?></span>
+                            <span class="date"><a href=""><?=$this->translate('navigation.date_title')?></a></span>
+                            <span class="cashback"><a href=""><?=$this->translate('navigation.cashback_title')?></a></span>
+                            <span class="status"><a href=""><?=$this->translate('navigation.status_title')?></a></span>
+                        </div><!-- .order -->
+                    </li><!-- .table-heading -->
+                    <?php foreach ($history['total'] as $currency => $value): ?>
+                      <?php foreach ($history[$currency]['details'] as $key => $transfer): ?>
+                      <li>
+                          <span><?=$transfer['message']?></span>
+                          <span><?=$transfer['date']?></span>
+                          <span><?=$transfer['amount']?>&nbsp;<?=$currency?></span>
+                          <span>NEW</span>
+                      </li>
+                      <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </ul><!-- .cashback-history -->
+                <?php else: ?>
+                <div class="msg-box-fullpage">
+                    <div><?=$this->translate('profile.empty_history')?></div>
+                </div>
+                <?php endif;?>
+                <?php endif; ?>
+            </div><!-- .profile-cashback-history -->
+            <div class="profile-pairing tab <?=$tab === 'pairing'? 'active':''?>">
+                <div class="redeem-inlay">
+                    <div class="wrap">
+                        <!-- wallet pairing -->
+                        <div class="redeem-title"><?=$this->translate('pairing.wallet.title')?></div>
+                        <div class="txt"><?=$this->translate('pairing.wallet.subtitle')?></div>
+                        <ul class="redeem-options">
+                            <li class="code">
+                                <span><?=$code[0]?></span>
+                                <span><?=$code[1]?></span>
+                                <span><?=$code[2]?></span>
+                            </li>
+                            <li class="divider"><?=$this->translate('pairing.option_divider')?></li>
+                            <li class="qr">
+                                <img src="/profile/qr?param=<?=implode('', $code)?>" />
+                            </li><!-- .qr -->
+                        </ul>
+                        <div class="link"><?=$this->translate('pairing.sync.link')?></div>
+                        <br/>
+                        <input class="sync_url" value="<?= $sync_url ?>" type="text"/>
+                        <!-- cbc pairing -->
+                        <hr/>
+                        <div class="redeem-title"><?=$this->translate('pairing.sync.title')?></div>
+                        <div class="txt"><?=$this->translate('pairing.sync.subtitle')?></div>
+                        <div>
+                          <form method="post" class="pairing-form" action="/profile/pairing">
+                              <input type="text" name="code_1" id="code_1"/>
+                              <input type="text" name="code_2" id="code_2"/>
+                              <input type="text" name="code_3" id="code_3"/>
+                              <input type="hidden" name="kind" value="b" id="kind"/>
+                              <input type="submit" value="<?=$this->translate('pairing.sync.submit')?>" name="pairing-submit" id="pairing-submit"/>
+                          </form>
+
+                          <?php if (isset($error) && $error): ?>
+                          <br/>
+                          <div><?=$error['message']?></div>
+                          <br/>
+                          <?php endif; ?>
+
+                          <?php
+                            if (count($brothers)):
+                              $processed = [];
+                          ?>
+                          <br/>
+                          <div class="redeem-title"><?=$this->translate('pairing.sync.brothers.title')?></div>
+                          <?php
+                              $current = $done = false;
+                              $containers = ['user', 'pair'];
+                              foreach ($brothers as $key => $value):
+                                foreach ($containers as $container):
+                                  $id = $value[$container]['id'];
+                                  $glomeid = $value[$container]['glomeid'];
+                                  $app = $value[$container]['parentapp_title'];
+
+                                  if (in_array($glomeid, $processed) or $myself == $glomeid):
+                                    if ($current and $done):
+                                      continue;
+                                    endif;
+                                    $current = true;
+                                  endif;
+
+                                  $processed[] = $glomeid;
+                          ?>
+                                <form method="post" class="pairing-form" action="/profile/pairing">
+                                    <?php if ($current && ! $done): ?>
+                                    <strong><?= $this->translate('pairing.sync.current') ?></strong>
+                                    <?php
+                                        $done = true;
+                                        endif;
+                                    ?>
+                                    <strong><?=$app?></strong>
+                                    <span>(<?= $id ?>; <?=$this->translate('pairing.sync.brother.synced_at') . $value['updated_at']?>)</span>
+                                    <input type="hidden" name="unpair" value="true"/>
+                                    <input type="hidden" name="sync_id" value="<?=$value['id']?>" id="sync_id"/>
+                                    <input type="submit" value="<?=$this->translate('pairing.sync.brother.remove')?>" name="pairing-remove" id="pairing-remove"/>
+                                </form>
+                          <?php
+                                endforeach;
+                              endforeach;
+                            endif;
+                          ?>
+                        </div>
+                    </div><!-- .wrap -->
+                </div><!-- .redeem-inlay -->
+            </div><!-- .profile-pairing -->
+            <div class="profile-locking tab <?=$tab === 'locking'? 'active':''?>">
+                <div class="redeem-inlay">
+                    <div class="wrap">
+                        <!-- account locking -->
+                        <div class="redeem-title"><?=$this->translate('locking.title')?></div>
+                        <div class="txt"><?=$this->translate('locking.subtitle')?></div>
+
+                        <form method="post" class="locking-form" action="/profile/locking">
+                            <input type="submit" value="<?=$this->translate('locking.submit')?>" name="locking-submit" id="locking-submit"/>
+                        </form>
+
+                        <?php if (isset($error) && $error): ?>
+                        <br/>
+                        <div><?=$error['message']?></div>
+                        <br/>
+                        <?php endif; ?>
+                    </div><!-- .wrap -->
+                </div><!-- .redeem-inlay -->
+            </div><!-- .profile-locking -->
+            <?php endif; ?>
+        </div><!-- .profile-tab-content -->
+
+        <?php if (! $locked): ?>
+        <?php echo $deals; ?>
+        <?php endif; ?>
+
+    </div><!-- .wrap -->
+</div><!-- .profile -->

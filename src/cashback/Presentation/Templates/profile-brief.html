@@ -1,0 +1,41 @@
+<?php if ($locked === false): ?>
+                    <div class="header-profile-wrap">
+                        <div class="redeem">
+                            <div class="earnings">
+                                <span><?=$this->translate('header.earnings_title')?></span>
+                                <span class="amount"><?=$current['currency']['symbol'].$earnings?></span>
+                            </div><!-- .earning -->
+                            <?php if ( (int)$earnings >= 5 ): ?>
+                            <a href="/redirect/redeem" class="redeem-btn redeem-btn-enabled"><?=$this->translate('navigation.to_redeem')?></a>
+                            <?php else: ?>
+                            <div class="redeem-btn disabled">
+                                <span><?=$this->translate('navigation.to_redeem')?></span>
+                                <span class="min"><?=$this->translate('navigation.redeem_condition')?></span>
+                            </div>
+                            <?php endif ?>
+                        </div><!-- .redeem -->
+
+
+                    <?php if (isset($opened)): ?>
+                        <div class="header-profile profile-open">
+                            <span class="gnb"></span>
+                            <span id="wish-indicator" class="<?=$wishes>0?'amount':''?>"><?=$wishes>0?$wishes:''?></span>
+                            <a href="/profile" class="header-profile-btn"></a>
+                        </div><!-- .header-profile -->
+                    <?php else: ?>
+                        <div class="header-profile">
+                            <span class="gnb"></span>
+                            <span id="wish-indicator" class="<?=$wishes>0?'amount':''?>"><?=$wishes>0?$wishes:''?></span>
+                            <a href="/profile" class="header-profile-btn"></a>
+                            <div class="profile-menu">
+                                <ul>
+                                    <li class="wishlist"><a href="/profile/wishlist"><?=$this->translate('navigation.to_wishlist')?><span class="amount" id="wish-counter"><?=$wishes>0?$wishes:''?></span></a></li>
+                                    <li class="history"><a href="/profile/history"><?=$this->translate('navigation.to_history')?></a></li>
+                                    <li class="glome-wallet"><a href="/profile/pairing"><?=$this->translate('navigation.to_pairing')?></a></li>
+                                    <li class="glome-wallet"><a href="/profile/locking"><?=$this->translate('navigation.to_locking')?></a></li>
+                                </ul>
+                            </div><!-- .profile-menu -->
+                        </div><!-- .header-profile -->
+                    <?php endif; ?>
+                    </div><!-- .header-profile-wrap -->
+<?php endif; ?>

@@ -1,0 +1,30 @@
+
+        <div class="overlay overlay1">
+            <div class="overlay-bg"></div>
+            <div class="center">
+                <div class="content-box">
+                    <a href="" class="close-overlay"></a>
+                    <span class="title"><?=$product['title']?></span>
+                    <div class="notice-msg">
+                        <span class="bold">Do not forget to use voucher code to get discount for Title of the product</span>
+                        <span>Voucher code: 678HHk790</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="overlay overlay2">
+            <div class="overlay-bg"></div>
+            <div class="center">
+                <div class="content-box">
+                    <a href="" class="close-overlay"></a>
+                    <span class="title"><?=$this->translate('overlay.title', $product['title'])?></span>
+                    <span class="retailer"><?=$this->translate('navigation.retailer_title')?>: <span><?=$product['advertiser']?></span></span>
+                    <div class="notice-msg">
+                        <span class="bold"><?=$this->translate('overlay.notice')?></span>
+                        <span><?=$this->translate('overlay.reminder')?></span>
+                    </div>
+                    <a href="" class="continue-shopping"><?=$this->translate('overlay.link')?></a>
+                </div>
+            </div>
+        </div>
